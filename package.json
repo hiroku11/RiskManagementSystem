@@ -1,0 +1,27 @@
+{
+    "name": "starwars",
+    "version": "1.0.0",
+    "description": "Angulae app",
+    "main": "index.js",
+    "scripts": {
+        "start": "http-server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/hir06/Star-Wars.git"
+    },
+    "keywords": [
+        "Angular",
+        "html",
+        "css"
+    ],
+    "author": "HP",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/hir06/Star-Wars/issues"
+    },
+    "homepage": "https://github.com/hir06/Star-Wars#readme",
+    "dependencies": {
+        "http-server": "^0.10.0"
+    }
+}
