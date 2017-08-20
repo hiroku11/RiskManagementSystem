@@ -1,4 +1,4 @@
-﻿var loginController = riskManagementSystem.controller("loginController", ["$scope", "rmsService", '$location', function ($scope, rmsService, $location) {
+﻿var loginController = riskManagementSystem.controller("loginController", ["$scope", "rmsService", '$location', '$window', '$http', function ($scope, rmsService, $location, $window, $http) {
     $scope.loginUser = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/p/api/login',
@@ -10,7 +10,7 @@
             rmsService.loggedInUser = response.data;
             //var head=response.headers();
             ////$localStorage.setItem("rmsAuthToken")
-            //$location.path("/dashboard")
+            $location.path("/dashboard")
         }, function (error) {
             //show user that credentials are not correct
             $scope.signInError = true;

@@ -12,6 +12,17 @@ riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compilePro
       }).when('/', {
           templateUrl: 'app/views/login.html',
           controller: 'loginController',
+      }).when('/dashboard', {
+          templateUrl: 'app/views/dashboard.html',
+          controller: 'dashboardController',
+          resolve: {
+              loggedIn: function (rmsService,$location) {
+                  //if user is not logged in redirect to login page
+                  if (!rmsService.loggedInUser) {
+                      $location.path("/login")
+                  }
+              }
+          }
       })
 }]);
 
