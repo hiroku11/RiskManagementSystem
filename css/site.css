@@ -1,0 +1,148 @@
+﻿body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+    background-color: #efd1d4;
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+.header {
+    border-bottom: 4px solid #8c1519;
+    background-color: #fff;
+    height:95px;
+}
+
+.logo img {
+    margin-top: 10px;
+    width: 96px;
+}
+img {
+    vertical-align: middle;
+}
+img {
+    border: 0;
+}
+.container {
+    min-height: 100%;
+    width: 100%;
+}
+
+.logo-img {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    transform: translateY(50%);
+}
+
+h2, h3 {
+	margin-top: 0;
+}
+.user-details {
+	text-align: right;
+	padding-top: 40px;
+}
+.user-circle {
+	width: 24px;
+	height: 24px;
+	border-radius: 30px;
+	background-color: #8c1519;
+	display: inline-block;
+	color: #fff;
+	text-align: center;
+	padding: 2px;
+	margin: 0 10px;
+}
+
+.nav {
+	background-color: #2e2e2e;
+	padding-right: 0;
+    height:100%;
+}
+
+.nav ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+
+a,
+a:visited,
+a:hover {
+	color: #8c1519;
+}
+
+h5 {
+	margin-left: 20px;
+}
+.pagination>li>a, .pagination>li>span {
+	color: #8c1519;	
+}
+.nav a {
+	display: block;
+	padding: 10px;
+	font-size: 1.1em;
+	/*color: #8c1519;*/
+	color: #d2d2d2;
+	/*border-bottom: 1px solid transparent;*/
+}
+
+.nav li ul {
+	display: none;
+}
+.nav li.active ul {
+	display: block;
+	/*background-color: #fff;*/
+	/*border-bottom: 2px solid #8c1519;
+	position: relative;*/
+}
+.nav  ul > li.active > a {
+	background-color: #8c1519;
+	color: #fff;
+}
+.nav ul ul a {
+	color: #d2d2d2;
+}
+.nav li.active li a:hover {
+	color: #fff;
+}
+.nav li.active > a {
+	color: #fff;
+}
+
+.nav a i.menu-icon {
+	/*margin-left: -40px;*/
+	margin-right: 10px;
+}
+
+.nav a:hover {
+	text-decoration: none;
+	color: #fff;
+	/*border-bottom-color: #8c1519;*/
+}
+.nav ul ul a { 
+	padding-left: 60px;
+}
+
+.nav + div {
+	padding-left: 0;
+	padding-right: 0;
+}
