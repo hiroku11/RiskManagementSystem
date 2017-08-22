@@ -10,8 +10,9 @@
         var loginPromise = $http(req);
         loginPromise.then(function(response) {
             rmsService.loggedInUser = response.data;
-            var head = response.data.XAuthToken;
-            localStorage.setItem("rmsAuthToken", head);
+            var token = response.data.XAuthToken;
+            localStorage.setItem("rmsAuthToken", token);
+            //localStorage.setItem("rmsAuthorisedUser", response.data);
             AppService.HideLoader();
             $location.path("/dashboard")
         }, function(error) {

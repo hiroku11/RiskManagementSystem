@@ -4,6 +4,7 @@
     if (angular.isUndefined($scope.loggedInUser)) {
         $location.path("/")
     }
+    $scope.thisView = "dashboard";
     $scope.lookUp = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/user-lookup',
@@ -21,9 +22,11 @@
             AppService.HideLoader();
         })
     }
-    $scope.logOut = function() {
+    $scope.logOut = function () {
+        AppService.ShowLoader();
         localStorage.removeItem("rmsAuthToken");
-        $location.path("/login")
+        AppService.HideLoader();
+        $location.path("/login");
     }
-    $scope.lookUp();
+   // $scope.lookUp();
 }])

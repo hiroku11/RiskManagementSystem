@@ -1,5 +1,11 @@
-﻿<div class="row">
-    <h4 class="text-center">Welcome:{{loggedInUser.firstName}} {{loggedInUser.lastName==null?"":loggedInUser.lastName}}</h4>
-    <h4><a ng-click="logOut()" style="cursor:pointer">LogOut</a> </h4>
-    <div>{{data}}</div>
+﻿<div class="row header">
+    <ng-include src="'app/views/header.html'"></ng-include>
+</div>
+<div class="row">
+    <div class="col-md-2 nav">
+        <ng-include src="'app/views/menu.html'"></ng-include>
+    </div>
+    <div class="col-md-10">
+    <!--Here The content and forms of the page will appear-->
+    </div>
 </div>
