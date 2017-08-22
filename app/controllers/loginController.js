@@ -1,19 +1,23 @@
-﻿var loginController = riskManagementSystem.controller("loginController", ["$scope", "rmsService", '$location', '$window', '$http', function ($scope, rmsService, $location, $window, $http) {
-    $scope.loginUser = function () {
+﻿var loginController = riskManagementSystem.controller("loginController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function($scope, AppService, rmsService, $location, $window, $http) {
+    this.AppService = AppService;
+    $scope.loginUser = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/p/api/login',
             method: "POST",
-            headers: { 'Authorization': 'Basic ' + $window.btoa(unescape(encodeURIComponent($scope.username + ':' +  $scope.password))) },
+            headers: { 'Authorization': 'Basic ' + $window.btoa(unescape(encodeURIComponent($scope.username + ':' + $scope.password))) },
         }
+        AppService.ShowLoader();
         var loginPromise = $http(req);
-        loginPromise.then(function (response) {
+        loginPromise.then(function(response) {
             rmsService.loggedInUser = response.data;
-            //var head=response.headers();
-            ////$localStorage.setItem("rmsAuthToken")
+            var head = response.data.XAuthToken;
+            localStorage.setItem("rmsAuthToken", head);
+            AppService.HideLoader();
             $location.path("/dashboard")
-        }, function (error) {
+        }, function(error) {
             //show user that credentials are not correct
             $scope.signInError = true;
+            AppService.HideLoader();
         })
     }
 }])
