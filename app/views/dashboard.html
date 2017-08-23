@@ -6,6 +6,15 @@
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
     <div class="col-md-10">
-    <!--Here The content and forms of the page will appear-->
+        <ng-include src="'app/views/graph.html'" ng-if="thisView == 'dashboard'"></ng-include>
+        <ng-include src="'app/views/incidents.html'" ng-if="thisView == 'incidents'"></ng-include>
+        <ng-include src="'app/views/incidents.html'" ng-if="thisView == 'claims'"></ng-include>
+        <ng-include src="'app/views/incidents.html'" ng-if="thisView == 'investigation'"></ng-include>
+        <ng-include src="'app/views/incidents.html'" ng-if="thisView == 'users'"></ng-include>
+
+
+
     </div>
-</div>
+    <div class="footer">
+
+    </div>

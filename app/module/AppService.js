@@ -17,8 +17,9 @@
             };
         })
 
-    riskManagementSystem.service("rmsService", function ($http, $window) {
+    riskManagementSystem.service("rmsService", function($http, $window) {
         this.loggedInUser = null;
+
     })
 
 })();
