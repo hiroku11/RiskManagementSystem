@@ -18,14 +18,15 @@ riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compilePro
           resolve: {
               loggedIn: function (rmsService,$location) {
                   //if user is not logged in redirect to login page
-                  if (!rmsService.loggedInUser) {
+                  var token=localStorage.getItem("rmsAuthToken");
+                  if (!token) {
                       $location.path("/login")
                   }
               }
           }
+      }).when('/incidents', {
+          templateUrl: 'app/views/incidents.html',
+          controller: 'incidentsController',
       })
 }]);
 
-riskManagementSystem.service("rmsService", function ($http,$window) {
-    this.loggedInUser=null;
-})
