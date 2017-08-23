@@ -31,7 +31,7 @@
     }
     $scope.changeMenu = function() {
 
-            $scope.thisView = event.target.id;
+            $scope.thisView = $event.target.id;
         }
         // $scope.lookUp();
 }])

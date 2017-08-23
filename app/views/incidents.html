@@ -1,6 +1,15 @@
-﻿<div class="incidents" ng-controller="incidentsController">
+﻿<div class="row header">
+    <ng-include src="'app/views/header.html'"></ng-include>
+</div>
+<div class="row">
+    <div class="col-md-2 nav">
+        <ng-include src="'app/views/menu.html'"></ng-include>
+    </div>
+    <div class="col-md-10">
+        
+<div class="incidents" ng-controller="incidentsController">
     <div class="pull-right advanced-search">
-        <a class="btn btn-primary" id="btnAdvanceSearch">Advanced Search</a>
+        <a class="btn btn-primary" id="btnAdvanceSearch" ng-click="">Advanced Search</a>
     </div>
     <div class="pull-right searchbox">
         <div class="input-group stylish-input-group">
@@ -21,7 +30,7 @@
 
 </div>
 
-<div class="advanced-search-panel hide">
+<div class="advanced-search-panel" ng-show="advanceSearch">
     <h4>Advanced Search Options</h4>
     <div class="row">
         <div class="cell-md">
@@ -283,3 +292,7 @@
 
     <span>1 - 10 of 2451</span>
 </nav>
+    </div>
+    <div class="footer">
+
+    </div>
