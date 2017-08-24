@@ -35,11 +35,16 @@ img {
     border: 0;
 }
 
-.container {
+.container-fluid {
     min-height: 100%;
     width: 100%;
+    padding-right: 0px; 
+    /* padding-left: 15px; */
 }
 
+.row{
+    margin-right: 0px;
+}
 .logo-img {
     width: 96px;
     height: 96px;
@@ -84,13 +89,13 @@ h3 {
     margin: 0 10px;
 }
 
-.nav {
+.navbar {
     background-color: #2e2e2e;
     padding-right: 0;
     height: 100%;
 }
 
-.nav ul {
+.navbar ul {
     margin: 0;
     padding: 0;
     list-style: none;
@@ -111,7 +116,7 @@ h5 {
     color: #8c1519;
 }
 
-.nav a {
+.navbar a {
     display: block;
     padding: 10px;
     font-size: 1.1em;
@@ -120,53 +125,53 @@ h5 {
     /*border-bottom: 1px solid transparent;*/
 }
 
-.nav li ul {
+.navbar li ul {
     display: none;
 }
 
-.nav li.active ul {
+.navbar li.active ul {
     display: block;
     /*background-color: #fff;*/
     /*border-bottom: 2px solid #8c1519;
 	position: relative;*/
 }
 
-.nav ul>li.active>a {
+.navbar ul>li.active>a {
     background-color: #8c1519;
     color: #fff;
 }
 
-.nav ul ul a {
+.navbar ul ul a {
     color: #d2d2d2;
 }
 
-.nav li.active li a:hover {
+.navbar li.active li a:hover {
     color: #fff;
 }
 
-.nav li.active>a {
+.navbar li.active>a {
     color: #fff;
 }
 
-.nav a i.menu-icon {
+.navbar a i.menu-icon {
     /*margin-left: -40px;*/
     margin-right: 10px;
 }
 
-.nav a:hover {
+.navbar a:hover {
     text-decoration: none;
     color: #fff;
     /*border-bottom-color: #8c1519;*/
 }
 
-.nav ul ul a {
+.navbar ul ul a {
     padding-left: 60px;
 }
 
 
 /*HP*/
 
-.nav+div {
+.navbar+div {
     padding-left: 1em;
     padding-top: 1em;
     padding-right: 0;
@@ -322,4 +327,21 @@ nav span {
 a i {
     top: 2px;
     right: 7px;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+    background-color: #efd1d4;
+
+    color: #555;
+    cursor: default;
+    border: 1px solid #555;;
+    border-bottom-color: transparent;
+}
+
+.nav-tabs>li>a {
+    border:  1px solid #555;;
+}
+
+.nav-tabs li a {
+    background-color: white;
 }

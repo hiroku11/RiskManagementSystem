@@ -27,6 +27,9 @@ riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compilePro
       }).when('/incidents', {
           templateUrl: 'app/views/incidents.html',
           controller: 'incidentsController',
-      })
+      }).when('/addincident', {
+        templateUrl: 'app/views/addincident.html',
+        controller: 'addIncidentController',
+    })
 }]);
 
