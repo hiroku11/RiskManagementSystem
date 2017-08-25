@@ -1,9 +1,9 @@
 ﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function($scope, AppService, rmsService, $location, $window, $http) {
+
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
-    $scope.search = "";
     if (angular.isUndefined($scope.loggedInUser)) {
         $location.path("/")
     }
@@ -88,5 +88,7 @@
         getIncident.then(function(response) {
             $scope.data = response.data;
             AppService.HideLoader();
+        });
+    }
 
-}])
+}]);

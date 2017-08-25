@@ -5,7 +5,7 @@
     <div class="col-md-2 navbar hidden-sm hidden-xs">
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 content">
 
         <div class="incidents" ng-controller="incidentsController">
             <div class="pull-right advanced-search">
@@ -87,7 +87,6 @@
             <nav aria-label="Page navigation">
                 <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="entryCount" ng-change="getEntries()" />
                 <!--<select class="form-control">
-=======
     <div class="col-md-2 navbar">
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
