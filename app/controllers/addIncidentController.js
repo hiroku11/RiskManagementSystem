@@ -5,6 +5,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.authorizedUser=rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
     $scope.logOutUser=rmsService.logOutUser;
+$scope.options=['Scar','Balding','Glasses','Accent','Beard','Birth Mark','Mole','Squint']
+
     $scope.changeTab=function(tab){
         $scope.tab=tab;
         $(".content")[0].scrollTop=0;
@@ -39,5 +41,5 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     ///rmsrest/s/table-maintenance/accident- type/accident-types
 
     $scope.getIncidentLocations();
-    //$scope.getIncidentLocationsDetails();
+    
 }])

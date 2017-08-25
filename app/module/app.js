@@ -1,4 +1,4 @@
-var riskManagementSystem = angular.module("riskManagementSystem", ['ngRoute']);
+var riskManagementSystem = angular.module("riskManagementSystem", ['ngRoute','btorfs.multiselect']);
 riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compileProvider', function ($routeProvider, $locationProvider, $compileProvider, $httpProvider) {
 
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);

@@ -105,8 +105,10 @@
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <label>Distinguishing Features</label>
-                    <select class="form-control" multiple="multiple">
-                        <option>Select</option>
+
+                    <multiselect ng-model="distinguishFeatures" options="options">
+                        </multiselect>
+                    <!-- <select class="form-control multiselect-ui" multiple="multiple">
                         <option>Scar</option>
                         <option>Balding</option>
                         <option>Glasses</option>
@@ -115,7 +117,7 @@
                         <option>Birth Mark</option>
                         <option>Mole</option>
                         <option>Squint</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
             <h3 class="form-title">Suspect</h3>
@@ -409,5 +411,4 @@
             
 
         </form>
-        
     </div>
