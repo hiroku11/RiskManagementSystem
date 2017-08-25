@@ -6,8 +6,14 @@ html {
 
 body {
     background-color: #efd1d4;
+    overflow: hidden;
 }
 
+.content{
+    overflow-y: auto;
+    height: 100%;
+    padding-bottom: 95px;
+}
 * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -92,7 +98,7 @@ h3 {
 .navbar {
     background-color: #2e2e2e;
     padding-right: 0;
-    height: 100%;
+    min-height: 100%;
 }
 
 .navbar ul {
