@@ -1,0 +1,181 @@
+<div class="form-content"  ng-if="tab==3">
+        <h2>Claim Details</h2>
+        <form>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <label>Security Requested</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label>Training Requested</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+            </div>	
+    
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <label>Claim Status</label>
+                    <select class="form-control">
+                        <option>Open</option>
+                        <option>Prepared</option>
+                        <option>Submitted</option>
+                        <option>Received</option>
+                        <option>Accepted</option>
+                        <option>Rejected</option>
+                        <option>More info required</option>
+                        <option>Approved</option>
+                        <option>Settled</option>
+                        <option>Re-open</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Claim ID</label>
+                    <input class="form-control" type="text">
+                </div>
+    
+                <div class="col-md-4 col-sm-12">
+                    <label>Claim Request Registration Type</label>
+                    <select class="form-control">
+                        <option>New Claim</option>
+                        <option>Disputed Claim</option>
+                    </select>
+                    <!-- <input class="form-control" type="text"> -->
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <label>Claim Requested Date</label>
+                    <div class='input-group date' data-provide="datepicker">
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <label>Claim Type</label>
+                    <select class="form-control">
+                        <option>Auto Physical Damage</option>
+                        <option>Injury</option>
+                        <option>Other</option>
+                    </select>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                        <label>If Claim Type Othres</label>
+                        <input class="form-control" type="text">
+                    </div>
+                <div class="col-md-3 col-sm-12">
+                    <label>Claimant Name</label>
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <label>Policy Number</label>
+                    <input class="form-control" type="text">
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label>Policy Holder Name</label>
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <label>Type of Policy</label>
+                    <select class="form-control">
+                        <option>Vehicle</option>
+                        <option>Property</option>
+                        <option>Individual</option>
+                        <option>Other</option>
+                    </select>
+                    
+                </div>
+                <div class="col-md-3 col-sm-12">
+                        <label>If Type of Policy Others</label>
+                        <input class="form-control" type="text">
+                    </div>
+                <div class="col-md-3 col-sm-12">
+                    <label>Insured Name</label>
+                    <input class="form-control" type="text">
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <label>Investigator Name</label>
+                    <input class="form-control" type="text">
+                </div>
+                
+            </div>
+    
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <label>Estimated Claim Request Amount</label>
+                    <input class="form-control" type="text">
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Claim Approved Amount</label>
+                    <input class="form-control" type="text">
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Claim Approved By</label>
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+            <div class="row">
+                
+                <div class="col-md-4 col-sm-12">
+                    <label>Claim Approved Date</label>
+                    <div class='input-group date' data-provide="datepicker">
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Claim Settled Date</label>
+                    <div class='input-group date' data-provide="datepicker">
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                </div>
+    
+                <div class="col-md-4 col-sm-12">
+                    <label>Claim Requested By</label>
+                    <input class="form-control" type="text">
+                </div>
+                
+            </div>
+    
+    
+            <!--<div class="row">
+                <div class="cell-sm">
+                    <label>Claim Re-open Date</label>
+                    <input type="date" class="form-control" />
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+                <div class="cell-md">
+                    <label>Claim Re-open Reason</label>
+                    <input type="text" class="form-control" />
+                </div>
+                <div class="cell-sm">
+                    <label>Claim Re-open Completed Date</label>
+                    <input type="date" class="form-control" />
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </div>
+            </div>-->
+        </form>
+        <div class="col-sm-12">
+                <button type="button" class="btn btn-primary" ng-click="changeTab(4)">Continue</button>
+                <button type="button" class="btn" ng-click="changeTab(2)">Back</button>
+        </div>
+</div>

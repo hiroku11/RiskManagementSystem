@@ -1,0 +1,53 @@
+<div class="form-content" ng-if="tab=5">
+        <h2>Supporting Documents</h2>
+        <div class="table-wrapper">
+            <table class="table table-bordered incident-list">
+                <thead>
+                    <tr>
+                        <th>Document Type</th>
+                        <th>Document Name</th>
+                        <th>Date Added</th>
+                        <th>Added By</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Video</td>
+                        <td>abc.mpeg</td>
+                        <td>12/05/2017</td>
+                        <td>user</td>
+                    </tr>
+                    <tr>
+                        <td>Statement</td>
+                        <td>abc.doc</td>
+                        <td>12/05/2017</td>
+                        <td>user</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <form>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label>Document Type</label>
+                    <select class="form-control">
+                        <option>Select</option>
+                        <option>Image</option>
+                        <option>Video</option>
+                        <option>Statement</option>
+                    </select>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                        <label>Document Name</label>
+                        <input class="form-control" type="file">
+                    </div>
+            </div>
+            <div class="action-button">
+                <a class="btn btn-primary" href="" id="btnAddSupportingDocument">Add</a>
+            </div>
+        </form>
+    </div>
+    
+    <div class="align-10 add-incident-action">
+        <button class="btn btn-primary" ng-click="summary">Continue</a>
+    </div>
