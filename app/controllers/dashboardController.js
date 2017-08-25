@@ -4,7 +4,7 @@
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.authorizedUser=rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
-    $scope.role = $scope.loggedInUser.roles[0];
+    //$scope.role = $scope.loggedInUser.roles[0];
     $scope.thisView = "dashboard";
     $scope.lookUp = function() {
         var req = {

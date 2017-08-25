@@ -4,5 +4,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.tab="1";
     $scope.authorizedUser=rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
+    // angular.element(function(){
+    //     $('#datetimepicker1').datetimepicker();
+    // })
 
 }])
