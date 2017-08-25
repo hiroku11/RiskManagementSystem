@@ -14,6 +14,7 @@ body {
     height: 100%;
     padding-bottom: 95px;
 }
+
 * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -41,6 +42,7 @@ img {
     border: 0;
 }
 
+
 .container-fluid {
     min-height: 100%;
     width: 100%;
@@ -51,6 +53,7 @@ img {
 .row{
     margin-right: 0px;
 }
+
 .logo-img {
     width: 96px;
     height: 96px;
@@ -95,6 +98,7 @@ h3 {
     margin: 0 10px;
 }
 
+
 .navbar {
     background-color: #2e2e2e;
     padding-right: 0;
@@ -123,6 +127,7 @@ h5 {
     color: #8c1519;
 }
 
+
 .navbar a {
     display: block;
     padding: 10px;
@@ -131,6 +136,7 @@ h5 {
     color: #d2d2d2;
     /*border-bottom: 1px solid transparent;*/
 }
+
 
 .navbar li ul {
     display: none;
@@ -143,10 +149,12 @@ h5 {
 	position: relative;*/
 }
 
+
 .navbar ul>li.active>a {
     background-color: #8c1519;
     color: #fff;
 }
+
 
 .navbar ul ul a {
     color: #d2d2d2;
@@ -171,12 +179,14 @@ h5 {
     /*border-bottom-color: #8c1519;*/
 }
 
+
 .navbar ul ul a {
     padding-left: 60px;
 }
 
 
 /*HP*/
+
 
 .navbar+div {
     padding-left: 1em;
@@ -335,6 +345,19 @@ a i {
     top: 2px;
     right: 7px;
 }
+
+#myModal .row {
+    margin-bottom: 0.2em;
+}
+
+@media only screen and (min-width: 410px) and (max-width:767px) {
+    .incidentLabel {
+        display: none
+    }
+    .nav {
+        height: auto;
+    }
+
 .nav-tabs {
     border-bottom: 1px solid #555;
 }
