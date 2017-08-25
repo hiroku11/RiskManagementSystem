@@ -4,7 +4,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.tab="1";
     $scope.authorizedUser=rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
-    
+    $scope.logOutUser=rmsService.logOutUser;
     $scope.changeTab=function(tab){
         $scope.tab=tab;
         $(".content")[0].scrollTop=0;

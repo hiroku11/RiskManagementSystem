@@ -6,6 +6,7 @@
     $scope.loggedInUser = rmsService.getLoggedInUser();
     //$scope.role = $scope.loggedInUser.roles[0];
     $scope.thisView = "dashboard";
+    $scope.logOutUser=rmsService.logOutUser;
     $scope.lookUp = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/user-lookup',

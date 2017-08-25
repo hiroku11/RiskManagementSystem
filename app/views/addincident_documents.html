@@ -1,4 +1,4 @@
-<div class="form-content" ng-if="tab=5">
+<div class="form-content" ng-if="tab==5">
         <h2>Supporting Documents</h2>
         <div class="table-wrapper">
             <table class="table table-bordered incident-list">
@@ -45,9 +45,11 @@
             <div class="action-button">
                 <a class="btn btn-primary" href="" id="btnAddSupportingDocument">Add</a>
             </div>
+            <div class="row">
+                    <div class="col-sm-12">
+                            <button class="btn btn-primary" ng-click="summary">Continue</a>
+                        </div>
+            </div>
         </form>
     </div>
     
-    <div class="align-10 add-incident-action">
-        <button class="btn btn-primary" ng-click="summary">Continue</a>
-    </div>

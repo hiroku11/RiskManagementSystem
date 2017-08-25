@@ -60,6 +60,10 @@
                 return this.loggedInUser;
             }
         }
+         this.logOutUser=function(){
+             localStorage.removeItem("rmsAuthToken");
+             $location.path("/login");
+         }
     })
 
 })();
