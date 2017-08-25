@@ -1,10 +1,10 @@
 ﻿var dashboardController = riskManagementSystem.controller("dashboardController", ["$scope", "AppService", "rmsService", '$http', '$location', function($scope, AppService, rmsService, $http, $location) {
-    $scope.loggedInUser = rmsService.loggedInUser;
-    $scope.role = $scope.loggedInUser.roles[0];
+    
+    
     $scope.token = localStorage.getItem('rmsAuthToken');
-    if (angular.isUndefined($scope.loggedInUser)) {
-        $location.path("/")
-    }
+    $scope.authorizedUser=rmsService.decryptToken();
+    $scope.loggedInUser = rmsService.getLoggedInUser();
+    $scope.role = $scope.loggedInUser.roles[0];
     $scope.thisView = "dashboard";
     $scope.lookUp = function() {
         var req = {

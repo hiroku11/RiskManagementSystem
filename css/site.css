@@ -98,6 +98,7 @@ h3 {
 .navbar {
     background-color: #2e2e2e;
     padding-right: 0;
+    padding-left: 0;
     min-height: 100%;
 }
 
@@ -334,7 +335,9 @@ a i {
     top: 2px;
     right: 7px;
 }
-
+.nav-tabs {
+    border-bottom: 1px solid #555;
+}
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
     background-color: #efd1d4;
 
