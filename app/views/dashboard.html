@@ -2,10 +2,10 @@
     <ng-include src="'app/views/header.html'"></ng-include>
 </div>
 <div class="row">
-    <div class="col-md-2 nav">
+    <div class="col-md-2 navbar">
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-10 content">
         <ng-include src="'app/views/graph.html'" ng-if="thisView == 'dashboard'"></ng-include>
         <ng-include src="'app/views/incidents.html'" ng-if="thisView == 'incidents'"></ng-include>
         <ng-include src="'app/views/incidents.html'" ng-if="thisView == 'claims'"></ng-include>

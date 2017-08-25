@@ -15,18 +15,12 @@ riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compilePro
       }).when('/dashboard', {
           templateUrl: 'app/views/dashboard.html',
           controller: 'dashboardController',
-          resolve: {
-              loggedIn: function (rmsService,$location) {
-                  //if user is not logged in redirect to login page
-                  var token=localStorage.getItem("rmsAuthToken");
-                  if (!token) {
-                      $location.path("/login")
-                  }
-              }
-          }
       }).when('/incidents', {
           templateUrl: 'app/views/incidents.html',
           controller: 'incidentsController',
-      })
+      }).when('/addincident', {
+        templateUrl: 'app/views/addincident.html',
+        controller: 'addIncidentController',
+    })
 }]);
 

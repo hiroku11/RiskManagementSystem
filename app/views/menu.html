@@ -1,37 +1,34 @@
 ﻿<ul>
-    <li ng-class="{active:thisView=='dashboard'}">
-        <a ng-click="changeMenu()" title="" id="dashboard">
-            <i class="glyphicon glyphicon-dashboard menu-icon"></i> Dashboard
-        </a>
-    </li>
-    <li>
-        <a ng-click="changeMenu()" title="" id="incidents">
+    <li ng-class="{active:thisView=='incidents'}">
+        <a href="#/incidents" title="">
             <i class="glyphicon glyphicon-time menu-icon"></i> Incidents
         </a>
     </li>
-    <li>
-        <a ng-click="changeMenu()" title="" id="claims">
+    <li ng-class="{active:thisView=='claims'}">
+        <a href="#/claims" title="">
             <i class="glyphicon glyphicon-gift menu-icon"></i> Claims
         </a>
     </li>
-    <li>
-        <a ng-click="changeMenu()" title="" id="investigation">
+    <li ng-class="{active:thisView=='investigations'}">
+        <a href="#/investigations" title="">
+
             <i class="glyphicon glyphicon-search menu-icon"></i> Investigations
         </a>
     </li>
     <li>
-        <a ng-click="changeMenu()" data-toggle="collapse" data-target="#submenu-1" title="" id="users">
+
+        <a data-toggle="collapse" data-target="#submenu-1" title="" >
             <i class="glyphicon glyphicon-user menu-icon"></i> User Administration
             <i class="glyphicon glyphicon-menu-right pull-right"></i>
         </a>
 
         <ul id="submenu-1" class="collapse">
-            <li>
+            <li ng-class="{active:thisView=='user'}">
                 <a href="#/users" title="">
                     User
                 </a>
             </li>
-            <li>
+            <li ng-class="{active:thisView=='roles'}">
                 <a href="#/roles" title="">
                     Roles
                 </a>
