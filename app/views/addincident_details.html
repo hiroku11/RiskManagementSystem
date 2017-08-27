@@ -1,31 +1,34 @@
-<div class="form-content"  ng-if="tab==2">
-        <h2>Incident Details</h2>
-        <form>
-            <div class="row">
-                <div class="col-md-8 col-sm-12">
-                    <label>Date of Incident: (DD/MM/YYYY)</label>
 
-                    <div class='input-group date' data-provide="datepicker">
-                        <input type='text' class="form-control" />
-                        <span class="input-group-addon">
+<div class="form-content" ng-if="tab==2">
+    <h2>Incident Details</h2>
+    <form>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label>Date of Incident: (DD/MM/YYYY)</label>
+
+                <div class='input-group date' data-provide="datepicker">
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <div><label>Time of Incident:</label></div>
-                    <input class="form-control small-control" type="text" placeholder="HH">:
-                    <input class="form-control  small-control" type="text" placeholder="MM">
+                    </span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <label>Place of Incident</label> <a href="">Google Map</a>
-                    <input class="form-control" type="text">
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <label>Incident Type</label>
-                    <select class="form-control">
+            <div class="col-sm-12 col-md-4">
+                <div><label>Time of Incident:</label></div>
+                <input class="form-control small-control" type="text" placeholder="HH">:
+                <input class="form-control  small-control" type="text" placeholder="MM">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label>Place of Incident</label> <a href="">Google Map</a>
+                <input class="form-control" type="text">
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label>Incident Type</label>
+                <select class="form-control" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" ng-model="SincidentType" />
+
+                <!--<select class="form-control">
                         <option>Select</option>
                         <option>Robbery</option>
                         <option>Burglary</option>
@@ -34,81 +37,85 @@
                         <option>Assault</option>
                         <option>Corrosion</option>
                         <option>Other</option>
-                    </select>
-                </div>
+                    </select>-->
             </div>
-            <div class="row">
-                <div class="col-md-3 col-sm-12">
-                    <label>Nearest Landmark</label>
-                    <input class="form-control" type="text">
-                </div>
-                <div class="col-md-3 col-sm-12">
-                    <label>Entry Point</label>
-                    <select class="form-control">
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-sm-12">
+                <label>Nearest Landmark</label>
+                <input class="form-control" type="text">
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <label>Entry Point</label>
+                <select class="form-control" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" ng-model="SentryPoint" />
+
+                <!--<select class="form-control">
                                     <option>Select</option>
                                     <option>Window</option>
                                     <option>Roof</option>
                                     <option>Door</option>
                                     <option>Fire Escape</option>
                                     <option>Other</option>
-                                </select>
-                </div>
-                <div class="col-md-3 col-sm-12">
-                    <label>Entry Point If Other</label>
-                    <input class="form-control" type="text">
-                </div>
+                                </select>-->
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <label>Entry Point If Other</label>
+                <input class="form-control" type="text">
+            </div>
 
-                <div class="col-md-3 col-sm-12">
-                    <label>Incident Status</label>
-                    <select class="form-control" disabled="disabled">
+            <div class="col-md-3 col-sm-12">
+                <label>Incident Status</label>
+                <select class="form-control" disabled="disabled">
                         <option selected>New</option>
                         <option>Open</option>
                         <option>Closed</option>
                         <option>Archived</option>
                     </select>
-                </div>
             </div>
+        </div>
 
-            <div class="row">
-                    
-                <div class="col-sm-12 col-md-6 ">
-                        <label>Incident Location</label>
-                    <select class="ddropdown form-control">
+        <div class="row">
+
+            <div class="col-sm-12 col-md-6 ">
+                <label>Incident Location</label>
+                <select class="form-control" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLoc" ng-model="SincidentLoc" />
+
+                <!--<select class="ddropdown form-control">
                         <option value="" selected>Select</option>
                         <option value="Store">Store</option>
                         <option value="Warehouse">Ware House</option>
                         <option value="Carpark">Car Park</option>
-                    </select>
-                </div>
-                <div class="col-sm-12 col-md-6 ">
-                    <label>Location</label>
-                        <select class="ddropdown form-control" disabled>
+                    </select>-->
+            </div>
+            <div class="col-sm-12 col-md-6 ">
+                <label>Location</label>
+                <select class="ddropdown form-control" disabled>
                                 <option value="" selected>Select</option>
                                 <option value="Store">Store</option>
                                 <option value="Warehouse">Ware House</option>
                                 <option value="Carpark">Car Park</option>
                         </select>
-                </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <label>Incident Description</label>
-                    <textarea class="form-control"></textarea>
-                </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label>Incident Description</label>
+                <textarea class="form-control"></textarea>
             </div>
-            <div class="row">
-                <div class="col-md-6 col-sm-12">
-                    <label>Allocate To</label>
-                    <!--(Investigation team, system to automatically allocate. This is a display only field.)-->
-                    <input class="form-control" readonly="true" value="" type="text">
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <label>Distinguishing Features</label>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label>Allocate To</label>
+                <!--(Investigation team, system to automatically allocate. This is a display only field.)-->
+                <input class="form-control" readonly="true" value="" type="text">
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label>Distinguishing Features</label>
 
-                    <multiselect ng-model="distinguishFeatures" options="options">
-                        </multiselect>
-                    <!-- <select class="form-control multiselect-ui" multiple="multiple">
+                <multiselect ng-model="distinguishFeatures" ng-options="features.id as features.description for features in features">
+                </multiselect>
+                <!-- <select class="form-control multiselect-ui" multiple="multiple">
                         <option>Scar</option>
                         <option>Balding</option>
                         <option>Glasses</option>
@@ -118,31 +125,25 @@
                         <option>Mole</option>
                         <option>Squint</option>
                     </select> -->
-                </div>
             </div>
-            <h3 class="form-title">Suspect</h3>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <label>Suspect Type</label>
-                            <select class="form-control">
-                                            <option>Select</option>
-                                            <option>Customer</option>
-                                            <option>Supplier</option>
-                                            <option>Employee</option>
-                                            <option>3rd Party</option>
-                                            <option>Other</option>
-                                        </select>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <label>Suspect Type If Other</label>
-                            <input name="" class="form-control" type="text" placeholder="If Suspect Others">
-                        </div>
-                    </div>
+        </div>
+        <h3 class="form-title">Suspect</h3>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Suspect Type</label>
+                <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="SsuspectType" />
 
-                    <div class="row">
-                        <div class="col-md-3 col-sm-12">
-                            <label>Title:</label>
-                            <select class="form-control">
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Suspect Type If Other</label>
+                <input name="" class="form-control" type="text" placeholder="If Suspect Others">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 col-sm-12">
+                <label>Title:</label>
+                <select class="form-control">
                                 <option>Select</option>
                                 <option>Mr</option>
                                 <option>Mrs</option>
@@ -150,265 +151,274 @@
                                 <option>Miss</option>
                                 <option>Master</option>
                             </select>
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                            <label>First Name:</label>
-                            <input class="form-control" type="text">
-                        </div>
-                        <div class="col-md-3 col-sm-12">
-                                <label>Middle Name:</label>
-                                <input class="form-control"  type="text">
-                            </div>
-                            <div class="col-md-3 col-sm-12">
-                                    <label>Last Name:</label>
-                                    <input class="form-control"  type="text">
-                                </div>
-                        
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <label>Address</label>
-                            <input name="" class="form-control" type="text">
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <label>Street</label>
-                            <input name="" class="form-control" type="text">
-                        </div>
-                    </div>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <label>First Name:</label>
+                <input class="form-control" type="text">
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <label>Middle Name:</label>
+                <input class="form-control" type="text">
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <label>Last Name:</label>
+                <input class="form-control" type="text">
+            </div>
 
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <label>City</label>
-                            <input class="form-control" type="text">
-                        </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Address</label>
+                <input name="" class="form-control" type="text">
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Street</label>
+                <input name="" class="form-control" type="text">
+            </div>
+        </div>
 
-                        <div class="col-sm-12 col-md-6">
-                            <label>County</label>
-                            <input class="form-control" type="text">
-                        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>City</label>
+                <input class="form-control" type="text">
+            </div>
 
-                        <!-- <div class="cell-md">
+            <div class="col-sm-12 col-md-6">
+                <label>County</label>
+                <input class="form-control" type="text">
+            </div>
+
+            <!-- <div class="cell-md">
                             <label>Country</label>
                             <input class="form-control" type="text">
                         </div> -->
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 ">
-                            <label>Postal Code</label>
-                            <div class="input-group">
-                                    <input class="form-control" type="text">
-                                    <span class="input-group-addon">
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 ">
+                <label>Postal Code</label>
+                <div class="input-group">
+                    <input class="form-control" type="text">
+                    <span class="input-group-addon">
                                         <span class="glyphicon glyphicon-search"></span>
-                                    </span>
-                            </div>
-                            
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                                <label>Phone</label>
-                                <input class="form-control" type="text">
-                            </div>
-                    </div>
-                    <div class="row">
-                        
-
-                        <div class="col-sm-12 col-md-6">
-                            <label>Age</label>
-                            <input class="form-control" type="text"/>
-                        </div>
-
-                        <div class="col-sm-12 col-md-6">
-                            <div><label>Gender</label></div>
-                            <input name="gender" type="radio"> <span>Male</span>
-                            <input name="gender" type="radio"> <span>Female</span>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="#" class="btn btn-primary" id="addAnotherInjuredPerson">Add Suspect</a>
-                        </div>
-                    </div>
-
-                <div id="tblInjuredPersons" class="table-wrapper inline" style="display: none;">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Address</th>
-                                <th>City</th>
-                                <th>County</th>
-                                <th>Postcode</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="suspect in suspects"></tr>
-                        </tbody>
-                    </table>
+                    </span>
                 </div>
 
-            <div class="row">
-                <div class="col-sm-12 col-md-3">
-                    <label>Reported Loss</label>
-                    <select class="form-control">
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Phone</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+
+
+            <div class="col-sm-12 col-md-6">
+                <label>Age</label>
+                <input class="form-control" type="text" />
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <div><label>Gender</label></div>
+                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="SgenderType" />
+
+                <!--<input name="gender" type="radio"> <span>Male</span>
+                <input name="gender" type="radio"> <span>Female</span>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="#" class="btn btn-primary" id="addAnotherInjuredPerson">Add Suspect</a>
+            </div>
+        </div>
+
+        <div id="tblInjuredPersons" class="table-wrapper inline" style="display: none;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>County</th>
+                        <th>Postcode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="suspect in suspects"></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <label>Reported Loss</label>
+                <select class="form-control" ng-options="lossType.id as lossType.description for lossType in lossType" ng-model="SlossType" />
+
+                <!--<select class="form-control">
                                     <option>Select</option>
                                     <option>Stock</option>
                                     <option>Cash</option>
                                     <option>Merchandise</option>
                                     <option>Other</option>
-                                </select>
-                    
-                </div>
-                <div class="col-sm-12 col-md-3 hide">
-                        <label>Reported Loss If Others</label>
-                        <input class="form-control" type="text">
-                    </div>
-                <div class="col-sm-12 col-md-3">
-                    <label>Reported Loss Value</label>
-                    <input class="form-control" placeholder="£ 000.00" type="text">
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <label>Any External Agency Contacted</label>
-                    <select class="form-control">
+                                </select>-->
+
+            </div>
+            <div class="col-sm-12 col-md-3 hide">
+                <label>Reported Loss If Others</label>
+                <input class="form-control" type="text">
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label>Reported Loss Value</label>
+                <input class="form-control" placeholder="£ 000.00" type="text">
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label>Any External Agency Contacted</label>
+                <select class="form-control">
                                     <option>Yes</option>
                                     <option>No</option>
                                 </select>
-                </div>
             </div>
+        </div>
 
-            <div class="row">
-                <div class="col-sm-12">
-                    <label>External Agency Type</label>
-                    <select class="form-control" id="ExternalAgency">
+        <div class="row">
+            <div class="col-sm-12">
+                <label>External Agency Type</label>
+                <select class="form-control" ng-options="agencies.id as agencies.description for agencies in agencies" ng-model="Sagencies" />
+
+                <!--<select class="form-control" id="ExternalAgency">
                                     <option>Select</option>
                                     <option>Ambulance</option>
                                     <option>Fire</option>
                                     <option>Police</option>
-                                </select>
+                                </select>-->
+            </div>
+        </div>
+
+        <div class="row" data-id="Police">
+            <div class="col-sm-12 col-md-6">
+                <label>Date Police Called</label>
+                <div class='input-group date' data-provide="datepicker">
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
                 </div>
             </div>
+            <div class="col-sm-12 col-md-6">
+                <div> <label>Time Police Called</label></div>
+                <input class="form-control small-control" type="text" placeholder="HH">:
+                <input class="form-control  small-control" type="text" placeholder="MM">
+            </div>
+        </div>
 
-            <div class="row" data-id="Police" >
-                <div class="col-sm-12 col-md-6">
-                    <label>Date Police Called</label>
-                    <div class='input-group date' data-provide="datepicker">
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
+        <div class="row" data-id="Ambulance">
+            <div class="col-sm-12 col-md-6">
+                <label>Date Ambulance Called</label>
+                <div class='input-group date' data-provide="datepicker">
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                   <div> <label>Time Police Called</label></div>
-                    <input class="form-control small-control" type="text" placeholder="HH">:
-                    <input class="form-control  small-control" type="text" placeholder="MM">
+                    </span>
                 </div>
             </div>
-
-            <div class="row" data-id="Ambulance">
-                <div class="col-sm-12 col-md-6">
-                    <label>Date Ambulance Called</label>
-                    <div class='input-group date' data-provide="datepicker">
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
-                                                <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                </div>
-                <div class="col-sm-12 col-md-6 time">
+            <div class="col-sm-12 col-md-6 time">
                 <div><label>Time Ambulance Called</label></div>
-                    <input class="form-control small-control" type="text" placeholder="HH">:
-                    <input class="form-control  small-control" type="text" placeholder="MM">
-                </div>
+                <input class="form-control small-control" type="text" placeholder="HH">:
+                <input class="form-control  small-control" type="text" placeholder="MM">
             </div>
-            <div class="row" data-id="Fire" >
-                <div class="col-sm-12 col-md-6">
-                    <label>Date Fire Station Called </label>
-                    <div class='input-group date' data-provide="datepicker">
-                            <input type='text' class="form-control" />
-                            <span class="input-group-addon">
+        </div>
+        <div class="row" data-id="Fire">
+            <div class="col-sm-12 col-md-6">
+                <label>Date Fire Station Called </label>
+                <div class='input-group date' data-provide="datepicker">
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                </div>
-                <div class="col-sm-12 col-md-6 time">
-                    <div><label>Time Fire Station Called</label></div>
-                    <input class="form-control small-control" type="text" placeholder="HH">:
-                    <input class="form-control  small-control" type="text" placeholder="MM">
+                    </span>
                 </div>
             </div>
-
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <label>Incident Reference Number</label>
-                    <input class="form-control" type="text">
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label>Damage Cost Estimation</label>
-                    <input class="form-control" placeholder="£ 000.00" type="text">
-                </div>
+            <div class="col-sm-12 col-md-6 time">
+                <div><label>Time Fire Station Called</label></div>
+                <input class="form-control small-control" type="text" placeholder="HH">:
+                <input class="form-control  small-control" type="text" placeholder="MM">
             </div>
+        </div>
 
-            <div class="row">
-
-                <div class="col-sm-12 col-md-4">
-                    <label>Upload Pictures (if available)</label>
-                    <input class="form-control" type="file">
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <label>Upload CCTV footage (if available)</label>
-                    <input class="form-control" type="file">
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <label>Upload Signed Statement</label>
-                    <input class="form-control" type="file">
-                </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Incident Reference Number</label>
+                <input class="form-control" type="text">
             </div>
-
-            <div class="row">
-                <div class="col-sm-12">
-                    <input id="PersonInjured" type="checkbox"> Was there an injured person(s)?
-                </div>
-                <div class="col-sm-12">
-                    <input id="VehicleUsed" type="checkbox"> Was there a vehicle/property/asset damaged?
-                </div>
-                <div class="col-sm-12">
-                    <input id="CrimeInvolved" type="checkbox"> Was an act of crime involved?
-                </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Damage Cost Estimation</label>
+                <input class="form-control" placeholder="£ 000.00" type="text">
             </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <label>Was a weapon involved?</label>
-                    <select class="form-control">
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-12 col-md-4">
+                <label>Upload Pictures (if available)</label>
+                <input class="form-control" type="file">
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label>Upload CCTV footage (if available)</label>
+                <input class="form-control" type="file">
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label>Upload Signed Statement</label>
+                <input class="form-control" type="file">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <input id="PersonInjured" type="checkbox"> Was there an injured person(s)?
+            </div>
+            <div class="col-sm-12">
+                <input id="VehicleUsed" type="checkbox"> Was there a vehicle/property/asset damaged?
+            </div>
+            <div class="col-sm-12">
+                <input id="CrimeInvolved" type="checkbox"> Was an act of crime involved?
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <label>Was a weapon involved?</label>
+                <select class="form-control">
+
                                     <option>Select</option>
                                     <option>Yes</option>
                                     <option>No</option>
                                 </select>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                        <label>Weapon Involved</label>
-                    <select class="form-control">
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label>Weapon Involved</label>
+                <select class="form-control" ng-options="weaponType.id as weaponType.description for weaponType in weaponType" ng-model="SweaponType" />
+
+                <!--<select class="form-control">
                                     <option>Select</option>
                                     <option selected="true">Knife</option>
                                     <option>Gun</option>
                                     <option>Hammer</option>
                                     <option>Stick</option>
                                     <option>Other</option>
-                                </select>
-                    
-                </div>
-                <div class="col-sm-12 col-md-4">
-                        <label>Specify If others</label>
-                        <input class="form-control" name="" type="text">
-                    </div>
-            </div>
-            <div class="row">
-                    <div class="col-sm-12">
-                            <button type="button" class="btn btn-primary" ng-click="changeTab(3)">Continue</button>
-                            <button type="button" class="btn" ng-click="changeTab(1)">Back</button>
-                        </div>
-            </div>
-            
+                                </select>-->
 
-        </form>
-    </div>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label>Specify If others</label>
+                <input class="form-control" name="" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button type="button" class="btn btn-primary" ng-click="changeTab(3)">Continue</button>
+                <button type="button" class="btn" ng-click="changeTab(1)">Back</button>
+            </div>
+        </div>
+
+
+    </form>
+</div>

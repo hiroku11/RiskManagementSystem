@@ -9,14 +9,15 @@ body {
     overflow: hidden;
 }
 
-
 .container-fluid {
     height: 100%;
     width: 100%;
-    padding-right: 0px; 
+    padding-right: 0px;
     /* padding-left: 15px; */
 }
-.content{
+
+.content {
+
     overflow-y: auto;
     height: calc(100% - 150px);
 }
@@ -47,7 +48,8 @@ img {
 }
 
 
-.row{
+.row {
+
     margin-right: 0px;
 }
 .logo-img {
@@ -70,14 +72,16 @@ h3 {
     margin-top: 0;
 }
 
-h4{
+
+h4 {
     border-bottom: 2px dashed #8c1519;
 }
 
-.row{
-    padding-top:5px;
-    padding-bottom:5px;
+.row {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
+
 
 /*HP*/
 
@@ -355,20 +359,35 @@ a i {
         height: auto;
     }
 }
+
+@media only screen and (min-width: 768px) and (max-width:1200px) {
+    .inline-label {
+        margin-top: 0.5em;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width:991px) {}
+
 .nav-tabs {
     border-bottom: 1px solid #555;
 }
-.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
-    background-color: #efd1d4;
 
-    color: #555;
+.nav-tabs>li.active>a,
+.nav-tabs>li.active>a:focus,
+.nav-tabs>li.active>a:hover {
+    background-color: #8c1519;
+    color: white;
+    /*background-color: #efd1d4;
+    color: #555;*/
     cursor: default;
-    border: 1px solid #555;;
+    border: 1px solid #555;
+    ;
     border-bottom-color: transparent;
 }
 
 .nav-tabs>li>a {
-    border:  1px solid #555;;
+    border: 1px solid #555;
+    ;
 }
 
 .nav-tabs li a {

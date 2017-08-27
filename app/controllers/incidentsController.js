@@ -4,8 +4,11 @@
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
-    $scope.logOutUser=rmsService.logOutUser;
-    
+
+    $scope.logOutUser = rmsService.logOutUser;
+    $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }]
+
+
     $scope.getData = function(params) {
         var req = {
             url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident',
