@@ -700,5 +700,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     ///rmsrest/s/table-maintenance/accident- type/accident-types
 
     $scope.getIncidentLocations();
+    $scope.logOutUser=rmsService.logOutUser;
+$scope.options=['Scar','Balding','Glasses','Accent','Beard','Birth Mark','Mole','Squint']
 
+    
 }])

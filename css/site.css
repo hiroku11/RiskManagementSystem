@@ -17,10 +17,10 @@ body {
 }
 
 .content {
+
     overflow-y: auto;
     height: calc(100% - 150px);
 }
-
 * {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
@@ -47,10 +47,11 @@ img {
     border: 0;
 }
 
+
 .row {
+
     margin-right: 0px;
 }
-
 .logo-img {
     width: 96px;
     height: 96px;
@@ -70,6 +71,7 @@ h2,
 h3 {
     margin-top: 0;
 }
+
 
 h4 {
     border-bottom: 2px dashed #8c1519;
