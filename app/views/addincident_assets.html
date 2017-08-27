@@ -1,0 +1,297 @@
+<div class="form-content" ng-show="tab==4">
+        <h2>Assets Details</h2>
+        <form>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label>Category</label>
+                    <select class="form-control">
+                        <option>Equipment</option>
+                        <option>Building</option>
+                        <option>Vehicle</option>
+                        <option>Other</option>
+                    </select>
+                    
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <<label>If Category Other</label>
+                        <input class="form-control" type="text">
+                </div>
+            </div>
+    
+            <div class="building-section">
+                <!--<h4>Building</h4>-->
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <label>Building ID</label>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                            <label>Description of Incident</label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 row">
+                        <div class="col-sm-10">
+                                <label>Postal Code:</label>
+                                <input class="form-control" type="text"> 
+                                <!-- <input class="form-control small-control" type="text"> --> 
+                        </div>
+                        <div class="col-sm-2" style="padding-top:1.7em;">
+                                <a href="#" class="btn btn-primary">Lookup</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <label>Address 1</label>
+                        <input name="" class="form-control" type="text">
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label>Address 2</label>
+                        <input name="" class="form-control" type="text">
+                    </div>
+                </div>
+    
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <label>City</label>
+                        <input class="form-control" type="text">
+                    </div>
+    
+                    <div class="col-sm-12 col-md-4">
+                        <label>County</label>
+                        <input class="form-control" type="text">
+                    </div>
+    
+                    <div class="col-sm-12 col-md-4">
+                        <label>Country</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="equipment-section">
+                <!--<h4>Equipment</h4>-->
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <label>Equipment ID</label>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <label>Serial No</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Equipment Details</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>		
+            </div>
+            
+    
+            <div class="vehicle-section">
+                <!--<h4>Vehicle Registration ID</h4>--> 
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        
+                        <div class="col-sm-10">
+                                <label>Vehicle Registration ID </label>
+                                <input class="form-control" type="text">
+                        </div>
+                        <div class="col-sm-2" style="padding-top:1.7em">
+                                <a href="#" class="btn">Look up</a>
+                        </div>
+                        
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                        <label>Engine Number</label>
+                        <input class="form-control" type="text">
+                    </div>
+    
+                    <div class="col-sm-12 col-md-4">
+                        <label>Chasis Number</label>
+                        <input class="form-control" type="text">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <label>Make</label>
+                        <input class="form-control" type="text">
+                    </div>
+    
+                    <div class="col-sm-12 col-md-4">
+                        <label>Model</label>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class="col-sm-12 col-md-4">
+                            <label>Vehicle Damage Details</label>
+                            <multiselect ng-model="distinguishFeatures" options="options">
+                                </multiselect>
+                    </div>
+                </div>
+    
+                <!-- <div class="row">
+                    <div class="cell-lg">
+                        <label>Vehicle Damage Details</label>
+                        <select class="multiselect-ui form-control" multiple="multiple" data-role="car">
+                            <option value="Hood">Hood	</option>
+                            <option value="Front Bumper">Front Bumper</option>
+                            <option value="Front Passenger side fender">Front Passenger side fender	</option>
+                            <option value="Front Passenger">Front Passenger</option>
+                            <option value="Rear Bumper">Rear Bumper</option>
+                            <option value="Rear driver side quarter panel">Rear driver side quarter panel	</option>
+                            <option value="Read or Trunk">Read or Trunk</option>
+                            <option value="Rear Passenger Side quarter Panel">Rear Passenger Side quarter Panel</option>
+                            <option value="Front driver side fender">Front driver side fender</option>
+                            <option value="Roof">Roof</option>
+                            <option value="Under Carriage">Under Carriage	</option>
+                            <option value="Rear passenger side quarter panel">Rear passenger side quarter panel</option>
+                        </select><div class="custom-multiselect-ui" data-role="car"><div class="selected form-control"><span class="default-list">Select</span><span class="caret"></span></div><ul><li><span class="icon glyphicon glyphicon-ok"></span>Hood</li><li><span class="icon glyphicon glyphicon-ok"></span>Front Bumper</li><li><span class="icon glyphicon glyphicon-ok"></span>Front Passenger side fender</li><li><span class="icon glyphicon glyphicon-ok"></span>Front Passenger</li><li><span class="icon glyphicon glyphicon-ok"></span>Rear Bumper</li><li><span class="icon glyphicon glyphicon-ok"></span>Rear driver side quarter panel</li><li><span class="icon glyphicon glyphicon-ok"></span>Read or Trunk</li><li><span class="icon glyphicon glyphicon-ok"></span>Rear Passenger Side quarter Panel</li><li><span class="icon glyphicon glyphicon-ok"></span>Front driver side fender</li><li><span class="icon glyphicon glyphicon-ok"></span>Roof</li><li><span class="icon glyphicon glyphicon-ok"></span>Under Carriage</li><li><span class="icon glyphicon glyphicon-ok"></span>Rear passenger side quarter panel</li></ul></div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Comments</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Witness</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+            </div>
+
+                <h3 class="form-title">Witness</h3>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-3">
+                            <label>Title:</label>
+                            <select class="form-control">
+                                <option>Mr</option>
+                                <option>Mrs</option>
+                                <option>Ms</option>
+                                <option>Miss</option>
+                                <option>Master</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 col-md-3">
+                                <label>First Name:</label>
+                                    
+                                    <input class="form-control" placeholder="Middle Name" type="text">
+                                    	
+                              
+                            </div>
+                            <div class="col-sm-12 col-md-3">
+                                    <label>Middle Name:</label>
+                                        <input class="form-control" placeholder="First Name" type="text">
+                                </div>
+                        <div class="col-sm-12 col-md-3">
+                            <label>Last Name:</label>
+                                <input class="form-control" placeholder="Last Name" type="text">	
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Address</label>
+                            <input name="" class="form-control" type="text">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label>Street</label>
+                            <input name="" class="form-control" type="text">
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <label>City</label>
+                            <input class="form-control" type="text">
+                        </div>
+    
+                        <div class="col-sm-12 col-md-4">
+                            <label>County</label>
+                            <input class="form-control" type="text">
+                        </div>
+    
+                        <div class="col-sm-12 col-md-4">
+                            <label>Country</label>
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12 col-md-6 row">
+                                    <div class="col-sm-10">
+                                            <label>Postal Code:</label>
+                                            <input class="form-control" type="text"> 
+                                            <!-- <input class="form-control small-control" type="text"> --> 
+                                    </div>
+                                    <div class="col-sm-2" style="padding-top:1.7em;">
+                                            <a href="#" class="btn btn-primary">Lookup</a>
+                                    </div>
+                                </div>
+                        <div class="col-sm-12 col-md-6">
+                                <label>Phone</label>
+                                <input class="form-control" type="text">
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Age</label>
+                            <select class="form-control">
+                                <option>0 - 10</option>
+                                <option>10 - 15</option>
+                                <option>16 - 18</option>
+                                <option>19 - 21</option>
+                                <option>21+</option>
+                            </select>
+                        </div>
+    
+                        <div class="col-sm-12 col-md-6" style="padding-top:1.7em">
+                            <label>Gender</label>
+                            <input name="gender" type="radio"> <span>Male</span>
+                            <input name="gender" type="radio"> <span>Female</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="#" class="btn btn-primary" id="addAnotherWitness">Add Witness</a>
+                        </div>
+                    </div>
+                <div id="tblWitness" class="table-wrapper inline" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Statement</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+
+                <div class="row">
+                        <div class="col-sm-6">
+                            <label>Statement</label>
+                            <input class="form-control" type="file">
+                        </div>
+                 </div>
+                 <div class="row">
+                     <div class="col-sm-12">
+                            <a class="btn btn-primary" ng-click="changeTab(5)">Continue</a>
+                            <a class="btn" ng-click="changeTab(3)">Back</a>
+                            <a class="btn" ng-click="changeTab(5)">Skip</a>
+                     </div>
+                        
+                    </div>
+        </form>
+        
+    </div>
+    
+    
