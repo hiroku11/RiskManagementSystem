@@ -1,12 +1,12 @@
 ﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function($scope, AppService, rmsService, $location, $window, $http) {
+
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
-    $scope.search = "";
-    if (angular.isUndefined($scope.loggedInUser)) {
-        $location.path("/")
-    }
+    $scope.logOutUser = rmsService.logOutUser;
+    $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }]
+
     $scope.getData = function(params) {
         var req = {
             url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident',
@@ -88,5 +88,7 @@
         getIncident.then(function(response) {
             $scope.data = response.data;
             AppService.HideLoader();
+        });
+    }
 
-}])
+}]);

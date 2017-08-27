@@ -1,11 +1,11 @@
 ﻿<div class="row header">
     <ng-include src="'app/views/header.html'"></ng-include>
 </div>
-<div class="row">
-    <div class="col-md-2 navbar">
+<div class="row" style="padding-top:0">
+    <div class="col-md-2 navbar hidden-sm hidden-xs">
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
-    <div class="col-md-10 content">
+    <div class="col-md-10 add">
         <ng-include src="'app/views/graph.html'" ng-if="thisView == 'dashboard'"></ng-include>
         <ng-include src="'app/views/incidents.html'" ng-if="thisView == 'incidents'"></ng-include>
         <ng-include src="'app/views/incidents.html'" ng-if="thisView == 'claims'"></ng-include>
@@ -15,6 +15,7 @@
 
 
     </div>
-    <div class="footer">
+</div>
+<div class="footer">
 
-    </div>
+</div>

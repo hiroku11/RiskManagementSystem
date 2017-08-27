@@ -1,25 +1,26 @@
 <div class="row header">
     <ng-include src="'app/views/header.html'"></ng-include>
 </div>
-<div class="row">
-    <div class="col-md-2 navbar">
+<div class="row" style="padding-top:0">
+    <div class="col-md-2 navbar hidden-sm hidden-xs">
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
     <div class="col-md-10 content">
-            <ul class="nav nav-tabs">
-                    <li ng-class="{active:tab=='1'}" ng-click="tab='1'"><a>Home</a></li>
-                    <li ng-class="{active:tab=='2'}" ng-click="tab='2'"><a >Menu 1</a></li>
-                    <li ng-class="{active:tab=='3'}" ng-click="tab='3'"><a >Menu 2</a></li>
-                    <li ng-class="{active:tab=='4'}" ng-click="tab='4'"><a >Menu 3</a></li>
-                  </ul>
-        <div class="form-content "ng-show="tab=='1'" >
-            <h2>Log Incident</h2>
+        <ul class="nav nav-tabs">
+            <li ng-class="{active:tab=='1'}" ng-click="tab=1"><a>Log Incident</a></li>
+            <li ng-class="{active:tab=='2'}" ng-click="tab=2"><a>Incident Details</a></li>
+            <li ng-class="{active:tab=='3'}" ng-click="tab=3"><a>Claim</a></li>
+            <li ng-class="{active:tab=='4'}" ng-click="tab=4"><a>Investigation</a></li>
+            <li ng-class="{active:tab=='5'}" ng-click="tab=5"><a>Supporting Documnets</a></li>
+        </ul>
+        <div class="form-content " ng-if="tab==1">
+            <h2>Incident Details</h2>
             <form>
                 <h4>Incident Raised By</h4>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-md-4">
                         <label>User Id</label>
-                        <input type="text" class="form-control" placeholder="User Id"/>
+                        <input type="text" class="form-control" placeholder="User Id" />
                     </div>
                 </div>
                 <div class="row">
@@ -36,7 +37,7 @@
                         <input type="text" class="form-control" />
                     </div>
                 </div>
-        
+
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Organization</label>
@@ -51,7 +52,7 @@
                         <input type="text" class="form-control" />
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Phone</label>
@@ -67,7 +68,7 @@
                     </div>
                 </div>
                 <h4>Supervisor Details</h4>
-                    <div class="row">
+                <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>First Name</label>
                         <input type="text" class="form-control" />
@@ -81,7 +82,7 @@
                         <input type="text" class="form-control" />
                     </div>
                 </div>
-                
+
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Phone</label>
@@ -98,23 +99,17 @@
                 </div>
                 <h4>Suspect Details</h4>
                 <div class="row">
-                    
-                    <div class="col-sm-12">
-                            <label>Suspect Type</label>
-                        <select class="form-control">
-                            <option>Select</option>
-                            <option>Customer</option>
-                            <option>Supplier</option>
-                            <option>Employee</option>
-                            <option>3rd Party</option>
-                            <option>Other</option>
-                        </select>
+
+                    <div class="col-sm-12 col-md-4">
+                        <label>Suspect Type</label>
+                        <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="entryCount" ng-change="getEntries()" />
+
                     </div>
-                    <div class="com-sm-12 hide">
+                    <div class="com-sm-12 col-md-4 hide">
                         <input type="text" name="" class="form-control" />
                     </div>
                 </div>
-        
+
                 <div class="row">
                     <div class="col-sm-12 col-md-3">
                         <label>First Name</label>
@@ -129,7 +124,7 @@
                         <input type="text" class="form-control" />
                     </div>
                     <div class="col-md-3">
-                        <button class="btn btn-primary" style ="margin-top:1.7em">Lookup</button>
+                        <button class="btn btn-primary" style="margin-top:1.7em">Lookup</button>
                     </div>
                 </div>
                 <div class="row">
@@ -140,16 +135,16 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-md-6">
                         <label>Address Line 1</label>
-                        <input type="text" class="form-control" />
+                        <textarea class="form-control" />
                     </div>
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 col-md-6">
                         <label>Address Line 2</label>
-                        <input type="text" class="form-control" />
+                        <textarea class="form-control" />
                     </div>
                 </div>
-        
+
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <label>City</label>
@@ -159,7 +154,7 @@
                         <label>County</label>
                         <input type="text" class="form-control" />
                     </div>
-                    
+
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-12 postal-code">
@@ -173,14 +168,20 @@
                 </div>
                 <div class="row ">
                     <div class="col-sm-12" style="padding:15px;">
-                            <a class="btn btn-primary" ng-click="tab='2'">Continue</a>
+                        <button type="button" class="btn btn-primary" ng-click="changeTab(2)">Continue</button>
                     </div>
-                        
-                    </div>
+
+                </div>
             </form>
 
         </div>
-        
+
+        <ng-include src="'app/views/addincident_details.html'"></ng-include>
+        <ng-include src="'app/views/addincident_claim.html'"></ng-include>
+        <ng-include src="'app/views/addincident_investigation.html'"></ng-include>
+        <ng-include src="'app/views/addincident_documents.html'"></ng-include>
+
+
 
     </div>
     <div class="footer">

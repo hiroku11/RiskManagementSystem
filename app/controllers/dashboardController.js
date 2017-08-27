@@ -1,10 +1,12 @@
 ﻿var dashboardController = riskManagementSystem.controller("dashboardController", ["$scope", "AppService", "rmsService", '$http', '$location', function($scope, AppService, rmsService, $http, $location) {
+    
+    
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.authorizedUser=rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
-    $scope.role = $scope.loggedInUser.roles[0];
-
+    //$scope.role = $scope.loggedInUser.roles[0];
     $scope.thisView = "dashboard";
+    $scope.logOutUser=rmsService.logOutUser;
     $scope.lookUp = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/user-lookup',
@@ -28,5 +30,9 @@
         AppService.HideLoader();
         $location.path("/login");
     }
+    $scope.changeMenu = function() {
+
+            $scope.thisView = $event.target.id;
+        }
         // $scope.lookUp();
 }])

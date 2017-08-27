@@ -1,0 +1,135 @@
+<div class="form-content"  ng-if="tab==4">
+        <h2>Investigation Details</h2>
+        <form>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <label>Security Requested</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label>Training Requested</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <label>Investigation Team Name</label>
+                    <input class="form-control" type="text">
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label>Investigation Team Lead ID</label>
+                    <input class="form-control" type="text">
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <label>First Name</label>
+                        <input class="form-control" placeholder="First Name" type="text">
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Middle Name</label>
+                        <input class="form-control" placeholder="Middle Name" type="text">
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Last Name</label>
+                        <input class="form-control" placeholder="Last Name" type="text">
+                </div>
+            </div>
+    
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <label>Reviewed Investigation Record(s)</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>NA</option>
+                    </select>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Reviewed CCTV</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>NA</option>
+                    </select>
+                </div>
+                
+                <div class="col-md-4 col-sm-12">
+                    <label>Reviewed Picture(s)</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>NA</option>
+                    </select>
+                    <input class="form-control hide" type="text" >
+                </div>
+    
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <label>Reviewed Witness Statement(s)</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>NA</option>
+                    </select>
+                    <input class="form-control hide" type="text">
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label>Reviewed Learner Record(s)</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>NA</option>
+                    </select>
+                    <input class="form-control hide" type="text" hide>
+                </div>
+            </div>
+            <div class="row">	
+    
+                <div class="col-md-6 col-sm-12">
+                    <label>Reviewed Asset Record(s)</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>NA</option>
+                    </select>
+                    <input class="form-control hide" type="text">
+                </div>
+    
+                <div class="col-md-6 col-sm-12">
+                    <label>Reviewed Compliance Record(s)</label>
+                    <select class="form-control">
+                        <option>Yes</option>
+                        <option>No</option>
+                        <option>NA</option>
+                    </select>
+                    <input class="form-control hide" type="text" hide>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <label>Statement</label>
+                    <input class="form-control" type="file">
+                </div>
+            </div>
+            <div class="row">
+                    <div class="col-sm-12">
+                            
+                            <button type="button" class="btn btn-primary" ng-click="changeTab(5)">Continue</button>
+                            <button type="button" class="btn" ng-click="changeTab(3)">Back</button>
+                            
+                        </div>
+            </div>
+        </form>
+        
+    </div>
+    
+   
