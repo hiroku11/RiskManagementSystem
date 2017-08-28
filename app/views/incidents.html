@@ -12,7 +12,7 @@
 
         <div class="incidents" ng-controller="incidentsController">
             <div class="pull-right advanced-search">
-                <a class="btn btn-primary" id="btnAdvanceSearch" data-toggle="modal" data-target="#myModal">Advanced Search</a>
+                <a class="btn btn-primary" id="btnAdvanceSearch" data-toggle="modal" data-target="#myModal" ng-click="loadAPI()">Advanced Search</a>
             </div>
             <div class="pull-right searchbox">
                 <div class="input-group stylish-input-group">
@@ -28,7 +28,7 @@
                 <span class="incidentLabel">Incidents |</span>
                 <a class="btn btn-primary add-incident" href="#/addincident"> <i class="glyphicon glyphicon-plus menu-icon"></i>Add</a>
 
-                <a class="btn btn-danger delete-incident" > <i class="glyphicon glyphicon-trash menu-icon"></i>Delete</a>
+                <a class="btn btn-danger delete-incident"> <i class="glyphicon glyphicon-trash menu-icon"></i>Delete</a>
             </h3>
 
             <table class="table table-bordered incident-list">
@@ -131,8 +131,19 @@
                     </div>
                     <div class="modal-body">
                         <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-md-4">
+                            <div class="col-lg-4 col-sm-6 col-md-4">
                                 <label>Incident ID</label>
+                            </div>
+                            <div class="col-lg-2 col-sm-6 col-md-2">
+                                <select class="form-control" ng-model="idOp">
+                        <option value="EQ" selected>Equals</option>
+                        <option value="NEQ">Not equals</option>
+                        <option value="STARTS_WITH">Starts with</option>
+                        <option value="ENDS_WITH">Ends with</option>
+                        <option value="CONTAINS">Contains</option>
+                        <option value="NOT_CONTAINS">Does not contain</option>
+                        
+                    </select>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6">
                                 <input type="text" class="form-control" ng-model="IncidentId" />
@@ -141,97 +152,136 @@
 
                         <div class="row">
                             <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Injured Person</label>
+                                <label>Incident Opened Date</label>
+                            </div>
+                            <div class="col-lg-2 col-sm-6 col-md-2">
+                                <select class="form-control" ng-model="opendateop">
+                        <option value="GT" selected>Greater than or equal to</option>
+                        <option value="LT">Less than or equal to</option>
+                        
+                        
+                    </select> {{opendateop}}
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="InjuredPerson" />
+                                <div class='input-group date' data-provide="datepicker">
+                                    <input type='text' class="form-control" ng-model="IncOpenedDate" />
+                                    <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Organisation</label>
+                                <label>Incident Closed Date</label>
+                            </div>
+                            <div class="col-lg-2 col-sm-6 col-md-2">
+                                <select class="form-control" ng-model="closedateop">    
+                        <option value="GT" selected>Greater than or equal to</option>
+                        <option value="LT">Less than or equal to</option>
+                        
+                        
+                    </select>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="Organisation" />
+                                <div class='input-group date' data-provide="datepicker">
+                                    <input type='text' class="form-control" ng-model="IncClosedDate" />
+                                    <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>
+                                </div>
+
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Investigator</label>
+                                <label>Incident Status</label>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="Investigator" />
+                                <select class="form-control" ng-model="IncidentStatus">
+                                    <option value="DRAFT" selected>Draft</option>
+                        <option value="NEW">New</option>
+                        <option value="ASSIGNED">Assigned</option>
+                        <option value="IN_PROGRESS">In-progress</option>
+                        <option value="SUSPENDED">Suspended</option>
+                        <option value="CLOSED">Closed</option>
+                        
+                    </select>
+
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Department</label>
+                                <label>Person Injured</label>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="Dep" />
+                                <select class="form-control" ng-model="personInjured">
+                                     <option value="Y" selected>Yes</option>
+                                    <option value="N">No</option>
+                       
+                                </select> {{personInjured}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4 col-md-4">
+                                <label>Property Damage</label>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <select class="form-control" ng-model="propertyDamage">
+                                     <option value="Y" selected>Yes</option>
+                                    <option value="N">No</option>
+                       
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4 col-md-4">
+                                <label>Crime Involved?</label>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <select class="form-control" ng-model="crimeInvolved">
+                                     <option value="Y" selected>Yes</option>
+                                    <option value="N">No</option>
+                       
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4 col-md-4">
+                                <label>Incident Type</label>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <select class="form-control" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" ng-model="SincidentType" />
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4 col-md-4">
+                                <label>Incident Category</label>
+                            </div>
+                            <div class="col-lg-6 col-sm-6 col-md-6">
+                                <select class="form-control" ng-options="incidentCategory.id as incidentCategory.description for incidentCategory in incidentCategory" ng-model="SIncidentCat" /> {{SIncidentCat}}
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Location</label>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="Loc" />
+                            <div class="col-lg-3 col-sm-6 col-md-3">
+                                <select class="form-control" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLoc" ng-model="SincidentLoc" ng-change="" />
+
+                            </div>
+                            <div class="col-lg-3 col-sm-6 col-md-3">
+                                <select class="form-control" ng-options="incidentLocDetail.id as incidentLocDetail.description for incidentLocDetail in incidentLocDetail" ng-model="SincidentLocDetail" />
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Claim No.</label>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="ClaimNo" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Policy No.</label>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="PolicyNo" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Claim Status</label>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="ClaimStatus" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Claimant Name</label>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="ClaimantName" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Claim Settled Date</label>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="ClaimDate" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-sm-4 col-md-4">
-                                <label>Claim Approved By</label>
-                            </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
-                                <input type="text" class="form-control" ng-model="ClaimApproved" />
-                            </div>
-                        </div>
+
 
                     </div>
                     <div class="modal-footer ">
 
-                        <a class="btn btn-primary ">Search</a>
+                        <a class="btn btn-primary" ng-click="advancedSearch()">Search</a>
                         <a class="btn btn-danger" class="close" data-dismiss="modal">Close</a>
                     </div>
                 </div>

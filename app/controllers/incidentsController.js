@@ -10,14 +10,17 @@
 
 
     $scope.getData = function(params) {
+        // var filter = JSON.parse(params)
         var req = {
             url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident',
             method: "GET",
             headers: {
-                'X-AUTH-TOKEN': $scope.token
+                'X-AUTH-TOKEN': $scope.token,
 
-                // 'filters': params
+                'Search': JSON.stringify(params)
             },
+
+
         }
         AppService.ShowLoader();
         var getIncident = $http(req);
@@ -33,34 +36,65 @@
     $scope.getData('');
 
     $scope.advancedSearch = function() {
+
         var filters = [{
-                "field": "id",
-                "operator": "EQ",
+                "field": "uniqueIncidentId",
+                "operator": $scope.idOp,
                 "value": $scope.IncidentId
 
             },
             {
-                "field": "personInjured",
-                "operator": "EQ",
-                "value": $scope.InjuredPerson
+                "field": "openedDateTime",
+                "operator": $scope.opendateop,
+                "value": $scope.IncOpenedDate + " " + "00:00:00"
 
             },
             {
-                "field": "organizationCode ",
-                "operator": "EQ",
-                "value": $scope.Organisation
+                "field": "closedDateTime ",
+                "operator": $scope.closedateop,
+                "value": $scope.IncClosedDate + " " + "00:00:00"
 
             },
             {
-                "field": "departmentCode ",
+                "field": "incidentStatus ",
                 "operator": "EQ",
-                "value": $scope.Dep
+                "value": $scope.IncidentStatus
+
+            },
+            {
+                "field": "personInjured ",
+                "operator": "EQ",
+                "value": $scope.personInjured
+
+            },
+            {
+                "field": "propertyDamage ",
+                "operator": "EQ",
+                "value": $scope.propertyDamage
+
+            },
+            {
+                "field": "crimeInvolved ",
+                "operator": "EQ",
+                "value": $scope.crimeInvolved
+
+            },
+            {
+                "field": "typeCode ",
+                "operator": "EQ",
+                "value": $scope.SincidentType
+
+            },
+            {
+                "field": "categoryCode ",
+                "operator": "EQ",
+                "value": $scope.SIncidentCat
 
             },
             {
                 "field": "locationCode ",
                 "operator": "EQ",
-                "value": $scope.Loc
+                "value": $scope.SincidentLoc
 
             },
 
@@ -70,27 +104,121 @@
     $scope.changePage = function() {
 
     }
-    $scope.getEntries = function() {
-        alert($scope.entryCount);
+    $scope.getIncidentType = function() {
         var req = {
-            url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident',
+            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
             method: "GET",
             headers: {
-                'X-AUTH-TOKEN': $scope.token,
-
-                'paging': {
-                    "currentPage": 0,
-                    "pageSize": $scope.entryCount
-                },
+                'X-AUTH-TOKEN': $scope.token
 
             },
         }
         AppService.ShowLoader();
-        var getIncident = $http(req);
-        getIncident.then(function(response) {
-            $scope.data = response.data;
+
+        $http(req).then(function(response) {
+            $scope.incidentType = response.data;
+
             AppService.HideLoader();
-        });
+
+
+        }, function(error) {
+            AppService.HideLoader();
+        })
     }
+    $scope.getIncidentCategory = function() {
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-category/incident-categories',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+
+            },
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function(response) {
+            $scope.incidentCategory = response.data;
+
+            AppService.HideLoader();
+
+
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.getIncidentLoc = function() {
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+
+            },
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function(response) {
+            $scope.incidentLoc = response.data;
+
+            AppService.HideLoader();
+
+
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.getIncidentLocDetail = function() {
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+
+            },
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function(response) {
+            $scope.incidentLocDetail = response.data;
+
+            AppService.HideLoader();
+
+
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.getEntries = function() {
+            alert($scope.entryCount);
+            var req = {
+                url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident',
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token,
+
+                    'paging': {
+                        "currentPage": 0,
+                        "pageSize": $scope.entryCount
+                    },
+
+                },
+            }
+            AppService.ShowLoader();
+            var getIncident = $http(req);
+            getIncident.then(function(response) {
+                $scope.data = response.data;
+                AppService.HideLoader();
+            });
+        }
+        //auto populate DDL
+    $scope.getIncidentType();
+    $scope.getIncidentCategory();
+    $scope.getIncidentLoc();
+    $scope.loadAPI = function() {
+        AppService.ShowLoader();
+
+        AppService.HideLoader();
+    }
+
 
 }]);
