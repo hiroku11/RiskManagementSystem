@@ -393,3 +393,7 @@ a i {
 .nav-tabs li a {
     background-color: white;
 }
+
+.form-content{
+    padding-bottom: 50px;
+}
