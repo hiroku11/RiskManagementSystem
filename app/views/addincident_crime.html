@@ -1,0 +1,236 @@
+<div class="form-content" ng-show="tab==5">
+        <h2>Crime Details</h2>
+        <form>
+                    <h3 class="form-title">Person who committed the crime</h3>
+                    <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                    <label>Title:</label>
+                                    <select class="form-control">
+                                        <option>Select</option>
+                                        <option>Mr</option>
+                                        <option>Mrs</option>
+                                        <option>Ms</option>
+                                        <option>Miss</option>
+                                        <option>Master</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <label>First Name:</label>
+                                    <input class="form-control" placeholder="First Name" type="text">
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <label>Middle Name:</label>
+                                    <input class="form-control" placeholder="Middle Name" type="text">
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <label>Last Name:</label>
+                                    <input class="form-control" placeholder="Last Name" type="text">
+                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Address</label>
+                            <input name="" class="form-control" type="text">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label>Street</label>
+                            <input name="" class="form-control" type="text">
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <label>City</label>
+                            <input class="form-control" type="text">
+                        </div>
+    
+                        <div class="col-sm-12 col-md-4">
+                            <label>County</label>
+                            <input class="form-control" type="text">
+                        </div>
+    
+                        <div class="col-sm-12 col-md-4">
+                            <label>Country</label>
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12 col-md-6 row">
+                                    <div class="col-sm-10">
+                                            <label>Postal Code:</label>
+                                            <input class="form-control" type="text"> 
+                                            <!-- <input class="form-control small-control" type="text"> --> 
+                                    </div>
+                                    <div class="col-sm-2" style="padding-top:1.7em;">
+                                            <a href="#" class="btn btn-primary">Lookup</a>
+                                    </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                    <label>Phone:</label>
+                                    <input class="form-control" type="text"> 
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Age</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                                <option>0 - 10</option>
+                                <option>10 - 15</option>
+                                <option>16 - 18</option>
+                                <option>19 - 21</option>
+                                <option>21+</option>
+                            </select>
+                        </div>
+    
+                        <div class="col-sm-12 col-md-6" style="padding-top:1.7em;">
+                            <label>Gender</label>
+                            <input name="gender" type="radio"> <span>Male</span>
+                            <input name="gender" type="radio"> <span>Female</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="#" class="btn btn-primary" id="addAnotherWitness">Add Another</a>
+                        </div>
+                    </div>
+                <div id="tblWitness" class="table-wrapper inline" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Statement</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Crime Date</label>
+                <input class="form-control" type="text" data-provide="datepicker">
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Crime Description</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+   
+                <h3 class="form-title">Witness</h3>
+                    <div class="row">
+                            <div class="col-sm-12 col-md-3">
+                                    <label>Title:</label>
+                                    <select class="form-control">
+                                        <option>Select</option>
+                                        <option>Mr</option>
+                                        <option>Mrs</option>
+                                        <option>Ms</option>
+                                        <option>Miss</option>
+                                        <option>Master</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <label>First Name:</label>
+                                    <input class="form-control" placeholder="First Name" type="text">
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <label>Middle Name:</label>
+                                    <input class="form-control" placeholder="Middle Name" type="text">
+                                </div>
+                                <div class="col-sm-12 col-md-3">
+                                    <label>Last Name:</label>
+                                    <input class="form-control" placeholder="Last Name" type="text">
+                                </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Address</label>
+                            <input name="" class="form-control" type="text">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label>Street</label>
+                            <input name="" class="form-control" type="text">
+                        </div>
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <label>City</label>
+                            <input class="form-control" type="text">
+                        </div>
+    
+                        <div class="col-sm-12 col-md-4">
+                            <label>County</label>
+                            <input class="form-control" type="text">
+                        </div>
+    
+                        <div class="col-sm-12 col-md-4">
+                            <label>Country</label>
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-sm-12 col-md-6 row">
+                                    <div class="col-sm-10">
+                                            <label>Postal Code:</label>
+                                            <input class="form-control" type="text"> 
+                                            <!-- <input class="form-control small-control" type="text"> --> 
+                                    </div>
+                                    <div class="col-sm-2" style="padding-top:1.7em;">
+                                            <a href="#" class="btn btn-primary">Lookup</a>
+                                    </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6">
+                                    <label>Phone:</label>
+                                    <input class="form-control" type="text"> 
+                            </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Age</label>
+                            <select class="form-control">
+                                <option>Select</option>
+                                <option>0 - 10</option>
+                                <option>10 - 15</option>
+                                <option>16 - 18</option>
+                                <option>19 - 21</option>
+                                <option>21+</option>
+                            </select>
+                        </div>
+    
+                        <div class="col-sm-12 col-md-6" style="padding-top:1.7em">
+                            <label>Gender</label>
+                            <input name="gender" type="radio"> <span>Male</span>
+                            <input name="gender" type="radio"> <span>Female</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="#" class="btn btn-primary" id="addAnotherWitness">Add Witness</a>
+                        </div>
+                    </div>
+
+                <div id="tblWitness" class="table-wrapper inline" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Statement</th></tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Statement</label>
+                            <input class="form-control" type="file">
+                        </div>
+                    </div>
+            <div class="row">
+                <div class="col-sm-12">
+                        <a class="btn btn-primary" ng-click="changeTab(5)">Continue</a>
+                        <a class="btn"  ng-click="changeTab(4)">Back</a>
+                        <a class="btn"  ng-click="changeTab(5)">Skip</a>
+                </div>
+                    
+                </div>
+        </form>
+        
+    </div>
+    
+  

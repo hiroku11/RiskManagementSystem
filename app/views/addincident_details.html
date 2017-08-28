@@ -1,4 +1,5 @@
-<div class="form-content" ng-if="tab==2">
+
+<div class="form-content" ng-show="tab==2">
     <h2>Incident Details</h2>
     <form>
         <div class="row">
@@ -115,7 +116,7 @@
             <div class="col-md-6 col-sm-12">
                 <label>Distinguishing Features</label>
 
-                <multiselect ng-model="distinguishFeatures" ng-options="features.id as features.description for features in features">
+                <multiselect ng-model="distinguishFeatures" options="options">
                 </multiselect>
                 <!-- <select class="form-control multiselect-ui" multiple="multiple">
                         <option>Scar</option>

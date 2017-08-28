@@ -1,0 +1,378 @@
+<div class="form-content" ng-show="tab==3">
+    <h2>Accident Details</h2>
+    <form>
+        <!-- <div class="body-part"></div> -->
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label>Date of Accident: (DD/MM/YYYY)</label>
+                <div class="input-group date" data-provide="datepicker">
+                    <input class="form-control" type="text">
+                    <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <div><label>Time of Incident:</label></div>
+                <input class="form-control small-control" type="text" placeholder="HH">:
+                <input class="form-control  small-control" type="text" placeholder="MM">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label>Accident Location:</label>
+                <select class="form-control ddropdown">
+						<option>Store</option>
+						<option>Warehouse</option>
+						<option>Carpark</option>
+						<option>Other</option>
+                    </select>
+
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label>If Accident Location Others:</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Nearest Landmark:</label>
+                <input class="form-control" type="text">
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Accident Type</label>
+                <select class="form-control">
+                        <option>Natural</option>
+                        <option>Accident</option>
+                    </select>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Type of injury</label>
+                <select class="ddropdown form-control">
+					<option value="Cut">Cut</option>
+					<option value="Fall">Fall</option>
+					<option value="Trip">Trip</option>
+					<option value="Slip">Slip</option>
+					<option value="Other">Other</option>
+				</select>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Cause of Injury</label>
+                <select class="form-control">
+                        <option>Weather</option>
+                        <option>Spill</option>
+                        <option>Goods</option>
+                        <option>Cardboard</option>
+                        <option>Ladders</option>
+                        <option>Steps</option>
+                        <option>Stool</option>
+                        <option>Environmental</option>
+                        <option>Chemical</option>
+                        <option>Fire</option>
+                        <option>Electrical</option>
+                        <option>Other</option>
+                    </select>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>If Cause of Injury Other:</label>
+                <textarea class="form-control"></textarea>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Accident Description:</label>
+                <textarea class="form-control"></textarea>
+            </div>
+        </div>
+        <h3 class="form-title">Injured Person</h3>
+        <div class="row">
+            
+            <div class="col-sm-12 col-md-6">
+                <label>Injured Person Type</label>
+                <select class="form-control">
+						<option>Select</option>
+						<option>Customer</option>
+						<option>Supplier</option>
+						<option>Employee</option>
+						<option>3rd Party</option>
+						<option>Other</option>
+					</select>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>If Injured Person Type Other:</label>
+                <input name="" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-2">
+                <label>Title:</label>
+                <select class="form-control">
+							<option>Select</option>
+							<option>Mr</option>
+							<option>Mrs</option>
+							<option>Ms</option>
+							<option>Miss</option>
+							<option>Master</option>
+						</select>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label>First Name:</label>
+                <input class="form-control" placeholder="First Name" type="text">
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label>Middle Name:</label>
+                <input class="form-control" placeholder="Middle Name" type="text">
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label>Last Name:</label>
+                <input class="form-control" placeholder="Last Name" type="text">
+            </div>
+            <div class="col-sm-12 col-md-1" style="padding-top:1.7em">
+                <button class="btn btn-primary">Lookup</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Address</label>
+                <input name="" class="form-control" type="text">
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Street</label>
+                <input name="" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <label>City</label>
+                <input class="form-control" type="text">
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <label>County</label>
+                <input class="form-control" type="text">
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <label>Country</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Postal Code</label>
+                <input class="form-control" type="text">
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Phone</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Age</label>
+                <input type="number" class="form-control">
+            </div>
+            <div class="com-sm-12 col-md-6" style="padding-top:1.7em">
+                <label>Gender:</label>
+                <input name="gender" class="gender-radio" value="Male" checked="true" type="radio"> Male
+                <input name="gender" class="gender-radio" value="Female" type="radio"> Female
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label>Part of body injured</label>
+                <multiselect ng-model="distinguishFeatures" options="options">
+                </multiselect>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label>Other Part of body injured</label>
+                <textarea class="form-control"></textarea>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="#" class="btn btn-primary" id="addAnotherInjuredPerson">Add Injured Person</a>
+            </div>
+        </div>
+
+        <div id="tblInjuredPersons" class="table-wrapper inline" style="">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>County</th>
+                        <th>Postcode</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MA</td>
+                        <td>22</td>
+                        <td>ss</td>
+                        <td>sds</td>
+                        <td>sfdds</td>
+                        <td>sf</td>
+                        <td>sdsa</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <label>Any first aid given</label>
+                <select class="form-control">
+					<option>Yes</option>
+					<option selected="true">No</option>
+				</select>
+            </div>
+            <!-- <div class="col-md-6 col-sm-12">
+                    <textarea class="form-control"></textarea>
+            </div> -->
+        </div>
+        <div class="row">
+
+                <div class="col-md-6 col-sm-12">
+                    <label>Witness</label>
+                    <select class="form-control">
+                                <option>Yes</option>
+                                <option>No</option>
+                            </select>
+                </div>
+        </div>
+        <h3 class="form-title">Witness</h3>
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
+                <label>Title:</label>
+                <select class="form-control">
+                    <option>Select</option>
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Ms</option>
+                    <option>Miss</option>
+                    <option>Master</option>
+                </select>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label>First Name:</label>
+                <input class="form-control" placeholder="First Name" type="text">
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label>Middle Name:</label>
+                <input class="form-control" placeholder="Middle Name" type="text">
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label>Last Name:</label>
+                <input class="form-control" placeholder="Last Name" type="text">
+            </div>
+        </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Address</label>
+                            <input name="" class="form-control" type="text">
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <label>Street</label>
+                            <input name="" class="form-control" type="text">
+                        </div>
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-sm-12 col-md-4">
+                            <label>City</label>
+                            <input class="form-control" type="text">
+                        </div>
+            
+                        <div class="col-sm-12 col-md-4">
+                            <label>County</label>
+                            <input class="form-control" type="text">
+                        </div>
+            
+                        <div class="col-sm-12 col-md-4">
+                            <label>Country</label>
+                            <input class="form-control" type="text">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 row">
+                            <div class="col-sm-10">
+                                    <label>Postal Code:</label>
+                                    <input class="form-control" type="text"> 
+                                    <!-- <input class="form-control small-control" type="text"> --> 
+                            </div>
+                            <div class="col-sm-2" style="padding-top:1.7em;">
+                                    <a href="#" class="btn btn-primary">Lookup</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                                <label>Phone</label>
+                                <input class="form-control" type="text" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <label>Age</label>
+                            <select class="form-control">
+                                        <option>Select</option>
+                                        <option>0 - 10</option>
+                                        <option>10 - 15</option>
+                                        <option>16 - 18</option>
+                                        <option>19 - 21</option>
+                                        <option>21+</option>
+                            </select>
+                        </div>
+            
+                        <div class="col-sm-12 col-md-6" style="padding-top:1.7em">
+                            <label>Gender</label>
+                            <input name="gender" type="radio"> <span>Male</span>
+                            <input name="gender" type="radio"> <span>Female</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <a href="#" class="btn btn-primary" id="addAnotherWitness">Add Witness</a>
+                        </div>
+                    </div>
+
+                <div id="tblWitness" class="table-wrapper inline" style="display: none;">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
+                                <th>Statement</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            <div class="row ">
+                <div class="col-sm-12">
+                        <a class="btn btn-primary" ng-click="changeTab(4)">Continue</a>
+                        <a class="btn" ng-click="changeTab(2)">Back</a>
+                        <a class="btn" ng-click="changeTab(4)">Skip</a>
+                </div>
+                
+            </div>
+    </form>
+</div>

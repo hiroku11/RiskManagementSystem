@@ -172,7 +172,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function(response) {
-            $scope.features = response.data;
+            //change the options as required by the multiselect plugin/module
+            $scope.features = response.data.map(function(val,index){
+                return val.id;
+            });
 
             AppService.HideLoader();
 
