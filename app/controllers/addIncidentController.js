@@ -17,6 +17,51 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.tab = tab;
         $(".content")[0].scrollTop = 0;
     }
+    $scope.getUserInfo = function() {
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-incident',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+
+            },
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function(response) {
+            $scope.incidentFirst = response.data;
+
+            AppService.HideLoader();
+
+
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.getUserInfo();
+    $scope.logIncident = function() {
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/incident/log-incident',
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+
+            },
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function(response) {
+            $scope.incidentSecond = response.data;
+
+            AppService.HideLoader();
+
+
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.logIncident();
+
     $scope.getIncidentLocations = function() {
         var req = {
             method: "GET",
@@ -62,7 +107,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
         AppService.ShowLoader();
-        // var getIncident = $http(req);
+
         $http(req).then(function(response) {
             $scope.incidentType = response.data;
 
@@ -700,8 +745,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     ///rmsrest/s/table-maintenance/accident- type/accident-types
 
     $scope.getIncidentLocations();
-    $scope.logOutUser=rmsService.logOutUser;
-$scope.options=['Scar','Balding','Glasses','Accent','Beard','Birth Mark','Mole','Squint']
+    $scope.logOutUser = rmsService.logOutUser;
+    $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint']
 
-    
+
 }])

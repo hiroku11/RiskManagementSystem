@@ -29,7 +29,7 @@ var addIncidentDetailController = riskManagementSystem.controller("addIncidentDe
             },
         }
         AppService.ShowLoader();
-        // var getIncident = $http(req);
+
         $http(req).then(function(response) {
             $scope.incidentType = response.data;
 

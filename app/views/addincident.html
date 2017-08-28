@@ -13,88 +13,89 @@
             <li ng-class="{active:tab=='4'}" ng-click="tab=4"><a>Investigation</a></li>
             <li ng-class="{active:tab=='5'}" ng-click="tab=5"><a>Supporting Documnets</a></li>
         </ul>
+
         <div class="form-content " ng-if="tab==1">
             <h2>Incident Details</h2>
             <form>
-                <h4>Incident Raised By</h4>
+                <h4>Incident Reported By</h4>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>User Id</label>
-                        <input type="text" class="form-control" placeholder="User Id" />
+                        <input type="text" class="form-control" placeholder="User Id" ng-model="incidentFirst.username" readonly/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>First Name</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.firstName" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Middle Name</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.middleName" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.lastName" readonly/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Organization</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.position.department.organization.description" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Department</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.position.department.description" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Position</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.position.description" readonly/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Phone</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Alternate Phone</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Email</label>
-                        <input type="email" class="form-control" />
+                        <input type="email" class="form-control" readonly/>
                     </div>
                 </div>
                 <h4>Supervisor Details</h4>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>First Name</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.manager.firstName" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Middle Name</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.manager.middleName" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" ng-model="incidentFirst.manager.lastName" readonly/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Phone</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Alternate Phone</label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Email</label>
-                        <input type="email" class="form-control" />
+                        <input type="email" class="form-control" readonly/>
                     </div>
                 </div>
                 <h4>Suspect Details</h4>
@@ -177,10 +178,10 @@
         </div>
 
         <ng-include src="'app/views/addincident_details.html'"></ng-include>
-      <ng-include src="'app/views/addincident_claim.html'"></ng-include>
-      <ng-include src="'app/views/addincident_investigation.html'"></ng-include>
-      <ng-include src="'app/views/addincident_documents.html'"></ng-include>
-            
+        <ng-include src="'app/views/addincident_claim.html'"></ng-include>
+        <ng-include src="'app/views/addincident_investigation.html'"></ng-include>
+        <ng-include src="'app/views/addincident_documents.html'"></ng-include>
+
     </div>
     <div class="footer">
 
