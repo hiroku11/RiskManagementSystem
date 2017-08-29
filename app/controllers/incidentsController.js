@@ -169,7 +169,7 @@
     }
     $scope.getIncidentLocDetail = function() {
         var req = {
-            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
+            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-location-detail/incident-location/' + $scope.SincidentLoc,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
