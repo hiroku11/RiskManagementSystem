@@ -6,18 +6,22 @@
     $scope.loggedInUser = rmsService.getLoggedInUser();
 
     $scope.logOutUser = rmsService.logOutUser;
-    $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }]
 
-
+    $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
     $scope.getData = function(params) {
         // var filter = JSON.parse(params)
+        var fil = {
+            "paging": { "currentPage": 0, "pageSize": 50 },
+            "sorts": [{ "field": "openedDateTime", "order": "ASC" }],
+            "filters": params
+        }
         var req = {
             url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
 
-                'Search': JSON.stringify(params)
+                'Search': JSON.stringify(fil)
             },
 
 
@@ -33,10 +37,25 @@
             AppService.HideLoader();
         })
     }
-    $scope.getData('');
+    $scope.getData();
+    //declaring variables
+    // $scope.IncidentId = "";
+    // $scope.IncOpenedDate = "";
+    // $scope.idOp = "EQ";
+    // $scope.opendateop = "LT";
+    // $scope.closedateop = "LT";
+    // $scope.IncClosedDate = "";
+    // $scope.IncidentStatus = "";
+    // $scope.personInjured = "";
+    // $scope.propertyDamage = "";
+    // $scope.crimeInvolved = "";
+    // $scope.SincidentType = "";
+    // $scope.SIncidentCat = "";
+    // $scope.SIncidentLoc = "";
+
 
     $scope.advancedSearch = function() {
-
+        var params = [];
         var filters = [{
                 "field": "uniqueIncidentId",
                 "operator": $scope.idOp,
@@ -46,59 +65,67 @@
             {
                 "field": "openedDateTime",
                 "operator": $scope.opendateop,
-                "value": $scope.IncOpenedDate + " " + "00:00:00"
+                "value": $scope.IncOpenedDate ? $scope.IncOpenedDate + " " + "00:00:00" : undefined
 
             },
             {
-                "field": "closedDateTime ",
+                "field": "closedDateTime",
                 "operator": $scope.closedateop,
-                "value": $scope.IncClosedDate + " " + "00:00:00"
+                "value": $scope.IncClosedDate ? $scope.IncClosedDate + " " + "00:00:00" : undefined
 
             },
             {
-                "field": "incidentStatus ",
+                "field": "incidentStatus",
                 "operator": "EQ",
                 "value": $scope.IncidentStatus
 
             },
             {
-                "field": "personInjured ",
+                "field": "personInjured",
                 "operator": "EQ",
                 "value": $scope.personInjured
 
             },
             {
-                "field": "propertyDamage ",
+                "field": "propertyDamage",
                 "operator": "EQ",
                 "value": $scope.propertyDamage
 
             },
             {
-                "field": "crimeInvolved ",
+                "field": "crimeInvolved",
                 "operator": "EQ",
                 "value": $scope.crimeInvolved
 
             },
             {
-                "field": "typeCode ",
+                "field": "typeCode",
                 "operator": "EQ",
                 "value": $scope.SincidentType
 
             },
             {
-                "field": "categoryCode ",
+                "field": "categoryCode",
                 "operator": "EQ",
                 "value": $scope.SIncidentCat
 
             },
             {
-                "field": "locationCode ",
+                "field": "locationCode",
                 "operator": "EQ",
                 "value": $scope.SincidentLoc
 
-            },
+            }
 
         ]
+
+        for (var i = 0; i < filters.length; i++) {
+            if (filters[i].value != "" || filters[i].value != undefined) {
+                params = filters.slice(i, 1);
+            }
+
+        }
+
         $scope.getData(filters);
     }
     $scope.changePage = function() {
@@ -191,7 +218,7 @@
     $scope.getEntries = function() {
             alert($scope.entryCount);
             var req = {
-                url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident',
+                url: 'https://108296e7.ngrok.io/rmsrest/s/search-incident',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -207,6 +234,38 @@
             var getIncident = $http(req);
             getIncident.then(function(response) {
                 $scope.data = response.data;
+                AppService.HideLoader();
+            });
+        }
+        //user lookup
+    $scope.userLookup = function() {
+            var fil = {
+                "paging": { "currentPage": 0, "pageSize": 50 },
+                "sorts": [{ "field": "firstName", "order": "ASC" }],
+                "filters": [{
+
+                    "field": "userLoginId",
+                    "operator": "STARTS_WITH",
+                    "value": $scope.user
+
+                }]
+            }
+            var dataForAutocomplete = {}
+            var req = {
+                url: 'https://108296e7.ngrok.io/rmsrest/s/user-lookup',
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token,
+
+
+
+                },
+            }
+            AppService.ShowLoader();
+            var getIncident = $http(req);
+            getIncident.then(function(response) {
+                $scope.userInfo = response.data;
+
                 AppService.HideLoader();
             });
         }

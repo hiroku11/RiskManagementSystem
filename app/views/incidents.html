@@ -134,7 +134,7 @@
                             <div class="col-lg-4 col-sm-6 col-md-4">
                                 <label>Incident ID</label>
                             </div>
-                            <div class="col-lg-2 col-sm-6 col-md-2">
+                            <div class="col-lg-4 col-sm-6 col-md-2">
                                 <select class="form-control" ng-model="idOp">
                         <option value="EQ" selected>Equals</option>
                         <option value="NEQ">Not equals</option>
@@ -145,7 +145,7 @@
                         
                     </select>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <input type="text" class="form-control" ng-model="IncidentId" />
                             </div>
                         </div>
@@ -154,15 +154,15 @@
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Incident Opened Date</label>
                             </div>
-                            <div class="col-lg-2 col-sm-6 col-md-2">
+                            <div class="col-lg-4 col-sm-6 col-md-2">
                                 <select class="form-control" ng-model="opendateop">
                         <option value="GT" selected>Greater than or equal to</option>
                         <option value="LT">Less than or equal to</option>
                         
                         
-                    </select> {{opendateop}}
+                    </select>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <div class='input-group date' data-provide="datepicker">
                                     <input type='text' class="form-control" ng-model="IncOpenedDate" />
                                     <span class="input-group-addon">
@@ -176,7 +176,7 @@
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Incident Closed Date</label>
                             </div>
-                            <div class="col-lg-2 col-sm-6 col-md-2">
+                            <div class="col-lg-4 col-sm-6 col-md-2">
                                 <select class="form-control" ng-model="closedateop">    
                         <option value="GT" selected>Greater than or equal to</option>
                         <option value="LT">Less than or equal to</option>
@@ -184,7 +184,7 @@
                         
                     </select>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <div class='input-group date' data-provide="datepicker">
                                     <input type='text' class="form-control" ng-model="IncClosedDate" />
                                     <span class="input-group-addon">
@@ -198,7 +198,7 @@
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Incident Status</label>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <select class="form-control" ng-model="IncidentStatus">
                                     <option value="DRAFT" selected>Draft</option>
                         <option value="NEW">New</option>
@@ -215,19 +215,19 @@
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Person Injured</label>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <select class="form-control" ng-model="personInjured">
                                      <option value="Y" selected>Yes</option>
                                     <option value="N">No</option>
                        
-                                </select> {{personInjured}}
+                                </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Property Damage</label>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <select class="form-control" ng-model="propertyDamage">
                                      <option value="Y" selected>Yes</option>
                                     <option value="N">No</option>
@@ -239,7 +239,7 @@
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Crime Involved?</label>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <select class="form-control" ng-model="crimeInvolved">
                                      <option value="Y" selected>Yes</option>
                                     <option value="N">No</option>
@@ -251,7 +251,7 @@
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Incident Type</label>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
                                 <select class="form-control" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" ng-model="SincidentType" />
 
                             </div>
@@ -260,7 +260,10 @@
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Incident Category</label>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6">
+                            <div class="col-lg-4 col-sm-6 col-md-6">
+
+                                <!--<multiselect ng-model="distinguishFeatures" ng-options="incidentCategory.id as incidentCategory.description for incidentCategory in incidentCategory" ng-model="SIncidentCat">
+                                </multiselect>-->
                                 <select class="form-control" ng-options="incidentCategory.id as incidentCategory.description for incidentCategory in incidentCategory" ng-model="SIncidentCat" /> {{SIncidentCat}}
                             </div>
                         </div>
@@ -268,11 +271,11 @@
                             <div class="col-lg-4 col-sm-4 col-md-4">
                                 <label>Location</label>
                             </div>
-                            <div class="col-lg-3 col-sm-6 col-md-3">
+                            <div class="col-lg-4 col-sm-6 col-md-3">
                                 <select class="form-control" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLoc" ng-model="SincidentLoc" ng-change="getIncidentLocDetail()" />
 
                             </div>
-                            <div class="col-lg-3 col-sm-6 col-md-3">
+                            <div class="col-lg-4 col-sm-6 col-md-3">
                                 <select class="form-control" ng-options="incidentLocDetail.id as incidentLocDetail.description for incidentLocDetail in incidentLocDetail" ng-model="SincidentLocDetail" />
                             </div>
                         </div>
