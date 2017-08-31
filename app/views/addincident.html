@@ -171,6 +171,66 @@
                         <input type="text" class="form-control" />
                     </div>
                 </div>-->
+
+                <h4>Incident Details</h4>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label>Place of Incident</label> <a href="">Google Map</a>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>Incident Type</label>
+                        <select class="form-control" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" ng-model="SincidentType"/>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <label>Nearest Landmark</label>
+                        <input class="form-control" type="text">
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <label>Entry Point</label>
+                        <select class="form-control" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" ng-model="SentryPoint"
+                        />
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <label>Entry Point If Other</label>
+                        <input class="form-control" type="text">
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-6 ">
+                        <label>Incident Location</label>
+                        <select class="form-control" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLoc" ng-model="SincidentLoc"
+                        />
+
+                        <!--<select class="ddropdown form-control">
+                        <option value="" selected>Select</option>
+                        <option value="Store">Store</option>
+                        <option value="Warehouse">Ware House</option>
+                        <option value="Carpark">Car Park</option>
+                    </select>-->
+                    </div>
+                    <div class="col-sm-12 col-md-6 ">
+                        <label>Location</label>
+                        <select class="ddropdown form-control" disabled>
+                                <option value="" selected>Select</option>
+                                <option value="Store">Store</option>
+                                <option value="Warehouse">Ware House</option>
+                                <option value="Carpark">Car Park</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Incident Description</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
                 <div class="row ">
                     <div class="col-sm-12" style="padding:15px;">
                         <button type="button" class="btn btn-primary" ng-click="changeTab(2)">Continue</button>
