@@ -7,7 +7,7 @@
     </div>
 
 
-    <div class="col-md-10">
+    <div class="col-md-10 content">
 
 
         <div class="incidents" ng-controller="incidentsController">
@@ -163,7 +163,7 @@
                     </select>
                             </div>
                             <div class="col-lg-4 col-sm-6 col-md-6">
-                                <div class='input-group date' data-provide="datepicker">
+                                <div class='input-group date' data-provide="datepicker" data-date-format="mm/dd/yyyy">
                                     <input type='text' class="form-control" ng-model="IncOpenedDate" />
                                     <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -262,9 +262,15 @@
                             </div>
                             <div class="col-lg-4 col-sm-6 col-md-6">
 
+                                <input type="checkbox" ng-model="prop" />Property Damage <br/>
+                                <input type="checkbox" ng-model="cAttack" />Criminal Attack <br/>
+                                <input type="checkbox" ng-model="Acc" />Accident Damage<br/>
+                                <input type="checkbox" ng-model="Asset" />Vehicle / Asset Damage<br/>
+
                                 <!--<multiselect ng-model="distinguishFeatures" ng-options="incidentCategory.id as incidentCategory.description for incidentCategory in incidentCategory" ng-model="SIncidentCat">
                                 </multiselect>-->
-                                <select class="form-control" ng-options="incidentCategory.id as incidentCategory.description for incidentCategory in incidentCategory" ng-model="SIncidentCat" /> {{SIncidentCat}}
+                                <!--<select class="form-control" ng-options="incidentCategory.id as incidentCategory.description for incidentCategory in incidentCategory" ng-model="SIncidentCat" /> {{SIncidentCat}}
+                           -->
                             </div>
                         </div>
                         <div class="row">
@@ -277,6 +283,14 @@
                             </div>
                             <div class="col-lg-4 col-sm-6 col-md-3">
                                 <select class="form-control" ng-options="incidentLocDetail.id as incidentLocDetail.description for incidentLocDetail in incidentLocDetail" ng-model="SincidentLocDetail" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4 col-md-4">
+                                <label>Reported By</label>
+                            </div>
+                            <div class="col-lg-4 col-sm-6 col-md-3">
+                                <input class="form-control" placeholder="Type user name" auto-complete ui-items="userInfo" ng-model="user" ng-change="userLookup()" ng-model-options="{debounce:1000}" />
                             </div>
                         </div>
 
@@ -294,3 +308,9 @@
     </div>
 </div>
 </div>
+<script>
+    // $('.datepicker').datepicker({
+    //     format: 'dd/mm/yyyy',
+
+    // });
+</script>

@@ -4,10 +4,13 @@
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
+    $scope.data = [];
 
     $scope.logOutUser = rmsService.logOutUser;
 
     $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
+    //Change Date picker format
+
     $scope.getData = function(params) {
         // var filter = JSON.parse(params)
         var fil = {
@@ -29,7 +32,10 @@
         AppService.ShowLoader();
         var getIncident = $http(req);
         getIncident.then(function(response) {
+
             $scope.data = response.data;
+
+
             AppService.HideLoader();
 
 
@@ -52,6 +58,9 @@
     // $scope.SincidentType = "";
     // $scope.SIncidentCat = "";
     // $scope.SIncidentLoc = "";
+    // $scope.PROP_DMGE = false;
+    // $scope.
+
 
 
     $scope.advancedSearch = function() {
@@ -86,47 +95,68 @@
                 "value": $scope.personInjured
 
             },
-            {
-                "field": "propertyDamage",
-                "operator": "EQ",
-                "value": $scope.propertyDamage
 
-            },
-            {
-                "field": "crimeInvolved",
-                "operator": "EQ",
-                "value": $scope.crimeInvolved
 
-            },
             {
                 "field": "typeCode",
                 "operator": "EQ",
                 "value": $scope.SincidentType
 
             },
-            {
-                "field": "categoryCode",
-                "operator": "EQ",
-                "value": $scope.SIncidentCat
 
-            },
             {
                 "field": "locationCode",
                 "operator": "EQ",
                 "value": $scope.SincidentLoc
 
+            },
+
+            {
+                "field": "propertyDamage",
+                "operator": "EQ",
+                "value": $scope.prop == false ? 'N' : 'Y'
+
+
+            },
+            {
+                "field": "criminalAttack",
+                "operator": "EQ",
+                "value": $scope.cAttack == false ? 'N' : 'Y'
+
+
+            },
+            {
+                "field": "accidentDamage",
+                "operator": "EQ",
+                "value": $scope.Acc == false ? 'N' : 'Y'
+
+
+            },
+            {
+                "field": "vehicleOrAssetDamage",
+                "operator": "EQ",
+                "value": $scope.Asset == false ? 'N' : 'Y'
+
             }
+
 
         ]
 
-        for (var i = 0; i < filters.length; i++) {
-            if (filters[i].value != "" || filters[i].value != undefined) {
-                params = filters.slice(i, 1);
-            }
 
-        }
+        // for (var i = 0; i < filters.length; i++) {
+        //     if (filters[i].value != "" || filters[i].value != undefined) {
+        //         params = filters.slice(i);
+        //     }
 
-        $scope.getData(filters);
+        // }
+        var params = filters.filter(checkParams);
+
+        $scope.getData(params);
+        $("#myModal").modal('hide');
+    }
+
+    function checkParams(param) {
+        return param.value != "" && param.value != undefined;
     }
     $scope.changePage = function() {
 
@@ -216,17 +246,17 @@
         })
     }
     $scope.getEntries = function() {
-            alert($scope.entryCount);
+            var fil = {
+                "paging": { "currentPage": 0, "pageSize": $scope.entryCount }
+            }
+
             var req = {
                 url: 'https://108296e7.ngrok.io/rmsrest/s/search-incident',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
+                    'Search': JSON.stringify(fil)
 
-                    'paging': {
-                        "currentPage": 0,
-                        "pageSize": $scope.entryCount
-                    },
 
                 },
             }
