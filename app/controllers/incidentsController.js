@@ -4,7 +4,7 @@
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
-    $scope.data = [];
+    // $scope.data = [];
 
     $scope.logOutUser = rmsService.logOutUser;
 
@@ -32,8 +32,11 @@
         AppService.ShowLoader();
         var getIncident = $http(req);
         getIncident.then(function(response) {
+            if (response.data.length != 0) {
+                $scope.data = response.data;
+            }
 
-            $scope.data = response.data;
+
 
 
             AppService.HideLoader();
@@ -44,21 +47,28 @@
         })
     }
     $scope.getData();
-    //declaring variables
-    // $scope.IncidentId = "";
-    // $scope.IncOpenedDate = "";
-    // $scope.idOp = "EQ";
-    // $scope.opendateop = "LT";
-    // $scope.closedateop = "LT";
-    // $scope.IncClosedDate = "";
-    // $scope.IncidentStatus = "";
-    // $scope.personInjured = "";
-    // $scope.propertyDamage = "";
-    // $scope.crimeInvolved = "";
-    // $scope.SincidentType = "";
-    // $scope.SIncidentCat = "";
-    // $scope.SIncidentLoc = "";
-    // $scope.PROP_DMGE = false;
+    //To clear search params
+    $scope.clearSearchParams = function() {
+            $scope.IncidentId = "";
+            $scope.IncOpenedDate = "";
+            $scope.idOp = "";
+            $scope.opendateop = "";
+            $scope.closedateop = "";
+            $scope.IncClosedDate = "";
+            $scope.IncidentStatus = "";
+
+            $scope.SincidentType = "";
+            $scope.SIncidentCat = "";
+            $scope.SincidentLoc = "";
+            $scope.SincidentLocDetail = "";
+            $scope.prop = false;
+            $scope.cAttack = false;
+            $scope.Acc = false;
+            $scope.Asset = false;
+            $scope.user = "";
+        }
+        //declaring variables
+
     // $scope.
 
 
@@ -89,13 +99,6 @@
                 "value": $scope.IncidentStatus
 
             },
-            {
-                "field": "personInjured",
-                "operator": "EQ",
-                "value": $scope.personInjured
-
-            },
-
 
             {
                 "field": "typeCode",
@@ -110,34 +113,48 @@
                 "value": $scope.SincidentLoc
 
             },
+            {
+                "field": "locationDetailCode",
+                "operator": "EQ",
+                "value": $scope.SincidentLocDetail
+
+
+            },
 
             {
                 "field": "propertyDamage",
                 "operator": "EQ",
-                "value": $scope.prop == false ? 'N' : 'Y'
+                "value": $scope.prop == true ? 'Y' : 'N'
 
 
             },
             {
                 "field": "criminalAttack",
                 "operator": "EQ",
-                "value": $scope.cAttack == false ? 'N' : 'Y'
+                "value": $scope.cAttack == true ? 'Y' : 'N'
 
 
             },
             {
                 "field": "accidentDamage",
                 "operator": "EQ",
-                "value": $scope.Acc == false ? 'N' : 'Y'
+                "value": $scope.Acc == true ? 'Y' : 'N'
 
 
             },
             {
                 "field": "vehicleOrAssetDamage",
                 "operator": "EQ",
-                "value": $scope.Asset == false ? 'N' : 'Y'
+                "value": $scope.Asset == true ? 'Y' : 'N'
+
+            },
+            {
+                "field": "reportedBy",
+                "operator": "EQ",
+                "value": $scope.user == true ? 'Y' : 'N'
 
             }
+
 
 
         ]
