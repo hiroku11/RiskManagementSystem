@@ -1,25 +1,21 @@
-
 <div class="form-content" ng-show="tab==6">
     <h2>Claim Details</h2>
     <form>
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Security Requested</label>
                 <select class="form-control">
                         <option>Yes</option>
                         <option>No</option>
                     </select>
             </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Training Requested</label>
                 <select class="form-control">
                         <option>Yes</option>
                         <option>No</option>
                     </select>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Claim Status</label>
                 <select class="form-control" ng-options="claimStatus.id as claimStatus.description for claimStatus in claimStatus" ng-model="SclaimStatus" />
@@ -37,6 +33,10 @@
                         <option>Re-open</option>
                     </select>-->
             </div>
+        </div>
+
+        <div class="row">
+
             <div class="col-md-4 col-sm-12">
                 <label>Claim ID</label>
                 <input class="form-control" type="text">
@@ -52,10 +52,7 @@
                     </select>-->
 
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Claim Requested Date</label>
                 <div class='input-group date' data-provide="datepicker">
                     <input type='text' class="form-control" />
@@ -64,7 +61,11 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-3 col-sm-12">
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 col-sm-12">
                 <label>Claim Type</label>
                 <select class="form-control" ng-options="claimType.id as claimType.description for claimType in claimType" ng-model="SclaimType" />
 
@@ -74,29 +75,26 @@
                         <option>Other</option>
                     </select>-->
             </div>
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>If Claim Type Othres</label>
                 <input class="form-control" type="text">
             </div>
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Claimant Name</label>
                 <input class="form-control" type="text">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Policy Number</label>
                 <input class="form-control" type="text">
             </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Policy Holder Name</label>
                 <input class="form-control" type="text">
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Type of Policy</label>
                 <select class="form-control" ng-options="policyType.id as policyType.description for policyType in policyType" ng-model="SpolicyType" />
 
@@ -109,15 +107,19 @@
                     </select>-->
 
             </div>
-            <div class="col-md-3 col-sm-12">
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-4 col-sm-12">
                 <label>If Type of Policy Others</label>
                 <input class="form-control" type="text">
             </div>
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Insured Name</label>
                 <input class="form-control" type="text">
             </div>
-            <div class="col-md-3 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Investigator Name</label>
                 <input class="form-control" type="text">
             </div>
