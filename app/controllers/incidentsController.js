@@ -151,7 +151,7 @@
             {
                 "field": "reportedBy",
                 "operator": "EQ",
-                "value": $scope.user == true ? 'Y' : 'N'
+                "value": $scope.user
 
             }
 
@@ -291,8 +291,8 @@
                 "sorts": [{ "field": "firstName", "order": "ASC" }],
                 "filters": [{
 
-                    "field": "userLoginId",
-                    "operator": "STARTS_WITH",
+                    "field": "fullName",
+                    "operator": "CONTAINS",
                     "value": $scope.user
 
                 }]
@@ -303,7 +303,7 @@
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
-
+                    'Search': JSON.stringify(fil)
 
 
                 },
