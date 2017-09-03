@@ -1,6 +1,6 @@
 <div class="form-content" ng-show="tab==3">
     <h2>Accident Details</h2>
-    <form>
+    <form ng-submit="submitForm('accidentForm')">
         <!-- <div class="body-part"></div> -->
         <div class="row">
             <div class="col-md-6 col-sm-12">
@@ -368,8 +368,8 @@
                 </div>
             <div class="row ">
                 <div class="col-sm-12">
-                        <a class="btn btn-primary" ng-click="changeTab(4)">Continue</a>
-                        <a class="btn" ng-click="changeTab(2)">Back</a>
+                        <button type="submit" class="btn btn-primary" ng-click="changeTab(4)">Continue</button>
+                        <a class="btn" ng-click="submitForm('accidentForm',true)">Back</a>
                         <a class="btn" ng-click="changeTab(4)">Skip</a>
                 </div>
                 

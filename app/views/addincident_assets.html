@@ -1,6 +1,6 @@
 <div class="form-content" ng-show="tab==4">
         <h2>Assets Details</h2>
-        <form>
+        <form ng-submit="submitForm('assetsForm')">
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <label>Category</label>
@@ -284,8 +284,8 @@
                  </div>
                  <div class="row">
                      <div class="col-sm-12">
-                            <a class="btn btn-primary" ng-click="changeTab(5)">Continue</a>
-                            <a class="btn" ng-click="changeTab(3)">Back</a>
+                            <button class="btn btn-primary">Continue</button>
+                            <a class="btn" ng-click="submitForm('assetsForm',true)">Back</a>
                             <a class="btn" ng-click="changeTab(5)">Skip</a>
                      </div>
                         

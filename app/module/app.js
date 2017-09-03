@@ -70,7 +70,13 @@ riskManagementSystem.directive("mapsDirective", function () {
                                     address: results[0].formatted_address,
                                     latlng: latlng
                                 }
-                                scope["location"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                if(scope["incident"]["incidentDetails"]){
+                                    scope["incident"]["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                }else{
+                                    scope["incident"]["incidentDetails"]={};
+                                    scope["incident"]["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                }
+                                
                             }
                         }
                         // else {
@@ -89,7 +95,7 @@ riskManagementSystem.directive("mapsDirective", function () {
                     var geocoder = new google.maps.Geocoder;
                     google.maps.event.addListener(marker, 'click', function (event) {
                         var infowindow = new google.maps.InfoWindow();
-                        debugger
+                        
                         if(event){
                             geocodeLatLng(geocoder, map, event.latLng.toUrlValue(), infowindow);
                         }else{
@@ -98,7 +104,7 @@ riskManagementSystem.directive("mapsDirective", function () {
                         
                         infowindow.open(map, this);
                     });
-                    debugger
+                    
                     google.maps.event.trigger( marker, 'click' );
                     map.panTo(latLng);
                 }

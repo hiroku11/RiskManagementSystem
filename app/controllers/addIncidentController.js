@@ -1,4 +1,4 @@
-var addIncidentController = riskManagementSystem.controller("addIncidentController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function($scope, AppService, rmsService, $location, $window, $http) {
+var addIncidentController = riskManagementSystem.controller("addIncidentController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function ($scope, AppService, rmsService, $location, $window, $http) {
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
     $scope.tab = "1";
@@ -13,11 +13,83 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.agencies = {};
     $scope.suspectType = {};
     $scope.accidentLoc = {};
-    $scope.changeTab = function(tab) {
-        $scope.tab = tab;
+    $scope.tabs = [{ "active": true, "description": "Log Incident","name":"logIncidentForm","tab":1 },
+    { "active": false, "description": "Incident Details","name":"incidentDetailsForm","tab":2 },
+    // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
+    // { "active": false, "description": "Assets" ,"name":"assetsForm","tab":4},
+    // { "active": false, "description": "Crime" ,"name":"crimeForm","tab":5},
+    { "active": false, "description": "Claim","name":"claimForm" ,"tab":6},
+    { "active": false, "description": "Investigation" ,"name":"investigationForm","tab":7}, 
+    { "active": false, "description": "Supporting Documents","name":"documentsForm","tab":8 }];
+
+    $scope.submitForm = function (formName,back) {
+        var index=0;
+        $scope.tabs.sort(function(a,b){
+            return a.tab - b.tab;
+        })
+        $scope.tabs.filter(function(val,ind){
+            if(val.name==formName){
+                index = ind;
+            }
+        });
+        if(back){
+            $scope.tabs[index].active=false;
+            $scope.tabs[index-1].active=true;
+            $scope.tab=$scope.tabs[index-1].tab;
+        }else{
+            $scope.tabs[index].active=false;
+            $scope.tabs[index+1].active=true;
+            $scope.tab=$scope.tabs[index+1].tab;
+        }
+
+        if($scope.tab==2){
+            $scope.logIncident();
+        }
         $(".content")[0].scrollTop = 0;
     }
-    $scope.getUserInfo = function() {
+    
+    $scope.addTab=function(formName){
+        var tabPresent=false;
+        var index;
+        $scope.tabs.filter(function(val,ind){
+            if(val.name==formName){
+                tabPresent = true;
+                index=ind;
+            }
+        });
+
+        if(!tabPresent){
+            if(formName=="accidentForm"){
+                if($scope.incident.incidentDetails.injuredPerson){
+                    $scope.tabs.push({ "active": false, "description": "Accident" ,"name":"accidentForm","tab":3});
+                    return;
+                }else{
+                    $scope.tabs.splice(index,1);
+                    return;
+                }
+                
+            }
+            if(formName=="assetsForm"){
+                if($scope.incident.incidentDetails.assetDamanged){
+                    $scope.tabs.push({ "active": false, "description": "Asset" ,"name":"assetsForm","tab":4});
+                    return;
+                }else{
+                    $scope.tabs.splice(index,1);
+                    return;
+                }    
+            }
+            if(formName=="crimeForm"){
+                if($scope.incident.incidentDetails.assetDamanged){
+                    $scope.tabs.push({ "active": false, "description": "Crime" ,"name":"crimeForm","tab":5});
+                    return;
+                }else{
+                    $scope.tabs.splice(index,1);
+                    return;
+                }    
+            }
+        }
+    }
+    $scope.getUserInfo = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-incident',
             method: "GET",
@@ -28,18 +100,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.incident = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
     $scope.getUserInfo();
-    $scope.logIncident = function() {
+    $scope.logIncident = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/log-incident',
             method: "POST",
@@ -50,13 +122,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.incidentSecond = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
@@ -68,7 +140,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.$apply();
         })
     }
-    $scope.getIncidentLocations = function() {
+    $scope.getIncidentLocations = function () {
         var req = {
             method: "GET",
             url: "https://108296e7.ngrok.io/rmsrest/s/table-maintenance/accident-location/accident-locations",
@@ -76,11 +148,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 'X-AUTH-TOKEN': $scope.token
             }
         }
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             //getting the incident locations from backend
         })
     }
-    $scope.getSuspectType = function() {
+    $scope.getSuspectType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/suspect-type/suspect-types',
             method: "GET",
@@ -91,19 +163,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
         var getIncident = $http(req);
-        getIncident.then(function(response) {
+        getIncident.then(function (response) {
             $scope.suspectType = response.data;
             console.log($scope.suspectType);
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
 
-    $scope.getIncidentType = function() {
+    $scope.getIncidentType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
             method: "GET",
@@ -114,17 +186,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.incidentType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getIncidentLoc = function() {
+    $scope.getIncidentLoc = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
             method: "GET",
@@ -135,17 +207,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.incidentLoc = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getEntrypoint = function() {
+    $scope.getEntrypoint = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/entry-point/entry-points',
             method: "GET",
@@ -156,17 +228,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.entryPoint = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getFeatures = function() {
+    $scope.getFeatures = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature/distinguishing-features',
             method: "GET",
@@ -177,20 +249,20 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             //change the options as required by the multiselect plugin/module
-            $scope.features = response.data.map(function(val,index){
+            $scope.features = response.data.map(function (val, index) {
                 return val.id;
             });
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getAgency = function() {
+    $scope.getAgency = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/external-agency/external-agencies',
             method: "GET",
@@ -201,17 +273,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.agencies = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getAccidentLoc = function() {
+    $scope.getAccidentLoc = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/accident-location/accident-locations',
             method: "GET",
@@ -222,17 +294,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.accidentLoc = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getAccidentType = function() {
+    $scope.getAccidentType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/accident-type/accident-types',
             method: "GET",
@@ -243,17 +315,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.accidentType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getAssetCategory = function() {
+    $scope.getAssetCategory = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/asset-category/asset-categories',
             method: "GET",
@@ -264,18 +336,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.assetCat = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getBodyPart = function() {
+    $scope.getBodyPart = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/body-part/body-parts',
             method: "GET",
@@ -286,17 +358,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.bodyPart = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getClaimRegType = function() {
+    $scope.getClaimRegType = function () {
         var req = {
             url: '/rmsrest/s/table-maintenance/claim-request-registration-type/claim-request-registration-types',
             method: "GET",
@@ -307,17 +379,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.claimReg = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getClaimStatus = function() {
+    $scope.getClaimStatus = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/claim-status/claim-statuses',
             method: "GET",
@@ -328,17 +400,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.claimStatus = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getClaimType = function() {
+    $scope.getClaimType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/claim-type/claim-types',
             method: "GET",
@@ -349,17 +421,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.claimType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getDepartment = function() {
+    $scope.getDepartment = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/department/departments',
             method: "GET",
@@ -370,17 +442,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.depType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getDocCategory = function() {
+    $scope.getDocCategory = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/document-category/document-categories',
             method: "GET",
@@ -391,17 +463,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.docCategory = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getDocType = function() {
+    $scope.getDocType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/document-type/document-types',
             method: "GET",
@@ -412,18 +484,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.docType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getEmpType = function() {
+    $scope.getEmpType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/employee-type/employee-types',
             method: "GET",
@@ -434,18 +506,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.empType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getEventType = function() {
+    $scope.getEventType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/event-type/event-types',
             method: "GET",
@@ -456,18 +528,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.eventType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getGenderType = function() {
+    $scope.getGenderType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/gender-type/gender-types',
             method: "GET",
@@ -478,18 +550,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.genderType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getInjuredPersonType = function() {
+    $scope.getInjuredPersonType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/injured-person-type/injured-person-types',
             method: "GET",
@@ -500,18 +572,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.injuredPersonType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getInjuryCause = function() {
+    $scope.getInjuryCause = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/injury-cause/injury-causes',
             method: "GET",
@@ -522,18 +594,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.injuryCause = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getInjuryType = function() {
+    $scope.getInjuryType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/injury-type/injury-types',
             method: "GET",
@@ -544,18 +616,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.injuryType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getLossType = function() {
+    $scope.getLossType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/loss-type/loss-types',
             method: "GET",
@@ -566,18 +638,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.lossType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getOrg = function() {
+    $scope.getOrg = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/organization/organizations',
             method: "GET",
@@ -588,18 +660,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.organization = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getPolicyType = function() {
+    $scope.getPolicyType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/policy-type/policy-types',
             method: "GET",
@@ -610,18 +682,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.policyType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getPos = function() {
+    $scope.getPos = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/position/positions',
             method: "GET",
@@ -632,18 +704,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.position = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getPosLevel = function() {
+    $scope.getPosLevel = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/position-level/position-levels',
             method: "GET",
@@ -654,18 +726,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.positionLevel = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getVehicleDamageType = function() {
+    $scope.getVehicleDamageType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/vehicle-damage-type/vehicle-damage-types',
             method: "GET",
@@ -676,18 +748,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.vehDamageType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getWeaponType = function() {
+    $scope.getWeaponType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/weapon-type/weapon-types',
             method: "GET",
@@ -698,13 +770,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.weaponType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }

@@ -7,20 +7,20 @@
     </div>
     <div class="col-md-10 content">
         <ul class="nav nav-tabs">
-            <li ng-class="{active:tab=='1'}" ng-click="tab=1"><a>Log Incident</a></li>
-            <li ng-class="{active:tab=='2'}" ng-click="tab=2"><a>Incident Details</a></li>
+            <li  ng-class="{active:tab.active,disabled:!tab.active}"  ng-repeat="tab in tabs | orderBy : 'tab'"><a>{{tab.description}}</a></li>
+            <!-- <li  ng-click="changeTab()"><a>Incident Details</a></li>
 
-            <li ng-class="{active:tab=='3'}" ng-click="tab=3" ng-if="incident.injuredPerson"><a>Accident</a></li>
-            <li ng-class="{active:tab=='4'}" ng-click="tab=4"><a>Assets</a></li>
-            <li ng-class="{active:tab=='5'}" ng-click="tab=5"><a>Crime</a></li>
+            <li ng-class="{active:tab=='3'}" ng-click="changeTab()" ><a>Accident</a></li>
+            <li ng-class="{active:tab=='4'}" ng-click="changeTab()"><a>Assets</a></li>
+            <li ng-class="{active:tab=='5'}" ng-click="changeTab()"><a>Crime</a></li>
 
-            <li ng-class="{active:tab=='6'}" ng-click="tab=6"><a>Claim</a></li>
-            <li ng-class="{active:tab=='7'}" ng-click="tab=7"><a>Investigation</a></li>
-            <li ng-class="{active:tab=='8'}" ng-click="tab=8"><a>Supporting Documnets</a></li>
+            <li ng-class="{active:tab=='6'}" ng-click="changeTab()"><a>Claim</a></li>
+            <li ng-class="{active:tab=='7'}" ng-click="changeTab()"><a>Investigation</a></li>
+            <li ng-class="{active:tab=='8'}" ng-click="changeTab()"><a>Supporting Documnets</a></li> -->
         </ul>
         <div class="form-content " ng-show="tab==1">
             <h2>Incident Details</h2>
-            <form name="logIncident">
+            <form name="logIncidentForm" ng-submit="submitForm('logIncidentForm')">
                 <h4>Incident Reported By</h4>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
@@ -224,7 +224,7 @@
                 </div>
                 <div class="row ">
                     <div class="col-sm-12" style="padding:15px;">
-                        <button type="submit" ng-disabled="logIncident.$invalid" class="btn btn-primary" ng-click="changeTab(2)">Continue</button>
+                        <button type="submit" ng-disabled="logIncident.$invalid" class="btn btn-primary">Continue</button>
                     </div>
 
                 </div>
@@ -252,7 +252,7 @@
                         </maps-directive>
                     </div>
                     <div class="modal-footer">
-                        <a data-dismiss="modal" class="btn" ng-disabled="!selectedLocation">Done</a>                       
+                        <a data-dismiss="modal" class="btn" ng-disabled="!incident.incidentDetails.placeOfIncident">Done</a>                       
                       </div>
                 </div>
      

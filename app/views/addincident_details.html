@@ -1,7 +1,7 @@
 
 <div class="form-content" ng-show="tab==2">
     <h2>Incident Details</h2>
-    <form>
+    <form ng-submit="submitForm('incidentDetailsForm')">
  <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Date of Incident: (DD/MM/YYYY)</label>
@@ -299,13 +299,13 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <input id="PersonInjured" type="checkbox"> Was there an injured person(s)?
+                <input id="PersonInjured" ng-model="incident.incidentDetails.injuredPerson" type="checkbox" ng-change="addTab('accidentForm')"> Was there an injured person(s)?
             </div>
             <div class="col-sm-12">
-                <input id="VehicleUsed" type="checkbox"> Was there a vehicle/property/asset damaged?
+                <input id="VehicleUsed" ng-model="incident.incidentDetails.assetDamanged" type="checkbox" ng-change="addTab('assetsForm')"> Was there a vehicle/property/asset damaged?
             </div>
             <div class="col-sm-12">
-                <input id="CrimeInvolved" type="checkbox"> Was an act of crime involved?
+                <input id="CrimeInvolved" ng-model="incident.incidentDetails.crime" type="checkbox" ng-change="addTab('crimeForm')"> Was an act of crime involved?
             </div>
         </div>
         <div class="row">
@@ -339,8 +339,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <button type="button" class="btn btn-primary" ng-click="changeTab(3)">Continue</button>
-                <button type="button" class="btn" ng-click="changeTab(1)">Back</button>
+                <button type="submit" class="btn btn-primary">Continue</button>
+                <button type="button" class="btn" ng-click="submitForm('incidentDetailsForm',true)">Back</button>
             </div>
         </div>
 
