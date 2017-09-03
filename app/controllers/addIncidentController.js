@@ -29,7 +29,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function(response) {
-            $scope.incidentFirst = response.data;
+            $scope.incident = response.data;
 
             AppService.HideLoader();
 
@@ -61,7 +61,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
     $scope.logIncident();
-
+    $scope.openMap = function () {
+        $("#mapModal").modal('show');
+        $('#mapModal').on('shown.bs.modal', function () {
+            $scope.map = true;
+            $scope.$apply();
+        })
+    }
     $scope.getIncidentLocations = function() {
         var req = {
             method: "GET",
