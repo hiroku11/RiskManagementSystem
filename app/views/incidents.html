@@ -286,7 +286,9 @@
                                 <div class="col-lg-4 col-sm-6 col-md-3">
                                     <!--<input name="states" id="states" type="text" placeholder="enter a state" ng-model="user" ng-change="userLookup()" ng-model-options="{debounce:1000}" typeahead="userInfo as userInfo.fullName for userInfo in userInfo | limitTo:8" class="form-control">-->
 
-                                    <input class="form-control" placeholder="Type user name" ng-model="user" ng-change="userLookup()" ng-model-options="{debounce:1000}" uib-typeahead="name as userIn.fullName for userIn in userInfo" /> {{user}}
+                                    <input class="form-control" placeholder="Type user name" 
+                                    ng-model="user" ng-change="userLookup()" ng-model-options="{debounce:1000}" 
+                                    uib-typeahead="userIn.fullName as userIn.fullName for userIn in userInfo" />
                                 </div>
                             </div>
 

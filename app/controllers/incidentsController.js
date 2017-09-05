@@ -310,6 +310,7 @@
             }
 
             $http(req).then(function(response) {
+                debugger
                 $scope.userInfo = response.data;
 
 

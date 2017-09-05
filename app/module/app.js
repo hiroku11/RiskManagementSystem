@@ -45,7 +45,7 @@ riskManagementSystem.directive("mapsDirective", function () {
 
                 var markers = [];
                 var mapOptions = {
-                   center: new google.maps.LatLng(20.593684, 78.96288), zoom: 18,
+                   center: new google.maps.LatLng(51.5073391, -0.1284288), zoom: 18,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 var map = new google.maps.Map(document.getElementById("sample"), mapOptions);
