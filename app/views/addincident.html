@@ -7,99 +7,99 @@
     </div>
     <div class="col-md-10 content">
         <ul class="nav nav-tabs">
-            <li ng-class="{active:tab=='1'}" ng-click="tab=1"><a>Log Incident</a></li>
-            <li ng-class="{active:tab=='2'}" ng-click="tab=2"><a>Incident Details</a></li>
+            <li  ng-class="{active:tab.active,disabled:!tab.active}"  ng-repeat="tab in tabs | orderBy : 'tab'"><a>{{tab.description}}</a></li>
+            <!-- <li  ng-click="changeTab()"><a>Incident Details</a></li>
 
-            <li ng-class="{active:tab=='3'}" ng-click="tab=3"><a>Accident</a></li>
-            <li ng-class="{active:tab=='4'}" ng-click="tab=4"><a>Assets</a></li>
-            <li ng-class="{active:tab=='5'}" ng-click="tab=5"><a>Crime</a></li>
+            <li ng-class="{active:tab=='3'}" ng-click="changeTab()" ><a>Accident</a></li>
+            <li ng-class="{active:tab=='4'}" ng-click="changeTab()"><a>Assets</a></li>
+            <li ng-class="{active:tab=='5'}" ng-click="changeTab()"><a>Crime</a></li>
 
-            <li ng-class="{active:tab=='6'}" ng-click="tab=6"><a>Claim</a></li>
-            <li ng-class="{active:tab=='7'}" ng-click="tab=7"><a>Investigation</a></li>
-            <li ng-class="{active:tab=='8'}" ng-click="tab=8"><a>Supporting Documnets</a></li>
+            <li ng-class="{active:tab=='6'}" ng-click="changeTab()"><a>Claim</a></li>
+            <li ng-class="{active:tab=='7'}" ng-click="changeTab()"><a>Investigation</a></li>
+            <li ng-class="{active:tab=='8'}" ng-click="changeTab()"><a>Supporting Documnets</a></li> -->
         </ul>
         <div class="form-content " ng-show="tab==1">
             <h2>Incident Details</h2>
-            <form>
+            <form name="logIncidentForm" ng-submit="submitForm('logIncidentForm')">
                 <h4>Incident Reported By</h4>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>User Id</label>
-                        <input type="text" class="form-control" placeholder="User Id" ng-model="incidentFirst.username" readonly/>
+                        <input type="text" class="form-control" placeholder="User Id" ng-model="incident.username" readonly/>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>First Name</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.firstName" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.firstName" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Middle Name</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.middleName" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.middleName" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.lastName" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.lastName" readonly/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Organization</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.position.department.organization.description" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.position.department.organization.description" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Department</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.position.department.description" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.position.department.description" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Position</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.position.description" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.position.description" readonly/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Phone</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.phone" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.phone" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Alternate Phone</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.alternatePhone" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.alternatePhone" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Email</label>
-                        <input type="email" class="form-control" ng-model="incidentFirst.email" readonly/>
+                        <input type="email" class="form-control" ng-model="incident.email" readonly/>
                     </div>
                 </div>
                 <h4>Supervisor Details</h4>
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>First Name</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.manager.firstName" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.manager.firstName" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Middle Name</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.manager.middleName" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.manager.middleName" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Last Name</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.manager.lastName" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.manager.lastName" readonly/>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-12 col-md-4">
                         <label>Phone</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.manager.phone" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.manager.phone" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Alternate Phone</label>
-                        <input type="text" class="form-control" ng-model="incidentFirst.manager.alternatePhone" readonly/>
+                        <input type="text" class="form-control" ng-model="incident.manager.alternatePhone" readonly/>
                     </div>
                     <div class="col-sm-12 col-md-4">
                         <label>Email</label>
-                        <input type="email" class="form-control" ng-model="incidentFirst.manager.email" readonly/>
+                        <input type="email" class="form-control" ng-model="incident.manager.email" readonly/>
                     </div>
                 </div>
                 <!--<h4>Suspect Details</h4>
@@ -171,24 +171,93 @@
                         <input type="text" class="form-control" />
                     </div>
                 </div>-->
+
+                <h4>Incident Details</h4>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <label>Place of Incident</label> <a ng-click="openMap()">Google Map</a>
+                        <input class="form-control" type="text" ng-model="incident.incidentDetails.placeOfIncident">
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <label>Incident Type</label>
+                        <select class="form-control"  ng-model="incident.incidentDetails.incidentType" ng-options="incidentType.id as incidentType.description for incidentType in incidentType"/>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <label>Nearest Landmark</label>
+                        <input class="form-control" type="text"  ng-model="incident.incidentDetails.landmark">
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <label>Entry Point</label>
+                        <select class="form-control" ng-model="incident.incidentDetails.entryPoint"  ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint"/>
+                    </div>
+                    <div class="col-md-4 col-sm-12" ng-if="incident.incidentDetails.entryPoint=='OTHER'">
+                        <label>Entry Point If Other</label>
+                        <input class="form-control" type="text" ng-model="incident.incidentDetails.entryPointOther">
+                    </div>
+
+
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-12 col-md-6 ">
+                        <label>Incident Location</label>
+                        <select class="form-control" ng-model="incident.incidentDetails.incidentLocation"  ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLoc" />
+                    </div>
+                    <div class="col-sm-12 col-md-6 ">
+                        <label>Location Description</label>
+                        <select class="ddropdown form-control" disabled>
+                                <option value="" selected>Select</option>
+                                <option value="Store">Store</option>
+                                <option value="Warehouse">Ware House</option>
+                                <option value="Carpark">Car Park</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label>Incident Description</label>
+                        <textarea class="form-control" required></textarea>
+                    </div>
+                </div>
                 <div class="row ">
                     <div class="col-sm-12" style="padding:15px;">
-                        <button type="button" class="btn btn-primary" ng-click="changeTab(2)">Continue</button>
+                        <button type="submit" ng-disabled="logIncident.$invalid" class="btn btn-primary">Continue</button>
                     </div>
 
                 </div>
             </form>
-
         </div>
 
         <ng-include src="'app/views/addincident_details.html'"></ng-include>
-
         <ng-include src="'app/views/addincident_accident.html'"></ng-include>
         <ng-include src="'app/views/addincident_assets.html'"></ng-include>
         <ng-include src="'app/views/addincident_crime.html'"></ng-include>
         <ng-include src="'app/views/addincident_claim.html'"></ng-include>
         <ng-include src="'app/views/addincident_investigation.html'"></ng-include>
         <ng-include src="'app/views/addincident_documents.html'"></ng-include>
+        <div class="modal fade" role="dialog" id="mapModal">
+            <div class="modal-dialog">
+     
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+     
+                        <h4 class="modal-title">Select A location</h4>
+                    </div>
+                    <div class="modal-body" ng-if="map">
+                        <maps-directive>     
+                        </maps-directive>
+                    </div>
+                    <div class="modal-footer">
+                        <a data-dismiss="modal" class="btn" ng-disabled="!incident.incidentDetails.placeOfIncident">Done</a>                       
+                      </div>
+                </div>
+     
+            </div>
+        </div>
     </div>
     <div class="footer">
 

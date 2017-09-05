@@ -1,6 +1,6 @@
 <div class="form-content"  ng-show="tab==7">
         <h2>Investigation Details</h2>
-        <form>
+        <form ng-submit="submitForm('investigationForm')">
             <div class="row">
                 <div class="col-md-6 col-sm-12">
                     <label>Security Requested</label>
@@ -123,8 +123,8 @@
             <div class="row">
                     <div class="col-sm-12">
                             
-                            <button type="button" class="btn btn-primary" ng-click="changeTab(5)">Continue</button>
-                            <button type="button" class="btn" ng-click="changeTab(3)">Back</button>
+                            <button type="submit" class="btn btn-primary">Continue</button>
+                            <button type="button" class="btn" ng-click="submitForm('investigationForm',true)">Back</button>
                             
                         </div>
             </div>

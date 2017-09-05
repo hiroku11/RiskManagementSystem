@@ -71,15 +71,3 @@
 
 })();
 
-// riskManagementSystem.directive('autoComplete', function($timeout) {
-//     return function(scope, iElement, iAttrs) {
-//         iElementautocomplete({
-//             source: scope[iAttrs.uiItems],
-//             select: function() {
-//                 $timeout(function() {
-//                     iElement.trigger('input');
-//                 }, 0);
-//             }
-//         });
-//     };
-// });

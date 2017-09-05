@@ -297,7 +297,7 @@
 
                 }]
             }
-            var dataForAutocomplete = {}
+
             var req = {
                 url: 'https://108296e7.ngrok.io/rmsrest/s/user-lookup',
                 method: "GET",
@@ -308,13 +308,15 @@
 
                 },
             }
-            AppService.ShowLoader();
-            var getIncident = $http(req);
-            getIncident.then(function(response) {
+
+            $http(req).then(function(response) {
                 $scope.userInfo = response.data;
 
-                AppService.HideLoader();
-            });
+
+            }, function(error) {
+
+            })
+
         }
         //auto populate DDL
     $scope.getIncidentType();

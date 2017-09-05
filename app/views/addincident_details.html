@@ -1,12 +1,12 @@
 
 <div class="form-content" ng-show="tab==2">
     <h2>Incident Details</h2>
-    <form>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
+    <form ng-submit="submitForm('incidentDetailsForm')">
+ <div class="row">
+            <div class="col-md-4 col-sm-12">
                 <label>Date of Incident: (DD/MM/YYYY)</label>
 
-                <div class='input-group date' data-provide="datepicker">
+                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
@@ -18,95 +18,17 @@
                 <input class="form-control small-control" type="text" placeholder="HH">:
                 <input class="form-control  small-control" type="text" placeholder="MM">
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <label>Place of Incident</label> <a href="">Google Map</a>
-                <input class="form-control" type="text">
-            </div>
-            <div class="col-md-6 col-sm-12">
-                <label>Incident Type</label>
-                <select class="form-control" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" ng-model="SincidentType" />
-
-                <!--<select class="form-control">
-                        <option>Select</option>
-                        <option>Robbery</option>
-                        <option>Burglary</option>
-                        <option>Theft</option>
-                        <option>Verbal Abuse</option>
-                        <option>Assault</option>
-                        <option>Corrosion</option>
-                        <option>Other</option>
-                    </select>-->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 col-sm-12">
-                <label>Nearest Landmark</label>
-                <input class="form-control" type="text">
-            </div>
-            <div class="col-md-3 col-sm-12">
-                <label>Entry Point</label>
-                <select class="form-control" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" ng-model="SentryPoint" />
-
-                <!--<select class="form-control">
-                                    <option>Select</option>
-                                    <option>Window</option>
-                                    <option>Roof</option>
-                                    <option>Door</option>
-                                    <option>Fire Escape</option>
-                                    <option>Other</option>
-                                </select>-->
-            </div>
-            <div class="col-md-3 col-sm-12">
-                <label>Entry Point If Other</label>
-                <input class="form-control" type="text">
-            </div>
-
-            <div class="col-md-3 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
 
 
                 <label>Incident Status</label>
-                <input type="text" ng-model="incidentSecond.incidentStatus" readonly/>
-                <!--<select class="form-control" disabled="disabled">
-                        <option selected>New</option>
-                        <option>Open</option>
-                        <option>Closed</option>
-                        <option>Archived</option>
-                    </select>-->
+                <input type="text" class="form-control" ng-model="incidentSecond.incidentStatus" readonly/>
+                
             </div>
         </div>
 
-        <div class="row">
 
-            <div class="col-sm-12 col-md-6 ">
-                <label>Incident Location</label>
-                <select class="form-control" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLoc" ng-model="SincidentLoc" />
 
-                <!--<select class="ddropdown form-control">
-                        <option value="" selected>Select</option>
-                        <option value="Store">Store</option>
-                        <option value="Warehouse">Ware House</option>
-                        <option value="Carpark">Car Park</option>
-                    </select>-->
-            </div>
-            <div class="col-sm-12 col-md-6 ">
-                <label>Location</label>
-                <select class="ddropdown form-control" disabled>
-                                <option value="" selected>Select</option>
-                                <option value="Store">Store</option>
-                                <option value="Warehouse">Ware House</option>
-                                <option value="Carpark">Car Park</option>
-                        </select>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12">
-                <label>Incident Description</label>
-                <textarea class="form-control"></textarea>
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <label>Allocate To</label>
@@ -301,7 +223,7 @@
         <div class="row" data-id="Police">
             <div class="col-sm-12 col-md-6">
                 <label>Date Police Called</label>
-                <div class='input-group date' data-provide="datepicker">
+                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -318,7 +240,7 @@
         <div class="row" data-id="Ambulance">
             <div class="col-sm-12 col-md-6">
                 <label>Date Ambulance Called</label>
-                <div class='input-group date' data-provide="datepicker">
+                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                     <span class="glyphicon glyphicon-calendar"></span>
@@ -334,7 +256,7 @@
         <div class="row" data-id="Fire">
             <div class="col-sm-12 col-md-6">
                 <label>Date Fire Station Called </label>
-                <div class='input-group date' data-provide="datepicker">
+                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
@@ -377,13 +299,13 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <input id="PersonInjured" type="checkbox"> Was there an injured person(s)?
+                <input id="PersonInjured" ng-model="incident.incidentDetails.injuredPerson" type="checkbox" ng-change="addTab('accidentForm')"> Was there an injured person(s)?
             </div>
             <div class="col-sm-12">
-                <input id="VehicleUsed" type="checkbox"> Was there a vehicle/property/asset damaged?
+                <input id="VehicleUsed" ng-model="incident.incidentDetails.assetDamanged" type="checkbox" ng-change="addTab('assetsForm')"> Was there a vehicle/property/asset damaged?
             </div>
             <div class="col-sm-12">
-                <input id="CrimeInvolved" type="checkbox"> Was an act of crime involved?
+                <input id="CrimeInvolved" ng-model="incident.incidentDetails.crime" type="checkbox" ng-change="addTab('crimeForm')"> Was an act of crime involved?
             </div>
         </div>
         <div class="row">
@@ -417,8 +339,8 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
-                <button type="button" class="btn btn-primary" ng-click="changeTab(3)">Continue</button>
-                <button type="button" class="btn" ng-click="changeTab(1)">Back</button>
+                <button type="submit" class="btn btn-primary">Continue</button>
+                <button type="button" class="btn" ng-click="submitForm('incidentDetailsForm',true)">Back</button>
             </div>
         </div>
 

@@ -392,13 +392,15 @@ a i {
 
 .nav-tabs>li>a {
     border: 1px solid #555;
-    ;
 }
 
 .nav-tabs li a {
     background-color: white;
 }
 
+.form-content{
+    padding-bottom: 50px;
+}
 .modal-content {
     width: 614px;
     ;
