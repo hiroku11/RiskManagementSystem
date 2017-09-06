@@ -175,27 +175,28 @@
                 <h4>Incident Details</h4>
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
-                        <label>Place of Incident</label> <a ng-click="openMap()">Google Map</a>
-                        <input class="form-control" type="text" ng-model="incident.incidentDetails.placeOfIncident">
+                        <label>Place of Incident</label> <a class="label label-primary" ng-click="openMap()"><span class="glyphicon glyphicon-map-marker"></span> Mark on Map</a>
+                        <input ng-model="incidentDetails.placeOfIncident" class="form-control"
+                         type="url" ng-model="incident.incidentDetails.placeOfIncident">
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <label>Incident Type</label>
-                        <select class="form-control"  ng-model="incident.incidentDetails.incidentType" ng-options="incidentType.id as incidentType.description for incidentType in incidentType"/>
+                        <select class="form-control"  ng-model="incidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType"/>
 
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <label>Nearest Landmark</label>
-                        <input class="form-control" type="text"  ng-model="incident.incidentDetails.landmark">
+                        <input class="form-control" type="text"  ng-model="incidentDetails.landmark">
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label>Entry Point</label>
-                        <select class="form-control" ng-model="incident.incidentDetails.entryPoint"  ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint"/>
+                        <select class="form-control" ng-model="incidentDetails.entryPoint.id"  ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint"/>
                     </div>
-                    <div class="col-md-4 col-sm-12" ng-if="incident.incidentDetails.entryPoint=='OTHER'">
+                    <div class="col-md-4 col-sm-12" ng-if="incidentDetails.entryPoint.id=='OTHER'">
                         <label>Entry Point If Other</label>
-                        <input class="form-control" type="text" ng-model="incident.incidentDetails.entryPointOther">
+                        <input class="form-control" type="text" ng-model="incidentDetails.entryPoint.description">
                     </div>
 
 
@@ -204,22 +205,22 @@
 
                     <div class="col-sm-12 col-md-6 ">
                         <label>Incident Location</label>
-                        <select class="form-control" ng-model="incident.incidentDetails.incidentLocation"  ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLoc" />
+                        <select class="form-control" ng-model="incidentDetails.incidentLocation.id"  ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations" >
+                            <option value=''>Select</option>
+                        </select>
                     </div>
                     <div class="col-sm-12 col-md-6 ">
-                        <label>Location Description</label>
-                        <select class="ddropdown form-control" disabled>
-                                <option value="" selected>Select</option>
-                                <option value="Store">Store</option>
-                                <option value="Warehouse">Ware House</option>
-                                <option value="Carpark">Car Park</option>
+                        <label>Incident Location Details</label>
+                        <select ng-model="incidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!incidentDetails.incidentLocation.id"
+                        ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
+                        <option value=''>Select</option>
                         </select>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
                         <label>Incident Description</label>
-                        <textarea class="form-control" required></textarea>
+                        <textarea ng-model="incidentDetails.incidentLocationDescription" class="form-control" required></textarea>
                     </div>
                 </div>
                 <div class="row ">
@@ -252,7 +253,7 @@
                         </maps-directive>
                     </div>
                     <div class="modal-footer">
-                        <a data-dismiss="modal" class="btn" ng-disabled="!incident.incidentDetails.placeOfIncident">Done</a>                       
+                        <a data-dismiss="modal" class="btn btn-success" ng-disabled="!incidentDetails.placeOfIncident">Done</a>                       
                       </div>
                 </div>
      

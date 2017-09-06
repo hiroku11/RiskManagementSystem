@@ -13,6 +13,37 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.agencies = {};
     $scope.suspectType = {};
     $scope.accidentLoc = {};
+
+    $scope.incidentDetails={
+        "incidentId": null,
+        "incidentOpenedDateTime": null,
+        "uniqueIncidentId": null,
+        "statusFlag": null,
+        "propertyDamage": "Y",
+        "criminalAttack": "Y",
+        "accidentDamage": "Y",
+        "vehicleOrAssetDamage": "N",
+        "placeOfIncident": "",
+        "landmark": "",
+        "incidentDescription": "",
+        "entryPoint": {
+          "id": "",
+          "description": null
+        },
+        "incidentStatus": null,
+        "incidentLocation": {
+          "id": "",
+          "description": null
+        },
+        "incidentLocationDetail": {
+          "id": "",
+          "description": null
+        },
+        "incidentType": {
+          "id": "",
+          "description": null
+        }
+      }
     $scope.tabs = [{ "active": true, "description": "Log Incident","name":"logIncidentForm","tab":1 },
     { "active": false, "description": "Incident Details","name":"incidentDetailsForm","tab":2 },
     // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
@@ -87,6 +118,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     return;
                 }    
             }
+            return;
+        }
+        if(tabPresent){
+            $scope.tabs.splice(index,1);
         }
     }
     $scope.getUserInfo = function () {
@@ -119,6 +154,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 'X-AUTH-TOKEN': $scope.token
 
             },
+            data:$scope.incidentDetails
         }
         AppService.ShowLoader();
 
@@ -132,7 +168,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
-    $scope.logIncident();
+    
     $scope.openMap = function () {
         $("#mapModal").modal('show');
         $('#mapModal').on('shown.bs.modal', function () {
@@ -140,18 +176,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.$apply();
         })
     }
-    $scope.getIncidentLocations = function () {
-        var req = {
-            method: "GET",
-            url: "https://108296e7.ngrok.io/rmsrest/s/table-maintenance/accident-location/accident-locations",
-            headers: {
-                'X-AUTH-TOKEN': $scope.token
-            }
-        }
-        $http(req).then(function (response) {
-            //getting the incident locations from backend
-        })
-    }
+   
     $scope.getSuspectType = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/suspect-type/suspect-types',
@@ -208,7 +233,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function (response) {
-            $scope.incidentLoc = response.data;
+            $scope.incidentLocations = response.data;
 
             AppService.HideLoader();
 
@@ -825,7 +850,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     // }
     ///rmsrest/s/table-maintenance/accident- type/accident-types
 
-    $scope.getIncidentLocations();
     $scope.logOutUser = rmsService.logOutUser;
     $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint']
 

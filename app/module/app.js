@@ -70,13 +70,13 @@ riskManagementSystem.directive("mapsDirective", function () {
                                     address: results[0].formatted_address,
                                     latlng: latlng
                                 }
-                                if(scope["incident"]["incidentDetails"]){
-                                    scope["incident"]["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
-                                }else{
-                                    scope["incident"]["incidentDetails"]={};
-                                    scope["incident"]["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
-                                }
                                 
+                                if(scope.$parent["incidentDetails"]["placeOfIncident"]){
+                                    scope.$parent["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                }else{
+                                    scope.$parent["incidentDetails"]={};
+                                    scope.$parent["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                }
                             }
                         }
                         // else {
