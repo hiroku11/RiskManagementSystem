@@ -113,7 +113,7 @@
                     <div class="col-md-6 col-sm-12">
                         <label>Incident Type</label>
                         <select class="form-control" ng-model="incidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" />
-
+                       
                     </div>
                 </div>
                 <div class="row">
@@ -124,6 +124,7 @@
                     <div class="col-md-4 col-sm-12">
                         <label>Entry Point</label>
                         <select class="form-control" ng-model="incidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" />
+
                     </div>
                     <div class="col-md-4 col-sm-12" ng-if="incidentDetails.entryPoint.id=='OTHER'">
                         <label>Entry Point If Other</label>
@@ -142,7 +143,8 @@
                     </div>
                     <div class="col-sm-12 col-md-6 ">
                         <label>Incident Location Details</label>
-                        <select ng-model="incidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!incidentDetails.incidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
+                        <select ng-model="incidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!incidentDetails.incidentLocation.id"
+                        ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
                         <option value=''>Select</option>
                         </select>
                     </div>
@@ -208,8 +210,8 @@
                         </maps-directive>
                     </div>
                     <div class="modal-footer">
-                        <a data-dismiss="modal" class="btn btn-success" ng-disabled="!incidentDetails.placeOfIncident">Done</a>
-                    </div>
+                        <a data-dismiss="modal" class="btn btn-success" ng-disabled="!incidentDetails.placeOfIncident">Done</a>                       
+                      </div>
                 </div>
 
             </div>
