@@ -1,55 +1,23 @@
-
 <div class="form-content" ng-show="tab==2">
     <h2>Incident Details</h2>
     <form ng-submit="submitForm('incidentDetailsForm')">
- <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <label>Date of Incident: (DD/MM/YYYY)</label>
-
-                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                    <input type='text' class="form-control" />
-                    <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
-            </div>
-            <div class="col-sm-12 col-md-4">
-                <div><label>Time of Incident:</label></div>
-                <input class="form-control small-control" type="text" placeholder="HH">:
-                <input class="form-control  small-control" type="text" placeholder="MM">
-            </div>
-                        <div class="col-md-4 col-sm-12">
-
-
-                <label>Incident Status</label>
-                <input type="text" class="form-control" ng-model="incidentSecond.incidentStatus" readonly/>
-                
-            </div>
-        </div>
 
 
 
         <div class="row">
             <div class="col-md-6 col-sm-12">
-                <label>Allocate To</label>
-                <!--(Investigation team, system to automatically allocate. This is a display only field.)-->
-                <input class="form-control" readonly="true" value="" type="text">
+
+
+                <label>Incident Status</label>
+                <input type="text" class="form-control" ng-model="incidentDetails.incidentStatus" readonly/>
+
             </div>
             <div class="col-md-6 col-sm-12">
                 <label>Distinguishing Features</label>
 
                 <multiselect ng-model="distinguishFeatures" options="options">
                 </multiselect>
-                <!-- <select class="form-control multiselect-ui" multiple="multiple">
-                        <option>Scar</option>
-                        <option>Balding</option>
-                        <option>Glasses</option>
-                        <option>Accent</option>
-                        <option>Beard</option>
-                        <option>Birth Mark</option>
-                        <option>Mole</option>
-                        <option>Squint</option>
-                    </select> -->
+
             </div>
         </div>
         <h3 class="form-title">Suspect</h3>
@@ -180,13 +148,6 @@
                 <label>Reported Loss</label>
                 <select class="form-control" ng-options="lossType.id as lossType.description for lossType in lossType" ng-model="SlossType" />
 
-                <!--<select class="form-control">
-                                    <option>Select</option>
-                                    <option>Stock</option>
-                                    <option>Cash</option>
-                                    <option>Merchandise</option>
-                                    <option>Other</option>
-                                </select>-->
 
             </div>
             <div class="col-sm-12 col-md-3 hide">
@@ -198,25 +159,24 @@
                 <input class="form-control" placeholder="£ 000.00" type="text">
             </div>
             <div class="col-sm-12 col-md-3">
+                <a href="#" class="btn btn-primary" id="addLoss" style="float:right;margin-top:2em;">Add Loss</a>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-3">
                 <label>Any External Agency Contacted</label>
                 <select class="form-control">
                                     <option>Yes</option>
                                     <option>No</option>
                                 </select>
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 col-md-3">
                 <label>External Agency Type</label>
                 <select class="form-control" ng-options="agencies.id as agencies.description for agencies in agencies" ng-model="Sagencies" />
 
-                <!--<select class="form-control" id="ExternalAgency">
-                                    <option>Select</option>
-                                    <option>Ambulance</option>
-                                    <option>Fire</option>
-                                    <option>Police</option>
-                                </select>-->
+
             </div>
         </div>
 

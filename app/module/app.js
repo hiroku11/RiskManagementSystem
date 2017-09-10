@@ -45,7 +45,7 @@ riskManagementSystem.directive("mapsDirective", function () {
 
                 var markers = [];
                 var mapOptions = {
-                   center: new google.maps.LatLng(20.593684, 78.96288), zoom: 18,
+                   center: new google.maps.LatLng(51.5073391, -0.1284288), zoom: 18,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 };
                 var map = new google.maps.Map(document.getElementById("sample"), mapOptions);
@@ -70,13 +70,13 @@ riskManagementSystem.directive("mapsDirective", function () {
                                     address: results[0].formatted_address,
                                     latlng: latlng
                                 }
-                                if(scope["incident"]["incidentDetails"]){
-                                    scope["incident"]["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
-                                }else{
-                                    scope["incident"]["incidentDetails"]={};
-                                    scope["incident"]["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
-                                }
                                 
+                                if(scope.$parent["incidentDetails"]["placeOfIncident"]){
+                                    scope.$parent["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                }else{
+                                    scope.$parent["incidentDetails"]={};
+                                    scope.$parent["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                }
                             }
                         }
                         // else {

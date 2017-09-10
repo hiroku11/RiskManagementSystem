@@ -1,6 +1,7 @@
 <div class="form-content" ng-show="tab==3">
-    <h2>Accident Details</h2>
+    <h4>Accident Details</h4>
     <form ng-submit="submitForm('accidentForm')">
+
         <!-- <div class="body-part"></div> -->
         <div class="row">
             <div class="col-md-6 col-sm-12">
@@ -91,9 +92,9 @@
                 <textarea class="form-control"></textarea>
             </div>
         </div>
-        <h3 class="form-title">Injured Person</h3>
+        <h4 class="form-title">Injured Person</h4>
         <div class="row">
-            
+
             <div class="col-sm-12 col-md-6">
                 <label>Injured Person Type</label>
                 <select class="form-control">
@@ -192,13 +193,13 @@
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <label>Part of body injured</label>
-                <multiselect ng-model="distinguishFeatures" options="options">
-                </multiselect>
+                <select ng-model="sbodyPart" ng-change="openBodyPartModal(sbodyPart)" class="form-control">
+                    <option value="Y">Yes</option>
+                    <option value="N">No </option>
+                </select>
+
             </div>
-            <div class="col-md-6 col-sm-12">
-                <label>Other Part of body injured</label>
-                <textarea class="form-control"></textarea>
-            </div>
+
         </div>
 
         <div class="row">
@@ -250,15 +251,15 @@
         </div>
         <div class="row">
 
-                <div class="col-md-6 col-sm-12">
-                    <label>Witness</label>
-                    <select class="form-control">
+            <div class="col-md-6 col-sm-12">
+                <label>Witness</label>
+                <select class="form-control">
                                 <option>Yes</option>
                                 <option>No</option>
                             </select>
-                </div>
+            </div>
         </div>
-        <h3 class="form-title">Witness</h3>
+        <h4 class="form-title">Witness</h4>
         <div class="row">
             <div class="col-sm-12 col-md-3">
                 <label>Title:</label>
@@ -284,53 +285,53 @@
                 <input class="form-control" placeholder="Last Name" type="text">
             </div>
         </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <label>Address</label>
-                            <input name="" class="form-control" type="text">
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                            <label>Street</label>
-                            <input name="" class="form-control" type="text">
-                        </div>
-                    </div>
-            
-                    <div class="row">
-                        <div class="col-sm-12 col-md-4">
-                            <label>City</label>
-                            <input class="form-control" type="text">
-                        </div>
-            
-                        <div class="col-sm-12 col-md-4">
-                            <label>County</label>
-                            <input class="form-control" type="text">
-                        </div>
-            
-                        <div class="col-sm-12 col-md-4">
-                            <label>Country</label>
-                            <input class="form-control" type="text">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6 row">
-                            <div class="col-sm-10">
-                                    <label>Postal Code:</label>
-                                    <input class="form-control" type="text"> 
-                                    <!-- <input class="form-control small-control" type="text"> --> 
-                            </div>
-                            <div class="col-sm-2" style="padding-top:1.7em;">
-                                    <a href="#" class="btn btn-primary">Lookup</a>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6">
-                                <label>Phone</label>
-                                <input class="form-control" type="text" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12 col-md-6">
-                            <label>Age</label>
-                            <select class="form-control">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Address</label>
+                <input name="" class="form-control" type="text">
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Street</label>
+                <input name="" class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <label>City</label>
+                <input class="form-control" type="text">
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <label>County</label>
+                <input class="form-control" type="text">
+            </div>
+
+            <div class="col-sm-12 col-md-4">
+                <label>Country</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6 row">
+                <div class="col-sm-10">
+                    <label>Postal Code:</label>
+                    <input class="form-control" type="text">
+                    <!-- <input class="form-control small-control" type="text"> -->
+                </div>
+                <div class="col-sm-2" style="padding-top:1.7em;">
+                    <a href="#" class="btn btn-primary">Lookup</a>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Phone</label>
+                <input class="form-control" type="text" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Age</label>
+                <select class="form-control">
                                         <option>Select</option>
                                         <option>0 - 10</option>
                                         <option>10 - 15</option>
@@ -338,41 +339,85 @@
                                         <option>19 - 21</option>
                                         <option>21+</option>
                             </select>
-                        </div>
-            
-                        <div class="col-sm-12 col-md-6" style="padding-top:1.7em">
-                            <label>Gender</label>
-                            <input name="gender" type="radio"> <span>Male</span>
-                            <input name="gender" type="radio"> <span>Female</span>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <a href="#" class="btn btn-primary" id="addAnotherWitness">Add Witness</a>
-                        </div>
-                    </div>
-
-                <div id="tblWitness" class="table-wrapper inline" style="display: none;">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Statement</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-            <div class="row ">
-                <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary" ng-click="changeTab(4)">Continue</button>
-                        <a class="btn" ng-click="submitForm('accidentForm',true)">Back</a>
-                        <a class="btn" ng-click="changeTab(4)">Skip</a>
-                </div>
-                
             </div>
+
+            <div class="col-sm-12 col-md-6" style="padding-top:1.7em">
+                <label>Gender</label>
+                <input name="gender" type="radio"> <span>Male</span>
+                <input name="gender" type="radio"> <span>Female</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                <a href="#" class="btn btn-primary" id="addAnotherWitness">Add Witness</a>
+            </div>
+        </div>
+
+        <div id="tblWitness" class="table-wrapper inline" style="display: none;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Statement</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="row ">
+            <div class="col-sm-12">
+                <button type="submit" class="btn btn-primary" ng-click="changeTab(4)">Continue</button>
+                <a class="btn" ng-click="submitForm('accidentForm',true)">Back</a>
+                <a class="btn" ng-click="changeTab(4)">Skip</a>
+            </div>
+
+        </div>
     </form>
+    <div id="bodyModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Body Parts</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12">
+                            <label>Part of body injured</label>
+
+                            <multiselect ng-model="partsSelected" options="bodyPart" ng-change="putImagePointer(partsSelected)">
+                            </multiselect>
+
+                            <!--<multiselect ng-model="distinguishFeatures" options="options">
+                            </multiselect>-->
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label>Other Part of body injured</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                    <div id="man">
+                        <div ng-repeat="d in bodyPart">
+                            <span ng-class="d" ng-if="partsSelected.includes(d)">
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                </div>
+                <div class=" modal-footer ">
+
+
+                    <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
