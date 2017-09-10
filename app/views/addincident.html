@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-10 content">
         <ul class="nav nav-tabs">
-            <li  ng-class="{active:tab.active,disabled:!tab.active}"  ng-repeat="tab in tabs | orderBy : 'tab'"><a>{{tab.description}}</a></li>
+            <li ng-class="{active:tab.active,disabled:!tab.active}" ng-repeat="tab in tabs | orderBy : 'tab'"><a>{{tab.description}}</a></li>
             <!-- <li  ng-click="changeTab()"><a>Incident Details</a></li>
 
             <li ng-class="{active:tab=='3'}" ng-click="changeTab()" ><a>Accident</a></li>
@@ -102,97 +102,29 @@
                         <input type="email" class="form-control" ng-model="incident.manager.email" readonly/>
                     </div>
                 </div>
-                <!--<h4>Suspect Details</h4>
-                <div class="row">
 
-                    <div class="col-sm-12 col-md-4">
-                        <label>Suspect Type</label>
-                        <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="entryCount" ng-change="getEntries()" />
-
-                    </div>
-                    <div class="com-sm-12 col-md-4 hide">
-                        <input type="text" name="" class="form-control" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-12 col-md-3">
-                        <label>First Name</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <label>Middle Name</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <label>Last Name</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-primary" style="margin-top:1.7em">Lookup</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <label>Gender</label>
-                        <input type="radio" name="gender" /> <span>Male</span>
-                        <input type="radio" name="gender" /> <span>Female</span>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <label>Address Line 1</label>
-                        <textarea class="form-control" />
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label>Address Line 2</label>
-                        <textarea class="form-control" />
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <label>City</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label>County</label>
-                        <input type="text" class="form-control" />
-                    </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-12 postal-code">
-                        <label>Postal Code</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" />
-                    </div>
-                </div>-->
 
                 <h4>Incident Details</h4>
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <label>Place of Incident</label> <a class="label label-primary" ng-click="openMap()"><span class="glyphicon glyphicon-map-marker"></span> Mark on Map</a>
-                        <input ng-model="incidentDetails.placeOfIncident" class="form-control"
-                         type="url" ng-model="incident.incidentDetails.placeOfIncident">
+                        <input ng-model="incidentDetails.placeOfIncident" class="form-control" type="url" ng-model="incident.incidentDetails.placeOfIncident">
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <label>Incident Type</label>
-                        <select class="form-control"  ng-model="incidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType"/>
-
+                        <select class="form-control" ng-model="incidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" />
+                       
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <label>Nearest Landmark</label>
-                        <input class="form-control" type="text"  ng-model="incidentDetails.landmark">
+                        <input class="form-control" type="text" ng-model="incidentDetails.landmark">
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label>Entry Point</label>
-                        <select class="form-control" ng-model="incidentDetails.entryPoint.id"  ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint"/>
+                        <select class="form-control" ng-model="incidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" />
+
                     </div>
                     <div class="col-md-4 col-sm-12" ng-if="incidentDetails.entryPoint.id=='OTHER'">
                         <label>Entry Point If Other</label>
@@ -205,7 +137,7 @@
 
                     <div class="col-sm-12 col-md-6 ">
                         <label>Incident Location</label>
-                        <select class="form-control" ng-model="incidentDetails.incidentLocation.id"  ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations" >
+                        <select class="form-control" ng-model="incidentDetails.incidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
                             <option value=''>Select</option>
                         </select>
                     </div>
@@ -223,6 +155,31 @@
                         <textarea ng-model="incidentDetails.incidentLocationDescription" class="form-control" required></textarea>
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <label>Date of Incident: (DD/MM/YYYY)</label>
+
+                        <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                            <input type='text' class="form-control" />
+                            <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-2">
+                        <div><label>Time of Incident:</label></div>
+                        <input class="form-control small-control" type="text" placeholder="HH">:
+                        <input class="form-control  small-control" type="text" placeholder="MM">
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                        <label>Allocate To</label>
+                        <!--(Investigation team, system to automatically allocate. This is a display only field.)-->
+                        <input class="form-control" readonly="true" value="" type="text">
+                    </div>
+                </div>
+
                 <div class="row ">
                     <div class="col-sm-12" style="padding:15px;">
                         <button type="submit" ng-disabled="logIncident.$invalid" class="btn btn-primary">Continue</button>
@@ -241,22 +198,22 @@
         <ng-include src="'app/views/addincident_documents.html'"></ng-include>
         <div class="modal fade" role="dialog" id="mapModal">
             <div class="modal-dialog">
-     
+
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header">
-     
+
                         <h4 class="modal-title">Select A location</h4>
                     </div>
                     <div class="modal-body" ng-if="map">
-                        <maps-directive>     
+                        <maps-directive>
                         </maps-directive>
                     </div>
                     <div class="modal-footer">
                         <a data-dismiss="modal" class="btn btn-success" ng-disabled="!incidentDetails.placeOfIncident">Done</a>                       
                       </div>
                 </div>
-     
+
             </div>
         </div>
     </div>
