@@ -14,7 +14,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.suspectType = {};
     $scope.accidentLoc = {};
     $scope.partsJson = [];
-    $scope.incidentDetails = {
+    $scope.logIncidentDetails = {
         "incidentId": null,
         "incidentOpenedDateTime": null,
         "uniqueIncidentId": null,
@@ -44,7 +44,95 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
           "description": null
         }
       }
-    $scope.tabs = [{ "active": true, "description": "Log Incident","name":"logIncidentForm","tab":1 },
+  
+      $scope.incidentDetails={
+        "incidentId": 24,
+        "uniqueIncidentId": "IN010917203918",
+        "newSuspects": [
+          {
+            "id": null,
+            "statusFlag": "ACTIVE",
+            "title": "",
+            "firstName": "",
+            "middleName": null,
+            "lastName": "",
+            "nameSuffix": "",
+            "genderType": {
+              "id": "",
+              "description": null
+            },
+            "distinguishingFeature": {
+              "id": "",
+              "description": null
+            },
+            "distinguishingFeatureDetail": {
+              "id": "",
+              "description": null
+            },
+            "dateOfBirth": "",
+            "age": 0,
+            "phone": null,
+            "fax": null,
+            "alternatePhone": null,
+            "email": null,
+            "website": null,
+            "weaponInvolved": "Y",
+            "weaponType": {
+              "id": "",
+              "description": null
+            },
+            "suspectType": {
+              "id": "",
+              "description": null
+            },
+            "addresses": [
+              {
+                "id": null,
+                "organizationName": "",
+                "buildingName": "",
+                "streetName": "",
+                "localityName": "",
+                "postTown": "",
+                "county": "",
+                "city": "",
+                "postcode": "",
+                "country": "",
+                "statusFlag": "ACTIVE"
+              }
+            ]
+          }
+        ],
+        "existingSuspects": [
+          {
+            "id": 8
+          }
+        ],
+        "employeeSuspects": [
+          {
+            "loginId": ""
+          }
+        ],
+        "reportedLosses": [
+          {
+            "id": null,
+            "incident": {},
+            "statusFlag": "ACTIVE",
+            "lossType": {
+              "id": "",
+              "description": null
+            },
+            "lossValue": 0,
+            "externalAgencyContacted": "Y",
+            "externalAgency": {
+              "id": "",
+              "description": null
+            },
+            "dateTimeContacted": "",
+            "costEstimation": 0
+          }
+        ]
+      }
+      $scope.tabs = [{ "active": true, "description": "Log Incident","name":"logIncidentForm","tab":1 },
     { "active": false, "description": "Incident Details","name":"incidentDetailsForm","tab":2 },
     // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
     // { "active": false, "description": "Assets" ,"name":"assetsForm","tab":4},

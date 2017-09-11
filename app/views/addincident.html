@@ -108,27 +108,27 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <label>Place of Incident</label> <a class="label label-primary" ng-click="openMap()"><span class="glyphicon glyphicon-map-marker"></span> Mark on Map</a>
-                        <input ng-model="incidentDetails.placeOfIncident" class="form-control" type="url" ng-model="incident.incidentDetails.placeOfIncident">
+                        <input ng-model="logIncidentDetails.placeOfIncident" class="form-control" type="url">
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <label>Incident Type</label>
-                        <select class="form-control" ng-model="incidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" />
+                        <select class="form-control" ng-model="logIncidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" />
                        
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <label>Nearest Landmark</label>
-                        <input class="form-control" type="text" ng-model="incidentDetails.landmark">
+                        <input class="form-control" type="text" ng-model="logIncidentDetails.landmark">
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label>Entry Point</label>
-                        <select class="form-control" ng-model="incidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" />
+                        <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" />
 
                     </div>
-                    <div class="col-md-4 col-sm-12" ng-if="incidentDetails.entryPoint.id=='OTHER'">
+                    <div class="col-md-4 col-sm-12" ng-if="logIncidentDetails.entryPoint.id=='OTHER'">
                         <label>Entry Point If Other</label>
-                        <input class="form-control" type="text" ng-model="incidentDetails.entryPoint.description">
+                        <input class="form-control" type="text" ng-model="logIncidentDetails.entryPoint.description">
                     </div>
 
 
@@ -137,13 +137,13 @@
 
                     <div class="col-sm-12 col-md-6 ">
                         <label>Incident Location</label>
-                        <select class="form-control" ng-model="incidentDetails.incidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
+                        <select class="form-control" ng-model="logIncidentDetails.incidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
                             <option value=''>Select</option>
                         </select>
                     </div>
                     <div class="col-sm-12 col-md-6 ">
                         <label>Incident Location Details</label>
-                        <select ng-model="incidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!incidentDetails.incidentLocation.id"
+                        <select ng-model="logIncidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!logIncidentDetails.incidentLocation.id"
                         ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
                         <option value=''>Select</option>
                         </select>
@@ -152,16 +152,15 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <label>Incident Description</label>
-                        <textarea ng-model="incidentDetails.incidentLocationDescription" class="form-control" required></textarea>
+                        <textarea ng-model="logIncidentDetails.incidentLocationDescription" class="form-control" required></textarea>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <label>Date of Incident: (DD/MM/YYYY)</label>
-
                         <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                            <input type='text' class="form-control" />
+                            <input type='text' class="form-control" ng-model="logIncidentDetails.dateOfIncident" />
                             <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                             </span>
