@@ -27,36 +27,35 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         "landmark": "",
         "incidentDescription": "",
         "entryPoint": {
-            "id": "",
-            "description": null
+          "id": "",
+          "description": null
         },
         "incidentStatus": null,
         "incidentLocation": {
-            "id": "",
-            "description": null
+          "id": "",
+          "description": null
         },
         "incidentLocationDetail": {
-            "id": "",
-            "description": null
+          "id": "",
+          "description": null
         },
         "incidentType": {
-            "id": "",
-            "description": null
+          "id": "",
+          "description": null
         }
-    }
-    $scope.tabs = [{ "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
-        { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
-        // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
-        // { "active": false, "description": "Assets" ,"name":"assetsForm","tab":4},
-        // { "active": false, "description": "Crime" ,"name":"crimeForm","tab":5},
-        { "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
-        { "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
-        { "active": false, "description": "Supporting Documents", "name": "documentsForm", "tab": 8 }
-    ];
+      }
+    $scope.tabs = [{ "active": true, "description": "Log Incident","name":"logIncidentForm","tab":1 },
+    { "active": false, "description": "Incident Details","name":"incidentDetailsForm","tab":2 },
+    // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
+    // { "active": false, "description": "Assets" ,"name":"assetsForm","tab":4},
+    // { "active": false, "description": "Crime" ,"name":"crimeForm","tab":5},
+    { "active": false, "description": "Claim","name":"claimForm" ,"tab":6},
+    { "active": false, "description": "Investigation" ,"name":"investigationForm","tab":7}, 
+    { "active": false, "description": "Supporting Documents","name":"documentsForm","tab":8 }];
 
-    $scope.submitForm = function(formName, back) {
-        var index = 0;
-        $scope.tabs.sort(function(a, b) {
+    $scope.submitForm = function (formName,back) {
+        var index=0;
+        $scope.tabs.sort(function(a,b){
             return a.tab - b.tab;
         })
         $scope.tabs.filter(function(val, ind) {
@@ -121,8 +120,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
             return;
         }
-        if (tabPresent) {
-            $scope.tabs.splice(index, 1);
+        if(tabPresent){
+            $scope.tabs.splice(index,1);
         }
     }
     $scope.getUserInfo = function() {
@@ -169,7 +168,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
-
+    
     $scope.openBodyPartModal = function(sbodyPart) {
             // $("#bodyModal").modal('show');
             if (sbodyPart == 'Y') {
@@ -252,7 +251,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+
+        $http(req).then(function (response) {
             $scope.incidentLocations = response.data;
 
             AppService.HideLoader();
