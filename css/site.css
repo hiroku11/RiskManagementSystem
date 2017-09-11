@@ -573,7 +573,7 @@ a i {
     height: 9px;
     border-radius: 9px;
     color: red;
-    left: 195px;
+    left: 341px;
     top: 368px;
     position: fixed
 }
@@ -595,7 +595,7 @@ a i {
     height: 9px;
     border-radius: 9px;
     color: red;
-    left: 189px;
+    left: 346px;
     top: 384px;
     position: fixed
 }
@@ -617,7 +617,7 @@ a i {
     height: 9px;
     border-radius: 9px;
     color: red;
-    left: 181px;
+    left: 360px;
     top: 431px;
     position: fixed
 }
@@ -639,8 +639,8 @@ a i {
     height: 9px;
     border-radius: 9px;
     color: red;
-    left: 181px;
-    top: 431px;
+    left: 353px;
+    top: 411px;
     position: fixed
 }
 
@@ -749,8 +749,8 @@ a i {
     height: 9px;
     border-radius: 9px;
     color: red;
-    left: 240px;
-    top: 567px;
+    left: 247px;
+    top: 635px;
     position: fixed;
 }
 
@@ -760,8 +760,30 @@ a i {
     height: 9px;
     border-radius: 9px;
     color: red;
-    left: 297px;
-    top: 567px;
+    left: 286px;
+    top: 635px;
+    position: fixed;
+}
+
+.Left.Leg {
+    background-color: red;
+    width: 9px;
+    height: 9px;
+    border-radius: 9px;
+    color: red;
+    left: 239px;
+    top: 573px;
+    position: fixed;
+}
+
+.Right.Leg {
+    background-color: red;
+    width: 9px;
+    height: 9px;
+    border-radius: 9px;
+    color: red;
+    left: 294px;
+    top: 573px;
     position: fixed;
 }
 
