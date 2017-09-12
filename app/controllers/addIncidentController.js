@@ -59,6 +59,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
         ]
     }
+    $scope.witness={
+        addresses:[]
+    }
     $scope.loss={
         "id": null,
         "incident": {},
@@ -79,6 +82,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         "reportedLosses": [
 
         ]
+    }
+    $scope.accidentDetails={
+        "incidentId": $scope.incident.incidentId,
+        "uniqueIncidentId": $scope.incident.uniqueIncidentId,
+        newInjuredPersons:[]
+    }
+    $scope.injuredPerson={
+        addresses:[]
     }
     $scope.tabs = [{ "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
     { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
@@ -115,6 +126,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         if(formName=="incidentDetailsForm"){
             $scope.addIncidentDetails();
+        }
+        if(formName=="accidentForm"){
+            $scope.addAccidentDetails();
         }
         $(".content")[0].scrollTop = 0;
     }
@@ -690,7 +704,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function (response) {
-            $scope.injuredPersonType = response.data;
+            $scope.injuredPersonTypes = response.data;
 
             AppService.HideLoader();
 
@@ -712,7 +726,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function (response) {
-            $scope.injuryCause = response.data;
+            $scope.injuryCauses = response.data;
 
             AppService.HideLoader();
 
@@ -925,6 +939,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getWeaponType();
     
     $scope.addIncidentDetails=function(){
+        $scope.incidentDetails.incidentId = $scope.incident.incidentId;
+        $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-incident-details',
             method: "POST",
@@ -944,8 +960,45 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
-    $scope.logOutUser = rmsService.logOutUser;
-    $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint']
+    $scope.addInjuredPerson=function(){
+        $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
+        //reset the object
+        $scope.injuredPerson={
+            addresses:[]
+        }
+    }
 
+    $scope.addWitness=function(){
+        $scope.accidentDetails.newWitnesses.push($scope.witness);
+        //reset the object
+        $scope.witness={
+            addresses:[]
+        }
+    }
+    
+    $scope.addAccidentDetails=function(){
+        $scope.accidentDetails.incidentId = $scope.incident.incidentId;
+        $scope.accidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-accident-details',
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+
+            },
+            data: $scope.accidentDetails
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function (response) {
+            //$scope.incidentSecond = response.data;
+            AppService.HideLoader();
+        }, function (error) {
+            AppService.HideLoader();
+        })
+    }
+
+    $scope.logOutUser = rmsService.logOutUser;
+    $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint'];
 
 }])
