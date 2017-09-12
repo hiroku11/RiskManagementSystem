@@ -12,7 +12,6 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <label>Distinguishing Features</label>
-
                 <multiselect ng-model="distinguishFeatures" options="options">
                 </multiselect>
 
@@ -22,20 +21,20 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Suspect Type</label>
-                <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="SsuspectType"
+                <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="suspect.suspectType.id"
                 />
 
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Suspect Type If Other</label>
-                <input name="" class="form-control" type="text" placeholder="If Suspect Others">
+                <input name="" class="form-control" type="text" placeholder="If Suspect Others" ng-model="suspect.suspectType.description">
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <label>Title:</label>
-                <select class="form-control">
+                <select class="form-control" ng-model="suspect.title">
                                 <option>Select</option>
                                 <option>Mr</option>
                                 <option>Mrs</option>
@@ -46,59 +45,59 @@
             </div>
             <div class="col-md-3 col-sm-12">
                 <label>First Name:</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" ng-model="suspect.firstName">
             </div>
             <div class="col-md-3 col-sm-12">
                 <label>Middle Name:</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" ng-model="suspect.middleName">
             </div>
             <div class="col-md-3 col-sm-12">
                 <label>Last Name:</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" ng-model="suspect.lastName">
             </div>
 
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Address</label>
-                <input name="" class="form-control" type="text">
+                <input name="" class="form-control" type="text" ng-mode="suspect.addresses[0].organizationName">
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Street</label>
-                <input name="" class="form-control" type="text">
+                <input name="" class="form-control" type="text" ng-model="suspect.addresses[0].streetName">
             </div>
         </div>
 
         <div class="row">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-4">
                 <label>City</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" ng-model="suspect.addresses[0].city">
             </div>
 
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-4">
                 <label>County</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" ng-model="suspect.addresses[0].county">
             </div>
 
-            <!-- <div class="cell-md">
+            <div class="col-sm-12 col-md-4">
                             <label>Country</label>
-                            <input class="form-control" type="text">
-                        </div> -->
+                            <input class="form-control" type="text" ng-model="suspect.addresses[0].country">
+            </div>
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6 ">
                 <label>Postal Code</label>
                 <div class="input-group">
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" ng-model="suspect.addresses[0].postcode">
                     <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-search"></span>
+                        <span class="glyphicon glyphicon-search"></span>
                     </span>
                 </div>
 
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Phone</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" ng-model="suspect.phone">
             </div>
         </div>
         <div class="row">
@@ -106,12 +105,12 @@
 
             <div class="col-sm-12 col-md-6">
                 <label>Age</label>
-                <input class="form-control" type="text" />
+                <input class="form-control" type="text" ng-model="suspect.age"/>
             </div>
 
             <div class="col-sm-12 col-md-6">
                 <div><label>Gender</label></div>
-                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="SgenderType"
+                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="suspect.genderType.id"
                 />
 
                 <!--<input name="gender" type="radio"> <span>Male</span>
@@ -121,21 +120,21 @@
         <div class="row">
                 <div class="col-sm-12 col-md-4">
                     <label>Was a weapon involved?</label>
-                    <select class="form-control">
+                    <select class="form-control" ng-model="suspect.weaponInvolved">
     
-                                        <option>Select</option>
-                                        <option>Yes</option>
-                                        <option>No</option>
+                                        <option value="">Select</option>
+                                        <option value="Y">Yes</option>
+                                        <option value="N">No</option>
                                     </select>
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <label>Weapon Involved</label>
-                    <select class="form-control" ng-options="weaponType.id as weaponType.description for weaponType in weaponType" ng-model="SweaponType" />
+                    <select class="form-control" ng-options="weaponType.id as weaponType.description for weaponType in weaponType" ng-model="suspect.weaponType.id" />
     
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4" ng-if="suspect.weaponType.id=='OTHER'">
                     <label>Specify If others</label>
-                    <input class="form-control" name="" type="text">
+                    <input class="form-control" name="" type="text" ng-model="suspect.weaponType.description">
                 </div>
             </div>
         <div class="row">
@@ -144,7 +143,7 @@
             </div>
         </div>
 
-        <div id="tblInjuredPersons" class="table-wrapper inline" style="display: none;">
+        <div id="tblInjuredPersons" class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
             <table class="table">
                 <thead>
                     <tr>
@@ -158,7 +157,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="suspect in suspects"></tr>
+                    <tr ng-repeat="suspect in incidentDetails.newSuspects"></tr>
                 </tbody>
             </table>
         </div>
@@ -172,11 +171,11 @@
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="loss.lossType.id=='OTHER'">
                     <label>Reported Loss If Others</label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" ng-model="loss.lossType.description">
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <label>Reported Loss Value</label>
-                    <input class="form-control" placeholder="£ 000.00" type="text">
+                    <input class="form-control" placeholder="£ 000.00" type="text" ng-model="loss.lossValue">
                 </div>
 
             </div>
@@ -201,7 +200,7 @@
                 <div class="col-sm-12 col-md-6">
                     <label>Date Police Called</label>
                     <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                        <input type='text' class="form-control" />
+                        <input type='text' class="form-control" ng-model="loss.dateTimeContacted"/>
                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -209,8 +208,8 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <div> <label>Time Police Called</label></div>
-                    <input class="form-control small-control" type="text" placeholder="HH">:
-                    <input class="form-control  small-control" type="text" placeholder="MM">
+                    <input class="form-control small-control" type="text" placeholder="HH" ng-model="loss.timeHrsContacted">:
+                    <input class="form-control  small-control" type="text" placeholder="MM" ng-model="loss.timeMinContacted">
                 </div>
             </div>
 
@@ -226,8 +225,8 @@
                 </div>
                 <div class="col-sm-12 col-md-6 time">
                     <div><label>Time Ambulance Called</label></div>
-                    <input class="form-control small-control" type="text" placeholder="HH">:
-                    <input class="form-control  small-control" type="text" placeholder="MM">
+                    <input class="form-control small-control" type="text" placeholder="HH" ng-model="loss.timeHrsContacted">:
+                    <input class="form-control  small-control" type="text" placeholder="MM" ng-model="loss.timeMinContacted">
                 </div>
             </div>
             <div class="row" data-id="Fire" ng-if="loss.externalAgency.id=='FIRE'">
@@ -242,19 +241,35 @@
                 </div>
                 <div class="col-sm-12 col-md-6 time">
                     <div><label>Time Fire Station Called</label></div>
-                    <input class="form-control small-control" type="text" placeholder="HH">:
-                    <input class="form-control  small-control" type="text" placeholder="MM">
+                    <input class="form-control small-control" type="text" placeholder="HH" ng-model="loss.timeHrsContacted">:
+                    <input class="form-control  small-control" type="text" placeholder="MM" ng-model="loss.timeMinContacted">
+                </div>
+            </div>
+            <div class="row" data-id="Fire" ng-if="loss.externalAgency.id=='OTHER'">
+                <div class="col-sm-12 col-md-6">
+                    <label>Date Other Agency Called </label>
+                    <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 time">
+                    <div><label>Time FOther Agency Called</label></div>
+                    <input class="form-control small-control" type="text" placeholder="HH" ng-model="loss.timeHrsContacted">:
+                    <input class="form-control  small-control" type="text" placeholder="MM" ng-model="loss.timeMinContacted">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-sm-12 col-md-6">
                     <label>Incident Reference Number</label>
-                    <input class="form-control" type="text">
+                    <input class="form-control" type="text" ng-model="incident.incidentId">
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <label>Damage Cost Estimation</label>
-                    <input class="form-control" placeholder="£ 000.00" type="text">
+                    <input class="form-control" placeholder="£ 000.00" type="text" ng-model="loss.costEstimation">
                 </div>
             </div>
         <div class="row">
