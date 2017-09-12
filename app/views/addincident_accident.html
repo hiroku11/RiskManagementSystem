@@ -217,7 +217,7 @@
             </div>
             <div class="col-md-6 col-sm-12">
                 <label>Witness</label>
-                <select class="form-control" ng-model="injuredPerson.anyWitness">
+                <select class="form-control" ng-model="accidentDetails.anyWitness">
                     <option value=""--Select--></option>
                                 <option value="Y">Yes</option>
                                 <option value="N">No</option>
@@ -243,7 +243,7 @@
             </div>
         </div>
 
-        <div id="tblInjuredPersons" class="table-wrapper inline" ng-if="accidentDetails.newInjuredPersons.length > 0">
+        <div  class="table-wrapper inline" ng-if="accidentDetails.newInjuredPersons.length > 0">
             <table class="table">
                 <thead>
                     <tr>
