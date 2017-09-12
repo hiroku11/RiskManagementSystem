@@ -20,9 +20,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         "uniqueIncidentId": null,
         "statusFlag": null,
         "propertyDamage": "Y",
-        "criminalAttack": "Y",
-        "accidentDamage": "Y",
-        "vehicleOrAssetDamage": "N",
+        "criminalAttack": "",
+        "accidentDamage": "",
+        "vehicleOrAssetDamage": "",
         "placeOfIncident": "",
         "landmark": "",
         "incidentDescription": "",
@@ -151,7 +151,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         if (!tabPresent) {
             if (formName == "accidentForm") {
-                if ($scope.incident.incidentDetails.injuredPerson) {
+                if ($scope.logIncidentDetails.accidentDamage) {
                     $scope.tabs.push({ "active": false, "description": "Accident", "name": "accidentForm", "tab": 3 });
                     return;
                 } else {
@@ -161,7 +161,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             }
             if (formName == "assetsForm") {
-                if ($scope.incident.incidentDetails.assetDamanged) {
+                if ($scope.logIncidentDetails.vehicleOrAssetDamage) {
                     $scope.tabs.push({ "active": false, "description": "Asset", "name": "assetsForm", "tab": 4 });
                     return;
                 } else {
@@ -170,7 +170,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }
             }
             if (formName == "crimeForm") {
-                if ($scope.incident.incidentDetails.assetDamanged) {
+                if ($scope.logIncidentDetails.criminalAttack) {
                     $scope.tabs.push({ "active": false, "description": "Crime", "name": "crimeForm", "tab": 5 });
                     return;
                 } else {

@@ -139,11 +139,11 @@
             </div>
         <div class="row">
             <div class="col-sm-12">
-                <a href="#" class="btn btn-primary" id="addAnotherInjuredPerson">Add Suspect</a>
+                <a href="#" class="btn btn-primary" ng-click="addSuspect()">Add Suspect</a>
             </div>
         </div>
 
-        <div id="tblInjuredPersons" class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
+        <div class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
             <table class="table">
                 <thead>
                     <tr>
@@ -296,17 +296,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-sm-12">
-                <input id="PersonInjured" ng-model="incident.incidentDetails.injuredPerson" type="checkbox" ng-change="addTab('accidentForm')">                Was there an injured person(s)?
-            </div>
-            <div class="col-sm-12">
-                <input id="VehicleUsed" ng-model="incident.incidentDetails.assetDamanged" type="checkbox" ng-change="addTab('assetsForm')">                Was there a vehicle/property/asset damaged?
-            </div>
-            <div class="col-sm-12">
-                <input id="CrimeInvolved" ng-model="incident.incidentDetails.crime" type="checkbox" ng-change="addTab('crimeForm')">                Was an act of crime involved?
-            </div>
-        </div>
+        
 
         <div class="row">
             <div class="col-sm-12">
