@@ -14,6 +14,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.suspectType = {};
     $scope.accidentLoc = {};
     $scope.partsJson = [];
+
+    $scope.incident = {
+        "incidentId": 24,
+        "uniqueIncidentId": "",
+        "incidentStatus":""
+    }
     $scope.logIncidentDetails = {
         "incidentId": null,
         "incidentOpenedDateTime": null,
@@ -207,12 +213,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.getUserInfo();
     $scope.logIncident = function () {
+        $scope.logIncidentDetails.accidentDamage? $scope.logIncidentDetails.accidentDamage="Y": $scope.logIncidentDetails.accidentDamage="N";
+        $scope.logIncidentDetails.vehicleOrAssetDamage? $scope.logIncidentDetails.vehicleOrAssetDamage="Y": $scope.logIncidentDetails.vehicleOrAssetDamage="N";
+        $scope.logIncidentDetails.criminalAttack? $scope.logIncidentDetails.criminalAttack="Y": $scope.logIncidentDetails.criminalAttack="N";
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/log-incident',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
-
             },
             data: $scope.logIncidentDetails
         }
@@ -220,6 +228,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $http(req).then(function (response) {
             $scope.incidentSecond = response.data;
+            $scope.incident.incidentStatus=response.data.incidentStatus
             AppService.HideLoader();
         }, function (error) {
             AppService.HideLoader();
@@ -719,17 +728,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
-
             },
         }
         AppService.ShowLoader();
 
         $http(req).then(function (response) {
-            $scope.injuryType = response.data;
-
+            $scope.injuryTypes = response.data;
             AppService.HideLoader();
-
-
         }, function (error) {
             AppService.HideLoader();
         })
@@ -909,6 +914,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getEventType();
     $scope.getGenderType();
     $scope.getInjuredPersonType();
+    $scope.getInjuryType();
     $scope.getInjuryCause();
     $scope.getLossType();
     $scope.getOrg();
