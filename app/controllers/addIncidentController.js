@@ -68,8 +68,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         "statusFlag": "ACTIVE"
     }
     $scope.incidentDetails = {
-        "incidentId": 24,
-        "uniqueIncidentId": "IN010917203918",
+        "incidentId": 0,
+        "uniqueIncidentId": "",
         "newSuspects": [
             
         ],
@@ -86,7 +86,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.accidentDetails={
         "incidentId": $scope.incident.incidentId,
         "uniqueIncidentId": $scope.incident.uniqueIncidentId,
-        newInjuredPersons:[]
+        accident:{},
+        newInjuredPersons:[],
+        existingInjuredPersons:[],
+        employeeInjuredPersons:[],
+        newWitnesses:[],
+        existingWitnesses:[],
+        employeeWitnesses:[]
     }
     $scope.injuredPerson={
         addresses:[]
