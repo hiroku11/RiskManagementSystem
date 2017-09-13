@@ -18,7 +18,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.incident = {
         "incidentId": 24,
         "uniqueIncidentId": "",
-        "incidentStatus":""
+        "incidentStatus": ""
     }
     $scope.logIncidentDetails = {
         "incidentId": null,
@@ -51,22 +51,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.suspect={
-        addresses:[
+    $scope.suspect = {
+        addresses: [
             {
                 "id": null,
                 "statusFlag": "ACTIVE"
             }
         ],
-        distinguishingFeatureDetail:null,
-        distinguishingFeature:null
+        distinguishingFeatureDetail: null,
+        distinguishingFeature: null
     }
-    $scope.witness={
-        addresses:[],
-        distinguishingFeatureDetail:null,
-        distinguishingFeature:null
+    $scope.witness = {
+        addresses: [],
+        distinguishingFeatureDetail: null,
+        distinguishingFeature: null
     }
-    $scope.loss={
+    $scope.loss = {
         "id": null,
         "incident": {},
         "statusFlag": "ACTIVE"
@@ -75,7 +75,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         "incidentId": 0,
         "uniqueIncidentId": "",
         "newSuspects": [
-            
+
         ],
         "existingSuspects": [
 
@@ -87,21 +87,21 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         ]
     }
-    $scope.accidentDetails={
+    $scope.accidentDetails = {
         "incidentId": $scope.incident.incidentId,
         "uniqueIncidentId": $scope.incident.uniqueIncidentId,
-        accident:{},
-        newInjuredPersons:[],
-        existingInjuredPersons:[],
-        employeeInjuredPersons:[],
-        newWitnesses:[],
-        existingWitnesses:[],
-        employeeWitnesses:[]
+        accident: {},
+        newInjuredPersons: [],
+        existingInjuredPersons: [],
+        employeeInjuredPersons: [],
+        newWitnesses: [],
+        existingWitnesses: [],
+        employeeWitnesses: []
     }
-    $scope.injuredPerson={
-        addresses:[],
-        distinguishingFeatureDetail:null,
-        distinguishingFeature:null
+    $scope.injuredPerson = {
+        addresses: [],
+        distinguishingFeatureDetail: null,
+        distinguishingFeature: null
     }
     $scope.tabs = [{ "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
     { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
@@ -136,10 +136,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.logIncident();
         }
 
-        if(formName=="incidentDetailsForm"){
+        if (formName == "incidentDetailsForm") {
             $scope.addIncidentDetails();
         }
-        if(formName=="accidentForm"){
+        if (formName == "accidentForm") {
             $scope.addAccidentDetails();
         }
         $(".content")[0].scrollTop = 0;
@@ -148,24 +148,24 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.incidentDetails.newSuspects.push($scope.suspect);
         //reinitialize the suspect so that new can be added
-        $scope.suspect={
-            addresses:[
+        $scope.suspect = {
+            addresses: [
                 {
                     "id": null,
                     "statusFlag": "ACTIVE"
                 }
             ]
         }
-        
+
     }
 
-    $scope.addLoss=function(){
-        $scope.loss.dateTimeContacted=$scope.loss.dateTimeContacted + " "+ $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
+    $scope.addLoss = function () {
+        $scope.loss.dateTimeContacted = $scope.loss.dateTimeContacted + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
         delete $scope.loss.timeHrsContacted;
         delete $scope.loss.timeMinContacted;
         $scope.incidentDetails.reportedLosses.push($scope.loss);
         //reinitialize the loss so that new can be added
-        $scope.loss={
+        $scope.loss = {
             "id": null,
             "incident": {},
             "statusFlag": "ACTIVE"
@@ -239,9 +239,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.getUserInfo();
     $scope.logIncident = function () {
-        $scope.logIncidentDetails.accidentDamage? $scope.logIncidentDetails.accidentDamage="Y": $scope.logIncidentDetails.accidentDamage="N";
-        $scope.logIncidentDetails.vehicleOrAssetDamage? $scope.logIncidentDetails.vehicleOrAssetDamage="Y": $scope.logIncidentDetails.vehicleOrAssetDamage="N";
-        $scope.logIncidentDetails.criminalAttack? $scope.logIncidentDetails.criminalAttack="Y": $scope.logIncidentDetails.criminalAttack="N";
+        $scope.logIncidentDetails.accidentDamage ? $scope.logIncidentDetails.accidentDamage = "Y" : $scope.logIncidentDetails.accidentDamage = "N";
+        $scope.logIncidentDetails.vehicleOrAssetDamage ? $scope.logIncidentDetails.vehicleOrAssetDamage = "Y" : $scope.logIncidentDetails.vehicleOrAssetDamage = "N";
+        $scope.logIncidentDetails.criminalAttack ? $scope.logIncidentDetails.criminalAttack = "Y" : $scope.logIncidentDetails.criminalAttack = "N";
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/log-incident',
             method: "POST",
@@ -254,7 +254,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $http(req).then(function (response) {
             $scope.incidentSecond = response.data;
-            $scope.incident.incidentStatus=response.data.incidentStatus
+            $scope.incident.incidentStatus = response.data.incidentStatus
             AppService.HideLoader();
         }, function (error) {
             AppService.HideLoader();
@@ -942,8 +942,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getPosLevel();
     $scope.getVehicleDamageType();
     $scope.getWeaponType();
-    
-    $scope.addIncidentDetails=function(){
+
+    $scope.addIncidentDetails = function () {
         $scope.incidentDetails.incidentId = $scope.incident.incidentId;
         $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -965,23 +965,23 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
-    $scope.addInjuredPerson=function(){
+    $scope.addInjuredPerson = function () {
         $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
         //reset the object
-        $scope.injuredPerson={
-            addresses:[]
+        $scope.injuredPerson = {
+            addresses: []
         }
     }
 
-    $scope.addWitness=function(){
+    $scope.addWitness = function () {
         $scope.accidentDetails.newWitnesses.push($scope.witness);
         //reset the object
-        $scope.witness={
-            addresses:[]
+        $scope.witness = {
+            addresses: []
         }
     }
-    
-    $scope.addAccidentDetails=function(){
+
+    $scope.addAccidentDetails = function () {
         $scope.accidentDetails.incidentId = $scope.incident.incidentId;
         $scope.accidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -1001,6 +1001,102 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }, function (error) {
             AppService.HideLoader();
         })
+    }
+
+    $scope.userLookup = function (args) {
+        var fil = {
+            "paging": { "currentPage": 0, "pageSize": 50 },
+            "sorts": [{ "field": "firstName", "order": "ASC" }],
+            "filters": [{
+
+                "field": "fullName",
+                "operator": "CONTAINS",
+                "value": args
+
+            }]
+        }
+
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/user-lookup',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+                'Search': JSON.stringify(fil)
+
+
+            },
+        }
+
+        $http(req).then(function (response) {
+            debugger
+            $scope.userInfo = response.data;
+
+
+        }, function (error) {
+
+        })
+
+    }
+
+    $scope.suspectLookup = function (args) {
+        var fil = {
+            "paging": { "currentPage": 0, "pageSize": 50 },
+            "sorts": [{ "field": "firstName", "order": "ASC" }],
+            "filters": [{
+
+                "field": "fullName",
+                "operator": "CONTAINS",
+                "value": args
+
+            }]
+        }
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/suspect-lookup',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+                'Search': JSON.stringify(fil)
+
+
+            },
+        }
+        $http(req).then(function (response) {
+            debugger
+            $scope.suspectData = response.data;
+        }, function (error) {
+
+        })
+
+    }
+    
+    $scope.injuredPersonLookup = function (args) {
+        var fil = {
+            "paging": { "currentPage": 0, "pageSize": 50 },
+            "sorts": [{ "field": "firstName", "order": "ASC" }],
+            "filters": [{
+
+                "field": "fullName",
+                "operator": "CONTAINS",
+                "value": args
+
+            }]
+        }
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/injured-person-lookup',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+                'Search': JSON.stringify(fil)
+            },
+        }
+
+        $http(req).then(function (response) {
+            debugger
+            $scope.injuredPersonData = response.data;
+        }, function (error) {
+
+        })
+
     }
 
     $scope.logOutUser = rmsService.logOutUser;
