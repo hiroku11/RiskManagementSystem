@@ -57,10 +57,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "id": null,
                 "statusFlag": "ACTIVE"
             }
-        ]
+        ],
+        distinguishingFeatureDetail:null,
+        distinguishingFeature:null
     }
     $scope.witness={
-        addresses:[]
+        addresses:[],
+        distinguishingFeatureDetail:null,
+        distinguishingFeature:null
     }
     $scope.loss={
         "id": null,
@@ -95,7 +99,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         employeeWitnesses:[]
     }
     $scope.injuredPerson={
-        addresses:[]
+        addresses:[],
+        distinguishingFeatureDetail:null,
+        distinguishingFeature:null
     }
     $scope.tabs = [{ "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
     { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
@@ -494,13 +500,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             var storeDesc = [];
             bodyPart.map(function (d) {
                 storeDesc.push(d.description);
-
             });
-            $scope.$parent.bodyPart = storeDesc;
-
+            $scope.bodyPartsArray = storeDesc;
             AppService.HideLoader();
-
-
         }, function (error) {
             AppService.HideLoader();
         })
@@ -518,10 +520,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $http(req).then(function (response) {
             $scope.claimReg = response.data;
-
             AppService.HideLoader();
-
-
         }, function (error) {
             AppService.HideLoader();
         })

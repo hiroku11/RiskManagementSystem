@@ -158,14 +158,31 @@
                 <button class="btn btn-primary">Lookup</button>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-4">
                 <label>Address</label>
                 <input name="" class="form-control" type="text" ng-model="injuredPerson.addresses[0].organizationName">
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-4">
+                <label>Building</label>
+                <input name="" class="form-control" type="text" ng-model="injuredPerson.addresses[0].buildingName">
+            </div>
+            <div class="col-sm-12 col-md-4">
                 <label>Street</label>
                 <input name="" class="form-control" type="text" ng-model="injuredPerson.addresses[0].streetName">
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Locality </label>
+                <input class="form-control" type="text" ng-model="injuredPerson.addresses[0].localityName">
+            </div>
+
+            <div class="col-sm-12 col-md-6">
+                <label>	Post Town</label>
+                <input class="form-control" type="text" ng-model="injuredPerson.addresses[0].postTown">
             </div>
         </div>
 
@@ -258,7 +275,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="person in accidentDetails.newInjuredPersons">
-                        <td>{{person.firstName}}} {{person.LastName}}</td>
+                        <td>{{person.firstName}} {{person.LastName}}</td>
                         <td>{{person.age}}</td>
                         <td>{{person.genderType.id}}</td>
                         <td>{{person.addresses[0].organizationName}}</td>
@@ -399,7 +416,7 @@
                         <div class="col-md-6 col-sm-12">
                             <label>Part of body injured</label>
 
-                            <multiselect ng-model="partsSelected" options="bodyPart" ng-change="putImagePointer(partsSelected)">
+                            <multiselect ng-model="$parent.partsSelected" options="bodyPartsArray" ng-change="putImagePointer(partsSelected)">
                             </multiselect>
 
                             <!--<multiselect ng-model="distinguishFeatures" options="options">
