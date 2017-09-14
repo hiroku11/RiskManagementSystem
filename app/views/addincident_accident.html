@@ -222,6 +222,22 @@
                 />
             </div>
         </div>
+        <div class="row" >
+            <div class="col-md-4 col-sm-12">
+                <label>Distinguishing Features</label>
+                <multiselect ng-model="injuredPerson.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
+                </multiselect>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Distinguishing Features Details</label>
+                <multiselect ng-model="injuredPerson.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
+                </multiselect>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Please Specify If others</label>
+                <input ng-model="injuredPerson.otherDistinguishFeatures" class="form-control" />
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <label>Any first aid given</label>
@@ -254,7 +270,7 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <a class="btn btn-primary" id="addAnotherInjuredPerson" ng-click="addInjuredPerson()">Add Injured Person</a>
+                <a class="btn btn-primary"  ng-click="addInjuredPerson()">Add Injured Person</a>
             </div>
         </div>
 
@@ -263,7 +279,7 @@
                 <a class="btn btn-primary" id="addAnotherInjuredPerson" ng-click="addInjuredPerson()">Add Injured Person</a>
             </div>
         </div>
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Existing injured person</label>
                 <input class="form-control" placeholder="Type user name" ng-model="existingInjured" ng-change="injuredPersonLookup(existing)"
@@ -275,7 +291,7 @@
                 <input class="form-control" placeholder="Type user name" ng-model="employee" ng-change="userLookup(employee)" ng-model-options="{debounce:1000}"
                     uib-typeahead="userIn.fullName as userIn.fullName for userIn in injuredPersonData" />
             </div>
-        </div>
+        </div> -->
 
         <div class="table-wrapper inline" ng-if="accidentDetails.newInjuredPersons.length > 0">
             <table class="table">
@@ -385,7 +401,22 @@
                     />
                 </div>
             </div>
-
+            <div class="row" >
+                <div class="col-md-4 col-sm-12">
+                    <label>Distinguishing Features</label>
+                    <multiselect ng-model="witness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
+                    </multiselect>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Distinguishing Features Details</label>
+                    <multiselect ng-model="witness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
+                    </multiselect>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Please Specify If others</label>
+                    <input ng-model="witness.otherDistinguishFeatures" class="form-control" />
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-12">
                     <a class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()">Add Witness</a>
@@ -432,12 +463,8 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <label>Part of body injured</label>
-
                             <multiselect ng-model="$parent.partsSelected" options="bodyPartsArray" ng-change="putImagePointer(partsSelected)">
                             </multiselect>
-
-                            <!--<multiselect ng-model="distinguishFeatures" options="options">
-                            </multiselect>-->
                         </div>
                         <div class="col-md-6 col-sm-12">
                             <label>Other Part of body injured</label>
@@ -449,14 +476,9 @@
                             <span ng-class="d" ng-if="partsSelected.includes(d)">
                             </span>
                         </div>
-
                     </div>
-
-
                 </div>
                 <div class=" modal-footer ">
-
-
                     <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
                 </div>
             </div>

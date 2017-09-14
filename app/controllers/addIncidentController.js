@@ -157,6 +157,32 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     }
 
+    $scope.addEmployeeSuspect=function(person){
+        if(person.selected){
+            $scope.incidentDetails.employeeSuspects.push({'id':person.id});
+        }else{
+            $scope.incidentDetails.employeeSuspects.map(function(val,index){
+               // push({'id':person.id});
+               if(val.id==person.id){
+                $scope.incidentDetails.employeeSuspects.splice(index,1);
+               }
+            })
+        }
+    }
+
+    $scope.addExistingSuspect=function(person){
+        if(person.selected){
+            $scope.incidentDetails.existingSuspects.push({'id':person.id});
+        }else{
+            $scope.incidentDetails.existingSuspects.map(function(val,index){
+               // push({'id':person.id});
+               if(val.id==person.id){
+                $scope.incidentDetails.existingSuspects.splice(index,1);
+               }
+            })
+        }
+    }
+    
     $scope.addLoss = function() {
         $scope.loss.dateTimeContacted = $scope.loss.dateTimeContacted + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
         delete $scope.loss.timeHrsContacted;
@@ -377,7 +403,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
-    $scope.getFeatures = function () {
+    $scope.getDistinguishFeatures = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature/distinguishing-features',
             method: "GET",
@@ -390,17 +416,33 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $http(req).then(function (response) {
             //change the options as required by the multiselect plugin/module
-            $scope.features = response.data.map(function (val, index) {
-                return val.id;
-            });
-
+            $scope.distinguishFeatures = response.data;
+            // /debugger
             AppService.HideLoader();
-
-
         }, function (error) {
             AppService.HideLoader();
         })
     }
+
+    $scope.getDistinguishFeaturesDetails = function () {
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature-details',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+        }
+        AppService.ShowLoader();
+        $http(req).then(function (response) {
+            //change the options as required by the multiselect plugin/module
+            $scope.distinguishFeaturesDetails = response.data;
+            $scope.distinguishFeaturesDetailsOptions = $scope.distinguishFeaturesDetails;
+            AppService.HideLoader();
+        }, function (error) {
+            AppService.HideLoader();
+        })
+    }
+
     $scope.getAgency = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/external-agency/external-agencies',
@@ -909,7 +951,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.getSuspectType();
     $scope.getAgency();
-    $scope.getFeatures();
+    $scope.getDistinguishFeatures();
+    $scope.getDistinguishFeaturesDetails();
     $scope.getEntrypoint();
     $scope.getIncidentLoc();
     $scope.getIncidentType();
@@ -1058,7 +1101,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
         $http(req).then(function (response) {
-            debugger
             $scope.suspectData = response.data;
         }, function (error) {
 
@@ -1097,11 +1139,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
-    $scope.addExistingSuspect = function(obj) {
-        $scope.incidentDetails.existingSuspects.push(obj.id);
+    // $scope.addExistingSuspect = function(obj) {
+    //     $scope.incidentDetails.existingSuspects.push(obj.id);
 
-        $scope.incidentDetails.newSuspects.push(obj);
-    }
+    //     $scope.incidentDetails.newSuspects.push(obj);
+    // }
 
     $scope.logOutUser = rmsService.logOutUser;
     $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint'];
