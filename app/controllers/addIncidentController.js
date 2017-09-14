@@ -52,12 +52,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
     $scope.suspect = {
-        addresses: [
-            {
-                "id": null,
-                "statusFlag": "ACTIVE"
-            }
-        ],
+        addresses: [{
+            "id": null,
+            "statusFlag": "ACTIVE"
+        }],
+
         distinguishingFeatureDetail: null,
         distinguishingFeature: null
     }
@@ -144,22 +143,21 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $(".content")[0].scrollTop = 0;
     }
-    $scope.addSuspect = function () {
 
+    $scope.addSuspect = function () {
         $scope.incidentDetails.newSuspects.push($scope.suspect);
         //reinitialize the suspect so that new can be added
         $scope.suspect = {
-            addresses: [
-                {
-                    "id": null,
-                    "statusFlag": "ACTIVE"
-                }
-            ]
+
+            addresses: [{
+                "id": null,
+                "statusFlag": "ACTIVE"
+            }]
         }
 
     }
 
-    $scope.addLoss = function () {
+    $scope.addLoss = function() {
         $scope.loss.dateTimeContacted = $scope.loss.dateTimeContacted + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
         delete $scope.loss.timeHrsContacted;
         delete $scope.loss.timeMinContacted;
@@ -171,6 +169,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "statusFlag": "ACTIVE"
         }
     }
+
     $scope.addTab = function (formName) {
         var tabPresent = false;
         var index;
@@ -238,6 +237,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
     $scope.getUserInfo();
+
     $scope.logIncident = function () {
         $scope.logIncidentDetails.accidentDamage ? $scope.logIncidentDetails.accidentDamage = "Y" : $scope.logIncidentDetails.accidentDamage = "N";
         $scope.logIncidentDetails.vehicleOrAssetDamage ? $scope.logIncidentDetails.vehicleOrAssetDamage = "Y" : $scope.logIncidentDetails.vehicleOrAssetDamage = "N";
@@ -256,10 +256,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.incidentSecond = response.data;
             $scope.incident.incidentStatus = response.data.incidentStatus
             AppService.HideLoader();
+
         }, function (error) {
             AppService.HideLoader();
         })
     }
+
 
     $scope.openBodyPartModal = function (sbodyPart) {
         // $("#bodyModal").modal('show');
@@ -344,7 +346,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.incidentLocations = response.data;
 
             AppService.HideLoader();
@@ -503,6 +505,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             });
             $scope.bodyPartsArray = storeDesc;
             AppService.HideLoader();
+
         }, function (error) {
             AppService.HideLoader();
         })
@@ -521,7 +524,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $http(req).then(function (response) {
             $scope.claimReg = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
@@ -708,12 +711,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.injuredPersonTypes = response.data;
-
             AppService.HideLoader();
-
-
         }, function (error) {
             AppService.HideLoader();
         })
@@ -725,17 +725,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
-
             },
         }
         AppService.ShowLoader();
-
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.injuryCauses = response.data;
-
             AppService.HideLoader();
-
-
         }, function (error) {
             AppService.HideLoader();
         })
@@ -751,10 +746,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.injuryTypes = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
@@ -943,7 +938,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getVehicleDamageType();
     $scope.getWeaponType();
 
-    $scope.addIncidentDetails = function () {
+    $scope.addIncidentDetails = function() {
+
         $scope.incidentDetails.incidentId = $scope.incident.incidentId;
         $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -957,15 +953,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.incidentSecond = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.addInjuredPerson = function () {
+    $scope.addInjuredPerson = function() {
         $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
         //reset the object
         $scope.injuredPerson = {
@@ -973,7 +969,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addWitness = function () {
+    $scope.addWitness = function() {
         $scope.accidentDetails.newWitnesses.push($scope.witness);
         //reset the object
         $scope.witness = {
@@ -981,7 +977,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addAccidentDetails = function () {
+    $scope.addAccidentDetails = function() {
         $scope.accidentDetails.incidentId = $scope.incident.incidentId;
         $scope.accidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -995,15 +991,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             //$scope.incidentSecond = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.userLookup = function (args) {
+    $scope.userLookup = function(args) {
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
             "sorts": [{ "field": "firstName", "order": "ASC" }],
@@ -1026,19 +1022,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             },
         }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
 
-        $http(req).then(function (response) {
-            debugger
             $scope.userInfo = response.data;
 
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
 
-        }, function (error) {
 
         })
 
     }
 
-    $scope.suspectLookup = function (args) {
+    $scope.suspectLookup = function(args) {
+
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
             "sorts": [{ "field": "firstName", "order": "ASC" }],
@@ -1056,8 +1055,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
                 'Search': JSON.stringify(fil)
-
-
             },
         }
         $http(req).then(function (response) {
@@ -1070,6 +1067,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     
     $scope.injuredPersonLookup = function (args) {
+
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
             "sorts": [{ "field": "firstName", "order": "ASC" }],
@@ -1089,14 +1087,20 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 'Search': JSON.stringify(fil)
             },
         }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
 
-        $http(req).then(function (response) {
-            debugger
             $scope.injuredPersonData = response.data;
-        }, function (error) {
-
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
         })
+    }
 
+    $scope.addExistingSuspect = function(obj) {
+        $scope.incidentDetails.existingSuspects.push(obj.id);
+
+        $scope.incidentDetails.newSuspects.push(obj);
     }
 
     $scope.logOutUser = rmsService.logOutUser;
