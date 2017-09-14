@@ -23,6 +23,7 @@
                 <label>Suspect Type</label>
                 <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="suspect.suspectType.id" />
 
+
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Suspect Type If Other</label>
@@ -148,34 +149,26 @@
             <div class="col-sm-12 col-md-4" ng-if="suspect.weaponType.id=='OTHER'">
                 <label>Specify If others</label>
                 <input class="form-control" name="" type="text" ng-model="suspect.weaponType.description">
+
             </div>
         </div>
-
-
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm-12">
                 <a class="btn btn-primary" ng-click="addSuspect()">Add Suspect</a>
             </div>
-
-            <div class="col-sm-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Existing Suspect</a>
-            </div>
-
-            <div class="col-sm-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Add Employee Suspect</a>
-            </div>
         </div>
-        <!--<div class="row">
+        <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Existing Suspect</label>
-                <input class="form-control" placeholder="Type user name" ng-model="existing" ng-change="suspectLookup(existing)" ng-model-options="{debounce:1000}" uib-typeahead="userIn.fullName as userIn.fullName for userIn in suspectData" />
+                <input class="form-control" placeholder="Type user name" ng-model="existing" ng-change="suspectLookup(existing)" ng-model-options="{debounce:1000}"
+                    uib-typeahead="userIn.fullName as userIn.fullName for userIn in suspectData" />
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Employee Suspect</label>
-                <input class="form-control" placeholder="Type user name" ng-model="employee" ng-change="userLookup(employee)" ng-model-options="{debounce:1000}" uib-typeahead="userIn.fullName as userIn.fullName for userIn in userInfo" />
+                <input class="form-control" placeholder="Type user name" ng-model="employee" ng-change="userLookup(employee)" ng-model-options="{debounce:1000}"
+                    uib-typeahead="userIn.fullName as userIn.fullName for userIn in userInfo" />
             </div>
-        </div>-->
-
+        </div>
         <div class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
             <table class="table">
                 <thead>
@@ -304,6 +297,7 @@
                 <label>Damage Cost Estimation</label>
                 <input class="form-control" placeholder="£ 000.00" type="text" ng-model="loss.costEstimation">
             </div>
+
         </div>
         <div class="row">
             <div class="col-sm-12">
@@ -311,6 +305,7 @@
             </div>
 
         </div>
+
 
 
         <div class="row">
@@ -328,7 +323,6 @@
                 <input class="form-control" type="file">
             </div>
         </div>
-
 
 
         <div class="row">
@@ -459,7 +453,6 @@
                     <label>Existing Suspect</label>
                     <input class="form-control" placeholder="Type user name" ng-model="existing" ng-change="suspectLookup(existing)" ng-model-options="{debounce:500}" uib-typeahead="userIn.fullName as userIn.fullName for userIn in suspectData" />
                 </div>-->
-
             </div>
             <div class=" modal-footer ">
 
