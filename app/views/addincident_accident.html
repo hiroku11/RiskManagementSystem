@@ -36,8 +36,7 @@
             <div class="col-md-6 col-sm-12">
                 <label>Accident Location Details:</label>
 
-                <select ng-model="accidentDetails.accident.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accident.accidentLocation.id"
-                    ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accident.accidentLocation.id})[0].incidentLocationDetails) ">
+                <select ng-model="accidentDetails.accident.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accident.accidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accident.accidentLocation.id})[0].incidentLocationDetails) ">
                 <option value=''>Select</option>
                 </select>
             </div>
@@ -86,16 +85,14 @@
 
             <div class="col-sm-12 col-md-4">
                 <label>Injury Type Detail</label>
-                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetail.id" ng-disabled="!injuredPerson.injuryType.id"
-                    ng-options="injuryTypeDetail.id as injuryTypeDetail.description for injuryTypeDetail in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails) ">
+                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetail.id" ng-disabled="!injuredPerson.injuryType.id" ng-options="injuryTypeDetail.id as injuryTypeDetail.description for injuryTypeDetail in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails) ">
                     <option value=''>Select</option>
                     </select>
             </div>
 
             <div class="col-sm-12 col-md-4">
                 <label>Injury Type Detail</label>
-                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetailsSpec.id" ng-disabled="!injuredPerson.injuryTypeDetail.id"
-                    ng-options="injuryTypeDetailsSpec.id as injuryTypeDetailsSpec.description for injuryTypeDetailsSpec in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails.injuryTypeDetailSpecs) ">
+                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetailsSpec.id" ng-disabled="!injuredPerson.injuryTypeDetail.id" ng-options="injuryTypeDetailsSpec.id as injuryTypeDetailsSpec.description for injuryTypeDetailsSpec in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails.injuryTypeDetailSpecs) ">
                     <option value=''>--Select--</option>
                     </select>
             </div>
@@ -204,8 +201,23 @@
             </div>
             <div class="com-sm-12 col-md-6">
                 <label>Gender:</label>
-                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="injuredPerson.genderType.id"
-                />
+                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="injuredPerson.genderType.id" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <label>Distinguishing Features</label>
+                <multiselect ng-model="injuredPerson.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
+                </multiselect>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Distinguishing Features Details</label>
+                <multiselect ng-model="injuredPerson.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
+                </multiselect>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Please Specify If others</label>
+                <input ng-model="injuredPerson.otherDistinguishFeatures" class="form-control" />
             </div>
         </div>
         <div class="row" >
@@ -254,20 +266,20 @@
 
         </div>
 
-      
-  <div class="row">
+        <div class="row">
             <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary"  ng-click="addInjuredPerson()">Add Injured Person</a>
+                <a class="btn btn-primary" ng-click="addInjuredPerson()">Add Injured Person</a>
             </div>
-                <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Existing Injured Person</a>
-            </div>
-                <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Add Employee Injured Suspect</a>
-            </div>
+            <div class="col-sm-12 col-md-4">
+                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Add Existing Injured Person</a>
         </div>
-    
-      
+
+            <div class="col-sm-12 col-md-4">
+                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal6">Add Employee Injured Person</a>
+            </div>
+        </div> 
+
+
 
         <div class="table-wrapper inline" ng-if="accidentDetails.newInjuredPersons.length > 0">
             <table class="table">
@@ -373,8 +385,23 @@
 
                 <div class="col-sm-12 col-md-6">
                     <label>Gender</label>
-                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="witness.genderType.id"
-                    />
+                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="witness.genderType.id" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <label>Distinguishing Features</label>
+                    <multiselect ng-model="witness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
+                    </multiselect>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Distinguishing Features Details</label>
+                    <multiselect ng-model="witness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
+                    </multiselect>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Please Specify If others</label>
+                    <input ng-model="witness.otherDistinguishFeatures" class="form-control" />
                 </div>
             </div>
             <div class="row" >
@@ -394,21 +421,16 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-4">
                     <a class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()">Add Witness</a>
                 </div>
-            </div>
-              <div class="row">
-            <div class="col-sm-12 col-md-4">
-             <a class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()">Add Witness</a>
-            </div>
                 <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModa3">Add Existing Witness</a>
-            </div>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal7">Add Existing Witness</a>
+                </div>
                 <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal4">Add Employee Witness</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal8">Add Employee Witness</a>
+                </div>
             </div>
-        </div>
 
             <div id="tblWitness" class="table-wrapper inline" ng-if="accidentDetails.newWitnesses.length > 0">
                 <table class="table">
@@ -422,13 +444,13 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="witness in accidentDetails.newWitnesses">
-   <td>{{witness.firstName}} {{witness.LastName}}</td>
-                        <td>{{witness.age}}</td>
-                        <td>{{witness.genderType.id}}</td>
-                        <td>{{witness.addresses[0].organizationName}}</td>
-                        <td>{{witness.addresses[0].city}}</td>
-                        <td>{{witness.addresses[0].county}}</td>
-                        <td>{{witness.addresses[0].postcode}}</td>
+                            <td>{{witness.firstName}} {{witness.LastName}}</td>
+                            <td>{{witness.age}}</td>
+                            <td>{{witness.genderType.id}}</td>
+                            <td>{{witness.addresses[0].organizationName}}</td>
+                            <td>{{witness.addresses[0].city}}</td>
+                            <td>{{witness.addresses[0].county}}</td>
+                            <td>{{witness.addresses[0].postcode}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -456,7 +478,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <label>Part of body injured</label>
-                            <multiselect ng-model="$parent.partsSelected" options="bodyPartsArray" ng-change="putImagePointer(partsSelected)">
+                            <multiselect ng-model="$parent.partsSelected" options="bodyPartsArray">
                             </multiselect>
                         </div>
                         <div class="col-md-6 col-sm-12">
@@ -465,7 +487,7 @@
                         </div>
                     </div>
                     <div id="man">
-                        <div ng-repeat="d in bodyPart">
+                        <div ng-repeat="d in bodyPartsArray">
                             <span ng-class="d" ng-if="partsSelected.includes(d)">
                             </span>
                         </div>
@@ -478,245 +500,243 @@
 
         </div>
     </div>
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div id="myModal5" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Existing Injured person Lookup</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 ">
-                        <label>Existing Injured Person</label>
-                        <div class="input-group">
-                            <input class="form-control" ng-change="injuredPersonLookup(existingInjured)" placeholder="Type user name" ng-model="existingInjured" ng-model-options="{'debounce':500}"/>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Existing Injured person Lookup</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 ">
+                            <label>Existing Injured Person</label>
+                            <div class="input-group">
+                                <input class="form-control" ng-change="injuredPersonLookup(existingInjured)" placeholder="Type user name" ng-model="existingInjured" ng-model-options="{'debounce':500}" />
 
-                            <span class="input-group-addon" ng-click="injuredPersonLookup(existingInjured)">
+                                <span class="input-group-addon" ng-click="injuredPersonLookup(existingInjured)">
                         <span class="glyphicon glyphicon-search"></span>
-                            </span>
+                                </span>
+                            </div>
+
                         </div>
-
                     </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%"></th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="person in injuredPersonData">
+                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingInjured(person)" /></td>
+                                    <td>{{person.firstName}} {{person.LastName}}</td>
+                                    <td>{{person.age}}</td>
+                                    <td>{{person.genderTypeCode}}</td>
+                                    <td>{{person.phone}}</td>
+                                    <td>{{person.email}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Email</th>
+                <div class=" modal-footer ">
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="person in injuredPersonData">
-                                <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingInjured(person)" /></td>
-                                <td>{{person.firstName}} {{person.LastName}}</td>
-                                <td>{{person.age}}</td>
-                                <td>{{person.genderTypeCode}}</td>
-                                <td>{{person.phone}}</td>
-                                <td>{{person.email}}</td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                    <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
                 </div>
-              
             </div>
-            <div class=" modal-footer ">
 
-
-                <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
-            </div>
         </div>
-
     </div>
-</div>
-<div id="myModal1" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div id="myModal6" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Employee Injured Person Lookup</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 ">
-                        <label>Employee Injured injuredPerson</label>
-                        <div class="input-group">
-                            <input class="form-control" ng-change="userLookup(employeeinjured)" placeholder="Type user name" ng-model="employeeinjured" ng-model-options="{'debounce':500}"/>
-                            <span class="input-group-addon" ng-click="userLookup(employeeinjured)">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Employee Injured Person Lookup</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 ">
+                            <label>Employee Injured injuredPerson</label>
+                            <div class="input-group">
+                                <input class="form-control" ng-change="userLookup(employeeinjured)" placeholder="Type user name" ng-model="employeeinjured" ng-model-options="{'debounce':500}" />
+                                <span class="input-group-addon" ng-click="userLookup(employeeinjured)">
                                 <span class="glyphicon glyphicon-search"></span>
-                            </span>
+                                </span>
+                            </div>
+
                         </div>
-
                     </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%"></th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Phone</th>
+                                    <th>Mail</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="person in userInfo">
+                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeInjured(person)" />
+                                    </td>
+                                    <td>{{person.firstName}} {{person.LastName}}</td>
+                                    <td>{{person.age}}</td>
+                                    <td>{{person.genderTypeCode}}</td>
+                                    <td>{{person.phone}}</td>
+                                    <td>{{person.email}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Mail</th>
+                <div class=" modal-footer ">
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="person in userInfo">
-                                <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeInjured(person)" />
-                                </td>
-                                <td>{{person.firstName}} {{person.LastName}}</td>
-                                <td>{{person.age}}</td>
-                                <td>{{person.genderTypeCode}}</td>
-                                <td>{{person.phone}}</td>
-                                <td>{{person.email}}</td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                    <a class="btn btn-danger " class="close " data-dismiss="modal">Close</a>
                 </div>
-           
             </div>
-            <div class=" modal-footer ">
 
-
-                <a class="btn btn-danger " class="close " data-dismiss="modal">Close</a>
-            </div>
         </div>
-
     </div>
-</div>
-<div id="myModal3" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div id="myModal7" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Existing Witness Lookup</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 ">
-                        <label>Existing Witness</label>
-                        <div class="input-group">
-                            <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness" ng-model-options="{'debounce':500}"/>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Existing Witness Lookup</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 ">
+                            <label>Existing Witness</label>
+                            <div class="input-group">
+                                <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness" ng-model-options="{'debounce':500}" />
 
-                            <span class="input-group-addon" ng-click="witnessLookup(existingWitness)">
+                                <span class="input-group-addon" ng-click="witnessLookup(existingWitness)">
                         <span class="glyphicon glyphicon-search"></span>
-                            </span>
+                                </span>
+                            </div>
+
                         </div>
-
                     </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%"></th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="person in witnessData">
+                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingWitness(person)" /></td>
+                                    <td>{{person.firstName}} {{person.LastName}}</td>
+                                    <td>{{person.age}}</td>
+                                    <td>{{person.genderTypeCode}}</td>
+                                    <td>{{person.phone}}</td>
+                                    <td>{{person.email}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="person in witnessData">
-                                <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingWitness(person)" /></td>
-                                <td>{{person.firstName}} {{person.LastName}}</td>
-                                <td>{{person.age}}</td>
-                                <td>{{person.genderTypeCode}}</td>
-                                <td>{{person.phone}}</td>
-                                <td>{{person.email}}</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class=" modal-footer ">
+                    <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
                 </div>
-              
             </div>
-            <div class=" modal-footer ">
 
-
-                <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
-            </div>
         </div>
-
     </div>
-</div>
-<div id="myModal4" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div id="myModal8" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Employee Witness Lookup</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 ">
-                        <label>Employee Witness</label>
-                        <div class="input-group">
-                            <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness" ng-model-options="{'debounce':500}"/>
-                            <span class="input-group-addon" ng-click="userLookup(employeeWitness)">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3 class="modal-title">Employee Witness Lookup</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 ">
+                            <label>Employee Witness</label>
+                            <div class="input-group">
+                                <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness" ng-model-options="{'debounce':500}" />
+                                <span class="input-group-addon" ng-click="userLookup(employeeWitness)">
                                 <span class="glyphicon glyphicon-search"></span>
-                            </span>
+                                </span>
+                            </div>
+
                         </div>
-
                     </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width:5%"></th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Phone</th>
+                                    <th>Mail</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="person in userInfo">
+                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeWitness(person)" />
+                                    </td>
+                                    <td>{{person.firstName}} {{person.LastName}}</td>
+                                    <td>{{person.age}}</td>
+                                    <td>{{person.genderTypeCode}}</td>
+                                    <td>{{person.phone}}</td>
+                                    <td>{{person.email}}</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Mail</th>
+                <div class=" modal-footer ">
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="person in userInfo">
-                                <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeWitness(person)" />
-                                </td>
-                                <td>{{person.firstName}} {{person.LastName}}</td>
-                                <td>{{person.age}}</td>
-                                <td>{{person.genderTypeCode}}</td>
-                                <td>{{person.phone}}</td>
-                                <td>{{person.email}}</td>
 
-                            </tr>
-                        </tbody>
-                    </table>
+                    <a class="btn btn-danger " class="close " data-dismiss="modal">Close</a>
                 </div>
-           
             </div>
-            <div class=" modal-footer ">
 
-
-                <a class="btn btn-danger " class="close " data-dismiss="modal">Close</a>
-            </div>
         </div>
-
     </div>
-</div>
 
 </div>

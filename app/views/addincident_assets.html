@@ -1,153 +1,204 @@
 <div class="form-content" ng-show="tab==4">
-        <h2>Assets Details</h2>
-        <form ng-submit="submitForm('assetsForm')">
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <label>Category</label>assetCat
-                   <select class="form-control" ng-options="assetCat.id as assetCat.description for assetCat in assetCat" ng-model="assetCat.CategoryType.id" />
+    <h2>Assets Details</h2>
+    <form ng-submit="submitForm('assetsForm')">
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Category</label>
+                <select class="form-control" ng-options="assetCat.id as assetCat.description for assetCat in assetCat" ng-model="assetCategory.id" />
 
-                    
+
+            </div>
+            <div class="col-sm-12 col-md-6" ng-if="assetCategory.id == 'OTHER'">
+                <label>If Category Other</label>
+                <input class="form-control" type="text">
+            </div>
+        </div>
+
+        <div class="building-section" ng-if="assetCategory.id == 'BUILDING'">
+            <h4>Building</h4>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label>Building ID</label>
+                    <input class="form-control" type="text" ng-model="building.buildingId">
                 </div>
                 <div class="col-sm-12 col-md-6">
-                    <<label>If Category Other</label>
-                        <input class="form-control" type="text">
+                    <label>Description of Building</label>
+                    <input class="form-control" ng-model="building.buildingDescription"></textarea>
                 </div>
             </div>
-    
-            <div class="building-section">
-                <!--<h4>Building</h4>-->
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <label>Building ID</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.building.BuidingId">
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                            <label>Description of Incident</label>
-                            <textarea class="form-control" ng-model="assetDetail.building.buildingDesc"></textarea>
-                        </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 row">
-                        <div class="col-sm-10">
-                                <label>Postal Code:</label>
-                                <input class="form-control" type="text" ng-model="assetDetail.building.buildingDesc"> 
-                                <!-- <input class="form-control small-control" type="text"> --> 
-                        </div>
-                        <div class="col-sm-2" style="padding-top:1.7em;">
-                                <a href="#" class="btn btn-primary">Lookup</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <label>Address 1</label>
-                        <input name="" class="form-control" type="text" ng-model="assetDetail.building.address1">
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label>Address 2</label>
-                        <input name="" class="form-control" type="text" ng-model="assetDetail.building.address2">
-                    </div>
-                </div>
-    
-                <div class="row">
-                    <div class="col-sm-12 col-md-4">
-                        <label>City</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.building.city">
-                    </div>
-    
-                    <div class="col-sm-12 col-md-4">
-                        <label>County</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.building.country">
-                    </div>
-    
-                 
-                </div>
-            </div>
-            
-            <div class="equipment-section">
-                <!--<h4>Equipment</h4>-->
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <label>Equipment ID</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.equipment.equipmentId">
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label>Serial No</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.equipment.equipmentNo">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <label>Equipment Details</label>
-                        <textarea class="form-control" ng-model="assetDetail.equipment.equipmentDetail"></textarea>
-                    </div>
-                </div>		
-            </div>
-            
-    
-            <div class="vehicle-section">
-                <!--<h4>Vehicle Registration ID</h4>--> 
-                <div class="row">
-                    <div class="col-sm-12 col-md-4">
-                        
-                        <div class="col-sm-10">
-                                <label>Vehicle Registration ID </label>
-                                <input class="form-control" type="text" ng-model="assetDetail.vehicle.vehicleId">
-                        </div>
-                        <div class="col-sm-2" style="padding-top:1.7em">
-                                <a href="#" class="btn">Look up</a>
-                        </div>
-                        
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        <label>Engine Number</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.vehicle.engNum">
-                    </div>
-    
-                    <div class="col-sm-12 col-md-4">
-                        <label>Chasis Number</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.vehicle.chasisNum">
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="col-sm-12 col-md-4">
-                        <label>Make</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.vehicle.make">
-                    </div>
-    
-                    <div class="col-sm-12 col-md-4">
-                        <label>Model</label>
-                        <input class="form-control" type="text" ng-model="assetDetail.vehicle.model">
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                            <label>Vehicle Damage Details</label>
-                            <multiselect ng-model="distinguishFeatures" options="options">
-                                </multiselect>
-                    </div>
-                </div>
-    
-              
-                <div class="row">
-                    <div class="col-sm-12">
-                        <label>Comments</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                </div>
-            </div>
-            
             <div class="row">
-                <div class="col-md-3">
-                    <label>assetWitness</label>
-                    <select class="form-control" ng-model="assetDetail.anyassetWitness">
-                        <option>Yes</option>
-                        <option>No</option>
-                    </select>
+                <div class="col-sm-12 col-md-12">
+                    <label>Description of Incident</label>
+                    <input class="form-control" ng-model="building.incidentDescription"></textarea>
                 </div>
             </div>
-            <div ng-if="assetDetail.anyassetWitness == 'Y'">
-            <h4 class="form-title">assetWitness</h4>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <a class="btn btn-primary" ng-click="addBuilding()">Add Building</a>
+                </div>
+            </div>
+            <div class="table-wrapper inline">
+                <table class="table" ng-if="assetDetail.buildings.length >0">
+                    <thead>
+                        <tr>
+                            <th>Building Id</th>
+                            <th>Building Description</th>
+                            <th>Incident Description</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="building in assetDetail.buildings">
+                            <td>{{building.buildingId}}</td>
+                            <td>{{building.buildingDescription}}</td>
+                            <td>{{building.incidentDescription}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+
+
+        <div class="equipment-section" ng-if="assetCategory.id == 'EQUIPMENT'">
+            <h4>Equipment</h4>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label>Equipment ID</label>
+                    <input class="form-control" type="text" ng-model="equipment.equipmentId">
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label>Serial No</label>
+                    <input class="form-control" type="text" ng-model="equipment.serialNumber">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>Equipment Details</label>
+                    <textarea class="form-control" ng-model="equipment.equipmentDetails"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <a class="btn btn-primary" ng-click="addEquipement()">Add Equipment</a>
+                </div>
+            </div>
+            <div class="table-wrapper inline">
+                <table class="table" ng-if="assetDetail.equipments.length >0">
+                    <thead>
+                        <tr>
+                            <th>Equipment Id</th>
+                            <th>Serial Number</th>
+                            <th>Equipment Details</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="equipment in assetDetail.equipments">
+                            <td>{{equipment.equipmentId}}</td>
+                            <td>{{equipment.serialNumber}}</td>
+                            <td>{{equipment.equipmentDetails}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+
+        <div class="vehicle-section" ng-if="assetCategory.id == 'VEHICLE'">
+            <h4>Vehicle</h4>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+
+                    <div class="col-sm-10">
+                        <label>Vehicle Registration ID </label>
+                        <input class="form-control" type="text" ng-model="vehicle.vehicleRegistrationId">
+                    </div>
+                    <div class="col-sm-2" style="padding-top:1.7em">
+                        <a href="#" class="btn">Look up</a>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <label>Engine Number</label>
+                    <input class="form-control" type="text" ng-model="vehicle.engineNumber">
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <label>Chasis Number</label>
+                    <input class="form-control" type="text" ng-model="vehicle.chasisNumber">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <label>Make</label>
+                    <input class="form-control" type="text" ng-model="vehicle.make">
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <label>Model</label>
+                    <input class="form-control" type="text" ng-model="vehicle.model">
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <label>Vehicle Damage Details</label>
+                    <select class="form-control" ng-options="vehDamageType.id as vehDamageType.description for vehDamageType in vehDamageType" ng-model="vehicle.vehicleDamageType.id" />
+
+
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>Comments</label>
+                    <textarea class="form-control" ng-model="vehicle.commentDescription"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <a class="btn btn-primary" ng-click="addVehicle()">Add Vehicle</a>
+                </div>
+            </div>
+            <table class="table" ng-if="assetDetail.vehicles.length >0">
+                <thead>
+                    <tr>
+                        <th>Registration Id</th>
+                        <th>Engine Number</th>
+                        <th>Chasis Number</th>
+                        <th>Comment</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="vehicle in assetDetail.vehicles track by $index">
+                        <td>{{vehicle.vehicleRegistrationId}}</td>
+                        <td>{{vehicle.engineNumber}}</td>
+                        <td>{{vehicle.chasisNumber}}</td>
+                        <td>{{vehicle.commentDescription}}</td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-3">
+                <label>Witness</label>
+                <select class="form-control" ng-model="assetDetail.anyassetWitness">
+                        <option value="Y">Yes</option>
+                        <option value="N">No</option>
+                    </select>
+            </div>
+        </div>
+        <div ng-if="assetDetail.anyassetWitness == 'Y'">
+            <h4 class="form-title">Witness</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-3">
                     <label>Title:</label>
@@ -224,11 +275,10 @@
 
                 <div class="col-sm-12 col-md-6">
                     <label>Gender</label>
-                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="assetWitness.genderType.id"
-                    />
+                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="assetWitness.genderType.id" />
                 </div>
             </div>
-            <div class="row" >
+            <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <label>Distinguishing Features</label>
                     <multiselect ng-model="assetWitness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
@@ -244,26 +294,32 @@
                     <input ng-model="assetWitness.otherDistinguishFeatures" class="form-control" />
                 </div>
             </div>
-         
-              <div class="row">
-            <div class="col-sm-12 col-md-4">
-             <a class="btn btn-primary" ng-click="addAssetWitness()">Add Witness</a>
-            </div>
+
+            <div class="row">
                 <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Existing Witness</a>
-            </div>
+                    <a class="btn btn-primary" ng-click="addAssetWitness()">Add Witness</a>
+                </div>
                 <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Add Employee Witness</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal10">Add Existing Witness</a>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal11">Add Employee Witness</a>
+                </div>
             </div>
         </div>
-               
-                <div id="tblassetWitness" class="table-wrapper inline" style="display: none;">
-                    <table class="table">
-                        <thead>
-                            <tr><th>Name</th><th>Email</th><th>Phone</th><th>Statement</th></tr>
-                        </thead>
-                        <tbody>
-                              <tr ng-repeat="person in assetDetail.newWitnesses">
+
+        <div id="tblassetWitness" class="table-wrapper inline">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Statement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="person in assetDetail.newWitnesses" ng-if='assetDetail.newWitnesses.length > 0'>
                         <td>{{person.firstName}} {{person.LastName}}</td>
                         <td>{{person.age}}</td>
                         <td>{{person.genderType.id}}</td>
@@ -272,28 +328,28 @@
                         <td>{{person.addresses[0].county}}</td>
                         <td>{{person.addresses[0].postcode}}</td>
                     </tr>
-                        </tbody>
-                    </table>
-                </div>
+                </tbody>
+            </table>
+        </div>
 
-                <div class="row">
-                        <div class="col-sm-6">
-                            <label>Statement</label>
-                            <input class="form-control" type="file">
-                        </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-sm-12">
-                            <button class="btn btn-primary">Continue</button>
-                            <a class="btn" ng-click="submitForm('assetsForm',true)">Back</a>
-                            <a class="btn" ng-click="changeTab(5)">Skip</a>
-                     </div>
-                        
-                    </div>
-        </form>
-        
-    </div>
-    <div id="myModal3" class="modal fade" role="dialog">
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Statement</label>
+                <input class="form-control" type="file">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn-primary">Continue</button>
+                <a class="btn" ng-click="submitForm('assetsForm',true)">Back</a>
+                <a class="btn" ng-click="changeTab(5)">Skip</a>
+            </div>
+
+        </div>
+    </form>
+
+</div>
+<div id="myModal10" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -307,7 +363,7 @@
                     <div class="col-sm-12 col-md-6 ">
                         <label>Existing Witness</label>
                         <div class="input-group">
-                            <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness" ng-model-options="{'debounce':500}"/>
+                            <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness" ng-model-options="{'debounce':500}" />
 
                             <span class="input-group-addon" ng-click="witnessLookup(existingWitness)">
                         <span class="glyphicon glyphicon-search"></span>
@@ -342,7 +398,7 @@
                         </tbody>
                     </table>
                 </div>
-              
+
             </div>
             <div class=" modal-footer ">
 
@@ -353,7 +409,7 @@
 
     </div>
 </div>
-<div id="myModal4" class="modal fade" role="dialog">
+<div id="myModal11" class="modal fade" role="dialog">
     <div class="modal-dialog">
 
         <!-- Modal content-->
@@ -367,7 +423,7 @@
                     <div class="col-sm-12 col-md-6 ">
                         <label>Employee Witness</label>
                         <div class="input-group">
-                            <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness" ng-model-options="{'debounce':500}"/>
+                            <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness" ng-model-options="{'debounce':500}" />
                             <span class="input-group-addon" ng-click="userLookup(employeeWitness)">
                                 <span class="glyphicon glyphicon-search"></span>
                             </span>
@@ -402,7 +458,7 @@
                         </tbody>
                     </table>
                 </div>
-           
+
             </div>
             <div class=" modal-footer ">
 
@@ -413,5 +469,3 @@
 
     </div>
 </div>
-    
-    
