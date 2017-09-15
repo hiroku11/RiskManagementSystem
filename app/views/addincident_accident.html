@@ -220,6 +220,22 @@
                 <input ng-model="injuredPerson.otherDistinguishFeatures" class="form-control" />
             </div>
         </div>
+        <div class="row" >
+            <div class="col-md-4 col-sm-12">
+                <label>Distinguishing Features</label>
+                <multiselect ng-model="injuredPerson.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
+                </multiselect>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Distinguishing Features Details</label>
+                <multiselect ng-model="injuredPerson.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
+                </multiselect>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Please Specify If others</label>
+                <input ng-model="injuredPerson.otherDistinguishFeatures" class="form-control" />
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6 col-sm-12">
                 <label>Any first aid given</label>
@@ -250,18 +266,18 @@
 
         </div>
 
-
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" ng-click="addInjuredPerson()">Add Injured Person</a>
             </div>
             <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Add Existing Injured Person</a>
-            </div>
-            <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal6">Add Employee Injured Suspect</a>
-            </div>
         </div>
+
+            <div class="col-sm-12 col-md-4">
+                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal6">Add Employee Injured Person</a>
+            </div>
+        </div> 
 
 
 
@@ -388,7 +404,22 @@
                     <input ng-model="witness.otherDistinguishFeatures" class="form-control" />
                 </div>
             </div>
-
+            <div class="row" >
+                <div class="col-md-4 col-sm-12">
+                    <label>Distinguishing Features</label>
+                    <multiselect ng-model="witness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
+                    </multiselect>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Distinguishing Features Details</label>
+                    <multiselect ng-model="witness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
+                    </multiselect>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Please Specify If others</label>
+                    <input ng-model="witness.otherDistinguishFeatures" class="form-control" />
+                </div>
+            </div>
             <div class="row">
                 <div class="col-sm-12 col-md-4">
                     <a class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()">Add Witness</a>
@@ -641,8 +672,6 @@
 
                 </div>
                 <div class=" modal-footer ">
-
-
                     <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
                 </div>
             </div>

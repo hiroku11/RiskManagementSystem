@@ -182,7 +182,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
     }
-
+    
     $scope.addEmployeeSuspect = function(person) {
         if (person.selected) {
             $scope.incidentDetails.employeeSuspects.push({ 'id': person.id });
@@ -208,6 +208,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
     }
+
 
 
 
@@ -421,7 +422,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
+
     $scope.getDistinguishFeatures = function() {
+
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature/distinguishing-features',
             method: "GET",
@@ -442,6 +445,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
+
     $scope.getDistinguishFeaturesDetails = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature-details',
@@ -452,6 +456,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
         $http(req).then(function(response) {
+
             //change the options as required by the multiselect plugin/module
             $scope.distinguishFeaturesDetails = response.data;
             $scope.distinguishFeaturesDetailsOptions = $scope.distinguishFeaturesDetails;
@@ -462,6 +467,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
     $scope.getAgency = function() {
+
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/external-agency/external-agencies',
             method: "GET",
@@ -1212,6 +1218,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 'Search': JSON.stringify(fil)
             },
         }
+
         $http(req).then(function(response) {
             $scope.suspectData = response.data;
         }, function(error) {
@@ -1256,7 +1263,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "paging": { "currentPage": 0, "pageSize": 50 },
             "sorts": [{ "field": "firstName", "order": "ASC" }],
             "filters": [{
-
                 "field": "fullName",
                 "operator": "CONTAINS",
                 "value": args
@@ -1280,6 +1286,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
+
 
 
 
