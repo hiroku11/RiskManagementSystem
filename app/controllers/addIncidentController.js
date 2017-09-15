@@ -81,7 +81,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.equipment = {
 
         "assetCategory": {
-            "id": "EQENT",
+            "id": "EQUIPMENT",
             "description": null
         }
 
