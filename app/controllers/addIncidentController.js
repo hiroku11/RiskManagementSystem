@@ -78,6 +78,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
     }
+    $scope.equipment = {
+
+        "assetCategory": {
+            "id": "EQENT",
+            "description": null
+        }
+
+    }
+    $scope.building = {
+
+        "assetCategory": {
+            "id": "BUILDING",
+            "description": null
+        }
+
+    }
     $scope.loss = {
         "id": null,
         "incident": {},
@@ -1121,14 +1137,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.addBuilding = function() {
         $scope.assetDetail.buildings.push($scope.building);
+        $scope.building = {};
 
     }
     $scope.addVehicle = function() {
         $scope.assetDetail.vehicles.push($scope.vehicle);
+        $scope.vehicle = {};
 
     }
     $scope.addEquipement = function() {
         $scope.assetDetail.equipments.push($scope.equipment);
+        $scope.equipment = {};
+
 
     }
     $scope.addAccidentDetails = function() {
