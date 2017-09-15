@@ -143,6 +143,36 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         vehicles: []
 
     }
+    $scope.crimeDetails = {
+        "crime": {
+            "id": null,
+            "incident": {},
+            "statusFlag": null,
+            "crimeDateTime": "",
+            "crimeDescription": "",
+            "anyWitness": ""
+          },
+          "incidentId": $scope.incident.incidentId,
+          "uniqueIncidentId": $scope.incident.uniqueIncidentId,
+        newWitnesses: [],
+        existingWitnesses: [],
+        employeeWitnesses: [],
+        employeeCrimeSuspects: [],
+        existingCrimeSuspects: [],
+        newCrimeSuspects: []
+
+    }
+    $scope.crimeWitness = {
+        addresses: [],
+        distinguishingFeatureDetail: null,
+        distinguishingFeature: null
+    }
+
+    $scope.crimeSuspect = {
+        addresses: [],
+        distinguishingFeatureDetail: null,
+        distinguishingFeature: null
+    }
     $scope.tabs = [{ "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
         { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
         // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
@@ -182,6 +212,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         if (formName == "accidentForm") {
             $scope.addAccidentDetails();
+        }
+        if(formName=="crimeForm"){
+            $scope.addCrimeDetails();
         }
         $(".content")[0].scrollTop = 0;
     }
@@ -325,7 +358,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $http(req).then(function(response) {
             $scope.incidentSecond = response.data;
-            $scope.incident.incidentStatus = response.data.incidentStatus
+            $scope.incident.incidentStatus = response.data.incidentStatus;
+            $scope.incident.incidentId=response.data.incidentId;
+            $scope.incident.uniqueIncidentId=response.data.uniqueIncidentId;
             AppService.HideLoader();
 
         }, function(error) {
@@ -1022,7 +1057,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getWeaponType();
 
     $scope.addIncidentDetails = function() {
-
+        debugger
         $scope.incidentDetails.incidentId = $scope.incident.incidentId;
         $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -1037,13 +1072,38 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function(response) {
-            $scope.incidentSecond = response.data;
+           // $scope.incidentSecond = response.data;
             AppService.HideLoader();
         }, function(error) {
             AppService.HideLoader();
         })
     }
 
+    $scope.addCrimeDetails=function(){
+        $scope.crimeDetails.crime.crimeDateTime = $scope.crimeDetails.crime.date + " " + $scope.crimeDetails.crime.timeHrs + ":" + $scope.crimeDetails.crime.timeMin;
+        delete $scope.crimeDetails.crime.timeHrs;
+        delete $scope.crimeDetails.crime.timeMin;
+        delete $scope.crimeDetails.crime.date;
+        $scope.crimeDetails.incidentId = $scope.incident.incidentId;
+        $scope.crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
+
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-crime-details',
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data: $scope.crimeDetails
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function(response) {
+            //$scope.incidentSecond = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
     $scope.addInjuredPerson = function() {
         $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
         //reset the object
@@ -1082,6 +1142,25 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //reset the object
         $scope.witness = {
             addresses: []
+        }
+    }
+
+    $scope.addCrimeWitness = function() {
+        $scope.crimeDetails.newWitnesses.push($scope.crimeWitness);
+        //reset the object
+        $scope.crimeWitness = {
+            addresses: [],
+            distinguishingFeatureDetail: null,
+            distinguishingFeature: null
+        }
+    }
+
+    $scope.addCrimeSuspect=function(){
+        $scope.crimeDetails.newCrimeSuspects.push($scope.crimeSuspect);
+        $scope.crimeSuspect = {
+            addresses: [],
+            distinguishingFeatureDetail: null,
+            distinguishingFeature: null
         }
     }
     $scope.addEmployeeWitness = function(person) {
