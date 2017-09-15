@@ -198,7 +198,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="suspect in incidentDetails.newSuspects"></tr>
+                    <tr ng-repeat="suspect in incidentDetails.newSuspects">
+                         <td>{{suspect.firstName}} {{suspect.LastName}}</td>
+                        <td>{{suspect.age}}</td>
+                        <td>{{suspect.genderType.id}}</td>
+                        <td>{{suspect.addresses[0].organizationName}}</td>
+                        <td>{{suspect.addresses[0].city}}</td>
+                        <td>{{suspect.addresses[0].county}}</td>
+                        <td>{{suspect.addresses[0].postcode}}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -399,11 +407,7 @@
                         </tbody>
                     </table>
                 </div>
-                <!--<div class="col-sm-12 col-md-6">
-                    <label>Existing Suspect</label>
-                    <input class="form-control" placeholder="Type user name" ng-model="existing" ng-change="suspectLookup(existing)" ng-model-options="{debounce:500}" uib-typeahead="userIn.fullName as userIn.fullName for userIn in suspectData" />
-                </div>-->
-
+              
             </div>
             <div class=" modal-footer ">
 
@@ -463,10 +467,7 @@
                         </tbody>
                     </table>
                 </div>
-                <!--<div class="col-sm-12 col-md-6">
-                    <label>Existing Suspect</label>
-                    <input class="form-control" placeholder="Type user name" ng-model="existing" ng-change="suspectLookup(existing)" ng-model-options="{debounce:500}" uib-typeahead="userIn.fullName as userIn.fullName for userIn in suspectData" />
-                </div>-->
+           
             </div>
             <div class=" modal-footer ">
 
