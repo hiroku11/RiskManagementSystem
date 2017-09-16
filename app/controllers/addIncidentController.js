@@ -132,8 +132,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         distinguishingFeature: null
     }
     $scope.assetDetail = {
+        "incidentId": $scope.incident.incidentId,
+        "uniqueIncidentId": $scope.incident.uniqueIncidentId,
         asset: {
 
+            "assetCategory": {
+                "id": "",
+                "description": null
+            }
         },
         newWitnesses: [],
         existingWitnesses: [],
@@ -142,6 +148,36 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         equipments: [],
         vehicles: []
 
+    }
+    $scope.crimeDetails = {
+        "crime": {
+            "id": null,
+            "incident": {},
+            "statusFlag": null,
+            "crimeDateTime": "",
+            "crimeDescription": "",
+            "anyWitness": ""
+        },
+        "incidentId": $scope.incident.incidentId,
+        "uniqueIncidentId": $scope.incident.uniqueIncidentId,
+        newWitnesses: [],
+        existingWitnesses: [],
+        employeeWitnesses: [],
+        employeeCrimeSuspects: [],
+        existingCrimeSuspects: [],
+        newCrimeSuspects: []
+
+    }
+    $scope.crimeWitness = {
+        addresses: [],
+        distinguishingFeatureDetail: null,
+        distinguishingFeature: null
+    }
+
+    $scope.crimeSuspect = {
+        addresses: [],
+        distinguishingFeatureDetail: null,
+        distinguishingFeature: null
     }
     $scope.tabs = [{ "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
         { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
@@ -182,6 +218,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         if (formName == "accidentForm") {
             $scope.addAccidentDetails();
+        }
+        if (formName == "assetsForm") {
+            $scope.addAssetDetails();
+        }
+        if (formName == "crimeForm") {
+            $scope.addCrimeDetails();
         }
         $(".content")[0].scrollTop = 0;
     }
@@ -224,6 +266,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
     }
+
 
 
 
@@ -324,7 +367,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $http(req).then(function(response) {
             $scope.incidentSecond = response.data;
-            $scope.incident.incidentStatus = response.data.incidentStatus
+            $scope.incident.incidentStatus = response.data.incidentStatus;
+            $scope.incident.incidentId = response.data.incidentId;
+            $scope.incident.uniqueIncidentId = response.data.uniqueIncidentId;
             AppService.HideLoader();
 
         }, function(error) {
@@ -333,11 +378,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
 
-    $scope.openBodyPartModal = function(sbodyPart) {
-        // $("#bodyModal").modal('show');
-        if (sbodyPart == 'Y') {
-            $("#bodyModal").modal('show');
-        }
+    $scope.openBodyPartModal = function() {
+
+        $("#bodyModal").modal('show');
+
     }
 
 
@@ -437,7 +481,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
+
     $scope.getDistinguishFeatures = function() {
+
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature/distinguishing-features',
             method: "GET",
@@ -458,6 +504,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
+
     $scope.getDistinguishFeaturesDetails = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature-details',
@@ -468,6 +515,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
         $http(req).then(function(response) {
+
             //change the options as required by the multiselect plugin/module
             $scope.distinguishFeaturesDetails = response.data;
             $scope.distinguishFeaturesDetailsOptions = $scope.distinguishFeaturesDetails;
@@ -478,6 +526,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
     $scope.getAgency = function() {
+
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/external-agency/external-agencies',
             method: "GET",
@@ -1016,7 +1065,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getWeaponType();
 
     $scope.addIncidentDetails = function() {
-
+        debugger
         $scope.incidentDetails.incidentId = $scope.incident.incidentId;
         $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -1031,13 +1080,57 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function(response) {
-            $scope.incidentSecond = response.data;
+            // $scope.incidentSecond = response.data;
             AppService.HideLoader();
         }, function(error) {
             AppService.HideLoader();
         })
     }
 
+    $scope.addCrimeDetails = function() {
+        $scope.crimeDetails.crime.crimeDateTime = $scope.crimeDetails.crime.date + " " + $scope.crimeDetails.crime.timeHrs + ":" + $scope.crimeDetails.crime.timeMin;
+        delete $scope.crimeDetails.crime.timeHrs;
+        delete $scope.crimeDetails.crime.timeMin;
+        delete $scope.crimeDetails.crime.date;
+        $scope.crimeDetails.incidentId = $scope.incident.incidentId;
+        $scope.crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
+
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-crime-details',
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data: $scope.crimeDetails
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function(response) {
+            //$scope.incidentSecond = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.addAssetDetails = function() {
+
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-asset-details',
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data: $scope.assetDetail
+        }
+        AppService.ShowLoader();
+
+        $http(req).then(function(response) {
+            //$scope.incidentSecond = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
     $scope.addInjuredPerson = function() {
         $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
         //reset the object
@@ -1076,6 +1169,25 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //reset the object
         $scope.witness = {
             addresses: []
+        }
+    }
+
+    $scope.addCrimeWitness = function() {
+        $scope.crimeDetails.newWitnesses.push($scope.crimeWitness);
+        //reset the object
+        $scope.crimeWitness = {
+            addresses: [],
+            distinguishingFeatureDetail: null,
+            distinguishingFeature: null
+        }
+    }
+
+    $scope.addCrimeSuspect = function() {
+        $scope.crimeDetails.newCrimeSuspects.push($scope.crimeSuspect);
+        $scope.crimeSuspect = {
+            addresses: [],
+            distinguishingFeatureDetail: null,
+            distinguishingFeature: null
         }
     }
     $scope.addEmployeeWitness = function(person) {
@@ -1135,6 +1247,55 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
     }
+    $scope.addCrimeEmployeeSuspect = function(person) {
+        if (person.selected) {
+            $scope.crimeDetails.employeeCrimeSuspects.push({ 'id': person.id });
+        } else {
+            $scope.crimeDetails.employeeCrimeSuspects.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.crimeDetails.employeeCrimeSuspects.splice(index, 1);
+                }
+            })
+        }
+    }
+    $scope.addCrimeExistingSuspect = function(person) {
+        if (person.selected) {
+            $scope.crimeDetails.existingCrimeSuspects.push({ 'id': person.id });
+        } else {
+            $scope.crimeDetails.existingCrimeSuspects.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.crimeDetails.existingCrimeSuspects.splice(index, 1);
+                }
+            })
+        }
+    }
+    $scope.addCrimeEmployeeWitness = function(person) {
+        if (person.selected) {
+            $scope.crimeDetails.employeeWitnesses.push({ 'id': person.id });
+        } else {
+            $scope.crimeDetails.employeeWitnesses.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.crimeDetails.employeeWitnesses.splice(index, 1);
+                }
+            })
+        }
+    }
+
+    $scope.addCrimeExistingWitness = function(person) {
+        if (person.selected) {
+            $scope.crimeDetails.existingWitnesses.push({ 'id': person.id });
+        } else {
+            $scope.crimeDetails.existingWitnesses.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.crimeDetails.existingWitnesses.splice(index, 1);
+                }
+            })
+        }
+    }
     $scope.addBuilding = function() {
         $scope.assetDetail.buildings.push($scope.building);
         $scope.building = {};
@@ -1172,9 +1333,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
-
-    $scope.userLookup = function(args) {
+    $scope.clearUser = function() {
         $scope.userInfo = [];
+    }
+    $scope.userLookup = function(args) {
+
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
             "sorts": [{ "field": "firstName", "order": "ASC" }],
@@ -1232,6 +1395,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 'Search': JSON.stringify(fil)
             },
         }
+
         $http(req).then(function(response) {
             $scope.suspectData = response.data;
         }, function(error) {
@@ -1276,7 +1440,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "paging": { "currentPage": 0, "pageSize": 50 },
             "sorts": [{ "field": "firstName", "order": "ASC" }],
             "filters": [{
-
                 "field": "fullName",
                 "operator": "CONTAINS",
                 "value": args
@@ -1300,6 +1463,35 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
+    $scope.crimeSuspectLookup = function(args) {
+        var fil = {
+            "paging": { "currentPage": 0, "pageSize": 50 },
+            "sorts": [{ "field": "firstName", "order": "ASC" }],
+            "filters": [{
+                "field": "fullName",
+                "operator": "CONTAINS",
+                "value": args
+
+            }]
+        }
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/crime-suspect-lookup',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+                'Search': JSON.stringify(fil)
+            },
+        }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
+
+            $scope.crimeSuspectData = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+
 
 
 
