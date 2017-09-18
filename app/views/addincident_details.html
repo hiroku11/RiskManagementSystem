@@ -19,7 +19,7 @@
 
 
             </div>
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-6" ng-if="suspect.suspectType.id=='OTHER'">
                 <label>Suspect Type If Other</label>
                 <input name="" class="form-control" type="text" placeholder="If Suspect Others" ng-model="suspect.suspectType.description">
             </div>
@@ -29,7 +29,6 @@
             <div class="col-md-3 col-sm-12">
                 <label>Title:</label>
                 <select class="form-control" ng-model="suspect.title">
-                                <option>Select</option>
                                 <option>Mr</option>
                                 <option>Mrs</option>
                                 <option>Ms</option>
@@ -124,7 +123,7 @@
                 <input name="gender" type="radio"> <span>Female</span>-->
             </div>
         </div>
-        <div class="row" >
+        <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Distinguishing Features</label>
                 <multiselect ng-model="suspect.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
@@ -150,10 +149,10 @@
                                         <option value="N">No</option>
                                     </select>
             </div>
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-4" ng-if="suspect.weaponInvolved == 'Y'">
                 <label>Weapon Involved</label>
-                <select class="form-control" ng-options="weaponType.id as weaponType.description for weaponType in weaponType" ng-model="suspect.weaponType.id" 
-                ng-disabled="!suspect.weaponInvolved"/>
+                <select class="form-control" ng-options="weaponType.id as weaponType.description for weaponType in weaponType" ng-model="suspect.weaponType.id" ng-disabled="!suspect.weaponInvolved" />
+
 
             </div>
             <div class="col-sm-12 col-md-4" ng-if="suspect.weaponType.id=='OTHER'">
@@ -166,10 +165,10 @@
             <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" ng-click="addSuspect()">Add Suspect</a>
             </div>
-                <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Existing Suspect</a>
             </div>
-                <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Add Employee Suspect</a>
             </div>
         </div>
@@ -186,7 +185,7 @@
             </div>
         </div> -->
         <div class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -200,7 +199,7 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="suspect in incidentDetails.newSuspects">
-                         <td>{{suspect.firstName}} {{suspect.LastName}}</td>
+                        <td>{{suspect.firstName}} {{suspect.LastName}}</td>
                         <td>{{suspect.age}}</td>
                         <td>{{suspect.genderType.id}}</td>
                         <td>{{suspect.addresses[0].organizationName}}</td>
@@ -373,7 +372,7 @@
                     <div class="col-sm-12 col-md-6 ">
                         <label>Existing Suspect</label>
                         <div class="input-group">
-                            <input class="form-control" ng-change="suspectLookup(existing)" placeholder="Type user name" ng-model="existing" ng-model-options="{'debounce':500}"/>
+                            <input class="form-control" ng-change="suspectLookup(existing)" placeholder="Type user name" ng-model="existing" ng-model-options="{'debounce':500}" />
 
                             <span class="input-group-addon" ng-click="suspectLookup(existing)">
                         <span class="glyphicon glyphicon-search"></span>
@@ -408,7 +407,7 @@
                         </tbody>
                     </table>
                 </div>
-              
+
             </div>
             <div class=" modal-footer ">
 
@@ -433,7 +432,7 @@
                     <div class="col-sm-12 col-md-6 ">
                         <label>Employee Suspect</label>
                         <div class="input-group">
-                            <input class="form-control" ng-change="userLookup(employee)" placeholder="Type user name" ng-model="employee" ng-model-options="{'debounce':500}"/>
+                            <input class="form-control" ng-change="userLookup(employee)" placeholder="Type user name" ng-model="employee" ng-model-options="{'debounce':500}" />
                             <span class="input-group-addon" ng-click="userLookup(employee)">
                                 <span class="glyphicon glyphicon-search"></span>
                             </span>
@@ -468,7 +467,7 @@
                         </tbody>
                     </table>
                 </div>
-           
+
             </div>
             <div class=" modal-footer ">
 

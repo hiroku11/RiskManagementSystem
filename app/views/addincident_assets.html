@@ -4,17 +4,17 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Category</label>
-                <select class="form-control" ng-options="assetCat.id as assetCat.description for assetCat in assetCat" ng-model="assetCategory.id" />
+                <select class="form-control" ng-options="assetCat.id as assetCat.description for assetCat in assetCat" ng-model="assetDetail.asset.assetCategory.id" />
 
 
             </div>
-            <div class="col-sm-12 col-md-6" ng-if="assetCategory.id == 'OTHER'">
+            <div class="col-sm-12 col-md-6" ng-if="assetDetail.asset.assetCategory.id == 'OTHER'">
                 <label>If Category Other</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" ng-model="assetDetail.asset.otherDescription">
             </div>
         </div>
 
-        <div class="building-section" ng-if="assetCategory.id == 'BUILDING'">
+        <div class="building-section" ng-if="assetDetail.asset.assetCategory.id== 'BUILDING'">
             <h4>Building</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -38,7 +38,7 @@
                 </div>
             </div>
             <div class="table-wrapper inline">
-                <table class="table" ng-if="assetDetail.buildings.length >0">
+                <table class="table table-bordered" ng-if="assetDetail.buildings.length >0">
                     <thead>
                         <tr>
                             <th>Building Id</th>
@@ -63,7 +63,7 @@
 
 
 
-        <div class="equipment-section" ng-if="assetCategory.id == 'EQUIPMENT'">
+        <div class="equipment-section" ng-if="assetDetail.asset.assetCategory.id == 'EQUIPMENT'">
             <h4>Equipment</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -87,7 +87,7 @@
                 </div>
             </div>
             <div class="table-wrapper inline">
-                <table class="table" ng-if="assetDetail.equipments.length >0">
+                <table class="table table-bordered" ng-if="assetDetail.equipments.length >0">
                     <thead>
                         <tr>
                             <th>Equipment Id</th>
@@ -110,7 +110,7 @@
         </div>
 
 
-        <div class="vehicle-section" ng-if="assetCategory.id == 'VEHICLE'">
+        <div class="vehicle-section" ng-if="assetDetail.asset.assetCategory.id == 'VEHICLE'">
             <h4>Vehicle</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-4">
@@ -119,9 +119,9 @@
                         <label>Vehicle Registration ID </label>
                         <input class="form-control" type="text" ng-model="vehicle.vehicleRegistrationId">
                     </div>
-                    <div class="col-sm-2" style="padding-top:1.7em">
+                    <!--<div class="col-sm-2" style="padding-top:1.7em">
                         <a href="#" class="btn">Look up</a>
-                    </div>
+                    </div>-->
 
                 </div>
                 <div class="col-sm-12 col-md-4">
@@ -165,7 +165,7 @@
                     <a class="btn btn-primary" ng-click="addVehicle()">Add Vehicle</a>
                 </div>
             </div>
-            <table class="table" ng-if="assetDetail.vehicles.length >0">
+            <table class="table table-bordered" ng-if="assetDetail.vehicles.length >0">
                 <thead>
                     <tr>
                         <th>Registration Id</th>
@@ -191,13 +191,17 @@
         <div class="row">
             <div class="col-md-3">
                 <label>Witness</label>
-                <select class="form-control" ng-model="assetDetail.anyassetWitness">
+                <select class="form-control" ng-model="assetDetail.asset.anyWitness">
                         <option value="Y">Yes</option>
                         <option value="N">No</option>
                     </select>
             </div>
+            <div class="col-md-9">
+                <label>Statement Description</label>
+                <input class="form-control" type="text" ng-model="assetDetail.asset.statementDescription">
+            </div>
         </div>
-        <div ng-if="assetDetail.anyassetWitness == 'Y'">
+        <div ng-if="assetDetail.asset.anyWitness == 'Y'">
             <h4 class="form-title">Witness</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-3">
@@ -309,7 +313,7 @@
         </div>
 
         <div id="tblassetWitness" class="table-wrapper inline">
-            <table class="table">
+            <table class="table table-bordered" ng-if='assetDetail.newWitnesses.length > 0'>
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -319,7 +323,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="person in assetDetail.newWitnesses" ng-if='assetDetail.newWitnesses.length > 0'>
+                    <tr ng-repeat="person in assetDetail.newWitnesses">
                         <td>{{person.firstName}} {{person.LastName}}</td>
                         <td>{{person.age}}</td>
                         <td>{{person.genderType.id}}</td>

@@ -314,6 +314,10 @@ h5 {
     font-size: 14px;
 }
 
+table th {
+    font-weight: bold;
+}
+
 nav select.form-control {
     width: 80px;
     display: inline-block;
