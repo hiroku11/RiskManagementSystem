@@ -11,6 +11,7 @@
                 <div> <label>Time Police Called</label></div>
                 <input class="form-control small-control" type="text" placeholder="HH" ng-model="crimeDetails.crime.timeHrs">:
                 <input class="form-control small-control" type="text" placeholder="MM" ng-model="crimeDetails.crime.timeMin">
+
             </div>
             <div class="col-sm-12 col-md-3">
                 <label>Crime Description</label>
@@ -19,10 +20,11 @@
             <div class="col-sm-12 col-md-3">
                 <label>Any Witness</label>
                 <select class="form-control" ng-model="crimeDetails.crime.anyWitness">
- <option value="">--Select--</option>
- <option value="Y">Yes</option>
- <option value="N">No</option>
- </select>
+                        <option value="">--Select--</option>
+                        <option value="Y">Yes</option>
+                        <option value="N">No</option>
+                    </select>
+
             </div>
         </div>
         <h4 class="form-title">Crime Suspect</h4>
@@ -30,13 +32,13 @@
             <div class="col-sm-12 col-md-3">
                 <label>Title:</label>
                 <select class="form-control" ng-model="crimeSuspect.title">
- <option>Select</option>
- <option>Mr</option>
- <option>Mrs</option>
- <option>Ms</option>
- <option>Miss</option>
- <option>Master</option>
- </select>
+                    <option>Select</option>
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Ms</option>
+                    <option>Miss</option>
+                    <option>Master</option>
+                </select>
             </div>
             <div class="col-sm-12 col-md-3">
                 <label>First Name:</label>
@@ -591,4 +593,5 @@
         </div>
 
     </div>
+              
 </div>

@@ -223,6 +223,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.addAssetDetails();
         }
         if (formName == "crimeForm") {
+
             $scope.addCrimeDetails();
         }
         $(".content")[0].scrollTop = 0;
@@ -240,7 +241,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
     }
-
+    
     $scope.addEmployeeSuspect = function(person) {
         if (person.selected) {
             $scope.incidentDetails.employeeSuspects.push({ 'id': person.id });
@@ -371,7 +372,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.incident.incidentId = response.data.incidentId;
             $scope.incident.uniqueIncidentId = response.data.uniqueIncidentId;
             AppService.HideLoader();
-
         }, function(error) {
             AppService.HideLoader();
         })
@@ -1080,7 +1080,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function(response) {
-            // $scope.incidentSecond = response.data;
             AppService.HideLoader();
         }, function(error) {
             AppService.HideLoader();
@@ -1088,6 +1087,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
     $scope.addCrimeDetails = function() {
+
         $scope.crimeDetails.crime.crimeDateTime = $scope.crimeDetails.crime.date + " " + $scope.crimeDetails.crime.timeHrs + ":" + $scope.crimeDetails.crime.timeMin;
         delete $scope.crimeDetails.crime.timeHrs;
         delete $scope.crimeDetails.crime.timeMin;
@@ -1112,6 +1112,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
+    
     $scope.addAssetDetails = function() {
 
         var req = {
@@ -1131,6 +1132,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
+
     $scope.addInjuredPerson = function() {
         $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
         //reset the object
@@ -1183,6 +1185,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
     $scope.addCrimeSuspect = function() {
+
         $scope.crimeDetails.newCrimeSuspects.push($scope.crimeSuspect);
         $scope.crimeSuspect = {
             addresses: [],
@@ -1491,6 +1494,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
+
 
 
 

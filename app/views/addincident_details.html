@@ -153,6 +153,7 @@
                 <label>Weapon Involved</label>
                 <select class="form-control" ng-options="weaponType.id as weaponType.description for weaponType in weaponType" ng-model="suspect.weaponType.id" ng-disabled="!suspect.weaponInvolved" />
 
+
             </div>
             <div class="col-sm-12 col-md-4" ng-if="suspect.weaponType.id=='OTHER'">
                 <label>Specify If others</label>
