@@ -1115,6 +1115,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     
     $scope.addAssetDetails = function() {
 
+        $scope.crimeDetails.incidentId = $scope.incident.incidentId;
+        $scope.crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-asset-details',
             method: "POST",
