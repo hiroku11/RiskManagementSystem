@@ -56,7 +56,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="incident in data |filter:search">
+                    <tr ng-repeat="incident in data |filter:search | limitTo : entryCount : (entryCount * currentPage - entryCount)">
                         <td>
                             <input type="checkbox" class="checkbox checkbox-primary" name="">
                         </td>
@@ -92,25 +92,20 @@
             <nav aria-label="Page navigation">
                 <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="entryCount" ng-change="getEntries()" />
 
-                <ul class="pagination">
+                <ul class="pagination" ng-if="data.length!=0">
                     <li>
-                        <a href="#" aria-label="Previous">
+                        <a aria-label="Previous" ng-click="goToPage(currentPage - 1)"  ng-class="{disabled:currentPage==1}">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li>
-                        <a href="#" aria-label="Next">
+                    <li ng-repeat="page in range(data.length)"><a ng-click="goToPage(page)">{{page}}</a></li>
+                    <li  >
+                        <a aria-label="Next" ng-click="goToPage(currentPage + 1)"  ng-class="{disabled:currentPage==data.length/entryCount}">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
                 </ul>
-
-                <span>1 - 10 of 2451</span>
+                <span>{{entryCount * currentPage - entryCount}} - {{entryCount * currentPage}} of {{data.length}}</span>
             </nav>
 
 

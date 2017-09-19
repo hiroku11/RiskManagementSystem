@@ -132,6 +132,10 @@ h5 {
     color: #8c1519;
 }
 
+.pagination>li>a.disabled{
+    cursor: not-allowed;
+}
+
 .navbar a {
     display: block;
     padding: 10px;

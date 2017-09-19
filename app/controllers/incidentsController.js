@@ -5,7 +5,8 @@
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
     // $scope.data = [];
-
+    $scope.currentPage=1;
+    $scope.entryCount=10;
     $scope.logOutUser = rmsService.logOutUser;
 
     $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
@@ -71,7 +72,14 @@
 
     // $scope.
 
-
+    $scope.range = function(count){
+        count=count/$scope.entryCount;
+          var ratings = []; 
+          for (var i = 0; i < count; i++) { 
+            ratings.push(i+1) 
+          } 
+          return ratings;
+        }
 
     $scope.advancedSearch = function() {
         var params = [];
@@ -175,7 +183,10 @@
     function checkParams(param) {
         return param.value != "" && param.value != undefined;
     }
-    $scope.changePage = function() {
+    $scope.goToPage = function(pageNo) {
+        debugger
+        if(pageNo < 1 || pageNo > $scope.data.length/$scope.entryCount) return;
+        $scope.currentPage=pageNo;
 
     }
     $scope.getIncidentType = function() {
