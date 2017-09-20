@@ -10,7 +10,18 @@
     $scope.logOutUser = rmsService.logOutUser;
 
     $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
-    //Change Date picker format
+
+    $scope.sortBy="uniqueIncidentId";
+    $scope.reverse=false;
+ 
+    $scope.changeSortBy=function(sortBy){
+        if($scope.sortBy==sortBy){
+            $scope.reverse=!$scope.reverse;
+        }else{
+            $scope.sortBy=sortBy;
+            $scope.reverse=false;
+        }
+    }
 
     $scope.getData = function(params) {
         // var filter = JSON.parse(params)
