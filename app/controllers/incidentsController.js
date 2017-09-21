@@ -196,10 +196,11 @@
     }
     $scope.goToPage = function(pageNo) {
         debugger
-        if(pageNo < 1 || pageNo > $scope.data.length/$scope.entryCount) return;
+        if(pageNo < 1 || pageNo > Math.ceil($scope.data.length/$scope.entryCount)) return;
         $scope.currentPage=pageNo;
 
     }
+
     $scope.getIncidentType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
