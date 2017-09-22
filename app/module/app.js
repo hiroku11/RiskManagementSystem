@@ -70,12 +70,12 @@ riskManagementSystem.directive("mapsDirective", function () {
                                     address: results[0].formatted_address,
                                     latlng: latlng
                                 }
-                                
-                                if(scope.$parent["incidentDetails"]["placeOfIncident"]){
-                                    scope.$parent["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                debugger
+                                if(scope.$parent["logIncidentDetails"]["placeOfIncident"]){
+                                    scope.$parent["logIncidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
                                 }else{
-                                    scope.$parent["incidentDetails"]={};
-                                    scope.$parent["incidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
+                                    scope.$parent["logIncidentDetails"]={};
+                                    scope.$parent["logIncidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
                                 }
                             }
                         }

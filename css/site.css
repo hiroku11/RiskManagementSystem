@@ -132,6 +132,10 @@ h5 {
     color: #8c1519;
 }
 
+.pagination>li>a.disabled {
+    cursor: not-allowed;
+}
+
 .navbar a {
     display: block;
     padding: 10px;
@@ -311,6 +315,11 @@ h5 {
 
 .table-bordered {
     border: 1px solid #8c1519;
+    font-size: 14px;
+}
+
+table th {
+    font-weight: bold;
 }
 
 nav select.form-control {
@@ -806,5 +815,11 @@ a i {
     color: red;
     left: 288px;
     top: 619px;
+    position: fixed;
+}
+
+.partDiv {
+    width: 20px;
+    height: 20px;
     position: fixed;
 }
