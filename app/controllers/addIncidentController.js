@@ -189,6 +189,38 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         { "active": false, "description": "Supporting Documents", "name": "documentsForm", "tab": 8 }
     ];
 
+    $scope.calendar = {
+        opened: false
+      };
+
+      $scope.getDayClass=function (data) {
+        var date = data.date,
+          mode = data.mode;
+        if (mode === 'day') {
+          var dayToCheck = new Date(date).setHours(0,0,0,0);
+    
+          for (var i = 0; i < $scope.events.length; i++) {
+            var currentDay = new Date($scope.events[i].date).setHours(0,0,0,0);
+    
+            if (dayToCheck === currentDay) {
+              return $scope.events[i].status;
+            }
+          }
+        }
+    
+        return '';
+      }
+    
+    $scope.inlineOptions = {
+        customClass:  $scope.getDayClass,
+        showWeeks: true
+      };
+    
+    $scope.dateOptions = {
+       // dateDisabled: disabled,
+        formatYear: 'yyyy',
+        startingDay: 1
+      };
     $scope.submitForm = function(formName, back) {
         var index = 0;
         $scope.tabs.sort(function(a, b) {
