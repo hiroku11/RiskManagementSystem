@@ -124,24 +124,6 @@
             </div>
         </div>
 
-        <!-- <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <label>Distinguishing Features</label>
-                <select multiple ng-model="suspect.distinguishingFeature" class="form-control"
-                ng-options="feature as feature.description for feature in distinguishFeatures">
-                </select>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <label>Distinguishing Features Details</label>
-                <select multiple ng-model="suspect.distinguishingFeatureDetail" class="form-control"
-                ng-options="fd as fd.description for fd in distinguishFeaturesDetailsOptions">
-                </select>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <label>Please Specify If others</label>
-                <select  multiple ng-model="suspect.distinguishingFeatureDetails" class="form-control"></select>
-            </div>
-        </div> -->
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Distinguishing Features</label>
@@ -267,12 +249,21 @@
         <div class="row" data-id="Police" ng-if="loss.externalAgency.id=='POLICE'">
             <div class="col-sm-12 col-md-6">
                 <label>Date Police Called</label>
-                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" ng-model="loss.dateTimeContacted" />
                     <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div> -->
+                <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
+                
             </div>
             <div class="col-sm-12 col-md-6">
                 <div> <label>Time Police Called</label></div>
@@ -284,12 +275,20 @@
         <div class="row" data-id="Ambulance" ng-if="loss.externalAgency.id=='AMBULANCE'">
             <div class="col-sm-12 col-md-6">
                 <label>Date Ambulance Called</label>
-                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div> -->
+                <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
             </div>
             <div class="col-sm-12 col-md-6 time">
                 <div><label>Time Ambulance Called</label></div>
@@ -300,12 +299,20 @@
         <div class="row" data-id="Fire" ng-if="loss.externalAgency.id=='FIRE'">
             <div class="col-sm-12 col-md-6">
                 <label>Date Fire Station Called </label>
-                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div> -->
+                <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
             </div>
             <div class="col-sm-12 col-md-6 time">
                 <div><label>Time Fire Station Called</label></div>
@@ -316,12 +323,20 @@
         <div class="row" data-id="Fire" ng-if="loss.externalAgency.id=='OTHER'">
             <div class="col-sm-12 col-md-6">
                 <label>Date Other Agency Called </label>
-                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div> -->
+                <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
             </div>
             <div class="col-sm-12 col-md-6 time">
                 <div><label>Time FOther Agency Called</label></div>
