@@ -1128,11 +1128,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
+<<<<<<< HEAD
 
     $scope.addAssetDetails = function() {
 
         $scope.crimeDetails.incidentId = $scope.incident.incidentId;
         $scope.crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
+=======
+    
+    $scope.addAssetDetails = function() {
+
+>>>>>>> c96f5ee01829243763263534d9906d0c21aa09a4
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-asset-details',
             method: "POST",
