@@ -50,8 +50,8 @@
                     <tbody>
                         <tr ng-repeat="building in assetDetail.buildings">
                             <td>{{building.buildingId}}</td>
-                            <td>{{building.buildingDescription}}</td>
-                            <td>{{building.incidentDescription}}</td>
+                            <td>{{building.age}}</td>
+                            <td>{{building.genderType.id}}</td>
 
                         </tr>
                     </tbody>
@@ -157,7 +157,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <label>Comments</label>
-                    <textarea class="form-control" ng-model="vehicle.commentDescription"></textarea>
+                    <textarea class="form-control" ng-model="assetDetail.vehicle.commentDescription"></textarea>
                 </div>
             </div>
             <div class="row">
