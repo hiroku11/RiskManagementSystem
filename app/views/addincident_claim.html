@@ -54,12 +54,20 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Claim Requested Date</label>
-                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div> -->
+                <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
             </div>
         </div>
 
@@ -144,21 +152,37 @@
 
             <div class="col-md-4 col-sm-12">
                 <label>Claim Approved Date</label>
-                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div> -->
+                <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Claim Settled Date</label>
-                <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input type='text' class="form-control" />
                     <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div> -->
+                <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
             </div>
 
             <div class="col-md-4 col-sm-12">

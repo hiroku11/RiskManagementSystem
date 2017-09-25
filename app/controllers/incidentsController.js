@@ -5,11 +5,23 @@
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
     // $scope.data = [];
-
+    $scope.currentPage=1;
+    $scope.entryCount=10;
     $scope.logOutUser = rmsService.logOutUser;
 
     $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
-    //Change Date picker format
+
+    $scope.sortBy="uniqueIncidentId";
+    $scope.reverse=false;
+ 
+    $scope.changeSortBy=function(sortBy){
+        if($scope.sortBy==sortBy){
+            $scope.reverse=!$scope.reverse;
+        }else{
+            $scope.sortBy=sortBy;
+            $scope.reverse=false;
+        }
+    }
 
     $scope.getData = function(params) {
         // var filter = JSON.parse(params)
@@ -71,7 +83,14 @@
 
     // $scope.
 
-
+    $scope.range = function(count){
+        count=count/$scope.entryCount;
+          var ratings = []; 
+          for (var i = 0; i < count; i++) { 
+            ratings.push(i+1) 
+          } 
+          return ratings;
+        }
 
     $scope.advancedSearch = function() {
         var params = [];
@@ -175,9 +194,13 @@
     function checkParams(param) {
         return param.value != "" && param.value != undefined;
     }
-    $scope.changePage = function() {
+    $scope.goToPage = function(pageNo) {
+        debugger
+        if(pageNo < 1 || pageNo > Math.ceil($scope.data.length/$scope.entryCount)) return;
+        $scope.currentPage=pageNo;
 
     }
+
     $scope.getIncidentType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',

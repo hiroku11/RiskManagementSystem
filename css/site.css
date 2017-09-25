@@ -132,6 +132,10 @@ h5 {
     color: #8c1519;
 }
 
+.pagination>li>a.disabled{
+    cursor: not-allowed;
+}
+
 .navbar a {
     display: block;
     padding: 10px;
@@ -314,6 +318,10 @@ h5 {
     font-size: 14px;
 }
 
+table th {
+    font-weight: bold;
+}
+
 nav select.form-control {
     width: 80px;
     display: inline-block;
@@ -415,396 +423,366 @@ a i {
 }
 
 .Face {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+    
+  
     left: 268px;
     top: 181px;
     position: fixed;
 }
 
 .Head {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+
+    width: 20px;
+    height: 20px;
+   
+ 
     left: 267px;
     top: 164px;
     position: fixed;
 }
 
 .Left.Ear {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+  
+ 
     left: 247px;
     top: 185px;
     position: fixed;
 }
 
 .Right.Ear {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+ 
+    width: 20px;
+    height: 20px;
+  
+  
     left: 288px;
     top: 184px;
     position: fixed;
 }
 
 .Left.Eye {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+ 
+   
     left: 251px;
     top: 172px;
     position: fixed;
 }
 
 .Right.Eye {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+    
     left: 281px;
     top: 172px;
     position: fixed;
 }
 
 .Nose {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+    
+    width: 20px;
+    height: 20px;
+  
     left: 268px;
     top: 188px;
     position: fixed;
 }
 
 .Mouth {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+   
     left: 267px;
     top: 197px;
     position: fixed;
 }
 
 .Neck {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+  
     left: 268px;
     top: 212px;
     position: fixed;
 }
 
 .Chin {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+ 
     left: 268px;
     top: 201px;
     position: fixed;
 }
 
 .Back.Neck {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+   
     left: 268px;
     top: 212px;
     position: fixed;
 }
 
 .Left.Arm {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+ 
     left: 208px;
     top: 321px;
     position: fixed;
 }
 
 .Right.Arm {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+    
+    width: 20px;
+    height: 20px;
+  
     left: 325px;
     top: 321px;
     position: fixed;
 }
 
 .Left.Hand {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+   
     left: 195px;
     top: 368px;
     position: fixed
 }
 
 .Right.Hand {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+   
     left: 341px;
     top: 368px;
     position: fixed
 }
 
 .Left.Wrist {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+  
     left: 189px;
     top: 384px;
     position: fixed
 }
 
 .Right.Wrist {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+   
     left: 346px;
     top: 384px;
     position: fixed
 }
 
 .Left.Fingers {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+    
+    height: 20px;
+   
     left: 181px;
     top: 431px;
     position: fixed
 }
 
 .Right.Fingers {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+ 
     left: 360px;
     top: 431px;
     position: fixed
 }
 
 .Left.Palm {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+  
     left: 181px;
     top: 411px;
     position: fixed
 }
 
 .Right.Palm {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+  
     left: 353px;
     top: 411px;
     position: fixed
 }
 
 .Left.Shoulder {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+ 
     left: 214px;
     top: 267px;
     position: fixed;
 }
 
 .Right.Shoulder {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+ 
+    width: 20px;
+    height: 20px;
+   
     left: 321px;
     top: 267px;
     position: fixed;
 }
 
 .Chest {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+  
     left: 267px;
     top: 267px;
     position: fixed;
 }
 
 .Stomach {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+    
+    width: 20px;
+    height: 20px;
+   
+   
     left: 267px;
     top: 349px;
     position: fixed;
 }
 
 .Hip {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+ 
     left: 267px;
     top: 399px;
     position: fixed;
 }
 
 .Left.Thigh {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+  
     left: 241px;
     top: 456px;
     position: fixed;
 }
 
 .Right.Thigh {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+    
+    width: 20px;
+    height: 20px;
+ 
     left: 295px;
     top: 456px;
     position: fixed;
 }
 
 .Left.Knee {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+  
     left: 240px;
     top: 521px;
     position: fixed;
 }
 
 .Right.Knee {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+   
     left: 295px;
     top: 521px;
     position: fixed;
 }
 
 .Left.Foot {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+   
     left: 247px;
     top: 635px;
     position: fixed;
 }
 
 .Right.Foot {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+ 
     left: 286px;
     top: 635px;
     position: fixed;
 }
 
 .Left.Leg {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+ 
     left: 239px;
     top: 573px;
     position: fixed;
 }
 
 .Right.Leg {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+ 
+    width: 20px;
+    height: 20px;
+ 
     left: 294px;
     top: 573px;
     position: fixed;
 }
 
 .Left.Ankle {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+  
+    width: 20px;
+    height: 20px;
+ 
     left: 288px;
     top: 619px;
     position: fixed;
 }
 
 .Right.Ankle {
-    background-color: red;
-    width: 9px;
-    height: 9px;
-    border-radius: 9px;
-    color: red;
+   
+    width: 20px;
+    height: 20px;
+    
+
     left: 288px;
     top: 619px;
     position: fixed;

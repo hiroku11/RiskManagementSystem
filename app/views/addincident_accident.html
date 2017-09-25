@@ -6,12 +6,20 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Date of Accident: (DD/MM/YYYY)</label>
-                <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                <!-- <div class="input-group date" data-provide="datepicker" data-date-format="dd/mm/yyyy">
                     <input class="form-control" type="text" ng-model="accidentDetails.accident.accidentDate">
                     <span class="input-group-addon">
                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
+                </div> -->
+                <p class="input-group">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="accidentDetails.accident.accidentDate" is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
             </div>
 
             <div class="col-md-4 col-sm-12">
@@ -237,14 +245,30 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
+                <label>Distinguishing Features</label>
+                <multiselect ng-model="injuredPerson.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
+                </multiselect>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Distinguishing Features Details</label>
+                <multiselect ng-model="injuredPerson.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
+                </multiselect>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Please Specify If others</label>
+                <input ng-model="injuredPerson.otherDistinguishFeatures" class="form-control" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
                 <label>Any first aid given</label>
                 <select class="form-control" ng-model="injuredPerson.firstAidGiven">
 					<option value="Y">Yes</option>
 					<option value="N">No</option>
 				</select>
             </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Witness</label>
                 <select class="form-control" ng-model="accidentDetails.anyWitness">
                     <option value=""--Select--></option>
@@ -252,18 +276,10 @@
                                 <option value="N">No</option>
                             </select>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-                <label>Part of body injured</label>
-                <select ng-model="sbodyPart" ng-change="openBodyPartModal(sbodyPart)" class="form-control">
-                    <option value=""--Select--></option>
-                    <option value="Y">Yes</option>
-                    <option value="N">No </option>
-                </select>
+            <div class="col-md-4 col-sm-12">
 
+                <a class="btn btn-primary" ng-click="openBodyPartModal()">Add Injured Body Parts</a>
             </div>
-
         </div>
 
         <div class="row">
@@ -272,7 +288,8 @@
             </div>
             <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Add Existing Injured Person</a>
-        </div>
+            </div>
+
 
             <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" data-toggle="modal" data-target="#myModal6">Add Employee Injured Person</a>
@@ -282,7 +299,7 @@
 
 
         <div class="table-wrapper inline" ng-if="accidentDetails.newInjuredPersons.length > 0">
-            <table class="table">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -404,7 +421,8 @@
                     <input ng-model="witness.otherDistinguishFeatures" class="form-control" />
                 </div>
             </div>
-            <div class="row" >
+            <div class="row">
+
                 <div class="col-md-4 col-sm-12">
                     <label>Distinguishing Features</label>
                     <multiselect ng-model="witness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
@@ -433,7 +451,7 @@
             </div>
 
             <div id="tblWitness" class="table-wrapper inline" ng-if="accidentDetails.newWitnesses.length > 0">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -478,7 +496,7 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <label>Part of body injured</label>
-                            <multiselect ng-model="$parent.partsSelected" options="bodyPartsArray" ng-change="putImagePointer(partsSelected)">
+                            <multiselect ng-model="$parent.partsSelected" options="bodyPartsArray">
                             </multiselect>
                         </div>
                         <div class="col-md-6 col-sm-12">
@@ -487,8 +505,8 @@
                         </div>
                     </div>
                     <div id="man">
-                        <div ng-repeat="d in bodyPart">
-                            <span ng-class="d" ng-if="partsSelected.includes(d)">
+                           <div ng-repeat="d in bodyPartsArray" ng-class="d" ng-click="changeBodyPart(d)">
+                            <span ng-class="d" ng-if="partsSelected.includes(d)" style="width:9px;height:9px;color:red;border-radius: 9px;">
                             </span>
                         </div>
                     </div>
@@ -560,7 +578,7 @@
 
         </div>
     </div>
-    <div id="myModal6" class="modal fade" role="dialog">
+    <div id="myModal6" class="modal fade" role="dialog" ng-init="clearUser()">
         <div class="modal-dialog">
 
             <!-- Modal content-->
@@ -678,7 +696,7 @@
 
         </div>
     </div>
-    <div id="myModal8" class="modal fade" role="dialog">
+    <div id="myModal8" class="modal fade" role="dialog" ng-init="clearUser()">
         <div class="modal-dialog">
 
             <!-- Modal content-->
