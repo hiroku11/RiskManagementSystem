@@ -60,6 +60,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         distinguishingFeatureDetail: null,
         distinguishingFeature: null
     }
+     $scope.suspects=[];
     $scope.witness = {
         addresses: [],
         distinguishingFeatureDetail: null,
@@ -115,6 +116,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         ]
     }
+   
     $scope.accidentDetails = {
         "incidentId": $scope.incident.incidentId,
         "uniqueIncidentId": $scope.incident.uniqueIncidentId,
@@ -126,6 +128,23 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         existingWitnesses: [],
         employeeWitnesses: []
     }
+    //Click event
+        $scope.changeBodyPart = function(args) {
+        if ($scope.partsSelected != 0) {
+            $scope.partsSelected.map(function(val, index) {
+                if (val == args) {
+                    $scope.partsSelected.splice(index, 1);
+                } else {
+                    $scope.partsSelected.push(args);
+                }
+            })
+        } else {
+            $scope.partsSelected.push(args);
+        }
+
+
+    }
+
     $scope.injuredPerson = {
         addresses: [],
         distinguishingFeatureDetail: null,
@@ -263,6 +282,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.addSuspect = function() {
         $scope.incidentDetails.newSuspects.push($scope.suspect);
+        $scope.suspects.push($scope.suspect);
         //reinitialize the suspect so that new can be added
         $scope.suspect = {
 
@@ -272,16 +292,27 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }]
         }
 
+     
     }
     
     $scope.addEmployeeSuspect = function(person) {
         if (person.selected) {
             $scope.incidentDetails.employeeSuspects.push({ 'id': person.id });
+             $scope.suspects.push(person);
+
         } else {
             $scope.incidentDetails.employeeSuspects.map(function(val, index) {
                 // push({'id':person.id});
                 if (val.id == person.id) {
                     $scope.incidentDetails.employeeSuspects.splice(index, 1);
+                    
+                }
+            })
+             $scope.suspects.map(function(val, index) {
+           
+                if (val.id == person.id) {
+                    $scope.suspects.splice(index, 1);
+                    
                 }
             })
         }
@@ -290,11 +321,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.addExistingSuspect = function(person) {
         if (person.selected) {
             $scope.incidentDetails.existingSuspects.push({ 'id': person.id });
+                $scope.suspects.push(person);
         } else {
             $scope.incidentDetails.existingSuspects.map(function(val, index) {
                 // push({'id':person.id});
                 if (val.id == person.id) {
                     $scope.incidentDetails.existingSuspects.splice(index, 1);
+                }
+            })
+                $scope.suspects.map(function(val, index) {
+           
+                if (val.id == person.id) {
+                    $scope.suspects.splice(index, 1);
+                    
                 }
             })
         }

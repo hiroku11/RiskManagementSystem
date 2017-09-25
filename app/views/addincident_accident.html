@@ -505,8 +505,10 @@
                         </div>
                     </div>
                     <div id="man">
-                        <div ng-repeat="d in bodyPartsArray">
-                            <span ng-class="d" ng-if="partsSelected.includes(d)">
+                           <div ng-repeat="d in bodyPartsArray" ng-class="d" ng-click="changeBodyPart(d)">
+                            <span ng-class="d" ng-if="partsSelected.includes(d)" style="width:9px;height:9px;color:red;border-radius: 9px;">
+
+
                             </span>
                         </div>
                     </div>
