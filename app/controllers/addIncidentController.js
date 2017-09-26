@@ -60,6 +60,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         distinguishingFeatureDetail: null,
         distinguishingFeature: null
     }
+
     $scope.suspects = [];
     $scope.witness = {
         addresses: [],
@@ -116,7 +117,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         ]
     }
-
+  
     $scope.accidentDetails = {
             "incidentId": $scope.incident.incidentId,
             "uniqueIncidentId": $scope.incident.uniqueIncidentId,
@@ -156,6 +157,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.accidentDetails.newInjuredPersons.bodyParts = $scope.partsSelected;
     }
+
 
     $scope.injuredPerson = {
         addresses: [],
@@ -252,6 +254,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         formatYear: 'yyyy',
         startingDay: 1
     };
+
     $scope.submitForm = function(formName, back) {
         var index = 0;
         $scope.tabs.sort(function(a, b) {
@@ -304,7 +307,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }]
         }
 
-
     }
 
     $scope.addEmployeeSuspect = function(person) {
@@ -334,6 +336,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         if (person.selected) {
             $scope.incidentDetails.existingSuspects.push({ 'id': person.id });
             $scope.suspects.push(person);
+
         } else {
             $scope.incidentDetails.existingSuspects.map(function(val, index) {
                 // push({'id':person.id});
@@ -341,6 +344,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     $scope.incidentDetails.existingSuspects.splice(index, 1);
                 }
             })
+          
             $scope.suspects.map(function(val, index) {
 
                 if (val.id == person.id) {

@@ -189,160 +189,6 @@
         </div>
 
         <div class="row">
-            <div class="col-md-3">
-                <label>Witness</label>
-                <select class="form-control" ng-model="assetDetail.asset.anyWitness">
-                        <option value="Y">Yes</option>
-                        <option value="N">No</option>
-                    </select>
-            </div>
-            <div class="col-md-9">
-                <label>Statement Description</label>
-                <input class="form-control" type="text" ng-model="assetDetail.asset.statementDescription">
-            </div>
-        </div>
-        <div ng-if="assetDetail.asset.anyWitness == 'Y'">
-            <h4 class="form-title">Witness</h4>
-            <div class="row">
-                <div class="col-sm-12 col-md-3">
-                    <label>Title:</label>
-                    <select class="form-control" ng-model="assetWitness.title">
-                        <option value="">--Select--</option>
-                        <option>Mr</option>
-                        <option>Mrs</option>
-                        <option>Ms</option>
-                        <option>Miss</option>
-                        <option>Master</option>
-                </select>
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <label>First Name:</label>
-                    <input class="form-control" placeholder="First Name" type="text" ng-model="assetWitness.firstName">
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <label>Middle Name:</label>
-                    <input class="form-control" placeholder="Middle Name" type="text" ng-model="assetWitness.middleName">
-                </div>
-                <div class="col-sm-12 col-md-3">
-                    <label>Last Name:</label>
-                    <input class="form-control" placeholder="Last Name" type="text" ng-model="assetWitness.lastName">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <label>Address</label>
-                    <input name="" class="form-control" type="text" ng-model="assetWitness.addresses[0].organizationName">
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label>Street</label>
-                    <input name="" class="form-control" type="text" ng-model="assetWitness.addresses[0].streetName">
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <label>City</label>
-                    <input class="form-control" type="text" ng-model="assetWitness.addresses[0].city">
-                </div>
-
-                <div class="col-sm-12 col-md-4">
-                    <label>County</label>
-                    <input class="form-control" type="text" ng-model="assetWitness.addresses[0].county">
-                </div>
-
-                <div class="col-sm-12 col-md-4">
-                    <label>Country</label>
-                    <input class="form-control" type="text" ng-model="assetWitness.addresses[0].country">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6 row">
-                    <div class="col-sm-10">
-                        <label>Postal Code:</label>
-                        <input class="form-control" type="text" ng-model="assetWitness.addresses[0].postcode">
-                        <!-- <input class="form-control small-control" type="text"> -->
-                    </div>
-                    <div class="col-sm-2" style="padding-top:1.7em;">
-                        <a class="btn btn-primary">Lookup</a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <label>Phone</label>
-                    <input class="form-control" type="text" ng-model="assetWitness.phone" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <label>Age</label>
-                    <input type="number" class="form-control" ng-model="assetWitness.age" />
-                </div>
-
-                <div class="col-sm-12 col-md-6">
-                    <label>Gender</label>
-                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="assetWitness.genderType.id" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-12">
-                    <label>Distinguishing Features</label>
-                    <multiselect ng-model="assetWitness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
-                    </multiselect>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <label>Distinguishing Features Details</label>
-                    <multiselect ng-model="assetWitness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
-                    </multiselect>
-                </div>
-                <div class="col-md-4 col-sm-12">
-                    <label>Please Specify If others</label>
-                    <input ng-model="assetWitness.otherDistinguishFeatures" class="form-control" />
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-12 col-md-4">
-                    <a class="btn btn-primary" ng-click="addAssetWitness()">Add Witness</a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal10">Add Existing Witness</a>
-                </div>
-                <div class="col-sm-12 col-md-4">
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal11">Add Employee Witness</a>
-                </div>
-            </div>
-        </div>
-
-        <div id="tblassetWitness" class="table-wrapper inline">
-            <table class="table table-bordered" ng-if='assetDetail.newWitnesses.length > 0'>
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
-                        <th>Statement</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="person in assetDetail.newWitnesses">
-                        <td>{{person.firstName}} {{person.LastName}}</td>
-                        <td>{{person.age}}</td>
-                        <td>{{person.genderType.id}}</td>
-                        <td>{{person.addresses[0].organizationName}}</td>
-                        <td>{{person.addresses[0].city}}</td>
-                        <td>{{person.addresses[0].county}}</td>
-                        <td>{{person.addresses[0].postcode}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-6">
-                <label>Statement</label>
-                <input class="form-control" type="file">
-            </div>
-        </div>
-        <div class="row">
             <div class="col-sm-12">
                 <button class="btn btn-primary">Continue</button>
                 <a class="btn" ng-click="submitForm('assetsForm',true)">Back</a>
@@ -353,10 +199,8 @@
     </form>
 
 </div>
-<div id="myModal10" class="modal fade" role="dialog">
+<!-- <div id="myModal10" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -412,11 +256,9 @@
         </div>
 
     </div>
-</div>
-<div id="myModal11" class="modal fade" role="dialog">
+</div> -->
+<!-- <div id="myModal11" class="modal fade" role="dialog">
     <div class="modal-dialog">
-
-        <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -472,4 +314,4 @@
         </div>
 
     </div>
-</div>
+</div> -->

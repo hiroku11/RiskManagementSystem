@@ -67,6 +67,7 @@
                     </span>
 
                 </p>
+
             </div>
         </div>
 
@@ -158,12 +159,14 @@
                     </span>
                 </div> -->
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                    <span class="input-group-addon" ng-click="calendar.opened=true">
-                            <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
 
-                </p>
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.approvedDate"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+
+                    </p>
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Claim Settled Date</label>
@@ -174,12 +177,14 @@
                     </span>
                 </div> -->
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                    <span class="input-group-addon" ng-click="calendar.opened=true">
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.settledDate"/>
+                        <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+                        </span>
 
-                </p>
+                    </p>
+
             </div>
 
             <div class="col-md-4 col-sm-12">
