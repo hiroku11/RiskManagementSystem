@@ -11,169 +11,171 @@
 
             </div>
         </div>
-        <h3 class="form-title">Suspect</h3>
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <label>Suspect Type</label>
-                <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="suspect.suspectType.id" />
+
+        <div ng-if="logIncidentDetails.accidentDamage == 'Y' || logIncidentDetails.vehicleOrAssetDamage == 'Y' || logIncidentDetails.criminalAttack == 'Y'">
+            <h3 class="form-title">Suspect</h3>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label>Suspect Type</label>
+                    <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="suspect.suspectType.id" />
 
 
+                </div>
+                <div class="col-sm-12 col-md-6" ng-if="suspect.suspectType.id=='OTHER'">
+                    <label>Suspect Type If Other</label>
+                    <input name="" class="form-control" type="text" placeholder="If Suspect Others" ng-model="suspect.suspectType.description">
+                </div>
             </div>
-            <div class="col-sm-12 col-md-6" ng-if="suspect.suspectType.id=='OTHER'">
-                <label>Suspect Type If Other</label>
-                <input name="" class="form-control" type="text" placeholder="If Suspect Others" ng-model="suspect.suspectType.description">
-            </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-3 col-sm-12">
-                <label>Title:</label>
-                <select class="form-control" ng-model="suspect.title">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <label>Title:</label>
+                    <select class="form-control" ng-model="suspect.title">
                                 <option>Mr</option>
                                 <option>Mrs</option>
                                 <option>Ms</option>
                                 <option>Miss</option>
                                 <option>Master</option>
                             </select>
-            </div>
-            <div class="col-md-3 col-sm-12">
-                <label>First Name:</label>
-                <input class="form-control" type="text" ng-model="suspect.firstName">
-            </div>
-            <div class="col-md-3 col-sm-12">
-                <label>Middle Name:</label>
-                <input class="form-control" type="text" ng-model="suspect.middleName">
-            </div>
-            <div class="col-md-3 col-sm-12">
-                <label>Last Name:</label>
-                <input class="form-control" type="text" ng-model="suspect.lastName">
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <label>Address</label>
-                <input name="" class="form-control" type="text" ng-model="suspect.addresses[0].organizationName">
-            </div>
-            <div class="col-sm-12 col-md-4">
-                <label>Building</label>
-                <input name="" class="form-control" type="text" ng-model="suspect.addresses[0].buildingName">
-            </div>
-            <div class="col-sm-12 col-md-4">
-                <label>Street</label>
-                <input name="" class="form-control" type="text" ng-model="suspect.addresses[0].streetName">
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-12 col-md-6">
-                <label>Locality </label>
-                <input class="form-control" type="text" ng-model="suspect.addresses[0].localityName">
-            </div>
-
-            <div class="col-sm-12 col-md-6">
-                <label>	Post Town</label>
-                <input class="form-control" type="text" ng-model="suspect.addresses[0].postTown">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <label>City</label>
-                <input class="form-control" type="text" ng-model="suspect.addresses[0].city">
-            </div>
-
-            <div class="col-sm-12 col-md-4">
-                <label>County</label>
-                <input class="form-control" type="text" ng-model="suspect.addresses[0].county">
-            </div>
-
-            <div class="col-sm-12 col-md-4">
-                <label>Country</label>
-                <input class="form-control" type="text" ng-model="suspect.addresses[0].country">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-6 ">
-                <label>Postal Code</label>
-                <div class="input-group">
-                    <input class="form-control" type="text" ng-model="suspect.addresses[0].postcode">
-                    <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-search"></span>
-                    </span>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <label>First Name:</label>
+                    <input class="form-control" type="text" ng-model="suspect.firstName">
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <label>Middle Name:</label>
+                    <input class="form-control" type="text" ng-model="suspect.middleName">
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <label>Last Name:</label>
+                    <input class="form-control" type="text" ng-model="suspect.lastName">
                 </div>
 
             </div>
-            <div class="col-sm-12 col-md-6">
-                <label>Phone</label>
-                <input class="form-control" type="text" ng-model="suspect.phone">
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <label>Address</label>
+                    <input name="" class="form-control" type="text" ng-model="suspect.addresses[0].organizationName">
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <label>Building</label>
+                    <input name="" class="form-control" type="text" ng-model="suspect.addresses[0].buildingName">
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <label>Street</label>
+                    <input name="" class="form-control" type="text" ng-model="suspect.addresses[0].streetName">
+                </div>
             </div>
-        </div>
-        <div class="row">
 
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label>Locality </label>
+                    <input class="form-control" type="text" ng-model="suspect.addresses[0].localityName">
+                </div>
 
-            <div class="col-sm-12 col-md-6">
-                <label>Age</label>
-                <input class="form-control" type="text" ng-model="suspect.age" />
+                <div class="col-sm-12 col-md-6">
+                    <label>	Post Town</label>
+                    <input class="form-control" type="text" ng-model="suspect.addresses[0].postTown">
+                </div>
             </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <label>City</label>
+                    <input class="form-control" type="text" ng-model="suspect.addresses[0].city">
+                </div>
 
-            <div class="col-sm-12 col-md-6">
-                <div><label>Gender</label></div>
-                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="suspect.genderType.id" />
-                <!--<input name="gender" type="radio"> <span>Male</span>
+                <div class="col-sm-12 col-md-4">
+                    <label>County</label>
+                    <input class="form-control" type="text" ng-model="suspect.addresses[0].county">
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <label>Country</label>
+                    <input class="form-control" type="text" ng-model="suspect.addresses[0].country">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 ">
+                    <label>Postal Code</label>
+                    <div class="input-group">
+                        <input class="form-control" type="text" ng-model="suspect.addresses[0].postcode">
+                        <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-search"></span>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label>Phone</label>
+                    <input class="form-control" type="text" ng-model="suspect.phone">
+                </div>
+            </div>
+            <div class="row">
+
+
+                <div class="col-sm-12 col-md-6">
+                    <label>Age</label>
+                    <input class="form-control" type="text" ng-model="suspect.age" />
+                </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <div><label>Gender</label></div>
+                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="suspect.genderType.id" />
+                    <!--<input name="gender" type="radio"> <span>Male</span>
                 <input name="gender" type="radio"> <span>Female</span>-->
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <label>Distinguishing Features</label>
-                <multiselect ng-model="suspect.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
-                </multiselect>
+            <div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <label>Distinguishing Features</label>
+                    <multiselect ng-model="suspect.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
+                    </multiselect>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <label>Distinguishing Features Details</label>
+                    <multiselect ng-model="suspect.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
+                    </multiselect>
+                </div>
+                <div class="col-md-4 col-sm-12" ng-disabled="suspect.distinguishingFeatureDetail != 'OTHER'">
+                    <label>Please Specify If others</label>
+                    <input ng-model="suspect.otherDistinguishFeatures" class="form-control" />
+                </div>
             </div>
-            <div class="col-md-4 col-sm-12">
-                <label>Distinguishing Features Details</label>
-                <multiselect ng-model="suspect.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
-                </multiselect>
-            </div>
-            <div class="col-md-4 col-sm-12" ng-disabled="suspect.distinguishingFeatureDetail != 'OTHER'">
-                <label>Please Specify If others</label>
-                <input ng-model="suspect.otherDistinguishFeatures" class="form-control" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <label>Was a weapon involved?</label>
-                <select class="form-control" ng-model="suspect.weaponInvolved">
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <label>Was a weapon involved?</label>
+                    <select class="form-control" ng-model="suspect.weaponInvolved">
     
                                         <option value="">Select</option>
                                         <option value="Y">Yes</option>
                                         <option value="N">No</option>
                                     </select>
-            </div>
-            <div class="col-sm-12 col-md-4" ng-if="suspect.weaponInvolved == 'Y'">
-                <label>Weapon Involved</label>
-                <select class="form-control" ng-options="weaponType.id as weaponType.description for weaponType in weaponType" ng-model="suspect.weaponType.id" ng-disabled="!suspect.weaponInvolved" />
+                </div>
+                <div class="col-sm-12 col-md-4" ng-if="suspect.weaponInvolved == 'Y'">
+                    <label>Weapon Involved</label>
+                    <select class="form-control" ng-options="weaponType.id as weaponType.description for weaponType in weaponType" ng-model="suspect.weaponType.id" ng-disabled="!suspect.weaponInvolved" />
 
 
-            </div>
-            <div class="col-sm-12 col-md-4" ng-if="suspect.weaponType.id=='OTHER'">
-                <label>Specify If others</label>
-                <input class="form-control" name="" type="text" ng-model="suspect.weaponType.description">
+                </div>
+                <div class="col-sm-12 col-md-4" ng-if="suspect.weaponType.id=='OTHER'">
+                    <label>Specify If others</label>
+                    <input class="form-control" name="" type="text" ng-model="suspect.weaponType.description">
 
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" ng-click="addSuspect()">Add Suspect</a>
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <a class="btn btn-primary" ng-click="addSuspect()">Add Suspect</a>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Existing Suspect</a>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Add Suspect Employee</a>
+                </div>
             </div>
-            <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Existing Suspect</a>
-            </div>
-            <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Add Employee Suspect</a>
-            </div>
-        </div>
-        <!-- <div class="row">
+            <!-- <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Existing Suspect</label>
                 <input class="form-control" placeholder="Type user name" ng-model="existing" ng-change="suspectLookup(existing)" ng-model-options="{debounce:1000}"
@@ -185,31 +187,33 @@
                     uib-typeahead="userIn.fullName as userIn.fullName for userIn in userInfo" />
             </div>
         </div> -->
-        <div class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Age</th>
-                        <th>Gender</th>
-                        <th>Address</th>
-                        <th>City</th>
-                        <th>County</th>
-                        <th>Postcode</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="suspect in incidentDetails.newSuspects">
-                        <td>{{suspect.firstName}} {{suspect.LastName}}</td>
-                        <td>{{suspect.age}}</td>
-                        <td>{{suspect.genderType.id}}</td>
-                        <td>{{suspect.addresses[0].organizationName}}</td>
-                        <td>{{suspect.addresses[0].city}}</td>
-                        <td>{{suspect.addresses[0].county}}</td>
-                        <td>{{suspect.addresses[0].postcode}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>County</th>
+                            <th>Postcode</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="suspect in incidentDetails.newSuspects">
+                            <td>{{suspect.firstName}} {{suspect.LastName}}</td>
+                            <td>{{suspect.age}}</td>
+                            <td>{{suspect.genderType.id}}</td>
+                            <td>{{suspect.addresses[0].organizationName}}</td>
+                            <td>{{suspect.addresses[0].city}}</td>
+                            <td>{{suspect.addresses[0].county}}</td>
+                            <td>{{suspect.addresses[0].postcode}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
         <div class="row">
@@ -256,6 +260,7 @@
                     </span>
                 </div> -->
                 <p class="input-group">
+
                         <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
                         <span class="input-group-addon" ng-click="calendar.opened=true">
@@ -282,6 +287,7 @@
                     </span>
                 </div> -->
                 <p class="input-group">
+
                         <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
                         <span class="input-group-addon" ng-click="calendar.opened=true">
@@ -306,6 +312,7 @@
                     </span>
                 </div> -->
                 <p class="input-group">
+
                         <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
                         <span class="input-group-addon" ng-click="calendar.opened=true">
@@ -330,6 +337,7 @@
                     </span>
                 </div> -->
                 <p class="input-group">
+
                         <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
                         <span class="input-group-addon" ng-click="calendar.opened=true">
@@ -362,7 +370,8 @@
             </div>
 
         </div>
-           <div class="table-wrapper inline" ng-if="incidentDetails.reportedLosses.length > 0">
+        <div class="table-wrapper inline" ng-if="incidentDetails.reportedLosses.length > 0">
+
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -370,23 +379,19 @@
                         <th>Loss Value</th>
                         <th>Time Police Called</th>
                         <th>Time Fire Station Called</th>
-                        <th>City</th>
-                        <th>County</th>
-                        <th>Postcode</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr ng-repeat="loss in incidentDetails.reportedLosses">
-                        <td>{{loss.lossType}}</td>
+
+                        <td>{{loss.lossType.id}}</td>
                         <td>{{loss.lossValue}}</td>
                         <td>{{loss.timeHrsContacted}}</td>
                         <td>{{loss.timeHrsContacted}}</td>
-                    
                     </tr>
                 </tbody>
             </table>
         </div>
-
 
         <div class="row">
             <div class="col-sm-12">

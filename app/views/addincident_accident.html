@@ -13,13 +13,14 @@
                     </span>
                 </div> -->
                 <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="accidentDetails.accident.accidentDate" is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="accidentDetails.accident.accidentDate" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                    />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    </span>
 
-                    </p>
+                </p>
+
             </div>
 
             <div class="col-md-4 col-sm-12">
@@ -207,6 +208,7 @@
                 <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="injuredPerson.genderType.id" />
             </div>
         </div>
+
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Distinguishing Features</label>
@@ -224,14 +226,14 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-2 col-sm-12">
                 <label>Any first aid given</label>
                 <select class="form-control" ng-model="injuredPerson.firstAidGiven">
 					<option value="Y">Yes</option>
 					<option value="N">No</option>
 				</select>
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-2 col-sm-12">
                 <label>Witness</label>
                 <select class="form-control" ng-model="accidentDetails.anyWitness">
                     <option value=""--Select--></option>
@@ -239,9 +241,15 @@
                                 <option value="N">No</option>
                             </select>
             </div>
-            <div class="col-md-4 col-sm-12">
 
-                <a class="btn btn-primary" ng-click="openBodyPartModal()">Add Injured Body Parts</a>
+            <div class="col-md-4 col-sm-12">
+                <label>Selected Body Parts</label>
+
+                <input class="form-control" type="text" ng-model="accidentDetails.newInjuredPersons.bodyParts" readonly/>
+            </div>
+            <div class="col-md-2 col-sm-12">
+
+                <a class="btn btn-primary" ng-click="openBodyPartModal()" style="margin-top:1.5em">Add Injured Body Parts</a>
             </div>
         </div>
 
@@ -257,7 +265,7 @@
             <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" data-toggle="modal" data-target="#myModal6">Add Employee Injured Person</a>
             </div>
-        </div> 
+        </div>
 
 
 
@@ -468,15 +476,14 @@
                         </div>
                     </div>
                     <div id="man">
-                           <div ng-repeat="d in bodyPartsArray" ng-class="d" ng-click="changeBodyPart(d)">
-                            <span ng-class="d" ng-if="partsSelected.includes(d)" style="width:9px;height:9px;color:red;border-radius: 9px;">
-
+                        <div ng-repeat="d in bodyPartsArray" ng-class="d" ng-click="changeBodyPart(d)">
+                            <span ng-class="d" ng-if="partsSelected.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
 
                             </span>
                         </div>
                     </div>
                 </div>
-                <div class=" modal-footer ">
+                <div class="modal-footer ">
                     <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
                 </div>
             </div>

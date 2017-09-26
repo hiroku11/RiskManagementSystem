@@ -195,6 +195,7 @@
         return param.value != "" && param.value != undefined;
     }
     $scope.goToPage = function(pageNo) {
+
         if(pageNo < 1 || pageNo > Math.ceil($scope.data.length/$scope.entryCount)) return;
         $scope.currentPage=pageNo;
     }

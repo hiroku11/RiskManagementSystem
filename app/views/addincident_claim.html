@@ -1,4 +1,4 @@
-<div class="form-content" ng-show="tab==6">
+<div class="form-content" ng-if="tab == 6">
     <h2>Claim Details</h2>
     <form ng-submit="submitForm('claimForm')">
         <div class="row">
@@ -61,13 +61,13 @@
                     </span>
                 </div> -->
                 <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened" ng-model="claim.requestedDate"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    </span>
 
-                    </p>
+                </p>
+
             </div>
         </div>
 
@@ -159,6 +159,7 @@
                     </span>
                 </div> -->
                 <p class="input-group">
+
                         <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.approvedDate"/>
                         <span class="input-group-addon" ng-click="calendar.opened=true">
@@ -183,6 +184,7 @@
                         </span>
 
                     </p>
+
             </div>
 
             <div class="col-md-4 col-sm-12">
