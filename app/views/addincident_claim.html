@@ -61,7 +61,7 @@
                     </span>
                 </div> -->
                 <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
+                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened" ng-model="claim.requestedDate"
                             datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
                         <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -160,7 +160,7 @@
                 </div> -->
                 <p class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.approvedDate"/>
                         <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -177,7 +177,7 @@
                 </div> -->
                 <p class="input-group">
                         <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy"  is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.settledDate"/>
                         <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
