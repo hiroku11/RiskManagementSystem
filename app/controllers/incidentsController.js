@@ -10,7 +10,18 @@
     $scope.logOutUser = rmsService.logOutUser;
 
     $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
-    //Change Date picker format
+
+    $scope.sortBy="uniqueIncidentId";
+    $scope.reverse=false;
+ 
+    $scope.changeSortBy=function(sortBy){
+        if($scope.sortBy==sortBy){
+            $scope.reverse=!$scope.reverse;
+        }else{
+            $scope.sortBy=sortBy;
+            $scope.reverse=false;
+        }
+    }
 
     $scope.getData = function(params) {
         // var filter = JSON.parse(params)
@@ -185,10 +196,11 @@
     }
     $scope.goToPage = function(pageNo) {
         debugger
-        if(pageNo < 1 || pageNo > $scope.data.length/$scope.entryCount) return;
+        if(pageNo < 1 || pageNo > Math.ceil($scope.data.length/$scope.entryCount)) return;
         $scope.currentPage=pageNo;
 
     }
+
     $scope.getIncidentType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
