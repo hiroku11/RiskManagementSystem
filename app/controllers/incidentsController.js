@@ -8,7 +8,7 @@
     $scope.currentPage=1;
     $scope.entryCount=10;
     $scope.logOutUser = rmsService.logOutUser;
-
+    $scope.Math = window.Math;
     $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
 
     $scope.sortBy="uniqueIncidentId";
@@ -195,10 +195,9 @@
         return param.value != "" && param.value != undefined;
     }
     $scope.goToPage = function(pageNo) {
-        debugger
+
         if(pageNo < 1 || pageNo > Math.ceil($scope.data.length/$scope.entryCount)) return;
         $scope.currentPage=pageNo;
-
     }
 
     $scope.getIncidentType = function() {
@@ -207,7 +206,6 @@
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
-
             },
         }
         AppService.ShowLoader();
