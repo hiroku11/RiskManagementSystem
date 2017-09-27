@@ -10,7 +10,7 @@
             </div>
             <div class="col-sm-12 col-md-6" ng-if="assetDetail.asset.assetCategory.id == 'OTHER'">
                 <label>If Category Other</label>
-                <input class="form-control" type="text" ng-model="assetDetail.asset.otherDescription">
+                <input class="form-control" ng-disabled="assetDetail.asset.assetCategory.id != 'OTHER'" type="text"  ng-model="assetDetail.asset.otherDescription">
             </div>
         </div>
 
