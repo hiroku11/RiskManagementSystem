@@ -117,7 +117,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         ]
     }
-  
+
     $scope.accidentDetails = {
             "incidentId": $scope.incident.incidentId,
             "uniqueIncidentId": $scope.incident.uniqueIncidentId,
@@ -132,6 +132,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //Click event
     $scope.changeBodyPart = function(args) {
         var flag = false;
+        $scope.partsSelected = $scope.$parent.injuredPerson.bodyParts;
         if ($scope.partsSelected.length != 0) {
             for (var i = 0; i < $scope.partsSelected.length; i++) {
                 if ($scope.partsSelected[i] == args) {
@@ -155,7 +156,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.partsSelected.push(args);
         }
 
-        $scope.accidentDetails.newInjuredPersons.bodyParts = $scope.partsSelected;
+        // $scope.accidentDetails.newInjuredPersons.bodyParts = $scope.partsSelected;
     }
 
 

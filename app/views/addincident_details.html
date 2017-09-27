@@ -187,7 +187,7 @@
                     uib-typeahead="userIn.fullName as userIn.fullName for userIn in userInfo" />
             </div>
         </div> -->
-            <div class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
+            <div class="table-wrapper inline" ng-if="suspects.length > 0">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -201,7 +201,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="suspect in incidentDetails.newSuspects">
+
+                        <tr ng-repeat="suspect in suspects">
                             <td>{{suspect.firstName}} {{suspect.LastName}}</td>
                             <td>{{suspect.age}}</td>
                             <td>{{suspect.genderType.id}}</td>
