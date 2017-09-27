@@ -24,6 +24,10 @@
             }
             //decrypt the authorization token.
             var token = localStorage.getItem("rmsAuthToken");
+            if(!token){
+                $location.path("/login");
+                return;
+            }
             var base64Url = token.split('.')[0];
             var decryptedUserDetails = JSON.parse(window.atob(base64Url));
             if (decryptedUserDetails) {

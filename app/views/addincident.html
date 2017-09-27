@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-10 content">
         <ul class="nav nav-tabs">
-            <li ng-class="{active:tab.active,disabled:!tab.active}" ng-repeat="tab in tabs | orderBy : 'tab'"><a>{{tab.description}}</a></li>
+            <li ng-class="{active:tab.active,disabled:!tab.active}" ng-repeat="tab in tabs | orderBy : 'tab'"><a>{{tab.description}} <span ng-if="tab.completed" class="glyphicon glyphicon-ok"></span></a></li>
             <!-- <li  ng-click="changeTab()"><a>Incident Details</a></li>
 
             <li ng-class="{active:tab=='3'}" ng-click="changeTab()" ><a>Accident</a></li>

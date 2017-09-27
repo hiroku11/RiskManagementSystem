@@ -258,6 +258,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.submitForm = function(formName, back) {
         var index = 0;
+        $scope.tabs[$scope.tab - 1].completed=true;
         $scope.tabs.sort(function(a, b) {
             return a.tab - b.tab;
         })
