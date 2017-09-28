@@ -29,7 +29,7 @@
                 <input class="form-control small-control" type="text" placeholder="HH" ng-model="accidentDetails.accident.accidentTimeHrs">:
                 <input class="form-control  small-control" type="text" placeholder="MM" ng-model="accidentDetails.accident.accidentTimeMin">
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12" ng-init="accidentDetails.accident.accidentPlace= logIncidentDetails.placeOfIncident">
                 <div><label>Place of Incident:</label></div>
                 <input class="form-control" type="text" ng-model="accidentDetails.accident.accidentPlace" />
             </div>
