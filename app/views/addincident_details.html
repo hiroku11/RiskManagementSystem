@@ -21,9 +21,9 @@
 
 
                 </div>
-                <div class="col-sm-12 col-md-6" ng-if="suspect.suspectType.id=='OTHER'">
+                <div class="col-sm-12 col-md-6">
                     <label>Suspect Type If Other</label>
-                    <input name="" class="form-control" type="text" placeholder="If Suspect Others" ng-model="suspect.suspectType.description">
+                    <input name="" class="form-control" ng-disabled="suspect.suspectType.id !='OTHER'" type="text" placeholder="If Suspect Others" ng-model="suspect.suspectTypeOther">
                 </div>
             </div>
 
@@ -113,16 +113,20 @@
             <div class="row">
 
 
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                     <label>Age</label>
                     <input class="form-control" type="text" ng-model="suspect.age" />
                 </div>
 
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                     <div><label>Gender</label></div>
                     <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="suspect.genderType.id" />
                     <!--<input name="gender" type="radio"> <span>Male</span>
                 <input name="gender" type="radio"> <span>Female</span>-->
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <label>Gender Other</label>
+                    <input class="form-control" type="text" ng-model="suspect.age" ng-disabled="suspect.genderType.id !='OTHER'" ng-model="suspect.genderTypeOther" />
                 </div>
             </div>
 
@@ -158,9 +162,9 @@
 
 
                 </div>
-                <div class="col-sm-12 col-md-4" ng-if="suspect.weaponType.id=='OTHER'">
+                <div class="col-sm-12 col-md-4">
                     <label>Specify If others</label>
-                    <input class="form-control" name="" type="text" ng-model="suspect.weaponType.description">
+                    <input class="form-control" ng-disabled="suspect.weaponType.id !='OTHER'" name="" type="text" ng-model="suspect.weaponTypeOther">
 
                 </div>
             </div>
@@ -187,7 +191,7 @@
                     uib-typeahead="userIn.fullName as userIn.fullName for userIn in userInfo" />
             </div>
         </div> -->
-            <div class="table-wrapper inline" ng-if="incidentDetails.newSuspects.length > 0">
+            <div class="table-wrapper inline" ng-if="suspects.length > 0">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -201,7 +205,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="suspect in incidentDetails.newSuspects">
+
+                        <tr ng-repeat="suspect in suspects">
                             <td>{{suspect.firstName}} {{suspect.LastName}}</td>
                             <td>{{suspect.age}}</td>
                             <td>{{suspect.genderType.id}}</td>
@@ -223,13 +228,19 @@
                         <option value="" selected>---Select---</option>
                         </select>
             </div>
-            <div class="col-sm-12 col-md-4" ng-if="loss.lossType.id=='OTHER'">
+            <div class="col-sm-12 col-md-4">
                 <label>Reported Loss If Others</label>
-                <input class="form-control" type="text" ng-model="loss.lossType.description">
+                <input class="form-control" ng-disabled="loss.lossType.id !='OTHER'" type="text" ng-model="loss.lossTypeOther">
             </div>
             <div class="col-sm-12 col-md-4">
+
                 <label>Reported Loss Value</label>
-                <input class="form-control" placeholder="£ 000.00" type="text" ng-model="loss.lossValue">
+                <p class="input-group">
+                    <span class="input-group-addon">
+                            <span class="fa fa-gbp"></span>
+                    </span>
+                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue">
+                </p>
             </div>
 
         </div>
@@ -261,14 +272,13 @@
                 </div> -->
                 <p class="input-group">
 
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    </span>
 
-                    </p>
-                
+                </p>
+
             </div>
             <div class="col-sm-12 col-md-6">
                 <div> <label>Time Police Called</label></div>
@@ -288,13 +298,12 @@
                 </div> -->
                 <p class="input-group">
 
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    </span>
 
-                    </p>
+                </p>
             </div>
             <div class="col-sm-12 col-md-6 time">
                 <div><label>Time Ambulance Called</label></div>
@@ -313,13 +322,12 @@
                 </div> -->
                 <p class="input-group">
 
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    </span>
 
-                    </p>
+                </p>
             </div>
             <div class="col-sm-12 col-md-6 time">
                 <div><label>Time Fire Station Called</label></div>
@@ -338,13 +346,12 @@
                 </div> -->
                 <p class="input-group">
 
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    </span>
 
-                    </p>
+                </p>
             </div>
             <div class="col-sm-12 col-md-6 time">
                 <div><label>Time Other Agency Called</label></div>
@@ -360,7 +367,13 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Damage Cost Estimation</label>
-                <input class="form-control" placeholder="£ 000.00" type="text" ng-model="loss.costEstimation">
+                <p class="input-group">
+                    <span class="input-group-addon">
+                            <span class="fa fa-gbp"></span>
+                    </span>
+                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.costEstimation">
+                </p>
+
             </div>
 
         </div>
@@ -396,7 +409,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <button type="submit" class="btn btn-primary">Continue</button>
-                <button type="button" class="btn" ng-click="submitForm('incidentDetailsForm',true)">Back</button>
+                <!-- <button type="button" class="btn" ng-click="submitForm('incidentDetailsForm',true)">Back</button> -->
             </div>
         </div>
 

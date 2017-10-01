@@ -67,6 +67,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         distinguishingFeatureDetail: null,
         distinguishingFeature: null
     }
+    $scope.witnesses = [];
     $scope.assetWitness = {
         addresses: [],
         distinguishingFeatureDetail: null,
@@ -117,21 +118,23 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         ]
     }
-  
+
     $scope.accidentDetails = {
-            "incidentId": $scope.incident.incidentId,
-            "uniqueIncidentId": $scope.incident.uniqueIncidentId,
-            accident: {},
-            newInjuredPersons: [],
-            existingInjuredPersons: [],
-            employeeInjuredPersons: [],
-            newWitnesses: [],
-            existingWitnesses: [],
-            employeeWitnesses: []
-        }
-        //Click event
+        "incidentId": $scope.incident.incidentId,
+        "uniqueIncidentId": $scope.incident.uniqueIncidentId,
+        accident: {},
+        newInjuredPersons: [],
+        existingInjuredPersons: [],
+        employeeInjuredPersons: [],
+        newWitnesses: [],
+        existingWitnesses: [],
+        employeeWitnesses: []
+    }
+    $scope.injuredPersons = [];
+    //Click event
     $scope.changeBodyPart = function(args) {
         var flag = false;
+        $scope.partsSelected = $scope.$parent.injuredPerson.bodyParts;
         if ($scope.partsSelected.length != 0) {
             for (var i = 0; i < $scope.partsSelected.length; i++) {
                 if ($scope.partsSelected[i] == args) {
@@ -155,7 +158,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.partsSelected.push(args);
         }
 
-        $scope.accidentDetails.newInjuredPersons.bodyParts = $scope.partsSelected;
+        // $scope.accidentDetails.newInjuredPersons.bodyParts = $scope.partsSelected;
     }
 
 
@@ -257,6 +260,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.submitForm = function(formName, back) {
         var index = 0;
+        $scope.tabs[$scope.tab - 1].completed = true;
         $scope.tabs.sort(function(a, b) {
             return a.tab - b.tab;
         })
@@ -344,7 +348,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     $scope.incidentDetails.existingSuspects.splice(index, 1);
                 }
             })
-          
+
             $scope.suspects.map(function(val, index) {
 
                 if (val.id == person.id) {
@@ -1228,15 +1232,24 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.injuredPerson = {
             addresses: []
         }
+        $scope.injuredPersons.push($scope.injuredPerson);
     }
     $scope.addEmployeeInjured = function(person) {
         if (person.selected) {
             $scope.accidentDetails.employeeInjuredPersons.push({ 'id': person.id });
+            $scope.injuredPersons.push(person);
         } else {
             $scope.accidentDetails.employeeInjuredPersons.map(function(val, index) {
                 // push({'id':person.id});
                 if (val.id == person.id) {
                     $scope.accidentDetails.employeeInjuredPersons.splice(index, 1);
+                }
+            })
+            $scope.injuredPersons.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.injuredPersons.splice(index, 1);
+
                 }
             })
         }
@@ -1245,11 +1258,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.addExistingInjured = function(person) {
         if (person.selected) {
             $scope.accidentDetails.existingInjuredPersons.push({ 'id': person.id });
+            $scope.injuredPersons.push(person);
         } else {
             $scope.accidentDetails.existingInjuredPersons.map(function(val, index) {
                 // push({'id':person.id});
                 if (val.id == person.id) {
                     $scope.accidentDetails.existingInjuredPersons.splice(index, 1);
+                }
+            })
+            $scope.injuredPersons.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.injuredPersons.splice(index, 1);
+
                 }
             })
         }
@@ -1261,6 +1282,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.witness = {
             addresses: []
         }
+        $scope.witnesses.push($scope.witness);
     }
 
     $scope.addCrimeWitness = function() {
@@ -1285,11 +1307,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.addEmployeeWitness = function(person) {
         if (person.selected) {
             $scope.accidentDetails.employeeWitnesses.push({ 'id': person.id });
+            $scope.witnesses.push(person);
         } else {
             $scope.accidentDetails.employeeWitnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.accidentDetails.employeeWitnesses.splice(index, 1);
+                }
+            })
+            $scope.witnesses.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.injuredPersons.splice(index, 1);
+
                 }
             })
         }
@@ -1298,11 +1328,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.addExistingWitness = function(person) {
         if (person.selected) {
             $scope.accidentDetails.existingWitnesses.push({ 'id': person.id });
+            $scope.witnesses.push(person);
         } else {
             $scope.accidentDetails.existingWitnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.accidentDetails.existingWitnesses.splice(index, 1);
+                }
+            })
+            $scope.witnesses.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.injuredPersons.splice(index, 1);
+
                 }
             })
         }

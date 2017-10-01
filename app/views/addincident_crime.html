@@ -5,16 +5,15 @@
         <div class="row">
             <div class="col-sm-12 col-md-3">
                 <label>Crime Date</label>
-             <!-- <input class="form-control" type="text" data-provide="datepicker"
+                <!-- <input class="form-control" type="text" data-provide="datepicker"
                  data-date-format="dd/mm/yyyy" ng-model="crimeDetails.crime.date"> -->
-                 <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    </span>
 
-                    </p>
+                </p>
             </div>
             <div class="col-sm-12 col-md-3">
                 <div> <label>Time Police Called</label></div>
@@ -122,16 +121,20 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-4">
                 <label>Age</label>
                 <input type="number" class="form-control" />
             </div>
 
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-4">
                 <div><label>Gender</label></div>
                 <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="crimeSuspect.genderType.id" />
                 <!--<input name="gender" type="radio"> <span>Male</span>
  <input name="gender" type="radio"> <span>Female</span>-->
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label>Gender Other</label>
+                <input type="text" class="form-control" ng-disabled="crimeSuspect.genderType.id != 'OTHER'" ng-model="crimeSuspect.genderTypeOther" />
             </div>
         </div>
         <div class="row">
@@ -277,14 +280,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                     <label>Age</label>
                     <input type="number" class="form-control" ng-model="crimeWitness.age" />
                 </div>
 
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                     <div><label>Gender</label></div>
                     <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="crimeWitness.genderType.id" />
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <label>Gender others</label>
+                    <input type="text" class="form-control" ng-model="crimeWitness.genderTypeOther" ng-disabled="crimeWitness.genderType.id != 'OTHER'" />
                 </div>
             </div>
             <div class="row">
@@ -355,8 +362,8 @@
         <div class="row">
             <div class="col-sm-12">
                 <button class="btn btn-primary" type="submit">Continue</button>
-                <a class="btn" ng-click="submitForm('crimeForm',true)">Back</a>
-                <a class="btn" ng-click="changeTab(5)">Skip</a>
+                <!-- <a class="btn" ng-click="submitForm('crimeForm',true)">Back</a>
+                <a class="btn" ng-click="changeTab(5)">Skip</a> -->
             </div>
 
         </div>
@@ -602,5 +609,5 @@
         </div>
 
     </div>
-              
+
 </div>

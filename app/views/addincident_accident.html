@@ -28,26 +28,30 @@
                 <input class="form-control small-control" type="text" placeholder="HH" ng-model="accidentDetails.accident.accidentTimeHrs">:
                 <input class="form-control  small-control" type="text" placeholder="MM" ng-model="accidentDetails.accident.accidentTimeMin">
             </div>
-            <div class="col-md-4 col-sm-12">
+            <div class="col-md-4 col-sm-12" ng-init="accidentDetails.accident.accidentPlace= logIncidentDetails.placeOfIncident">
                 <div><label>Place of Incident:</label></div>
                 <input class="form-control" type="text" ng-model="accidentDetails.accident.accidentPlace" />
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Accident Location:</label>
                 <select class="form-control" ng-model="accidentDetails.accident.accidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
                     <option value=''>Select</option>
                 </select>
 
             </div>
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-4 col-sm-12">
                 <label>Accident Location Details:</label>
-
                 <select ng-model="accidentDetails.accident.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accident.accidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accident.accidentLocation.id})[0].incidentLocationDetails) ">
                 <option value=''>Select</option>
                 </select>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Accident Location Others:</label>
+                <input class="form-control" type="text" ng-disabled="accidentLocationDetails.accident.accidentLocation.id !='OTHER'" ng-model="accidentLocationDetails.accident.accidentLocationOther" />
+
             </div>
         </div>
         <div class="row">
@@ -59,11 +63,11 @@
                     </select>
             </div>
             <div class="col-sm-12 col-md-6">
-                    <label>Accident Description:</label>
-                    <textarea class="form-control" ng-model="accidentDetails.accident.accidentDescription"></textarea>
-                </div>
+                <label>Accident Description:</label>
+                <textarea class="form-control" ng-model="accidentDetails.accident.accidentDescription"></textarea>
+            </div>
         </div>
- 
+
 
         <h4 class="form-title">Injured Person</h4>
         <div class="row">
@@ -76,25 +80,28 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>If Injured Person Type Other:</label>
-                <input name="" class="form-control" type="text" ng-model="injuredPerson.personType.description">
+                <input name="" class="form-control" type="text" ng-disabled="injuredPerson.personType.id != 'OTHER'" ng-model="injuredPerson.injuredPersonTypeOther">
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-3">
                 <label>Type of injury</label>
                 <select ng-model="injuredPerson.injuryType.id" class="form-control" ng-options="injuryType.id as injuryType.description for injuryType in injuryTypes">
 					<option value="">--Select--</option>
 				</select>
             </div>
-
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-3">
+                <label>If Injury Type Other:</label>
+                <input class="form-control" type="text" ng-disabled="injuredPerson.injuryType.id !='OTHER'" ng-model="injuredPerson.injuryTypeOther">
+            </div>
+            <div class="col-sm-12 col-md-3">
                 <label>Injury Type Detail</label>
                 <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetail.id" ng-disabled="!injuredPerson.injuryType.id" ng-options="injuryTypeDetail.id as injuryTypeDetail.description for injuryTypeDetail in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails) ">
                     <option value=''>Select</option>
                     </select>
             </div>
 
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-3">
                 <label>Injury Type Detail</label>
                 <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetailsSpec.id" ng-disabled="!injuredPerson.injuryTypeDetail.id" ng-options="injuryTypeDetailsSpec.id as injuryTypeDetailsSpec.description for injuryTypeDetailsSpec in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails.injuryTypeDetailSpecs) ">
                     <option value=''>--Select--</option>
@@ -104,13 +111,17 @@
         </div>
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-12 col-md-6">
                 <label>Cause of Injury</label>
                 <select class="form-control" ng-options="cause.id as cause.description for cause in injuryCauses" ng-model="injuredPerson.injuryCause.id">
                         <option value="">--Select--</option>
                     
                     </select>
 
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <label>Cause of Injury Other</label>
+                <input class="form-control" type="text" ng-disabled="injuredPerson.injuryCause.id !='OTHER'" ng-model="injuredPerson.injuryCauseOther" />
             </div>
 
         </div>
@@ -199,13 +210,17 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-6">
+            <div class="col-sm-12 col-md-4">
                 <label>Age</label>
                 <input type="number" class="form-control" ng-model="injuredPerson.age">
             </div>
-            <div class="com-sm-12 col-md-6">
+            <div class="com-sm-12 col-md-4">
                 <label>Gender:</label>
                 <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="injuredPerson.genderType.id" />
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <label>Gender Other</label>
+                <input type="number" ng-disabled="injuredPerson.genderType.id != 'OTHER'" class="form-control" ng-model="injuredPerson.genderTypeOther">
             </div>
         </div>
 
@@ -245,7 +260,7 @@
             <div class="col-md-4 col-sm-12">
                 <label>Selected Body Parts</label>
 
-                <input class="form-control" type="text" ng-model="accidentDetails.newInjuredPersons.bodyParts" readonly/>
+                <input class="form-control" type="text" ng-model="injuredPerson.bodyParts" readonly/>
             </div>
             <div class="col-md-2 col-sm-12">
 
@@ -269,7 +284,7 @@
 
 
 
-        <div class="table-wrapper inline" ng-if="accidentDetails.newInjuredPersons.length > 0">
+        <div class="table-wrapper inline" ng-if="accidentDetails.injuredPersons.length > 0">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -280,10 +295,11 @@
                         <th>City</th>
                         <th>County</th>
                         <th>Postcode</th>
+                        <th>Body Parts</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="person in accidentDetails.newInjuredPersons">
+                    <tr ng-repeat="person in accidentDetails.injuredPersons">
                         <td>{{person.firstName}} {{person.LastName}}</td>
                         <td>{{person.age}}</td>
                         <td>{{person.genderType.id}}</td>
@@ -291,6 +307,7 @@
                         <td>{{person.addresses[0].city}}</td>
                         <td>{{person.addresses[0].county}}</td>
                         <td>{{person.addresses[0].postcode}}</td>
+                        <td>{{person.bodyParts}}</td>
                     </tr>
                 </tbody>
             </table>
@@ -421,7 +438,7 @@
                 </div>
             </div>
 
-            <div id="tblWitness" class="table-wrapper inline" ng-if="accidentDetails.newWitnesses.length > 0">
+            <div id="tblWitness" class="table-wrapper inline" ng-if="accidentDetails.witnesses.length > 0">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -432,7 +449,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="witness in accidentDetails.newWitnesses">
+                        <tr ng-repeat="witness in accidentDetails.witnesses">
                             <td>{{witness.firstName}} {{witness.LastName}}</td>
                             <td>{{witness.age}}</td>
                             <td>{{witness.genderType.id}}</td>
@@ -448,7 +465,7 @@
         <div class="row ">
             <div class="col-sm-12">
                 <button type="submit" class="btn btn-primary">Continue</button>
-                <a class="btn" ng-click="submitForm('accidentForm',true)">Back</a>
+                <!-- <a class="btn" ng-click="submitForm('accidentForm',true)">Back</a> -->
                 <!-- <a class="btn" ng-click="changeTab(4)">Skip</a> -->
             </div>
 
@@ -467,7 +484,9 @@
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
                             <label>Part of body injured</label>
-                            <multiselect ng-model="$parent.partsSelected" options="bodyPartsArray">
+                            <!--<multiselect ng-model="$parent.partsSelected" options="bodyPartsArray">
+                            </multiselect>-->
+                            <multiselect ng-model="injuredPerson.bodyParts" options="bodyPartsArray">
                             </multiselect>
                         </div>
                         <div class="col-md-6 col-sm-12">
@@ -477,7 +496,10 @@
                     </div>
                     <div id="man">
                         <div ng-repeat="d in bodyPartsArray" ng-class="d" ng-click="changeBodyPart(d)">
-                            <span ng-class="d" ng-if="partsSelected.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
+                            <!--<span ng-class="d" ng-if="partsSelected.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
+
+                            </span>-->
+                            <span ng-class="d" ng-if="injuredPerson.bodyParts.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
 
                             </span>
                         </div>
