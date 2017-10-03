@@ -5,16 +5,15 @@
         <div class="row">
             <div class="col-sm-12 col-md-3">
                 <label>Crime Date</label>
-             <!-- <input class="form-control" type="text" data-provide="datepicker"
+                <!-- <input class="form-control" type="text" data-provide="datepicker"
                  data-date-format="dd/mm/yyyy" ng-model="crimeDetails.crime.date"> -->
-                 <p class="input-group">
-                        <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
-                        <span class="input-group-addon" ng-click="calendar.opened=true">
+                <p class="input-group">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
-                        </span>
+                    </span>
 
-                    </p>
+                </p>
             </div>
             <div class="col-sm-12 col-md-3">
                 <div> <label>Time Police Called</label></div>
@@ -292,7 +291,8 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <label>Gender others</label>
-                    <input type="text" class="form-control" ng-model="crimeWitness.genderTypeOther" ng-disabled="crimeWitness.genderType.id != 'OTHER'"/>
+                    <input type="text" class="form-control" ng-model="crimeWitness.genderTypeOther" ng-disabled="crimeWitness.genderType.id != 'OTHER'" />
+
                 </div>
             </div>
             <div class="row">
@@ -610,5 +610,5 @@
         </div>
 
     </div>
-              
+
 </div>
