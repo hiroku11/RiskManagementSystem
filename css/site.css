@@ -787,3 +787,8 @@ a i {
     top: 619px;
     position: fixed;
 }
+
+.move-buttons{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
