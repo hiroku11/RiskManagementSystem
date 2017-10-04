@@ -16,7 +16,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.partsJson = [];
     $scope.Math=Math;
     $scope.incident = {
-        "incidentId": 24,
+        "incidentId": "",
         "uniqueIncidentId": "",
         "incidentStatus": ""
     }
@@ -130,6 +130,27 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         existingWitnesses: [],
         employeeWitnesses: []
     }
+
+    $scope.investigationDetails = {
+        "incidentId": "",
+        "uniqueIncidentId": "",
+        "investigation": {
+          "id": null,
+          "incident": null,
+          "statusFlag": null,
+          "securityRequested": "",
+          "trainingRequested": "",
+          "reviewedInvestigationRecords": "",
+          "reviewedCCTV": "",
+          "reviewedPictures": "",
+          "reviewedWitnessStatement": "",
+          "reviewedLearnerRecords": "",
+          "reviewedAssetRecords": "",
+          "reviewedComplianceRecords": "",
+          "investigator": {},
+          "investigatorStatement": ""
+        }
+      }
     $scope.injuredPersons = [];
     //Click event
     $scope.changeBodyPart = function(args) {
@@ -260,7 +281,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.submitForm = function(formName, back) {
         var index = 0;
-        $scope.tabs[$scope.tab - 1].completed = true;
+        //$scope.tabs[$scope.tab - 1].completed = true;
+
+        $scope.tabs.filter(function(val, ind) {
+            if (val.tab == $scope.tab) {
+                val.completed = true;
+            }
+        });
 
         $scope.tabs.sort(function(a, b) {
             return a.tab - b.tab;
@@ -296,6 +323,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         if (formName == "crimeForm") {
 
             $scope.addCrimeDetails();
+        }
+        if(formName=="investigationForm"){
+            $scope.addInvestigationDetails();
         }
         $(".content")[0].scrollTop = 0;
     }
@@ -427,17 +457,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
-
             },
         }
         AppService.ShowLoader();
 
         $http(req).then(function(response) {
             $scope.incident = response.data;
-
             AppService.HideLoader();
-
-
         }, function(error) {
             AppService.HideLoader();
         })
@@ -1617,6 +1643,25 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $http(req).then(function(response) {
 
             $scope.crimeSuspectData = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+
+    $scope.addInvestigationDetails=function(){
+        $scope.investigationDetails.incidentId = $scope.incident.incidentId;
+        $scope.investigationDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-investigation-details',
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data: $scope.investigationDetails
+        }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
             AppService.HideLoader();
         }, function(error) {
             AppService.HideLoader();
