@@ -135,25 +135,22 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12">
                     <label>Distinguishing Features</label>
-                    <select class="form-control" multiple ng-model="suspect.distinguishingFeature" 
-                    ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeatures">
+                    <select class="form-control" multiple ng-model="suspect.distinguishingFeature" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeatures">
                     </select>
                 </div>
                 <div class="col-md-3 col-sm-12">
                     <label>Distinguishing Features Details</label>
-                    <select multiple class="form-control" ng-model="suspect.distinguishingFeatureDetail" 
-                    ng-options="distinguishFeatureDetail.id as distinguishFeatureDetail.description for distinguishFeatureDetail in suspect.distinguishingFeature.distinguishingFeatureDetail">
+                    <select multiple class="form-control" ng-model="suspect.distinguishingFeatureDetail" ng-options="distinguishFeatureDetail.id as distinguishFeatureDetail.description for distinguishFeatureDetail in suspect.distinguishingFeature.distinguishingFeatureDetail">
                     </select>
                 </div>
                 <div class="col-md-2 col-sm-12 text-center move-buttons">
-                                <button title="Move to right" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
-                                <button title="Move to left" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-left"></span></button>
-                    
+                    <button title="Move to right" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button title="Move to left" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-left"></span></button>
+
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <label>Please Specify If others</label>
-                    <select multiple class="form-control" ng-model="suspect.distinguishingFeatures" 
-                    ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in suspect.distinguishingFeatures">
+                    <select multiple class="form-control" ng-model="suspect.distinguishingFeatures" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in suspect.distinguishingFeatures">
                     </select>
                 </div>
             </div>
@@ -213,6 +210,7 @@
                             <th>City</th>
                             <th>County</th>
                             <th>Postcode</th>
+                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -225,6 +223,12 @@
                             <td>{{suspect.addresses[0].city}}</td>
                             <td>{{suspect.addresses[0].county}}</td>
                             <td>{{suspect.addresses[0].postcode}}</td>
+                            <td>
+                                <a ng-click="deleteSuspect(suspect)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a>
+
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -404,6 +408,7 @@
                         <th>Loss Value</th>
                         <th>Time Police Called</th>
                         <th>Time Fire Station Called</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -413,6 +418,12 @@
                         <td>{{loss.lossValue}}</td>
                         <td>{{loss.timeHrsContacted}}</td>
                         <td>{{loss.timeHrsContacted}}</td>
+                        <td>
+                            <a ng-click="deleteLoss(loss)">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>

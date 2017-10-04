@@ -132,7 +132,7 @@ h5 {
     color: #8c1519;
 }
 
-.pagination>li>a.disabled{
+.pagination>li>a.disabled {
     cursor: not-allowed;
 }
 
@@ -423,372 +423,297 @@ a i {
 }
 
 .Face {
-  
     width: 20px;
     height: 20px;
-    
-  
     left: 268px;
     top: 181px;
     position: fixed;
 }
 
 .Head {
-
     width: 20px;
     height: 20px;
-   
- 
     left: 267px;
     top: 164px;
     position: fixed;
 }
 
 .Left.Ear {
-   
     width: 20px;
     height: 20px;
-  
- 
     left: 247px;
     top: 185px;
     position: fixed;
 }
 
 .Right.Ear {
- 
     width: 20px;
     height: 20px;
-  
-  
     left: 288px;
     top: 184px;
     position: fixed;
 }
 
 .Left.Eye {
-   
     width: 20px;
     height: 20px;
- 
-   
     left: 251px;
     top: 172px;
     position: fixed;
 }
 
 .Right.Eye {
-  
     width: 20px;
     height: 20px;
-    
     left: 281px;
     top: 172px;
     position: fixed;
 }
 
 .Nose {
-    
     width: 20px;
     height: 20px;
-  
     left: 268px;
     top: 188px;
     position: fixed;
 }
 
 .Mouth {
-   
     width: 20px;
     height: 20px;
-   
     left: 267px;
     top: 197px;
     position: fixed;
 }
 
 .Neck {
-   
     width: 20px;
     height: 20px;
-  
     left: 268px;
     top: 212px;
     position: fixed;
 }
 
 .Chin {
-  
     width: 20px;
     height: 20px;
- 
     left: 268px;
     top: 201px;
     position: fixed;
 }
 
 .Back.Neck {
-   
     width: 20px;
     height: 20px;
-   
     left: 268px;
     top: 212px;
     position: fixed;
 }
 
 .Left.Arm {
-  
     width: 20px;
     height: 20px;
- 
     left: 208px;
     top: 321px;
     position: fixed;
 }
 
 .Right.Arm {
-    
     width: 20px;
     height: 20px;
-  
     left: 325px;
     top: 321px;
     position: fixed;
 }
 
 .Left.Hand {
-   
     width: 20px;
     height: 20px;
-   
     left: 195px;
     top: 368px;
     position: fixed
 }
 
 .Right.Hand {
-   
     width: 20px;
     height: 20px;
-   
     left: 341px;
     top: 368px;
     position: fixed
 }
 
 .Left.Wrist {
-   
     width: 20px;
     height: 20px;
-  
     left: 189px;
     top: 384px;
     position: fixed
 }
 
 .Right.Wrist {
-   
     width: 20px;
     height: 20px;
-   
     left: 346px;
     top: 384px;
     position: fixed
 }
 
 .Left.Fingers {
-    
     height: 20px;
-   
     left: 181px;
     top: 431px;
     position: fixed
 }
 
 .Right.Fingers {
-  
     width: 20px;
     height: 20px;
- 
     left: 360px;
     top: 431px;
     position: fixed
 }
 
 .Left.Palm {
-  
     width: 20px;
     height: 20px;
-  
     left: 181px;
     top: 411px;
     position: fixed
 }
 
 .Right.Palm {
-  
     width: 20px;
     height: 20px;
-  
     left: 353px;
     top: 411px;
     position: fixed
 }
 
 .Left.Shoulder {
-  
     width: 20px;
     height: 20px;
- 
     left: 214px;
     top: 267px;
     position: fixed;
 }
 
 .Right.Shoulder {
- 
     width: 20px;
     height: 20px;
-   
     left: 321px;
     top: 267px;
     position: fixed;
 }
 
 .Chest {
-   
     width: 20px;
     height: 20px;
-  
     left: 267px;
     top: 267px;
     position: fixed;
 }
 
 .Stomach {
-    
     width: 20px;
     height: 20px;
-   
-   
     left: 267px;
     top: 349px;
     position: fixed;
 }
 
 .Hip {
-   
     width: 20px;
     height: 20px;
- 
     left: 267px;
     top: 399px;
     position: fixed;
 }
 
 .Left.Thigh {
-   
     width: 20px;
     height: 20px;
-  
     left: 241px;
     top: 456px;
     position: fixed;
 }
 
 .Right.Thigh {
-    
     width: 20px;
     height: 20px;
- 
     left: 295px;
     top: 456px;
     position: fixed;
 }
 
 .Left.Knee {
-  
     width: 20px;
     height: 20px;
-  
     left: 240px;
     top: 521px;
     position: fixed;
 }
 
 .Right.Knee {
-   
     width: 20px;
     height: 20px;
-   
     left: 295px;
     top: 521px;
     position: fixed;
 }
 
 .Left.Foot {
-   
     width: 20px;
     height: 20px;
-   
     left: 247px;
     top: 635px;
     position: fixed;
 }
 
 .Right.Foot {
-   
     width: 20px;
     height: 20px;
- 
     left: 286px;
     top: 635px;
     position: fixed;
 }
 
 .Left.Leg {
-  
     width: 20px;
     height: 20px;
- 
     left: 239px;
     top: 573px;
     position: fixed;
 }
 
 .Right.Leg {
- 
     width: 20px;
     height: 20px;
- 
     left: 294px;
     top: 573px;
     position: fixed;
 }
 
 .Left.Ankle {
-  
     width: 20px;
     height: 20px;
- 
     left: 288px;
     top: 619px;
     position: fixed;
 }
 
 .Right.Ankle {
-   
     width: 20px;
     height: 20px;
-    
-
     left: 288px;
     top: 619px;
     position: fixed;
 }
 
-.move-buttons{
+.move-buttons {
     padding-top: 50px;
     padding-bottom: 50px;
+}
+
+a {
+    cursor: pointer;
 }
