@@ -14,7 +14,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.suspectType = {};
     $scope.accidentLoc = {};
     $scope.partsJson = [];
-
+    $scope.Math=Math;
     $scope.incident = {
         "incidentId": 24,
         "uniqueIncidentId": "",
