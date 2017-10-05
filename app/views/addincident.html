@@ -120,22 +120,16 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <label>Nearest Landmark</label>
-                        <input class="form-control" type="text" ng-model="logIncidentDetails.landmark">
-                    </div>
-                    <div class="col-md-4 col-sm-12">
+                    <div class="col-md-6 col-sm-12">
                         <label>Entry Point</label>
                         <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint"
                         />
 
                     </div>
-                    <div class="col-md-4 col-sm-12" >
+                    <div class="col-md-6 col-sm-12" >
                         <label>Entry Point If Other</label>
                         <input class="form-control" ng-disabled="logIncidentDetails.entryPoint.id !='OTHER'" type="text" ng-model="logIncidentDetails.entryPointOther">
                     </div>
-
-
                 </div>
                 <div class="row">
 
@@ -185,8 +179,8 @@
                     </div>
                     <div class="col-sm-12 col-md-2">
                         <div><label>Time of Incident:</label></div>
-                        <input class="form-control small-control" type="text" placeholder="HH">:
-                        <input class="form-control  small-control" type="text" placeholder="MM">
+                        <input class="form-control small-control" type="text" placeholder="HH" ng-model="logIncidentDetails.timeHrsOfIncident">:
+                        <input class="form-control  small-control" type="text" placeholder="MM" ng-model="logIncidentDetails.timeMinOfIncident">
                     </div>
 
                     <div class="col-md-4 col-sm-12">

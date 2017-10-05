@@ -240,6 +240,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         opened: false
     };
 
+    $scope.initializeAccidentPlaceAndTime=function(){
+        $scope.accidentDetails.accident.accidentPlace = $scope.logIncidentDetails.placeOfIncident
+        $scope.accidentDetails.accident.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident;
+        $scope.accidentDetails.accident.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident
+    }
+
     $scope.getDayClass = function(data) {
         var date = data.date,
             mode = data.mode;
@@ -318,6 +324,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.addInvestigationDetails();
         }
         $(".content")[0].scrollTop = 0;
+        if($scope.tab==3){
+            $scope.initializeAccidentPlaceAndTime();
+        }
     }
 
     $scope.addSuspect = function() {
@@ -384,7 +393,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
 
     $scope.addLoss = function() {
-        $scope.loss.dateTimeContacted = $scope.loss.dateTimeContacted + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
+        $scope.loss.dateTimeContacted = $scope.loss.date + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
         delete $scope.loss.timeHrsContacted;
         delete $scope.loss.timeMinContacted;
         $scope.incidentDetails.reportedLosses.push($scope.loss);
@@ -475,7 +484,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function(response) {
-            $scope.incidentSecond = response.data;
+            //$scope.incidentSecond = response.data;
             $scope.incident.incidentStatus = response.data.incidentStatus;
             $scope.incident.incidentId = response.data.incidentId;
             $scope.incident.uniqueIncidentId = response.data.uniqueIncidentId;

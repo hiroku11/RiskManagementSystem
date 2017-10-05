@@ -71,7 +71,7 @@ riskManagementSystem.directive("mapsDirective", function () {
                                     latlng: latlng
                                 }
                                 debugger
-                                if(scope.$parent["logIncidentDetails"]["placeOfIncident"]){
+                                if(typeof scope.$parent["logIncidentDetails"]["placeOfIncident"]!= "undefined"){
                                     scope.$parent["logIncidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
                                 }else{
                                     scope.$parent["logIncidentDetails"]={};
