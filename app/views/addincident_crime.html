@@ -157,14 +157,16 @@
             <div class="col-sm-4">
                 <a href="#" class="btn btn-primary" ng-click="addCrimeSuspect()">Add Crime Suspect</a>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" ng-if="loggedInUser.roles[0] == 'INVESTIGATOR' || 
+               loggedInUser.roles[0] == 'CLAIMS_HANDLER' || loggedInUser.roles[0] == 'ADMIN'">
                 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal14">Add Existing Crime Suspect</a>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-4" ng-if="loggedInUser.roles[0] == 'INVESTIGATOR' || 
+               loggedInUser.roles[0] == 'CLAIMS_HANDLER' || loggedInUser.roles[0] == 'ADMIN'">
                 <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#myModal15">Add Employee Crime Suspect</a>
             </div>
         </div>
-        <div id="tblWitness" class="table-wrapper inline" ng-if="crimeDetails.newCrimeSuspects.length > 0">
+        <div class="table-wrapper inline" ng-if="Crimesuspects.length > 0">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -176,19 +178,26 @@
                         <th>Postcode</th>
                         <th>Phone</th>
                         <th>Age</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="person in crimeDetails.newCrimeSuspects">
-                        <td>{{witness.firstName}} {{witness.LastName}}</td>
+                    <tr ng-repeat="person in Crimesuspects">
+                        <td>{{person.firstName}} {{witness.LastName}}</td>
 
-                        <td>{{witness.genderType.id}}</td>
-                        <td>{{witness.addresses[0].organizationName}}</td>
-                        <td>{{witness.addresses[0].city}}</td>
-                        <td>{{witness.addresses[0].county}}</td>
-                        <td>{{witness.addresses[0].postcode}}</td>
-                        <td>{{witness.phone}}</td>
-                        <td>{{witness.age}}</td>
+                        <td>{{person.genderType.id}}</td>
+                        <td>{{person.addresses[0].organizationName}}</td>
+                        <td>{{person.addresses[0].city}}</td>
+                        <td>{{person.addresses[0].county}}</td>
+                        <td>{{person.addresses[0].postcode}}</td>
+                        <td>{{person.phone}}</td>
+                        <td>{{person.age}}</td>
+                        <td>
+                            <a ng-click="deleteCrimeSuspect(person)">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>

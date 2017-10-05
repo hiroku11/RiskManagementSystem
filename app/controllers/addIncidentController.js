@@ -135,31 +135,68 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         "incidentId": "",
         "uniqueIncidentId": "",
         "investigation": {
-          "id": null,
-          "incident": null,
-          "statusFlag": null,
-          "securityRequested": "",
-          "trainingRequested": "",
-          "reviewedInvestigationRecords": "",
-          "reviewedCCTV": "",
-          "reviewedPictures": "",
-          "reviewedWitnessStatement": "",
-          "reviewedLearnerRecords": "",
-          "reviewedAssetRecords": "",
-          "reviewedComplianceRecords": "",
-          "investigator": {},
-          "investigatorStatement": ""
+            "id": null,
+            "incident": null,
+            "statusFlag": null,
+            "securityRequested": "",
+            "trainingRequested": "",
+            "reviewedInvestigationRecords": "",
+            "reviewedCCTV": "",
+            "reviewedPictures": "",
+            "reviewedWitnessStatement": "",
+            "reviewedLearnerRecords": "",
+            "reviewedAssetRecords": "",
+            "reviewedComplianceRecords": "",
+            "investigator": {},
+            "investigatorStatement": ""
         }
-      }
+    }
+
+    $scope.injuredPerson = {
+        addresses: [],
+        bodyParts: [],
+        distinguishingFeatureDetail: null,
+        distinguishingFeature: null,
+
+    }
+
     $scope.injuredPersons = [];
+    $scope.partsSelected = [];
+    //  $scope.myObj = {$scope.injuredPerson.bodyParts : []}
+
     //Click event
+    // $scope.changeBodyPart = function(args) {
+    //     var flag = false;
+    //     if ($scope.injuredPerson.bodyParts == undefined) {
+    //         $scope.injuredPerson.bodyParts = [];
+    //     }
+    //     // $scope.partsSelected = $scope.injuredPerson.bodyParts;
+    //     if ($scope.injuredPerson.bodyParts.length != 0) {
+    //         for (var i = 0; i < $scope.injuredPerson.bodyParts.length; i++) {
+    //             if ($scope.injuredPerson.bodyParts[i] == args) {
+    //                 $scope.injuredPerson.bodyParts.splice(i, 1);
+    //                 flag = true;
+    //                 break;
+    //             }
+    //         }
+
+    //     }
+    //     if (flag == false) {
+    //         $scope.injuredPerson.bodyParts.push(args);
+
+    //     }
+    //     $scope.$apply();
+    // }
     $scope.changeBodyPart = function(args) {
         var flag = false;
-        $scope.partsSelected = $scope.injuredPerson.bodyParts;
-        if ($scope.partsSelected.length != 0) {
-            for (var i = 0; i < $scope.partsSelected.length; i++) {
-                if ($scope.partsSelected[i] == args) {
-                    $scope.partsSelected.splice(i, 1);
+        if ($scope.injuredPerson.bodyParts == undefined) {
+            $scope.injuredPerson.bodyParts = [];
+        }
+        // $scope.partsSelected = $scope.injuredPerson.bodyParts;
+        if ($scope.injuredPerson.bodyParts.length != 0) {
+            for (var i = 0; i < $scope.injuredPerson.bodyParts.length; i++) {
+                if ($scope.injuredPerson.bodyParts[i] == args) {
+                    $scope.injuredPerson.bodyParts.splice(i, 1);
                     flag = true;
                     break;
                 }
@@ -167,17 +204,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         }
         if (flag == false) {
-            $scope.partsSelected.push(args);
+            $scope.injuredPerson.bodyParts.push(args);
+
         }
-
+        //  $scope.myObj = $scope.injuredPerson.bodyParts;
     }
 
 
-    $scope.injuredPerson = {
-        addresses: [],
-        distinguishingFeatureDetail: null,
-        distinguishingFeature: null
-    }
+
     $scope.assetDetail = {
         "incidentId": $scope.incident.incidentId,
         "uniqueIncidentId": $scope.incident.uniqueIncidentId,
@@ -196,6 +230,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         vehicles: []
 
     }
+    $scope.Crimesuspects = [];
     $scope.crimeDetails = {
         "crime": {
             "id": null,
@@ -240,7 +275,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         opened: false
     };
 
-    $scope.initializeAccidentPlaceAndTime=function(){
+    $scope.initializeAccidentPlaceAndTime = function() {
         $scope.accidentDetails.accident.accidentPlace = $scope.logIncidentDetails.placeOfIncident
         $scope.accidentDetails.accident.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident;
         $scope.accidentDetails.accident.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident
@@ -320,11 +355,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $scope.addCrimeDetails();
         }
-        if(formName=="investigationForm"){
+        if (formName == "investigationForm") {
             $scope.addInvestigationDetails();
         }
         $(".content")[0].scrollTop = 0;
-        if($scope.tab==3){
+        if ($scope.tab == 3) {
             $scope.initializeAccidentPlaceAndTime();
         }
     }
@@ -473,6 +508,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.logIncidentDetails.accidentDamage ? $scope.logIncidentDetails.accidentDamage = "Y" : $scope.logIncidentDetails.accidentDamage = "N";
         $scope.logIncidentDetails.vehicleOrAssetDamage ? $scope.logIncidentDetails.vehicleOrAssetDamage = "Y" : $scope.logIncidentDetails.vehicleOrAssetDamage = "N";
         $scope.logIncidentDetails.criminalAttack ? $scope.logIncidentDetails.criminalAttack = "Y" : $scope.logIncidentDetails.criminalAttack = "N";
+        $scope.incident.incidentStatus = 'DRAFT';
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/log-incident',
             method: "POST",
@@ -1351,6 +1387,44 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             person.selected = false;
 
         }
+        //Delete Crime suspect
+    $scope.deleteCrimeSuspect = function(person) {
+            var flag = false;
+
+            for (var i = 0; i < $scope.crimeDetails.existingCrimeSuspects.length && flag == false; i++) {
+                if ($scope.crimeDetails.existingCrimeSuspects[i].id == person.id) {
+                    $scope.crimeDetails.existingCrimeSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.crimeDetails.employeeCrimeSuspects.length && flag == false; i++) {
+                if ($scope.crimeDetails.employeeCrimeSuspects[i].id == person.id) {
+                    $scope.crimeDetails.employeeCrimeSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.crimeDetails.newCrimeSuspects.length && flag == false; i++) {
+                if ($scope.crimeDetails.newCrimeSuspects[i].firstName == person.firstName &&
+                    $scope.crimeDetails.newCrimeSuspects[i].middleName == person.middleName) {
+                    $scope.crimeDetails.newCrimeSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+
+
+            $scope.Crimesuspects.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.Crimesuspects.splice(index, 1);
+
+                }
+            })
+            person.selected = false;
+
+        }
         //Delete Injured person data
     $scope.deleteInjured = function(person) {
         var flag = false;
@@ -1411,6 +1485,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.addCrimeSuspect = function() {
 
         $scope.crimeDetails.newCrimeSuspects.push($scope.crimeSuspect);
+        $scope.Crimesuspects.push($scope.crimeSuspect)
         $scope.crimeSuspect = {
             addresses: [],
             distinguishingFeatureDetail: null,
@@ -1493,6 +1568,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.addCrimeEmployeeSuspect = function(person) {
         if (person.selected) {
             $scope.crimeDetails.employeeCrimeSuspects.push({ 'id': person.id });
+            $scope.Crimesuspects.push(person);
         } else {
             $scope.crimeDetails.employeeCrimeSuspects.map(function(val, index) {
 
@@ -1500,16 +1576,31 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     $scope.crimeDetails.employeeCrimeSuspects.splice(index, 1);
                 }
             })
+            $scope.Crimesuspects.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.Crimesuspects.splice(index, 1);
+
+                }
+            })
         }
     }
     $scope.addCrimeExistingSuspect = function(person) {
         if (person.selected) {
             $scope.crimeDetails.existingCrimeSuspects.push({ 'id': person.id });
+            $scope.Crimesuspects.push(person);
         } else {
             $scope.crimeDetails.existingCrimeSuspects.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.crimeDetails.existingCrimeSuspects.splice(index, 1);
+                }
+            })
+            $scope.Crimesuspects.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.Crimesuspects.splice(index, 1);
+
                 }
             })
         }
@@ -1735,7 +1826,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
-    $scope.addInvestigationDetails=function(){
+    $scope.addInvestigationDetails = function() {
         $scope.investigationDetails.incidentId = $scope.incident.incidentId;
         $scope.investigationDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {

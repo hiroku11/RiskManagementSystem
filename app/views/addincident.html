@@ -5,18 +5,11 @@
     <div class="col-md-2 navbar hidden-sm hidden-xs">
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
+
     <div class="col-md-10 content">
         <ul class="nav nav-tabs">
             <li ng-class="{active:tab.active,disabled:!tab.active}" ng-repeat="tab in tabs | orderBy : 'tab'"><a>{{tab.description}} <span ng-if="tab.completed" class="glyphicon glyphicon-ok"></span></a></li>
-            <!-- <li  ng-click="changeTab()"><a>Incident Details</a></li>
 
-            <li ng-class="{active:tab=='3'}" ng-click="changeTab()" ><a>Accident</a></li>
-            <li ng-class="{active:tab=='4'}" ng-click="changeTab()"><a>Assets</a></li>
-            <li ng-class="{active:tab=='5'}" ng-click="changeTab()"><a>Crime</a></li>
-
-            <li ng-class="{active:tab=='6'}" ng-click="changeTab()"><a>Claim</a></li>
-            <li ng-class="{active:tab=='7'}" ng-click="changeTab()"><a>Investigation</a></li>
-            <li ng-class="{active:tab=='8'}" ng-click="changeTab()"><a>Supporting Documnets</a></li> -->
         </ul>
         <div class="form-content " ng-show="tab==1">
             <h2>Log Incidents</h2>
@@ -122,13 +115,16 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <label>Entry Point</label>
-                        <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint"
-                        />
+                        <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" />
 
                     </div>
-                    <div class="col-md-6 col-sm-12" >
+
+                    <div class="col-md-6 col-sm-12">
+
+
                         <label>Entry Point If Other</label>
                         <input class="form-control" ng-disabled="logIncidentDetails.entryPoint.id !='OTHER'" type="text" ng-model="logIncidentDetails.entryPointOther">
+
                     </div>
                 </div>
                 <div class="row">
@@ -141,8 +137,7 @@
                     </div>
                     <div class="col-sm-12 col-md-6 ">
                         <label>Incident Location Details</label>
-                        <select ng-model="logIncidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!logIncidentDetails.incidentLocation.id" 
-                      ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
+                        <select ng-model="logIncidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!logIncidentDetails.incidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
 
                         <option value=''>Select</option>
                         </select>
@@ -156,21 +151,13 @@
                 </div>
 
                 <div class="row">
-                    <!-- <div class="col-md-4 col-sm-12">
-                        <label>Date of Incident: (DD/MM/YYYY)</label>
-                        <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
-                            <input type='text' class="form-control" ng-model="logIncidentDetails.dateOfIncident" />
-                            <span class="input-group-addon">
-                                            <span class="glyphicon glyphicon-calendar"></span>
-                            </span>
-                        </div>
-                    </div> -->
+
                     <div class="col-md-4 col-sm-12">
                         <label>Date of Incident: (DD/MM/YYYY)</label>
                         <p class="input-group">
 
-                            <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="logIncidentDetails.dateOfIncident" is-open="calendar.opened"
-                                datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                            <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="logIncidentDetails.dateOfIncident" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                            />
                             <span class="input-group-addon" ng-click="calendar.opened=true">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -190,6 +177,9 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-sm-12">
+                        <label>Incident Category</label>
+                    </div>
                     <div class="col-sm-12">
                         <input id="PersonInjured" value="Y" ng-model="logIncidentDetails.accidentDamage" type="checkbox" ng-change="addTab('accidentForm')"> Accident
                     </div>

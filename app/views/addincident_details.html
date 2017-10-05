@@ -180,10 +180,12 @@
                 <div class="col-sm-12 col-md-4">
                     <a class="btn btn-primary" ng-click="addSuspect()">Add Suspect</a>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4" ng-if="loggedInUser.roles[0] == 'INVESTIGATOR' || 
+               loggedInUser.roles[0] == 'CLAIMS_HANDLER' || loggedInUser.roles[0] == 'ADMIN'">
                     <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Existing Suspect</a>
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4" ng-if="loggedInUser.roles[0] == 'INVESTIGATOR' || 
+               loggedInUser.roles[0] == 'CLAIMS_HANDLER' || loggedInUser.roles[0] == 'ADMIN'">
                     <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Add Suspect Employee</a>
                 </div>
             </div>
