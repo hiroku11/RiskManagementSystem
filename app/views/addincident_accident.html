@@ -13,8 +13,7 @@
                     </span>
                 </div> -->
                 <p class="input-group">
-                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="accidentDetails.accident.accidentDate"
-                        is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="accidentDetails.accident.accidentDate" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
                     />
                     <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -46,8 +45,7 @@
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location Details:</label>
 
-                <select ng-model="accidentDetails.accident.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accident.accidentLocation.id"
-                    ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accident.accidentLocation.id})[0].incidentLocationDetails) ">
+                <select ng-model="accidentDetails.accident.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accident.accidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accident.accidentLocation.id})[0].incidentLocationDetails) ">
 
                 <option value=''>Select</option>
                 </select>
@@ -78,8 +76,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Injured Person Type</label>
-                <select ng-model="injuredPerson.personType.id" class="form-control"
-                 ng-options="injuredPersonType.id as injuredPersonType.description for injuredPersonType in injuredPersonTypes">
+                <select ng-model="injuredPerson.personType.id" class="form-control" ng-options="injuredPersonType.id as injuredPersonType.description for injuredPersonType in injuredPersonTypes">
 						<option value="">--Select--</option>
 					
 					</select>
@@ -102,16 +99,14 @@
             </div>
             <div class="col-sm-12 col-md-3">
                 <label>Injury Type Detail</label>
-                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetail.id" ng-disabled="!injuredPerson.injuryType.id"
-                    ng-options="injuryTypeDetail.id as injuryTypeDetail.description for injuryTypeDetail in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails) ">
+                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetail.id" ng-disabled="!injuredPerson.injuryType.id" ng-options="injuryTypeDetail.id as injuryTypeDetail.description for injuryTypeDetail in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails) ">
                     <option value=''>Select</option>
                     </select>
             </div>
 
             <div class="col-sm-12 col-md-3">
                 <label>Injury Type Detail</label>
-                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetailsSpec.id" ng-disabled="!injuredPerson.injuryTypeDetail.id"
-                    ng-options="injuryTypeDetailsSpec.id as injuryTypeDetailsSpec.description for injuryTypeDetailsSpec in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails.injuryTypeDetailSpecs) ">
+                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetailsSpec.id" ng-disabled="!injuredPerson.injuryTypeDetail.id" ng-options="injuryTypeDetailsSpec.id as injuryTypeDetailsSpec.description for injuryTypeDetailsSpec in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails.injuryTypeDetailSpecs) ">
                     <option value=''>--Select--</option>
                     </select>
             </div>
@@ -225,8 +220,7 @@
             </div>
             <div class="com-sm-12 col-md-4">
                 <label>Gender:</label>
-                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="injuredPerson.genderType.id"
-                />
+                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="injuredPerson.genderType.id" />
             </div>
             <div class="col-sm-12 col-md-4">
                 <label>Gender Other</label>
@@ -246,14 +240,12 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Distinguishing Features Details</label>
-                <select class="form-control" ng-model="injuredPerson.distinguishingFeatureDetail" 
-                ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetailsOptions">
+                <select class="form-control" ng-model="injuredPerson.distinguishingFeatureDetail" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetailsOptions">
                 </select>
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Please Specify If others</label>
-                <select class="form-control" ng-model="injuredPerson.distinguishingFeatureDetail" 
-                ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetailsOptions">
+                <select class="form-control" ng-model="injuredPerson.distinguishingFeatureDetail" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetailsOptions">
                 </select>
             </div>
         </div>
@@ -301,10 +293,11 @@
 
 
 
-        <div class="table-wrapper inline" ng-if="accidentDetails.injuredPersons.length > 0">
+        <div class="table-wrapper inline" ng-if="injuredPersons.length > 0">
             <table class="table table-bordered">
                 <thead>
                     <tr>
+
                         <th>Name</th>
                         <th>Age</th>
                         <th>Gender</th>
@@ -313,10 +306,12 @@
                         <th>County</th>
                         <th>Postcode</th>
                         <th>Body Parts</th>
+                        <th>&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="person in accidentDetails.injuredPersons">
+                    <tr ng-repeat="person in injuredPersons">
+
                         <td>{{person.firstName}} {{person.LastName}}</td>
                         <td>{{person.age}}</td>
                         <td>{{person.genderType.id}}</td>
@@ -324,7 +319,13 @@
                         <td>{{person.addresses[0].city}}</td>
                         <td>{{person.addresses[0].county}}</td>
                         <td>{{person.addresses[0].postcode}}</td>
-                        <td>{{person.bodyParts}}</td>
+                        <td>{{person.bodyParts.toString()}}</td>
+                        <td>
+                            <a ng-click="deleteInjured(person)">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -407,8 +408,7 @@
 
                 <div class="col-sm-12 col-md-6">
                     <label>Gender</label>
-                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="witness.genderType.id"
-                    />
+                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="witness.genderType.id" />
                 </div>
             </div>
             <div class="row">
@@ -419,8 +419,7 @@
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <label>Distinguishing Features Details</label>
-                    <multiselect ng-model="witness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id"
-                        display-prop="description">
+                    <multiselect ng-model="witness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
                     </multiselect>
                 </div>
                 <div class="col-md-4 col-sm-12">
@@ -437,8 +436,7 @@
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <label>Distinguishing Features Details</label>
-                    <multiselect ng-model="witness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id"
-                        display-prop="description">
+                    <multiselect ng-model="witness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
                     </multiselect>
                 </div>
                 <div class="col-md-4 col-sm-12">
@@ -546,8 +544,7 @@
                         <div class="col-sm-12 col-md-6 ">
                             <label>Existing Injured Person</label>
                             <div class="input-group">
-                                <input class="form-control" ng-change="injuredPersonLookup(existingInjured)" placeholder="Type user name" ng-model="existingInjured"
-                                    ng-model-options="{'debounce':500}" />
+                                <input class="form-control" ng-change="injuredPersonLookup(existingInjured)" placeholder="Type user name" ng-model="existingInjured" ng-model-options="{'debounce':500}" />
 
                                 <span class="input-group-addon" ng-click="injuredPersonLookup(existingInjured)">
                         <span class="glyphicon glyphicon-search"></span>
@@ -571,8 +568,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in injuredPersonData">
-                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingInjured(person)"
-                                        /></td>
+                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingInjured(person)" /></td>
                                     <td>{{person.firstName}} {{person.LastName}}</td>
                                     <td>{{person.age}}</td>
                                     <td>{{person.genderTypeCode}}</td>
@@ -608,8 +604,7 @@
                         <div class="col-sm-12 col-md-6 ">
                             <label>Employee Injured injuredPerson</label>
                             <div class="input-group">
-                                <input class="form-control" ng-change="userLookup(employeeinjured)" placeholder="Type user name" ng-model="employeeinjured"
-                                    ng-model-options="{'debounce':500}" />
+                                <input class="form-control" ng-change="userLookup(employeeinjured)" placeholder="Type user name" ng-model="employeeinjured" ng-model-options="{'debounce':500}" />
                                 <span class="input-group-addon" ng-click="userLookup(employeeinjured)">
                                 <span class="glyphicon glyphicon-search"></span>
                                 </span>
@@ -632,8 +627,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in userInfo">
-                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeInjured(person)"
-                                        />
+                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeInjured(person)" />
                                     </td>
                                     <td>{{person.firstName}} {{person.LastName}}</td>
                                     <td>{{person.age}}</td>
@@ -670,8 +664,7 @@
                         <div class="col-sm-12 col-md-6 ">
                             <label>Existing Witness</label>
                             <div class="input-group">
-                                <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness"
-                                    ng-model-options="{'debounce':500}" />
+                                <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness" ng-model-options="{'debounce':500}" />
 
                                 <span class="input-group-addon" ng-click="witnessLookup(existingWitness)">
                         <span class="glyphicon glyphicon-search"></span>
@@ -695,8 +688,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in witnessData">
-                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingWitness(person)"
-                                        /></td>
+                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingWitness(person)" /></td>
                                     <td>{{person.firstName}} {{person.LastName}}</td>
                                     <td>{{person.age}}</td>
                                     <td>{{person.genderTypeCode}}</td>
@@ -730,8 +722,7 @@
                         <div class="col-sm-12 col-md-6 ">
                             <label>Employee Witness</label>
                             <div class="input-group">
-                                <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness"
-                                    ng-model-options="{'debounce':500}" />
+                                <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness" ng-model-options="{'debounce':500}" />
                                 <span class="input-group-addon" ng-click="userLookup(employeeWitness)">
                                 <span class="glyphicon glyphicon-search"></span>
                                 </span>
@@ -754,8 +745,7 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in userInfo">
-                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeWitness(person)"
-                                        />
+                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeWitness(person)" />
                                     </td>
                                     <td>{{person.firstName}} {{person.LastName}}</td>
                                     <td>{{person.age}}</td>
