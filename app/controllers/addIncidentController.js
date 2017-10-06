@@ -266,15 +266,81 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
         // { "active": false, "description": "Assets" ,"name":"assetsForm","tab":4},
         // { "active": false, "description": "Crime" ,"name":"crimeForm","tab":5},
-        { "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
-        { "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
+        //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
+        //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
         { "active": false, "description": "Supporting Documents", "name": "documentsForm", "tab": 8 }
     ];
 
     $scope.calendar = {
         opened: false
     };
+    $scope.addTab = function(formName) {
+        var tabPresent = false;
+        var index;
+        $scope.tabs.filter(function(val, ind) {
+            if (val.name == formName) {
+                tabPresent = true;
+                index = ind;
+            }
+        });
 
+        if (!tabPresent) {
+            if (formName == "accidentForm") {
+                if ($scope.logIncidentDetails.accidentDamage) {
+                    $scope.tabs.push({ "active": false, "description": "Accident", "name": "accidentForm", "tab": 3 });
+                    return;
+                } else {
+                    $scope.tabs.splice(index, 1);
+                    return;
+                }
+
+            }
+            if (formName == "assetsForm") {
+                if ($scope.logIncidentDetails.vehicleOrAssetDamage) {
+                    $scope.tabs.push({ "active": false, "description": "Asset", "name": "assetsForm", "tab": 4 });
+                    return;
+                } else {
+                    $scope.tabs.splice(index, 1);
+                    return;
+                }
+            }
+            if (formName == "crimeForm") {
+                if ($scope.logIncidentDetails.criminalAttack) {
+                    $scope.tabs.push({ "active": false, "description": "Crime", "name": "crimeForm", "tab": 5 });
+                    return;
+                } else {
+                    $scope.tabs.splice(index, 1);
+                    return;
+                }
+            }
+            if (formName == "claimForm") {
+                    $scope.tabs.push({ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 });
+                    return;
+
+            }
+            if (formName == "investigationForm") {
+                    $scope.tabs.push({ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 });
+                    return;
+            }
+            return;
+            //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
+            //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },  
+        }
+        if (tabPresent) {
+            $scope.tabs.splice(index, 1);
+        }
+    }
+    $scope.handleTabsForRoles=function(){
+            if($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1){
+                $scope.addTab('investigationForm');
+            }
+            if($scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1){
+                $scope.addTab('claimForm');
+            }
+        //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
+        //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },        
+    }
+    $scope.handleTabsForRoles();
     $scope.initializeAccidentPlaceAndTime = function() {
         $scope.accidentDetails.accident.accidentPlace = $scope.logIncidentDetails.placeOfIncident
         $scope.accidentDetails.accident.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident;
@@ -336,6 +402,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.tabs[index].active = false;
             $scope.tabs[index + 1].active = true;
             $scope.tab = $scope.tabs[index + 1].tab;
+            // if( $scope.tabs[index].description =='Investigation'){
+            //     if(!($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1)){
+            //         $scope.tabs[index + 2].active = true;
+            //         $scope.tab = $scope.tabs[index + 2].tab;
+            //     }
+            // }
+            // if( $scope.tabs[index].description =='Claim'){
+            //     if(!($scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1)){
+            //         $scope.tabs[index + 2].active = true;
+            //         $scope.tab = $scope.tabs[index + 2].tab;
+            //     }
+            // }
         }
 
         if ($scope.tab == 2) {
@@ -424,9 +502,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-
-
-
     $scope.addLoss = function() {
         $scope.loss.dateTimeContacted = $scope.loss.date + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
         delete $scope.loss.timeHrsContacted;
@@ -440,51 +515,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addTab = function(formName) {
-        var tabPresent = false;
-        var index;
-        $scope.tabs.filter(function(val, ind) {
-            if (val.name == formName) {
-                tabPresent = true;
-                index = ind;
-            }
-        });
-
-        if (!tabPresent) {
-            if (formName == "accidentForm") {
-                if ($scope.logIncidentDetails.accidentDamage) {
-                    $scope.tabs.push({ "active": false, "description": "Accident", "name": "accidentForm", "tab": 3 });
-                    return;
-                } else {
-                    $scope.tabs.splice(index, 1);
-                    return;
-                }
-
-            }
-            if (formName == "assetsForm") {
-                if ($scope.logIncidentDetails.vehicleOrAssetDamage) {
-                    $scope.tabs.push({ "active": false, "description": "Asset", "name": "assetsForm", "tab": 4 });
-                    return;
-                } else {
-                    $scope.tabs.splice(index, 1);
-                    return;
-                }
-            }
-            if (formName == "crimeForm") {
-                if ($scope.logIncidentDetails.criminalAttack) {
-                    $scope.tabs.push({ "active": false, "description": "Crime", "name": "crimeForm", "tab": 5 });
-                    return;
-                } else {
-                    $scope.tabs.splice(index, 1);
-                    return;
-                }
-            }
-            return;
-        }
-        if (tabPresent) {
-            $scope.tabs.splice(index, 1);
-        }
-    }
+   
     $scope.getUserInfo = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-incident',
