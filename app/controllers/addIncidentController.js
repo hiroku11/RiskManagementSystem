@@ -314,13 +314,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }
             }
             if (formName == "claimForm") {
-                    $scope.tabs.push({ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 });
-                    return;
+                $scope.tabs.push({ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 });
+                return;
 
             }
             if (formName == "investigationForm") {
-                    $scope.tabs.push({ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 });
-                    return;
+                $scope.tabs.push({ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 });
+                return;
             }
             return;
             //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
@@ -330,13 +330,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.tabs.splice(index, 1);
         }
     }
-    $scope.handleTabsForRoles=function(){
-            if($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1){
-                $scope.addTab('investigationForm');
-            }
-            if($scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1){
-                $scope.addTab('claimForm');
-            }
+    $scope.handleTabsForRoles = function() {
+        if ($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1) {
+            $scope.addTab('investigationForm');
+        }
+        if ($scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1) {
+            $scope.addTab('claimForm');
+        }
         //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
         //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },        
     }
@@ -515,7 +515,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-   
+
     $scope.getUserInfo = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-incident',
@@ -821,7 +821,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.getClaimRegType = function() {
         var req = {
-            url: '/rmsrest/s/table-maintenance/claim-request-registration-type/claim-request-registration-types',
+            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/claim-request-registration-type/claim-request-registration-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
