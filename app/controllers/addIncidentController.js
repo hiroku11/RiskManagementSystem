@@ -331,14 +331,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
     $scope.handleTabsForRoles = function() {
-        if ($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1) {
+        if ($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1 
+        || $scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1
+        || $scope.loggedInUser.roles.indexOf('ADMIN') > -1) {
             $scope.addTab('investigationForm');
-        }
-        if ($scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1) {
             $scope.addTab('claimForm');
-        }
-        //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
-        //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },        
+        }      
     }
     $scope.handleTabsForRoles();
     $scope.initializeAccidentPlaceAndTime = function() {
