@@ -45,14 +45,16 @@ riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compilePro
             link: function postLink(scope, element, attrs, ngModel) {
             	ngModel.$parsers.push(function(data) {
             	  //console.log("parsers.push " + data);
-  				      var out = new Date(data).toLocaleDateString();
+                        var date = new Date(data);
+                        var out = date.getDate() + "/"+(date.getMonth()+1)+"/"+date.getFullYear();
                 //console.log("$parsers.out = " + out);
       				  return out;
   		        });
                 
             	ngModel.$formatters.push(function(data) {
             	  //console.log("$formatters.push " + data);
-  				      var out = new Date(data).toLocaleDateString();
+                  var date = new Date(data);
+                  var out = date.getDate() + "/"+(date.getMonth()+1)+"/"+date.getFullYear();
       					//console.log("$formatters.out =" + out);
       					return out;
   		        });
