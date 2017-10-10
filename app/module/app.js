@@ -37,6 +37,29 @@ riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compilePro
      };
  });
 
+ riskManagementSystem.directive('dateFormatter', [
+    function () {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function postLink(scope, element, attrs, ngModel) {
+            	ngModel.$parsers.push(function(data) {
+            	  //console.log("parsers.push " + data);
+  				      var out = new Date(data).toLocaleDateString();
+                //console.log("$parsers.out = " + out);
+      				  return out;
+  		        });
+                
+            	ngModel.$formatters.push(function(data) {
+            	  //console.log("$formatters.push " + data);
+  				      var out = new Date(data).toLocaleDateString();
+      					//console.log("$formatters.out =" + out);
+      					return out;
+  		        });
+            }
+        };
+    }
+]);
 riskManagementSystem.directive("mapsDirective", function () {
     return {
         restrict: 'E',
