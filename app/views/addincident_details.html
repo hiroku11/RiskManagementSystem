@@ -257,7 +257,7 @@
                     <span class="input-group-addon">
                             <span class="fa fa-gbp"></span>
                     </span>
-                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue" pattern="^[1-9](,\d{3}){1,2}(\.\d{2})?$">
+                    <input class="form-control" blur-to-currency amount="loss.lossValue" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue" pattern="^[1-9](,\d{3}){1,2}(\.\d{2})?$">
                 </p>
             </div>
 
@@ -277,7 +277,26 @@
                         <option value="" selected>--Select--</option>
                         </select>
             </div>
-			  <div class="col-sm-12 col-md-4">
+
+        </div>
+
+        <div class="row" data-id="Police" ng-if="loss.externalAgency.id=='POLICE'">
+            <div class="col-sm-12 col-md-6">
+                <label>Date Police Called</label>
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                    <input type='text' class="form-control" ng-model="loss.dateTimeContacted" />
+                    <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div> -->
+                <p class="input-group">
+
+                    <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="loss.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+                </p>
 
                 <label>External Agency If Others</label>
                 <input class="form-control" ng-disabled="loss.externalAgency.id !='OTHER'" type="text" ng-model="loss.externalAgencyTypeOther">
@@ -290,16 +309,46 @@
               
                 <p class="input-group">
 
-                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="loss.date" is-open="calendar.opened" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" />
+
+                    <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
                     <span class="input-group-addon" ng-click="calendar.opened=true">
                             <span class="glyphicon glyphicon-calendar"></span>
                     </span>
 
                 </p>
 
+
+                    <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd-MM-yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+                </p>
+            </div>
+            <div class="col-sm-12 col-md-6 time">
+                <div><label>Time Fire Station Called</label></div>
+                <input class="form-control small-control" type="text" placeholder="HH" ng-model="loss.timeHrsContacted">:
+                <input class="form-control  small-control" type="text" placeholder="MM" ng-model="loss.timeMinContacted">
             </div>
             <div class="col-sm-12 col-md-6">
-                <div> <label>Time External Agency Called</label></div>
+                <label>Date Other Agency Called </label>
+                <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div> -->
+                <p class="input-group">
+
+                    <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="crimeDetails.crime.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.opened=true">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+                </p>
+            </div>
+            <div class="col-sm-12 col-md-6 time">
+                <div><label>Time Other Agency Called</label></div>
                 <input class="form-control small-control" type="text" placeholder="HH" ng-model="loss.timeHrsContacted">:
                 <input class="form-control  small-control" type="text" placeholder="MM" ng-model="loss.timeMinContacted">
             </div>
@@ -318,7 +367,7 @@
                     <span class="input-group-addon">
                             <span class="fa fa-gbp"></span>
                     </span>
-                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.costEstimation">
+                    <input class="form-control" blur-to-currency amount="loss.costEstimation" placeholder="0,000,000.00" type="text" ng-model="loss.costEstimation">
                 </p>
 
             </div>

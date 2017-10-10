@@ -124,6 +124,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         ]
     }
 
+
     $scope.accidentDetails = {
         "incidentId": $scope.incident.incidentId,
         "uniqueIncidentId": $scope.incident.uniqueIncidentId,
@@ -219,36 +220,34 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.myObj = { temp: $scope.injuredPerson.bodyParts }
     }
 
-
-
     $scope.assetDetail = {
         "incidentId": $scope.incident.incidentId,
         "uniqueIncidentId": $scope.incident.uniqueIncidentId,
-        asset: {
-
-            "assetCategory": {
-                "id": "",
-                "description": null
-            }
+        "asset": {
+          "id": null,
+          "incident": {},
+          "statementDescription": null,
+          "otherDescription": null,
+          "statusFlag": null,
+          "assetCategory": {
+            "id": null,
+            "description": null
+          }
         },
-        newWitnesses: [],
-        existingWitnesses: [],
-        employeeWitnesses: [],
-        buildings: [],
-        equipments: [],
-        vehicles: []
-
-    }
+        "equipments": [ ],
+        "vehicles": [],
+        "buildings": []
+      }
     $scope.Crimesuspects = [];
     $scope.crimeDetails = {
         "crime": {
             "id": null,
             "incident": {},
             "statusFlag": null,
-            "crimeDateTime": "",
-            "crimeDescription": "",
-            "anyWitness": ""
-        },
+            "crimeDateTime": null,
+            "crimeDescription": null,
+            "anyWitness": null
+          },
         "incidentId": $scope.incident.incidentId,
         "uniqueIncidentId": $scope.incident.uniqueIncidentId,
         newWitnesses: [],
@@ -259,6 +258,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         newCrimeSuspects: []
 
     }
+
     $scope.crimeWitness = {
         addresses: [],
         distinguishingFeatureDetail: null,
@@ -340,14 +340,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
     $scope.handleTabsForRoles = function() {
-        if ($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1) {
+        if ($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1 
+        || $scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1
+        || $scope.loggedInUser.roles.indexOf('ADMIN') > -1) {
             $scope.addTab('investigationForm');
-        }
-        if ($scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1) {
             $scope.addTab('claimForm');
-        }
-        //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
-        //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },        
+        }      
     }
     $scope.handleTabsForRoles();
     $scope.initializeAccidentPlaceAndTime = function() {

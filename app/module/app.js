@@ -36,7 +36,52 @@ riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compilePro
          });
      };
  });
-
+riskManagementSystem.directive('blurToCurrency', function($filter){
+    return {
+      scope: {
+        amount  : '='
+      },
+      link: function(scope, el, attrs){
+        el.val($filter('currency')(scope.amount));
+        el.bind('focus', function(){
+          el.val(scope.amount);
+        });
+        el.bind('input', function(){
+          scope.amount = el.val();
+          scope.$apply();
+        });
+        el.bind('blur', function(){
+          el.val($filter('currency')(scope.amount,""));
+        });
+      }
+    }
+  });
+  
+ riskManagementSystem.directive('dateFormatter', [
+    function () {
+        return {
+            restrict: 'A',
+            require: 'ngModel',
+            link: function postLink(scope, element, attrs, ngModel) {
+            	ngModel.$parsers.push(function(data) {
+            	  //console.log("parsers.push " + data);
+                        var date = new Date(data);
+                        var out = date.getDate() + "/"+(date.getMonth()+1)+"/"+date.getFullYear();
+                //console.log("$parsers.out = " + out);
+      				  return out;
+  		        });
+                
+            	ngModel.$formatters.push(function(data) {
+            	  //console.log("$formatters.push " + data);
+                  var date = new Date(data);
+                  var out = date.getDate() + "/"+(date.getMonth()+1)+"/"+date.getFullYear();
+      					//console.log("$formatters.out =" + out);
+      					return out;
+  		        });
+            }
+        };
+    }
+]);
 riskManagementSystem.directive("mapsDirective", function () {
     return {
         restrict: 'E',
