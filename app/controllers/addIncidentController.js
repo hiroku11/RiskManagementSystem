@@ -28,9 +28,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         "propertyDamage": "Y",
         "criminalAttack": "",
         "accidentDamage": "",
-        "vehicleOrAssetDamage": "",
+        "assetDamage": "",
         "placeOfIncident": "",
-        "landmark": "",
+
         "incidentDescription": "",
         "entryPoint": {
             "id": "",
@@ -100,7 +100,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.loss = {
         "id": null,
         "incident": {},
-        "statusFlag": "ACTIVE"
+        "statusFlag": "ACTIVE",
+		"date":null,
+		"timeHrsContacted":null,
+		"timeMinContacted":null
+		
+		
     }
     $scope.incidentDetails = {
         "incidentId": 0,
@@ -187,6 +192,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     //     }
     //     $scope.$apply();
     // }
+    var temp = [];
+    $scope.myObj = { temp: [] };
     $scope.changeBodyPart = function(args) {
         var flag = false;
         if ($scope.injuredPerson.bodyParts == undefined) {
@@ -207,7 +214,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.injuredPerson.bodyParts.push(args);
 
         }
-        //  $scope.myObj = $scope.injuredPerson.bodyParts;
+
+
+        $scope.myObj = { temp: $scope.injuredPerson.bodyParts }
     }
 
 
@@ -296,7 +305,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             }
             if (formName == "assetsForm") {
-                if ($scope.logIncidentDetails.vehicleOrAssetDamage) {
+                if ($scope.logIncidentDetails.assetDamage) {
                     $scope.tabs.push({ "active": false, "description": "Asset", "name": "assetsForm", "tab": 4 });
                     return;
                 } else {
@@ -458,7 +467,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.addEmployeeSuspect = function(person) {
         if (person.selected) {
-            $scope.incidentDetails.employeeSuspects.push({ 'id': person.id });
+            $scope.incidentDetails.employeeSuspects.push({ 'loginId': person.id });
             $scope.suspects.push(person);
 
         } else {
@@ -503,7 +512,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
     $scope.addLoss = function() {
+	    if($scope.loss.date == null){
+		 $scope.loss.dateTimeContacted = $scope.loss.date;
+		}
+		else{
+		
         $scope.loss.dateTimeContacted = $scope.loss.date + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
+		}
         delete $scope.loss.timeHrsContacted;
         delete $scope.loss.timeMinContacted;
         $scope.incidentDetails.reportedLosses.push($scope.loss);
@@ -511,7 +526,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.loss = {
             "id": null,
             "incident": {},
-            "statusFlag": "ACTIVE"
+            "statusFlag": "ACTIVE",
+
         }
     }
 
@@ -537,7 +553,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.logIncident = function() {
         $scope.logIncidentDetails.accidentDamage ? $scope.logIncidentDetails.accidentDamage = "Y" : $scope.logIncidentDetails.accidentDamage = "N";
-        $scope.logIncidentDetails.vehicleOrAssetDamage ? $scope.logIncidentDetails.vehicleOrAssetDamage = "Y" : $scope.logIncidentDetails.vehicleOrAssetDamage = "N";
+        $scope.logIncidentDetails.assetDamage ? $scope.logIncidentDetails.assetDamage = "Y" : $scope.logIncidentDetails.assetDamage = "N";
         $scope.logIncidentDetails.criminalAttack ? $scope.logIncidentDetails.criminalAttack = "Y" : $scope.logIncidentDetails.criminalAttack = "N";
         $scope.incident.incidentStatus = 'DRAFT';
         var req = {
@@ -553,7 +569,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $http(req).then(function(response) {
             //$scope.incidentSecond = response.data;
             $scope.incident.incidentStatus = response.data.incidentStatus;
-            $scope.incident.incidentId = response.data.incidentId;
+            $scope.incident.incidentId = response.data.id;
             $scope.incident.uniqueIncidentId = response.data.uniqueIncidentId;
             AppService.HideLoader();
         }, function(error) {
@@ -1249,7 +1265,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getWeaponType();
 
     $scope.addIncidentDetails = function() {
-        debugger
+        
         $scope.incidentDetails.incidentId = $scope.incident.incidentId;
         $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -1324,13 +1340,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.injuredPersons.push($scope.injuredPerson);
         //reset the object
         $scope.injuredPerson = {
-            addresses: []
+            addresses: [],
+            bodyParts: [],
         }
 
     }
     $scope.addEmployeeInjured = function(person) {
         if (person.selected) {
-            $scope.accidentDetails.employeeInjuredPersons.push({ 'id': person.id });
+            $scope.accidentDetails.employeeInjuredPersons.push({ 'loginId': person.id });
             $scope.injuredPersons.push(person);
         } else {
             $scope.accidentDetails.employeeInjuredPersons.map(function(val, index) {
@@ -1525,7 +1542,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.addEmployeeWitness = function(person) {
         if (person.selected) {
-            $scope.accidentDetails.employeeWitnesses.push({ 'id': person.id });
+            $scope.accidentDetails.employeeWitnesses.push({ 'loginId': person.id });
             $scope.witnesses.push(person);
         } else {
             $scope.accidentDetails.employeeWitnesses.map(function(val, index) {
@@ -1573,7 +1590,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.addAssetEmployeeWitness = function(person) {
         if (person.selected) {
-            $scope.assetdetail.employeeWitnesses.push({ 'id': person.id });
+            $scope.assetdetail.employeeWitnesses.push({ 'loginId': person.id });
         } else {
             $scope.assetDetail.employeeWitnesses.map(function(val, index) {
 
@@ -1598,7 +1615,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.addCrimeEmployeeSuspect = function(person) {
         if (person.selected) {
-            $scope.crimeDetails.employeeCrimeSuspects.push({ 'id': person.id });
+            $scope.crimeDetails.employeeCrimeSuspects.push({ 'loginId': person.id });
             $scope.Crimesuspects.push(person);
         } else {
             $scope.crimeDetails.employeeCrimeSuspects.map(function(val, index) {
@@ -1638,7 +1655,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.addCrimeEmployeeWitness = function(person) {
         if (person.selected) {
-            $scope.crimeDetails.employeeWitnesses.push({ 'id': person.id });
+            $scope.crimeDetails.employeeWitnesses.push({ 'loginId': person.id });
         } else {
             $scope.crimeDetails.employeeWitnesses.map(function(val, index) {
 

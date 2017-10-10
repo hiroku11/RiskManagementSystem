@@ -111,7 +111,7 @@
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label>Incident Type Other</label>
-                        <select class="form-control" ng-disabled="logIncidentDetails.incidentType.id!='OTHER'" ng-model="logIncidentDetails.incidentTypeOther" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" />
+                        <input type="text" class="form-control" ng-disabled="logIncidentDetails.incidentType.id!='OTHER'" ng-model="logIncidentDetails.incidentTypeOther" />
                     </div>
                 </div>
                 <div class="row">
@@ -148,7 +148,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <label>Incident Description</label>
-                        <textarea ng-model="logIncidentDetails.incidentLocationDescription" class="form-control" required></textarea>
+                        <textarea ng-model="logIncidentDetails.incidentDescription" class="form-control" required></textarea>
                     </div>
                 </div>
 
@@ -158,8 +158,7 @@
                         <label>Date of Incident: (DD/MM/YYYY)</label>
                         <p class="input-group">
 
-                            <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="logIncidentDetails.dateOfIncident" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
-                            />
+                            <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="logIncidentDetails.dateOfIncident" is-open="calendar.opened" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
                             <span class="input-group-addon" ng-click="calendar.opened=true">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -186,7 +185,7 @@
                         <input id="PersonInjured" value="Y" ng-model="logIncidentDetails.accidentDamage" type="checkbox" ng-change="addTab('accidentForm')"> Accident
                     </div>
                     <div class="col-sm-12">
-                        <input id="VehicleUsed" value="Y" ng-model="logIncidentDetails.vehicleOrAssetDamage" type="checkbox" ng-change="addTab('assetsForm')"> Building /Vehicle/Equipment Damage
+                        <input id="VehicleUsed" value="Y" ng-model="logIncidentDetails.assetDamage" type="checkbox" ng-change="addTab('assetsForm')"> Building /Vehicle/Equipment Damage
                     </div>
                     <div class="col-sm-12">
                         <input id="CrimeInvolved" value="Y" ng-model="logIncidentDetails.criminalAttack" type="checkbox" ng-change="addTab('crimeForm')"> Criminal Attack

@@ -501,7 +501,7 @@
                             <label>Part of body injured</label>
                             <!--<multiselect ng-model="$parent.partsSelected" options="bodyPartsArray">
                             </multiselect>-->
-                            <multiselect ng-model="injuredPerson.bodyParts" options="bodyPartsArray">
+                            <multiselect ng-model="myObj.temp" options="bodyPartsArray">
                             </multiselect>
                         </div>
                         <div class="col-md-6 col-sm-12">
@@ -514,7 +514,7 @@
                             <!--<span ng-class="d" ng-if="partsSelected.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
 
                             </span>-->
-                            <span ng-class="d" ng-if="injuredPerson.bodyParts.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
+                            <span ng-class="d" ng-if="myObj.temp.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
 
                             </span>
                         </div>
