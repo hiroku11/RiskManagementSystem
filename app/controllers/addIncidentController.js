@@ -407,7 +407,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             //$scope.tab = $scope.tabs[index - 1].tab;
             $scope.activeTab= $scope.tabs[index - 1];
         } else{
-            if($scope.activeTab.formAction == "saveContinue"){
+            if($scope.activeTab.formAction == "saveContinue" || dir=="next"){
                 $scope.tabs[index].active = false;
                 $scope.tabs[index + 1].active = true;
                 //$scope.tab = $scope.tabs[index + 1].tab;
