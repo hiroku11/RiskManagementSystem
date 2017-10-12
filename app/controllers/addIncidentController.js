@@ -1,4 +1,4 @@
-var addIncidentController = riskManagementSystem.controller("addIncidentController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function ($scope, AppService, rmsService, $location, $window, $http) {
+var addIncidentController = riskManagementSystem.controller("addIncidentController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function($scope, AppService, rmsService, $location, $window, $http) {
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
@@ -194,7 +194,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     // }
     var temp = [];
     $scope.myObj = { temp: [] };
-    $scope.changeBodyPart = function (args) {
+    $scope.changeBodyPart = function(args) {
         var flag = false;
         if ($scope.injuredPerson.bodyParts == undefined) {
             $scope.injuredPerson.bodyParts = [];
@@ -270,22 +270,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         distinguishingFeature: null
     }
     $scope.tabs = [{ "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
-    { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
-    // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
-    // { "active": false, "description": "Assets" ,"name":"assetsForm","tab":4},
-    // { "active": false, "description": "Crime" ,"name":"crimeForm","tab":5},
-    //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
-    //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
-    { "active": false, "description": "Supporting Documents", "name": "documentsForm", "tab": 8 }
+        { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
+        // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
+        // { "active": false, "description": "Assets" ,"name":"assetsForm","tab":4},
+        // { "active": false, "description": "Crime" ,"name":"crimeForm","tab":5},
+        //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
+        //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
+        { "active": false, "description": "Supporting Documents", "name": "documentsForm", "tab": 8 }
     ];
     $scope.activeTab = { "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 };
     $scope.calendar = {
         opened: false
     };
-    $scope.addTab = function (formName) {
+    $scope.addTab = function(formName) {
         var tabPresent = false;
         var index;
-        $scope.tabs.filter(function (val, ind) {
+        $scope.tabs.filter(function(val, ind) {
             if (val.name == formName) {
                 tabPresent = true;
                 index = ind;
@@ -338,22 +338,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.tabs.splice(index, 1);
         }
     }
-    $scope.handleTabsForRoles = function () {
-        if ($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1
-            || $scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1
-            || $scope.loggedInUser.roles.indexOf('ADMIN') > -1) {
+    $scope.handleTabsForRoles = function() {
+        if ($scope.loggedInUser.roles.indexOf('INVESTIGATOR') > -1 ||
+            $scope.loggedInUser.roles.indexOf('CLAIMS_HANDLER') > -1 ||
+            $scope.loggedInUser.roles.indexOf('ADMIN') > -1) {
             $scope.addTab('investigationForm');
             $scope.addTab('claimForm');
         }
     }
     $scope.handleTabsForRoles();
-    $scope.initializeAccidentPlaceAndTime = function () {
+    $scope.initializeAccidentPlaceAndTime = function() {
         $scope.accidentDetails.accident.accidentPlace = $scope.logIncidentDetails.placeOfIncident
         $scope.accidentDetails.accident.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident;
         $scope.accidentDetails.accident.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident
     }
 
-    $scope.getDayClass = function (data) {
+    $scope.getDayClass = function(data) {
         var date = data.date,
             mode = data.mode;
         if (mode === 'day') {
@@ -382,12 +382,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         startingDay: 1
     };
 
-    $scope.submitForm = function (formName, dir,$event) {
+    $scope.submitForm = function(formName, dir, $event) {
         var index = 0;
         //$scope.tabs[$scope.tab - 1].completed = true;
 
-        $scope.tabs.filter(function (val, ind) {
-            if (val.tab == $scope.activeTab.tab && dir !="back") {
+        $scope.tabs.filter(function(val, ind) {
+            if (val.tab == $scope.activeTab.tab && dir != "back") {
                 val.completed = true;
             }
             if (val.name == formName) {
@@ -395,30 +395,30 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
         });
 
-        $scope.tabs.sort(function (a, b) {
-            return a.tab - b.tab;
-        })
-        // $scope.tabs.filter(function (val, ind) {
-            
+        $scope.tabs.sort(function(a, b) {
+                return a.tab - b.tab;
+            })
+            // $scope.tabs.filter(function (val, ind) {
+
         // });
         if (dir == "back") {
             $scope.tabs[index].active = false;
             $scope.tabs[index - 1].active = true;
             //$scope.tab = $scope.tabs[index - 1].tab;
-            $scope.activeTab= $scope.tabs[index - 1];
-        } else{
-            if($scope.activeTab.formAction == "saveContinue"){
+            $scope.activeTab = $scope.tabs[index - 1];
+        } else {
+            if ($scope.activeTab.formAction == "saveContinue") {
                 $scope.tabs[index].active = false;
                 $scope.tabs[index + 1].active = true;
                 //$scope.tab = $scope.tabs[index + 1].tab;
-                $scope.activeTab= $scope.tabs[index + 1];
+                $scope.activeTab = $scope.tabs[index + 1];
             }
-               
+
         }
 
-        
+
         if (dir != "back" && dir != "next" && $scope.activeTab.completed != true) {
-            if ($scope.tab == 2) {
+            if ($scope.activeTab.tab == 2) {
                 $scope.logIncident();
             }
 
@@ -440,13 +440,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $(".content")[0].scrollTop = 0;
-        if ($scope.tab == 3) {
+        if ($scope.activeTab.tab == 3) {
             $scope.initializeAccidentPlaceAndTime();
         }
 
     }
 
-    $scope.addSuspect = function () {
+    $scope.addSuspect = function() {
         $scope.incidentDetails.newSuspects.push($scope.suspect);
         $scope.suspects.push($scope.suspect);
         //reinitialize the suspect so that new can be added
@@ -460,20 +460,20 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     }
 
-    $scope.addEmployeeSuspect = function (person) {
+    $scope.addEmployeeSuspect = function(person) {
         if (person.selected) {
             $scope.incidentDetails.employeeSuspects.push({ 'loginId': person.id });
             $scope.suspects.push(person);
 
         } else {
-            $scope.incidentDetails.employeeSuspects.map(function (val, index) {
+            $scope.incidentDetails.employeeSuspects.map(function(val, index) {
                 // push({'id':person.id});
                 if (val.id == person.id) {
                     $scope.incidentDetails.employeeSuspects.splice(index, 1);
 
                 }
             })
-            $scope.suspects.map(function (val, index) {
+            $scope.suspects.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.suspects.splice(index, 1);
@@ -483,20 +483,20 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addExistingSuspect = function (person) {
+    $scope.addExistingSuspect = function(person) {
         if (person.selected) {
             $scope.incidentDetails.existingSuspects.push({ 'id': person.id });
             $scope.suspects.push(person);
 
         } else {
-            $scope.incidentDetails.existingSuspects.map(function (val, index) {
+            $scope.incidentDetails.existingSuspects.map(function(val, index) {
                 // push({'id':person.id});
                 if (val.id == person.id) {
                     $scope.incidentDetails.existingSuspects.splice(index, 1);
                 }
             })
 
-            $scope.suspects.map(function (val, index) {
+            $scope.suspects.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.suspects.splice(index, 1);
@@ -506,11 +506,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addLoss = function () {
+    $scope.addLoss = function() {
         if ($scope.loss.date == null) {
             $scope.loss.dateTimeContacted = $scope.loss.date;
-        }
-        else {
+        } else {
 
             $scope.loss.dateTimeContacted = $scope.loss.date + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
         }
@@ -527,7 +526,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
 
-    $scope.getUserInfo = function () {
+    $scope.getUserInfo = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-incident',
             method: "GET",
@@ -537,16 +536,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.incident = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
     $scope.getUserInfo();
 
-    $scope.logIncident = function () {
+    $scope.logIncident = function() {
+        $scope.logIncidentDetails.dateOfIncident = $scope.logIncidentDetails.date + " " + $scope.logIncidentDetails.timeHrsContacted + ":" + $scope.logIncidentDetails.timeMinContacted;
+
         $scope.logIncidentDetails.accidentDamage ? $scope.logIncidentDetails.accidentDamage = "Y" : $scope.logIncidentDetails.accidentDamage = "N";
         $scope.logIncidentDetails.assetDamage ? $scope.logIncidentDetails.assetDamage = "Y" : $scope.logIncidentDetails.assetDamage = "N";
         $scope.logIncidentDetails.criminalAttack ? $scope.logIncidentDetails.criminalAttack = "Y" : $scope.logIncidentDetails.criminalAttack = "N";
@@ -561,19 +562,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             //$scope.incidentSecond = response.data;
             $scope.incident.incidentStatus = response.data.incidentStatus;
             $scope.incident.incidentId = response.data.id;
             $scope.incident.uniqueIncidentId = response.data.uniqueIncidentId;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
 
-    $scope.openBodyPartModal = function () {
+    $scope.openBodyPartModal = function() {
 
         $("#bodyModal").modal('show');
 
@@ -581,15 +582,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
 
 
-    $scope.openMap = function () {
+    $scope.openMap = function() {
         $("#mapModal").modal('show');
-        $('#mapModal').on('shown.bs.modal', function () {
+        $('#mapModal').on('shown.bs.modal', function() {
             $scope.map = true;
             $scope.$apply();
         })
     }
 
-    $scope.getSuspectType = function () {
+    $scope.getSuspectType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/suspect-type/suspect-types',
             method: "GET",
@@ -600,19 +601,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
         var getIncident = $http(req);
-        getIncident.then(function (response) {
+        getIncident.then(function(response) {
             $scope.suspectType = response.data;
             console.log($scope.suspectType);
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
 
-    $scope.getIncidentType = function () {
+    $scope.getIncidentType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
             method: "GET",
@@ -623,17 +624,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.incidentType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getIncidentLoc = function () {
+    $scope.getIncidentLoc = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
             method: "GET",
@@ -645,17 +646,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.incidentLocations = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getEntrypoint = function () {
+    $scope.getEntrypoint = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/entry-point/entry-points',
             method: "GET",
@@ -666,18 +667,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.entryPoint = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getDistinguishFeatures = function () {
+    $scope.getDistinguishFeatures = function() {
 
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature/distinguishing-features',
@@ -689,18 +690,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             //change the options as required by the multiselect plugin/module
             $scope.distinguishFeatures = response.data;
             // /debugger
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
 
-    $scope.getDistinguishFeaturesDetails = function () {
+    $scope.getDistinguishFeaturesDetails = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature-details',
             method: "GET",
@@ -709,18 +710,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
         AppService.ShowLoader();
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
 
             //change the options as required by the multiselect plugin/module
             $scope.distinguishFeaturesDetails = response.data;
             $scope.distinguishFeaturesDetailsOptions = $scope.distinguishFeaturesDetails;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getAgency = function () {
+    $scope.getAgency = function() {
 
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/external-agency/external-agencies',
@@ -732,17 +733,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.agencies = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getAccidentLoc = function () {
+    $scope.getAccidentLoc = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/accident-location/accident-locations',
             method: "GET",
@@ -753,17 +754,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.accidentLoc = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getAccidentType = function () {
+    $scope.getAccidentType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/accident-type/accident-types',
             method: "GET",
@@ -774,17 +775,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.accidentType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getAssetCategory = function () {
+    $scope.getAssetCategory = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/asset-category/asset-categories',
             method: "GET",
@@ -795,18 +796,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.assetCat = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getBodyPart = function () {
+    $scope.getBodyPart = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/body-part/body-parts',
             method: "GET",
@@ -817,20 +818,20 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             var bodyPart = response.data;
             var storeDesc = [];
-            bodyPart.map(function (d) {
+            bodyPart.map(function(d) {
                 storeDesc.push(d.description);
             });
             $scope.bodyPartsArray = storeDesc;
             AppService.HideLoader();
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getClaimRegType = function () {
+    $scope.getClaimRegType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/claim-request-registration-type/claim-request-registration-types',
             method: "GET",
@@ -841,14 +842,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.claimReg = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getClaimStatus = function () {
+    $scope.getClaimStatus = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/claim-status/claim-statuses',
             method: "GET",
@@ -859,17 +860,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.claimStatus = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getClaimType = function () {
+    $scope.getClaimType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/claim-type/claim-types',
             method: "GET",
@@ -880,17 +881,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.claimType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getDepartment = function () {
+    $scope.getDepartment = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/department/departments',
             method: "GET",
@@ -901,17 +902,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.depType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getDocCategory = function () {
+    $scope.getDocCategory = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/document-category/document-categories',
             method: "GET",
@@ -922,17 +923,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.docCategory = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.getDocType = function () {
+    $scope.getDocType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/document-type/document-types',
             method: "GET",
@@ -943,18 +944,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.docType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getEmpType = function () {
+    $scope.getEmpType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/employee-type/employee-types',
             method: "GET",
@@ -965,18 +966,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.empType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getEventType = function () {
+    $scope.getEventType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/event-type/event-types',
             method: "GET",
@@ -987,18 +988,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.eventType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getGenderType = function () {
+    $scope.getGenderType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/gender-type/gender-types',
             method: "GET",
@@ -1009,18 +1010,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.genderType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getInjuredPersonType = function () {
+    $scope.getInjuredPersonType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/injured-person-type/injured-person-types',
             method: "GET",
@@ -1031,15 +1032,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.injuredPersonTypes = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getInjuryCause = function () {
+    $scope.getInjuryCause = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/injury-cause/injury-causes',
             method: "GET",
@@ -1048,15 +1049,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
         AppService.ShowLoader();
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.injuryCauses = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getInjuryType = function () {
+    $scope.getInjuryType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/injury-type/injury-types',
             method: "GET",
@@ -1066,15 +1067,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.injuryTypes = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getLossType = function () {
+    $scope.getLossType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/loss-type/loss-types',
             method: "GET",
@@ -1085,18 +1086,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.lossType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getOrg = function () {
+    $scope.getOrg = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/organization/organizations',
             method: "GET",
@@ -1107,18 +1108,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.organization = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getPolicyType = function () {
+    $scope.getPolicyType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/policy-type/policy-types',
             method: "GET",
@@ -1129,18 +1130,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.policyType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getPos = function () {
+    $scope.getPos = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/position/positions',
             method: "GET",
@@ -1151,18 +1152,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.position = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getPosLevel = function () {
+    $scope.getPosLevel = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/position-level/position-levels',
             method: "GET",
@@ -1173,18 +1174,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.positionLevel = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getVehicleDamageType = function () {
+    $scope.getVehicleDamageType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/vehicle-damage-type/vehicle-damage-types',
             method: "GET",
@@ -1195,18 +1196,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.vehDamageType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.getWeaponType = function () {
+    $scope.getWeaponType = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/weapon-type/weapon-types',
             method: "GET",
@@ -1217,13 +1218,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.weaponType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
@@ -1259,7 +1260,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getVehicleDamageType();
     $scope.getWeaponType();
 
-    $scope.addIncidentDetails = function () {
+    $scope.addIncidentDetails = function() {
 
         $scope.incidentDetails.incidentId = $scope.incident.incidentId;
         $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
@@ -1274,14 +1275,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.addCrimeDetails = function () {
+    $scope.addCrimeDetails = function() {
 
         $scope.crimeDetails.crime.crimeDateTime = $scope.crimeDetails.crime.date + " " + $scope.crimeDetails.crime.timeHrs + ":" + $scope.crimeDetails.crime.timeMin;
         delete $scope.crimeDetails.crime.timeHrs;
@@ -1300,15 +1301,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             //$scope.incidentSecond = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.addAssetDetails = function () {
+    $scope.addAssetDetails = function() {
 
         $scope.crimeDetails.incidentId = $scope.incident.incidentId;
         $scope.crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
@@ -1322,15 +1323,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             //$scope.incidentSecond = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.addInjuredPerson = function () {
+    $scope.addInjuredPerson = function() {
         $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
         $scope.injuredPersons.push($scope.injuredPerson);
         //reset the object
@@ -1340,18 +1341,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
     }
-    $scope.addEmployeeInjured = function (person) {
+    $scope.addEmployeeInjured = function(person) {
         if (person.selected) {
             $scope.accidentDetails.employeeInjuredPersons.push({ 'loginId': person.id });
             $scope.injuredPersons.push(person);
         } else {
-            $scope.accidentDetails.employeeInjuredPersons.map(function (val, index) {
+            $scope.accidentDetails.employeeInjuredPersons.map(function(val, index) {
                 // push({'id':person.id});
                 if (val.id == person.id) {
                     $scope.accidentDetails.employeeInjuredPersons.splice(index, 1);
                 }
             })
-            $scope.injuredPersons.map(function (val, index) {
+            $scope.injuredPersons.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.injuredPersons.splice(index, 1);
@@ -1361,115 +1362,115 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addExistingInjured = function (person) {
-        if (person.selected) {
-            $scope.accidentDetails.existingInjuredPersons.push({ 'id': person.id });
-            $scope.injuredPersons.push(person);
-        } else {
-            $scope.accidentDetails.existingInjuredPersons.map(function (val, index) {
-                // push({'id':person.id});
+    $scope.addExistingInjured = function(person) {
+            if (person.selected) {
+                $scope.accidentDetails.existingInjuredPersons.push({ 'id': person.id });
+                $scope.injuredPersons.push(person);
+            } else {
+                $scope.accidentDetails.existingInjuredPersons.map(function(val, index) {
+                    // push({'id':person.id});
+                    if (val.id == person.id) {
+                        $scope.accidentDetails.existingInjuredPersons.splice(index, 1);
+                    }
+                })
+                $scope.injuredPersons.map(function(val, index) {
+
+                    if (val.id == person.id) {
+                        $scope.injuredPersons.splice(index, 1);
+
+                    }
+                })
+            }
+        }
+        //delete loss data from table
+    $scope.deleteLoss = function(loss) {
+            for (var i = 0; i < $scope.incidentDetails.reportedLosses.length; i++) {
+                if ($scope.incidentDetails.reportedLosses[i].lossValue == loss.lossValue &&
+                    $scope.incidentDetails.reportedLosses[i].lossType.id == loss.lossType.id) {
+                    $scope.accidentDetails.existingInjuredPersons.splice(i, 1);
+
+                    break;
+                }
+            }
+        }
+        //Delete suspect data
+    $scope.deleteSuspect = function(person) {
+            var flag = false;
+
+            for (var i = 0; i < $scope.incidentDetails.existingSuspects.length && flag == false; i++) {
+                if ($scope.incidentDetails.existingSuspects[i].id == person.id) {
+                    $scope.incidentDetails.existingSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.incidentDetails.employeeSuspects.length && flag == false; i++) {
+                if ($scope.incidentDetails.employeeSuspects[i].id == person.id) {
+                    $scope.incidentDetails.employeeSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.incidentDetails.newSuspects.length && flag == false; i++) {
+                if ($scope.incidentDetails.newSuspects[i].firstName == person.firstName &&
+                    $scope.incidentDetails.newSuspects[i].middleName == person.middleName) {
+                    $scope.incidentDetails.newSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+
+
+            $scope.suspects.map(function(val, index) {
+
                 if (val.id == person.id) {
-                    $scope.accidentDetails.existingInjuredPersons.splice(index, 1);
+                    $scope.suspects.splice(index, 1);
+
                 }
             })
-            $scope.injuredPersons.map(function (val, index) {
+            person.selected = false;
+
+        }
+        //Delete Crime suspect
+    $scope.deleteCrimeSuspect = function(person) {
+            var flag = false;
+
+            for (var i = 0; i < $scope.crimeDetails.existingCrimeSuspects.length && flag == false; i++) {
+                if ($scope.crimeDetails.existingCrimeSuspects[i].id == person.id) {
+                    $scope.crimeDetails.existingCrimeSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.crimeDetails.employeeCrimeSuspects.length && flag == false; i++) {
+                if ($scope.crimeDetails.employeeCrimeSuspects[i].id == person.id) {
+                    $scope.crimeDetails.employeeCrimeSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.crimeDetails.newCrimeSuspects.length && flag == false; i++) {
+                if ($scope.crimeDetails.newCrimeSuspects[i].firstName == person.firstName &&
+                    $scope.crimeDetails.newCrimeSuspects[i].middleName == person.middleName) {
+                    $scope.crimeDetails.newCrimeSuspects.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+
+
+            $scope.Crimesuspects.map(function(val, index) {
 
                 if (val.id == person.id) {
-                    $scope.injuredPersons.splice(index, 1);
+                    $scope.Crimesuspects.splice(index, 1);
 
                 }
             })
+            person.selected = false;
+
         }
-    }
-    //delete loss data from table
-    $scope.deleteLoss = function (loss) {
-        for (var i = 0; i < $scope.incidentDetails.reportedLosses.length; i++) {
-            if ($scope.incidentDetails.reportedLosses[i].lossValue == loss.lossValue &&
-                $scope.incidentDetails.reportedLosses[i].lossType.id == loss.lossType.id) {
-                $scope.accidentDetails.existingInjuredPersons.splice(i, 1);
-
-                break;
-            }
-        }
-    }
-    //Delete suspect data
-    $scope.deleteSuspect = function (person) {
-        var flag = false;
-
-        for (var i = 0; i < $scope.incidentDetails.existingSuspects.length && flag == false; i++) {
-            if ($scope.incidentDetails.existingSuspects[i].id == person.id) {
-                $scope.incidentDetails.existingSuspects.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-        for (var i = 0; i < $scope.incidentDetails.employeeSuspects.length && flag == false; i++) {
-            if ($scope.incidentDetails.employeeSuspects[i].id == person.id) {
-                $scope.incidentDetails.employeeSuspects.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-        for (var i = 0; i < $scope.incidentDetails.newSuspects.length && flag == false; i++) {
-            if ($scope.incidentDetails.newSuspects[i].firstName == person.firstName &&
-                $scope.incidentDetails.newSuspects[i].middleName == person.middleName) {
-                $scope.incidentDetails.newSuspects.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-
-
-        $scope.suspects.map(function (val, index) {
-
-            if (val.id == person.id) {
-                $scope.suspects.splice(index, 1);
-
-            }
-        })
-        person.selected = false;
-
-    }
-    //Delete Crime suspect
-    $scope.deleteCrimeSuspect = function (person) {
-        var flag = false;
-
-        for (var i = 0; i < $scope.crimeDetails.existingCrimeSuspects.length && flag == false; i++) {
-            if ($scope.crimeDetails.existingCrimeSuspects[i].id == person.id) {
-                $scope.crimeDetails.existingCrimeSuspects.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-        for (var i = 0; i < $scope.crimeDetails.employeeCrimeSuspects.length && flag == false; i++) {
-            if ($scope.crimeDetails.employeeCrimeSuspects[i].id == person.id) {
-                $scope.crimeDetails.employeeCrimeSuspects.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-        for (var i = 0; i < $scope.crimeDetails.newCrimeSuspects.length && flag == false; i++) {
-            if ($scope.crimeDetails.newCrimeSuspects[i].firstName == person.firstName &&
-                $scope.crimeDetails.newCrimeSuspects[i].middleName == person.middleName) {
-                $scope.crimeDetails.newCrimeSuspects.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-
-
-        $scope.Crimesuspects.map(function (val, index) {
-
-            if (val.id == person.id) {
-                $scope.Crimesuspects.splice(index, 1);
-
-            }
-        })
-        person.selected = false;
-
-    }
-    //Delete Injured person data
-    $scope.deleteInjured = function (person) {
+        //Delete Injured person data
+    $scope.deleteInjured = function(person) {
         var flag = false;
 
         for (var i = 0; i < $scope.accidentDetails.existingInjuredPersons.length && flag == false; i++) {
@@ -1496,7 +1497,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
 
-        $scope.injuredPersons.map(function (val, index) {
+        $scope.injuredPersons.map(function(val, index) {
 
             if (val.id == person.id) {
                 $scope.injuredPersons.splice(index, 1);
@@ -1506,7 +1507,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         person.selected = false;
     }
 
-    $scope.addWitness = function () {
+    $scope.addWitness = function() {
         $scope.accidentDetails.newWitnesses.push($scope.witness);
         //reset the object
         $scope.witness = {
@@ -1515,7 +1516,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.witnesses.push($scope.witness);
     }
 
-    $scope.addCrimeWitness = function () {
+    $scope.addCrimeWitness = function() {
         $scope.crimeDetails.newWitnesses.push($scope.crimeWitness);
         //reset the object
         $scope.crimeWitness = {
@@ -1525,7 +1526,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addCrimeSuspect = function () {
+    $scope.addCrimeSuspect = function() {
 
         $scope.crimeDetails.newCrimeSuspects.push($scope.crimeSuspect);
         $scope.Crimesuspects.push($scope.crimeSuspect)
@@ -1535,18 +1536,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             distinguishingFeature: null
         }
     }
-    $scope.addEmployeeWitness = function (person) {
+    $scope.addEmployeeWitness = function(person) {
         if (person.selected) {
             $scope.accidentDetails.employeeWitnesses.push({ 'loginId': person.id });
             $scope.witnesses.push(person);
         } else {
-            $scope.accidentDetails.employeeWitnesses.map(function (val, index) {
+            $scope.accidentDetails.employeeWitnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.accidentDetails.employeeWitnesses.splice(index, 1);
                 }
             })
-            $scope.witnesses.map(function (val, index) {
+            $scope.witnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.injuredPersons.splice(index, 1);
@@ -1556,18 +1557,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addExistingWitness = function (person) {
+    $scope.addExistingWitness = function(person) {
         if (person.selected) {
             $scope.accidentDetails.existingWitnesses.push({ 'id': person.id });
             $scope.witnesses.push(person);
         } else {
-            $scope.accidentDetails.existingWitnesses.map(function (val, index) {
+            $scope.accidentDetails.existingWitnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.accidentDetails.existingWitnesses.splice(index, 1);
                 }
             })
-            $scope.witnesses.map(function (val, index) {
+            $scope.witnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.injuredPersons.splice(index, 1);
@@ -1576,18 +1577,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
     }
-    $scope.addAssetWitness = function () {
+    $scope.addAssetWitness = function() {
         $scope.assetDetail.newWitnesses.push($scope.assetWitness);
         //reset the object
         $scope.assetWitness = {
             addresses: []
         }
     }
-    $scope.addAssetEmployeeWitness = function (person) {
+    $scope.addAssetEmployeeWitness = function(person) {
         if (person.selected) {
             $scope.assetdetail.employeeWitnesses.push({ 'loginId': person.id });
         } else {
-            $scope.assetDetail.employeeWitnesses.map(function (val, index) {
+            $scope.assetDetail.employeeWitnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.assetDetail.employeeWitnesses.splice(index, 1);
@@ -1596,11 +1597,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addAssetExistingWitness = function (person) {
+    $scope.addAssetExistingWitness = function(person) {
         if (person.selected) {
             $scope.assetDetail.existingWitnesses.push({ 'id': person.id });
         } else {
-            $scope.assetDetail.existingWitnesses.map(function (val, index) {
+            $scope.assetDetail.existingWitnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.assetdetail.existingWitnesses.splice(index, 1);
@@ -1608,18 +1609,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
     }
-    $scope.addCrimeEmployeeSuspect = function (person) {
+    $scope.addCrimeEmployeeSuspect = function(person) {
         if (person.selected) {
             $scope.crimeDetails.employeeCrimeSuspects.push({ 'loginId': person.id });
             $scope.Crimesuspects.push(person);
         } else {
-            $scope.crimeDetails.employeeCrimeSuspects.map(function (val, index) {
+            $scope.crimeDetails.employeeCrimeSuspects.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.crimeDetails.employeeCrimeSuspects.splice(index, 1);
                 }
             })
-            $scope.Crimesuspects.map(function (val, index) {
+            $scope.Crimesuspects.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.Crimesuspects.splice(index, 1);
@@ -1628,18 +1629,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
     }
-    $scope.addCrimeExistingSuspect = function (person) {
+    $scope.addCrimeExistingSuspect = function(person) {
         if (person.selected) {
             $scope.crimeDetails.existingCrimeSuspects.push({ 'id': person.id });
             $scope.Crimesuspects.push(person);
         } else {
-            $scope.crimeDetails.existingCrimeSuspects.map(function (val, index) {
+            $scope.crimeDetails.existingCrimeSuspects.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.crimeDetails.existingCrimeSuspects.splice(index, 1);
                 }
             })
-            $scope.Crimesuspects.map(function (val, index) {
+            $scope.Crimesuspects.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.Crimesuspects.splice(index, 1);
@@ -1648,11 +1649,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
     }
-    $scope.addCrimeEmployeeWitness = function (person) {
+    $scope.addCrimeEmployeeWitness = function(person) {
         if (person.selected) {
             $scope.crimeDetails.employeeWitnesses.push({ 'loginId': person.id });
         } else {
-            $scope.crimeDetails.employeeWitnesses.map(function (val, index) {
+            $scope.crimeDetails.employeeWitnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.crimeDetails.employeeWitnesses.splice(index, 1);
@@ -1661,11 +1662,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addCrimeExistingWitness = function (person) {
+    $scope.addCrimeExistingWitness = function(person) {
         if (person.selected) {
             $scope.crimeDetails.existingWitnesses.push({ 'id': person.id });
         } else {
-            $scope.crimeDetails.existingWitnesses.map(function (val, index) {
+            $scope.crimeDetails.existingWitnesses.map(function(val, index) {
 
                 if (val.id == person.id) {
                     $scope.crimeDetails.existingWitnesses.splice(index, 1);
@@ -1673,23 +1674,23 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
     }
-    $scope.addBuilding = function () {
+    $scope.addBuilding = function() {
         $scope.assetDetail.buildings.push($scope.building);
         $scope.building = {};
 
     }
-    $scope.addVehicle = function () {
+    $scope.addVehicle = function() {
         $scope.assetDetail.vehicles.push($scope.vehicle);
         $scope.vehicle = {};
 
     }
-    $scope.addEquipement = function () {
+    $scope.addEquipement = function() {
         $scope.assetDetail.equipments.push($scope.equipment);
         $scope.equipment = {};
 
 
     }
-    $scope.addAccidentDetails = function () {
+    $scope.addAccidentDetails = function() {
         $scope.accidentDetails.incidentId = $scope.incident.incidentId;
         $scope.accidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -1703,17 +1704,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             //$scope.incidentSecond = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.clearUser = function () {
+    $scope.clearUser = function() {
         $scope.userInfo = [];
     }
-    $scope.userLookup = function (args) {
+    $scope.userLookup = function(args) {
 
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
@@ -1738,12 +1739,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
         AppService.ShowLoader();
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
 
             $scope.userInfo = response.data;
 
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
 
 
@@ -1751,7 +1752,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     }
 
-    $scope.suspectLookup = function (args) {
+    $scope.suspectLookup = function(args) {
 
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
@@ -1773,15 +1774,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
 
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             $scope.suspectData = response.data;
-        }, function (error) {
+        }, function(error) {
 
         })
 
     }
 
-    $scope.injuredPersonLookup = function (args) {
+    $scope.injuredPersonLookup = function(args) {
 
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
@@ -1803,15 +1804,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
         AppService.ShowLoader();
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
 
             $scope.injuredPersonData = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.witnessLookup = function (args) {
+    $scope.witnessLookup = function(args) {
 
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
@@ -1832,15 +1833,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
         AppService.ShowLoader();
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
 
             $scope.witnessData = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
-    $scope.crimeSuspectLookup = function (args) {
+    $scope.crimeSuspectLookup = function(args) {
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
             "sorts": [{ "field": "firstName", "order": "ASC" }],
@@ -1860,16 +1861,16 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
         }
         AppService.ShowLoader();
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
 
             $scope.crimeSuspectData = response.data;
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.addInvestigationDetails = function () {
+    $scope.addInvestigationDetails = function() {
         $scope.investigationDetails.incidentId = $scope.incident.incidentId;
         $scope.investigationDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
@@ -1881,9 +1882,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             data: $scope.investigationDetails
         }
         AppService.ShowLoader();
-        $http(req).then(function (response) {
+        $http(req).then(function(response) {
             AppService.HideLoader();
-        }, function (error) {
+        }, function(error) {
             AppService.HideLoader();
         })
     }

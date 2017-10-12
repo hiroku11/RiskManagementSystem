@@ -107,20 +107,17 @@
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label>Incident Type</label>
-                        <select class="form-control" ng-model="logIncidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType"
-                        />
+                        <select class="form-control" ng-model="logIncidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" />
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label>Incident Type Other</label>
-                        <input type="text" class="form-control" ng-disabled="logIncidentDetails.incidentType.id!='OTHER'" ng-model="logIncidentDetails.incidentTypeOther"
-                        />
+                        <input type="text" class="form-control" ng-disabled="logIncidentDetails.incidentType.id!='OTHER'" ng-model="logIncidentDetails.incidentTypeOther" />
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <label>Entry Point</label>
-                        <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint"
-                        />
+                        <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" />
 
                     </div>
 
@@ -142,8 +139,7 @@
                     </div>
                     <div class="col-sm-12 col-md-6 ">
                         <label>Incident Location Details</label>
-                        <select ng-model="logIncidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!logIncidentDetails.incidentLocation.id"
-                            ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
+                        <select ng-model="logIncidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!logIncidentDetails.incidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
 
                         <option value=''>Select</option>
                         </select>
@@ -163,9 +159,8 @@
                         <p class="input-group">
 
 
-                            <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="logIncidentDetails.dateOfIncident"
-                                is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close"
-                                alt-input-formats="altInputFormats" />
+                            <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="logIncidentDetails.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"
+                            />
                             <span class="input-group-addon" ng-click="calendar.opened=true">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
@@ -189,13 +184,13 @@
                         <label>Incident Category</label>
                     </div>
                     <div class="col-sm-12">
-                        <input id="PersonInjured" value="Y" ng-model="logIncidentDetails.accidentDamage" type="checkbox" ng-change="addTab('accidentForm')">                        Accident
+                        <input id="PersonInjured" value="Y" ng-model="logIncidentDetails.accidentDamage" type="checkbox" ng-change="addTab('accidentForm')"> Accident
                     </div>
                     <div class="col-sm-12">
-                        <input id="VehicleUsed" value="Y" ng-model="logIncidentDetails.assetDamage" type="checkbox" ng-change="addTab('assetsForm')">                        Building /Vehicle/Equipment Damage
+                        <input id="VehicleUsed" value="Y" ng-model="logIncidentDetails.assetDamage" type="checkbox" ng-change="addTab('assetsForm')"> Building /Vehicle/Equipment Damage
                     </div>
                     <div class="col-sm-12">
-                        <input id="CrimeInvolved" value="Y" ng-model="logIncidentDetails.criminalAttack" type="checkbox" ng-change="addTab('crimeForm')">                        Criminal Attack
+                        <input id="CrimeInvolved" value="Y" ng-model="logIncidentDetails.criminalAttack" type="checkbox" ng-change="addTab('crimeForm')"> Criminal Attack
 
                     </div>
                 </div>
