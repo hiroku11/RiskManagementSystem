@@ -1,8 +1,6 @@
 <div class="form-content" ng-show="activeTab.tab==2">
     <h2>Incident Details</h2>
     <form ng-submit="submitForm('incidentDetailsForm')">
-
-
         <div class="row">
             <div class="col-md-6 col-sm-12">
 
@@ -18,7 +16,6 @@
                 <div class="col-sm-12 col-md-6">
                     <label>Suspect Type</label>
                     <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="suspect.suspectType.id" />
-
 
                 </div>
                 <div class="col-sm-12 col-md-6">
@@ -237,11 +234,11 @@
             </div>
 
         </div>
-
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <label>Reported Loss</label>
                 <select class="form-control" ng-options="lossType.id as lossType.description for lossType in lossType" ng-model="loss.lossType.id">
+
                             <option value="" selected>---Select---</option>
                             </select>
             </div>
@@ -325,7 +322,6 @@
             </div>
 
         </div>
-
         <div class="table-wrapper inline" ng-if="incidentDetails.reportedLosses.length > 0">
 
             <table class="table table-bordered">
@@ -366,7 +362,6 @@
                 <button type="button" ng-click="submitForm('incidentDetailsForm','back')" class="btn btn-secondary pull-right">Back</button>
                 <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('incidentDetailsForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
             </div>
-
         </div>
 
 
