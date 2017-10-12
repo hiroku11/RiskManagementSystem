@@ -717,3 +717,9 @@ a i {
 a {
     cursor: pointer;
 }
+
+.btn-secondary {
+    color: #fff;
+    background-color: #868e96;
+    border-color: #868e96;
+}

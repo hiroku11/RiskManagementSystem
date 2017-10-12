@@ -1,4 +1,4 @@
-<div class="form-content"  ng-show="tab==7">
+<div class="form-content"  ng-show="activeTab.tab==7">
         <h2>Investigation Details</h2>
         <form ng-submit="submitForm('investigationForm')">
             <div class="row">
@@ -115,14 +115,19 @@
                     <input class="form-control" type="file">
                 </div>
             </div>
-            <div class="row">
-                    <div class="col-sm-12">
-                            <button type="submit" class="btn btn-primary">Continue</button>
-                            <!-- <button type="button" class="btn" ng-click="submitForm('investigationForm',true)">Back</button> -->
+            <div class="row ">
+                <div class="col-md-6 col-sm-12">
+                    <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
+                    <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
+                </div>
+    
+                    <div class="col-md-6 col-sm-12">
+                        <button type="button" ng-click="submitForm('investigationForm','back')" class="btn btn-secondary pull-right">Back</button>
+                        <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('investigationForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
                     </div>
-            </div>
+    
+                </div>
         </form>
-        
     </div>
     
    

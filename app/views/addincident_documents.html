@@ -1,4 +1,4 @@
-<div class="form-content" ng-show="tab==8">
+<div class="form-content" ng-show="activeTab.tab==8">
         <h2>Supporting Documents</h2>
         <div class="table-wrapper">
             <table class="table table-bordered incident-list">
@@ -45,11 +45,18 @@
             <div class="action-button">
                 <a class="btn btn-primary" href="" id="btnAddSupportingDocument">Add</a>
             </div>
-            <div class="row">
-                    <div class="col-sm-12">
-                            <button class="btn btn-primary" ng-click="summary">Continue</a>
-                        </div>
-            </div>
+            <div class="row ">
+                <div class="col-md-6 col-sm-12">
+                    <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
+                    <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
+                </div>
+    
+                    <div class="col-md-6 col-sm-12">
+                        <button type="button" ng-click="submitForm('logIncidentForm','back')" class="btn btn-secondary pull-right">Back</button>
+                        <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('logIncidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
+                    </div>
+    
+                </div>
         </form>
     </div>
     

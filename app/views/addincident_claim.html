@@ -1,4 +1,4 @@
-<div class="form-content" ng-if="tab == 6">
+<div class="form-content" ng-if="activeTab.tab == 6">
     <h2>Claim Details</h2>
     <form ng-submit="submitForm('claimForm')">
         <div class="row">
@@ -212,12 +212,18 @@
                     <span class="glyphicon glyphicon-calendar"></span>
                 </div>
             </div>-->
-        <div class="row">
-            <div class="col-sm-12">
-                <button type="submit" class="btn btn-primary">Continue</button>
-                <!-- <button type="button" class="btn" ng-click="submitForm('claimForm',true)">Back</button> -->
-            </div>
-        </div>
+            <div class="row ">
+                <div class="col-md-6 col-sm-12">
+                    <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
+                    <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
+                </div>
+    
+                    <div class="col-md-6 col-sm-12">
+                        <button type="button" ng-click="submitForm('claimForm','back')" class="btn btn-secondary pull-right">Back</button>
+                        <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('claimForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
+                    </div>
+    
+                </div>
 
     </form>
 
