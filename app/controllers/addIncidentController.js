@@ -211,6 +211,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         }
         if (flag == false) {
+            var args = {
+
+            }
             $scope.injuredPerson.bodyParts.push(args);
 
         }
@@ -405,10 +408,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.tabs[index].active = false;
             $scope.tabs[index - 1].active = true;
             //$scope.tab = $scope.tabs[index - 1].tab;
-            $scope.activeTab= $scope.tabs[index - 1];
-        } else{
-            if($scope.activeTab.formAction == "saveContinue" || dir=="next"){
-
+            $scope.activeTab = $scope.tabs[index - 1];
+        } else {
+            if ($scope.activeTab.formAction == "saveContinue") {
                 $scope.tabs[index].active = false;
                 $scope.tabs[index + 1].active = true;
                 //$scope.tab = $scope.tabs[index + 1].tab;
@@ -1388,7 +1390,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             for (var i = 0; i < $scope.incidentDetails.reportedLosses.length; i++) {
                 if ($scope.incidentDetails.reportedLosses[i].lossValue == loss.lossValue &&
                     $scope.incidentDetails.reportedLosses[i].lossType.id == loss.lossType.id) {
-                    $scope.accidentDetails.existingInjuredPersons.splice(i, 1);
+                    $scope.incidentDetails.reportedLosses.splice(i, 1);
 
                     break;
                 }
@@ -1472,36 +1474,73 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         //Delete Injured person data
     $scope.deleteInjured = function(person) {
+            var flag = false;
+
+            for (var i = 0; i < $scope.accidentDetails.existingInjuredPersons.length && flag == false; i++) {
+                if ($scope.accidentDetails.existingInjuredPersons[i].id == person.id) {
+                    $scope.accidentDetails.existingInjuredPersons.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.accidentDetails.employeeInjuredPersons.length && flag == false; i++) {
+                if ($scope.accidentDetails.employeeInjuredPersons[i].id == person.id) {
+                    $scope.accidentDetails.employeeInjuredPersons.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+            for (var i = 0; i < $scope.accidentDetails.newInjuredPersons.length && flag == false; i++) {
+                if ($scope.accidentDetails.newInjuredPersons[i].firstName == person.firstName &&
+                    $scope.accidentDetails.newInjuredPersons[i].middleName == person.middleName) {
+                    $scope.accidentDetails.newInjuredPersons.splice(i, 1);
+                    flag = true;
+                    break;
+                }
+            }
+
+
+            $scope.injuredPersons.map(function(val, index) {
+
+                if (val.id == person.id) {
+                    $scope.injuredPersons.splice(index, 1);
+
+                }
+            })
+            person.selected = false;
+        }
+        //delete witness
+    $scope.deleteWitness = function(person) {
         var flag = false;
 
-        for (var i = 0; i < $scope.accidentDetails.existingInjuredPersons.length && flag == false; i++) {
-            if ($scope.accidentDetails.existingInjuredPersons[i].id == person.id) {
-                $scope.accidentDetails.existingInjuredPersons.splice(i, 1);
+        for (var i = 0; i < $scope.accidentDetails.existingWitnesses.length && flag == false; i++) {
+            if ($scope.accidentDetails.existingWitnesses[i].id == person.id) {
+                $scope.accidentDetails.existingWitnesses.splice(i, 1);
                 flag = true;
                 break;
             }
         }
-        for (var i = 0; i < $scope.accidentDetails.employeeInjuredPersons.length && flag == false; i++) {
-            if ($scope.accidentDetails.employeeInjuredPersons[i].id == person.id) {
-                $scope.accidentDetails.employeeInjuredPersons.splice(i, 1);
+        for (var i = 0; i < $scope.accidentDetails.employeeWitnesses.length && flag == false; i++) {
+            if ($scope.accidentDetails.employeeWitnesses[i].id == person.id) {
+                $scope.accidentDetails.employeeWitnesses.splice(i, 1);
                 flag = true;
                 break;
             }
         }
-        for (var i = 0; i < $scope.accidentDetails.newInjuredPersons.length && flag == false; i++) {
-            if ($scope.accidentDetails.newInjuredPersons[i].firstName == person.firstName &&
-                $scope.accidentDetails.newInjuredPersons[i].middleName == person.middleName) {
-                $scope.accidentDetails.newInjuredPersons.splice(i, 1);
+        for (var i = 0; i < $scope.accidentDetails.newWitnesses.length && flag == false; i++) {
+            if ($scope.accidentDetails.newWitnesses[i].firstName == person.firstName &&
+                $scope.accidentDetails.newWitnesses[i].middleName == person.middleName) {
+                $scope.accidentDetails.newWitnesses.splice(i, 1);
                 flag = true;
                 break;
             }
         }
 
 
-        $scope.injuredPersons.map(function(val, index) {
+        $scope.witnesses.map(function(val, index) {
 
             if (val.id == person.id) {
-                $scope.injuredPersons.splice(index, 1);
+                $scope.witnesses.splice(index, 1);
 
             }
         })
@@ -1510,11 +1549,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.addWitness = function() {
         $scope.accidentDetails.newWitnesses.push($scope.witness);
+        $scope.witnesses.push($scope.witness);
         //reset the object
         $scope.witness = {
             addresses: []
         }
-        $scope.witnesses.push($scope.witness);
+
     }
 
     $scope.addCrimeWitness = function() {
