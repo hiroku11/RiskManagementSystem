@@ -1,62 +1,64 @@
 <div class="form-content" ng-show="activeTab.tab==8">
-        <h2>Supporting Documents</h2>
-        <div class="table-wrapper">
-            <table class="table table-bordered incident-list">
-                <thead>
-                    <tr>
-                        <th>Document Type</th>
-                        <th>Document Name</th>
-                        <th>Date Added</th>
-                        <th>Added By</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Video</td>
-                        <td>abc.mpeg</td>
-                        <td>12/05/2017</td>
-                        <td>user</td>
-                    </tr>
-                    <tr>
-                        <td>Statement</td>
-                        <td>abc.doc</td>
-                        <td>12/05/2017</td>
-                        <td>user</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <form>
-            <div class="row">
-                <div class="col-sm-12 col-md-6">
-                    <label>Document Type</label>
-                    <select class="form-control">
+    <h2>Supporting Documents</h2>
+
+    <form ng-submit="submitForm('supportingDocumentsForm')">
+        <div class="row" ng-repeat="doc in supportingDocuments">
+            <div class="col-sm-12 col-md-4">
+                <label>Document Type</label>
+                <select class="form-control" ng-model="doc.documentType">
                         <option>Select</option>
                         <option>Image</option>
                         <option>Video</option>
                         <option>Statement</option>
                     </select>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                        <label>Document Name</label>
-                        <input class="form-control" type="file">
-                    </div>
             </div>
-            <div class="action-button">
+            <div class="col-sm-12 col-md-4">
+                    <label>Document Description</label>
+                    <<input type="text" ng-model="doc.description"/>
+                </div>
+            <div class="col-sm-12 col-md-4">
+                <label>Document</label>
+                <input class="form-control" type="file" ng-change="addSupportingDocumnet(doc,$event)" ng-disabled="!doc.documentType || !doc.description"/>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <div class="col-sm-12">
                 <a class="btn btn-primary" href="" id="btnAddSupportingDocument">Add</a>
             </div>
-            <div class="row ">
-                <div class="col-md-6 col-sm-12">
-                    <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
-                    <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
-                </div>
-    
-                    <div class="col-md-6 col-sm-12">
-                        <button type="button" ng-click="submitForm('logIncidentForm','back')" class="btn btn-secondary pull-right">Back</button>
-                        <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('logIncidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
-                    </div>
-    
-                </div>
-        </form>
-    </div>
-    
+        </div> -->
+        <div class="table-wrapper">
+                <table class="table table-bordered incident-list">
+                    <thead>
+                        <tr>
+                            <th>Document Type</th>
+                            <th>Document Name</th>
+                            <th>Date Added</th>
+                            <th>Added By</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Video</td>
+                            <td>abc.mpeg</td>
+                            <td>12/05/2017</td>
+                            <td>user</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        <div class="row ">
+            <div class="col-md-6 col-sm-12">
+                <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
+                <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <button type="button" ng-click="submitForm('logIncidentForm','back')" class="btn btn-secondary pull-right">Back</button>
+                <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('logIncidentForm','next')" class="btn btn-success pull-right"
+                    style="margin-right:5px">Next</button>
+            </div>
+
+        </div>
+    </form>
+ 
+</div>

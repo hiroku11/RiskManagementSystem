@@ -278,6 +278,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
     { "active": false, "description": "Supporting Documents", "name": "documentsForm", "tab": 8 }
     ];
+
+    $scope.supportingDocuments = [{}, {}, {}, {}, {}];
     $scope.activeTab = { "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 };
     $scope.calendar = {
         opened: false
@@ -382,41 +384,36 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         startingDay: 1
     };
 
-    $scope.submitForm = function (formName, dir,$event) {
+    $scope.submitForm = function (formName, dir, $event) {
         var index = 0;
         //$scope.tabs[$scope.tab - 1].completed = true;
 
         $scope.tabs.filter(function (val, ind) {
-            if (val.tab == $scope.activeTab.tab && dir !="back") {
+            if (val.tab == $scope.activeTab.tab && dir != "back") {
                 val.completed = true;
             }
             if (val.name == formName) {
                 index = ind;
             }
         });
-
         $scope.tabs.sort(function (a, b) {
             return a.tab - b.tab;
         })
-        // $scope.tabs.filter(function (val, ind) {
-            
-        // });
         if (dir == "back") {
             $scope.tabs[index].active = false;
             $scope.tabs[index - 1].active = true;
             //$scope.tab = $scope.tabs[index - 1].tab;
-            $scope.activeTab= $scope.tabs[index - 1];
-        } else{
-            if($scope.activeTab.formAction == "saveContinue" || dir=="next"){
+            $scope.activeTab = $scope.tabs[index - 1];
+        } else {
+            if ($scope.activeTab.formAction == "saveContinue" || dir == "next") {
                 $scope.tabs[index].active = false;
                 $scope.tabs[index + 1].active = true;
                 //$scope.tab = $scope.tabs[index + 1].tab;
-                $scope.activeTab= $scope.tabs[index + 1];
+                $scope.activeTab = $scope.tabs[index + 1];
             }
-               
         }
 
-        
+
         if (dir != "back" && dir != "next" && $scope.activeTab.completed != true) {
             if ($scope.tab == 2) {
                 $scope.logIncident();
@@ -526,7 +523,16 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
+    $scope.addSupportingDocumnet = function(doc,$event){
+        if(!$scope.supportingDocumentsFormData){
+            $scope.supportingDocumentsFormData = new FormData();
+        }
+        $scope.supportingDocumentsFormData.append("uniqueIncidentId",$scope.incident.uniqueIncidentId);
+        let fileName = $event.target.files[0].name;
+        $scope.supportingDocumentsFormData.append( fileName, $event.target.files[0]);
+        $scope.supportingDocumentsFormData.append(fileName , doc.description);
 
+    }
     $scope.getUserInfo = function () {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-incident',
