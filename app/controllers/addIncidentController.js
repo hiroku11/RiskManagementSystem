@@ -440,6 +440,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (formName == "investigationForm") {
                 $scope.addInvestigationDetails();
             }
+            if(formName==""){
+                $scope.addSupportingDocuments();
+            }
         }
 
         $(".content")[0].scrollTop = 0;
@@ -528,14 +531,36 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.addSupportingDocumnet = function(doc,$event){
+    $scope.selectSupportingDocumnet = function(doc,$event){
         if(!$scope.supportingDocumentsFormData){
             $scope.supportingDocumentsFormData = new FormData();
         }
-        $scope.supportingDocumentsFormData.append("uniqueIncidentId",$scope.incident.uniqueIncidentId);
+        //$scope.supportingDocumentsFormData.append("uniqueIncidentId",$scope.incident.uniqueIncidentId);
         let fileName = $event.target.files[0].name;
         $scope.supportingDocumentsFormData.append( fileName, $event.target.files[0]);
         $scope.supportingDocumentsFormData.append(fileName , doc.description);
+    }
+
+    $scope.addSupportingDocuments=function(){
+        if(typeof  $scope.supportingDocumentsFormData === 'undefined'){
+            return;
+        }
+        $scope.supportingDocumentsFormData.append("uniqueIncidentId",$scope.incident.uniqueIncidentId);
+        var req = {
+            url: 'https://108296e7.ngrok.io/rmsrest/s/document/save-documents',
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+                'Content-Type': undefined
+            },
+            data:$scope.supportingDocumentsFormData
+        }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
     }
 
     $scope.getUserInfo = function() {
