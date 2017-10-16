@@ -387,19 +387,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         startingDay: 1
     };
 
-<<<<<<< HEAD
-    $scope.submitForm = function (formName, dir, $event) {
-        var index = 0;
-        //$scope.tabs[$scope.tab - 1].completed = true;
-
-        $scope.tabs.filter(function (val, ind) {
-=======
     $scope.submitForm = function(formName, dir, $event) {
         var index = 0;
         //$scope.tabs[$scope.tab - 1].completed = true;
 
         $scope.tabs.filter(function(val, ind) {
->>>>>>> 0bcf79e4d66511b94a6c5984c0461b865032946c
+
             if (val.tab == $scope.activeTab.tab && dir != "back") {
                 val.completed = true;
             }
@@ -407,39 +400,23 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 index = ind;
             }
         });
-<<<<<<< HEAD
         $scope.tabs.sort(function (a, b) {
             return a.tab - b.tab;
         })
-=======
 
-        $scope.tabs.sort(function(a, b) {
-                return a.tab - b.tab;
-            })
-            // $scope.tabs.filter(function (val, ind) {
-
-        // });
->>>>>>> 0bcf79e4d66511b94a6c5984c0461b865032946c
         if (dir == "back") {
             $scope.tabs[index].active = false;
             $scope.tabs[index - 1].active = true;
             //$scope.tab = $scope.tabs[index - 1].tab;
             $scope.activeTab = $scope.tabs[index - 1];
         } else {
-<<<<<<< HEAD
             if ($scope.activeTab.formAction == "saveContinue" || dir == "next") {
-=======
-            if ($scope.activeTab.formAction == "saveContinue") {
->>>>>>> 0bcf79e4d66511b94a6c5984c0461b865032946c
+
                 $scope.tabs[index].active = false;
                 $scope.tabs[index + 1].active = true;
                 //$scope.tab = $scope.tabs[index + 1].tab;
                 $scope.activeTab = $scope.tabs[index + 1];
             }
-<<<<<<< HEAD
-=======
-
->>>>>>> 0bcf79e4d66511b94a6c5984c0461b865032946c
         }
 
 
@@ -559,13 +536,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         let fileName = $event.target.files[0].name;
         $scope.supportingDocumentsFormData.append( fileName, $event.target.files[0]);
         $scope.supportingDocumentsFormData.append(fileName , doc.description);
-
-<<<<<<< HEAD
     }
-    $scope.getUserInfo = function () {
-=======
+
     $scope.getUserInfo = function() {
->>>>>>> 0bcf79e4d66511b94a6c5984c0461b865032946c
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/incident/add-incident',
             method: "GET",
