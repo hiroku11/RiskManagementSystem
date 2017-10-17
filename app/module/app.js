@@ -1,24 +1,31 @@
-var riskManagementSystem = angular.module("riskManagementSystem", ['ngRoute', 'btorfs.multiselect', 'ui.bootstrap']);
-riskManagementSystem.config(['$routeProvider', '$locationProvider', '$compileProvider', function($routeProvider, $locationProvider, $compileProvider, $httpProvider) {
+var riskManagementSystem = angular.module("riskManagementSystem", ['ui.router', 'btorfs.multiselect', 'ui.bootstrap']);
+riskManagementSystem.config(['$stateProvider', '$urlRouterProvider', '$compileProvider','$httpProvider', function($stateProvider, $urlRouterProvider, $compileProvider, $httpProvider) {
 
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|ftp|mailto|tel|file|blob):/);
-    $routeProvider.
-    when('/index.html', {
+    $urlRouterProvider.otherwise('/index.html');
+    $stateProvider.
+    state('home', {
+        url:"/index.html",
         templateUrl: 'app/views/login.html',
         controller: 'loginController',
-    }).when('/login', {
+    }).state('login', {
+        url:"/login",
         templateUrl: 'app/views/login.html',
         controller: 'loginController',
-    }).when('/', {
-        templateUrl: 'app/views/login.html',
-        controller: 'loginController',
-    }).when('/dashboard', {
+    }).state('dashboard', {
+        url:"/dashboard",
         templateUrl: 'app/views/dashboard.html',
         controller: 'dashboardController',
-    }).when('/incidents', {
+    }).state('incidents', {
+        url:"/incidents",
         templateUrl: 'app/views/incidents.html',
         controller: 'incidentsController',
-    }).when('/addincident', {
+    }).state('addincident', {
+        url:"/addincident",
+        templateUrl: 'app/views/addincident.html',
+        controller: 'addIncidentController',
+    }).state('editincident', {
+        url:"/editincident/:uniqueIncidentId",
         templateUrl: 'app/views/addincident.html',
         controller: 'addIncidentController',
     })

@@ -538,7 +538,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //$scope.supportingDocumentsFormData.append("uniqueIncidentId",$scope.incident.uniqueIncidentId);
         let fileName = $event.target.files[0].name;
         $scope.supportingDocumentsFormData.append( fileName, $event.target.files[0]);
-        $scope.supportingDocumentsFormData.append(fileName , doc.description);
+        $scope.supportingDocumentsFormData.append("fileDescription" , doc.description);
     }
 
     $scope.addSupportingDocuments=function(){
@@ -616,8 +616,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $("#bodyModal").modal('show');
 
     }
-
-
 
     $scope.openMap = function() {
         $("#mapModal").modal('show');
@@ -730,7 +728,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $http(req).then(function(response) {
             //change the options as required by the multiselect plugin/module
             $scope.distinguishFeatures = response.data;
-            // /debugger
             AppService.HideLoader();
         }, function(error) {
             AppService.HideLoader();

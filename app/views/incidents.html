@@ -24,7 +24,7 @@
             </div>
             <h3>
                 <span class="incidentLabel">Incidents |</span>
-                <a class="btn btn-primary add-incident" href="#/addincident"> <i class="glyphicon glyphicon-plus menu-icon"></i>Add</a>
+                <a class="btn btn-primary add-incident" ui-sref="addincident"> <i class="glyphicon glyphicon-plus menu-icon"></i>Add</a>
 
                 <a class="btn btn-danger delete-incident"> <i class="glyphicon glyphicon-trash menu-icon"></i>Delete</a>
                 <a class="btn btn-primary delete-incident" ng-click="getData()"> <i class="glyphicon glyphicon-done menu-icon"></i>Reset</a>
@@ -81,7 +81,7 @@
                             <input type="checkbox" class="checkbox checkbox-primary" name="">
                         </td>
                         <td>
-                            {{incident.uniqueIncidentId}}
+                            <a ui-sref="editincident({uniqueIncidentId: incident.uniqueIncidentId})">{{incident.uniqueIncidentId}}</a>
                         </td>
                         <td>
                             {{incident.reportedBy==null?"":incident.reportedBy}}
