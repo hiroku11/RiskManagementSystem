@@ -14,11 +14,48 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.accidentLoc = {};
     $scope.partsJson = [];
     $scope.Math = Math;
+    $scope.getData = function(params) {
+        // var filter = JSON.parse(params)
+        var fil = {
+            "paging": { "currentPage": 0, "pageSize": 50 },
+            "sorts": [{ "field": "openedDateTime", "order": "ASC" }],
+            "filters": params
+        }
+        var req = {
+            url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident/' + $scope.incident.uniqueIncidentId,
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+
+                'Search': JSON.stringify(fil)
+            },
+
+
+        }
+        AppService.ShowLoader();
+        var getIncident = $http(req);
+        getIncident.then(function(response) {
+            if (response.data.length != 0) {
+                $scope.data = response.data;
+            }
+
+
+
+
+            AppService.HideLoader();
+
+
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+
     $scope.incident = {
         "incidentId": "",
         "uniqueIncidentId": "",
         "incidentStatus": ""
     }
+    $scope.getData();
     $scope.logIncidentDetails = {
         "incidentId": null,
         "incidentOpenedDateTime": null,
@@ -211,8 +248,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         }
         if (flag == false) {
-            var args = {
 
+            var args = {
+                "id": args "description":
             }
             $scope.injuredPerson.bodyParts.push(args);
 
@@ -400,7 +438,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 index = ind;
             }
         });
-        $scope.tabs.sort(function (a, b) {
+        $scope.tabs.sort(function(a, b) {
             return a.tab - b.tab;
         })
 
@@ -440,7 +478,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (formName == "investigationForm") {
                 $scope.addInvestigationDetails();
             }
-            if(formName==""){
+
+
+            if (formName == "") {
+
                 $scope.addSupportingDocuments();
             }
         }
@@ -531,21 +572,21 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
     }
 
-    $scope.selectSupportingDocumnet = function(doc,$event){
-        if(!$scope.supportingDocumentsFormData){
+    $scope.selectSupportingDocumnet = function(doc, $event) {
+        if (!$scope.supportingDocumentsFormData) {
             $scope.supportingDocumentsFormData = new FormData();
         }
         //$scope.supportingDocumentsFormData.append("uniqueIncidentId",$scope.incident.uniqueIncidentId);
         let fileName = $event.target.files[0].name;
-        $scope.supportingDocumentsFormData.append( fileName, $event.target.files[0]);
-        $scope.supportingDocumentsFormData.append("fileDescription" , doc.description);
+        $scope.supportingDocumentsFormData.append(fileName, $event.target.files[0]);
+        $scope.supportingDocumentsFormData.append("fileDescription", doc.description);
     }
 
-    $scope.addSupportingDocuments=function(){
-        if(typeof  $scope.supportingDocumentsFormData === 'undefined'){
+    $scope.addSupportingDocuments = function() {
+        if (typeof $scope.supportingDocumentsFormData === 'undefined') {
             return;
         }
-        $scope.supportingDocumentsFormData.append("uniqueIncidentId",$scope.incident.uniqueIncidentId);
+        $scope.supportingDocumentsFormData.append("uniqueIncidentId", $scope.incident.uniqueIncidentId);
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/document/save-documents',
             method: "POST",
@@ -553,7 +594,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 'X-AUTH-TOKEN': $scope.token,
                 'Content-Type': undefined
             },
-            data:$scope.supportingDocumentsFormData
+            data: $scope.supportingDocumentsFormData
         }
         AppService.ShowLoader();
         $http(req).then(function(response) {
@@ -840,7 +881,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.HideLoader();
         })
     }
-
+    var bodyPart = [];
     $scope.getBodyPart = function() {
         var req = {
             url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/body-part/body-parts',
@@ -853,7 +894,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
 
         $http(req).then(function(response) {
-            var bodyPart = response.data;
+            bodyPart = response.data;
             var storeDesc = [];
             bodyPart.map(function(d) {
                 storeDesc.push(d.description);
