@@ -244,12 +244,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         if (flag == false) {
 
-            var args = {
-                "id": $scope.bodyPartsArray.map(function(d) {
-                    if (d == args) return d;
-                }),
-                "description": args
-            }
+            // var args = {
+            //     "id": $scope.bodyPartsArray.map(function(d) {
+            //         if (d == args) return d;
+            //     }),
+            //     "description": args
+            // }
             $scope.injuredPerson.bodyParts.push(args);
 
         }
@@ -1414,6 +1414,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             addresses: [],
             bodyParts: [],
         }
+
+        $scope.myObj = { temp: [] };
 
     }
     $scope.addEmployeeInjured = function(person) {
