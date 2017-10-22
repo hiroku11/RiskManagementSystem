@@ -288,8 +288,9 @@
 
                 <p class="input-group">
 
-                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="loss.date" is-open="calendar.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                    <span class="input-group-addon" ng-click="calendar.opened=true">
+                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="loss.date" ng-focus="calendar.open($event,'date')"
+                     is-open="calendar.opened.date" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <span class="input-group-addon" ng-click="calendar.open($event,'date')">
                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
 

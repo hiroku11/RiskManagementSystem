@@ -323,7 +323,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.supportingDocuments = [{}, {}, {}, {}, {}];
     $scope.activeTab = { "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 };
     $scope.calendar = {
-        opened: false
+        open:function($event,which){
+            $event.prevendDefault();
+            $scope.calendar.opened[which]=true;
+        },
+        opened: {
+
+        }
     };
     $scope.addTab = function(formName) {
         var tabPresent = false;
@@ -478,9 +484,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (formName == "investigationForm") {
                 $scope.addInvestigationDetails();
             }
-
-
-            if (formName == "") {
+            if (formName == "supportingDocumentsForm") {
 
                 $scope.addSupportingDocuments();
             }
