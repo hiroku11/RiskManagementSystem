@@ -265,8 +265,7 @@
 
             <div class="col-md-4 col-sm-12">
                 <label>Selected Body Parts</label>
-
-                <input class="form-control" type="text" ng-model="injuredPerson.bodyParts" readonly/>
+                <input class="form-control" type="text" ng-model="myObj.temp" readonly/>
             </div>
             <div class="col-md-2 col-sm-12">
 
@@ -483,12 +482,12 @@
                 <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
             </div>
 
-                <div class="col-md-6 col-sm-12">
-                    <button type="button" ng-click="submitForm('accidentForm','back')" class="btn btn-secondary pull-right">Back</button>
-                    <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('accidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
-                </div>
-
+            <div class="col-md-6 col-sm-12">
+                <button type="button" ng-click="submitForm('accidentForm','back')" class="btn btn-secondary pull-right">Back</button>
+                <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('accidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
             </div>
+
+        </div>
     </form>
     <div id="bodyModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
