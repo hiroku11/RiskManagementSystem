@@ -5,21 +5,21 @@
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
     // $scope.data = [];
-    $scope.currentPage=1;
-    $scope.entryCount=10;
+    $scope.currentPage = 1;
+    $scope.entryCount = 10;
     $scope.logOutUser = rmsService.logOutUser;
     $scope.Math = window.Math;
     $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
 
-    $scope.sortBy="uniqueIncidentId";
-    $scope.reverse=false;
- 
-    $scope.changeSortBy=function(sortBy){
-        if($scope.sortBy==sortBy){
-            $scope.reverse=!$scope.reverse;
-        }else{
-            $scope.sortBy=sortBy;
-            $scope.reverse=false;
+    $scope.sortBy = "uniqueIncidentId";
+    $scope.reverse = false;
+
+    $scope.changeSortBy = function(sortBy) {
+        if ($scope.sortBy == sortBy) {
+            $scope.reverse = !$scope.reverse;
+        } else {
+            $scope.sortBy = sortBy;
+            $scope.reverse = false;
         }
     }
 
@@ -31,7 +31,7 @@
             "filters": params
         }
         var req = {
-            url: 'https://108296e7.ngrok.io//rmsrest/s/search-incident',
+            url: 'https://b2897cdb.ngrok.io//rmsrest/s/search-incident',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -83,14 +83,14 @@
 
     // $scope.
 
-    $scope.range = function(count){
-        count=count/$scope.entryCount;
-          var ratings = []; 
-          for (var i = 0; i < count; i++) { 
-            ratings.push(i+1) 
-          } 
-          return ratings;
+    $scope.range = function(count) {
+        count = count / $scope.entryCount;
+        var ratings = [];
+        for (var i = 0; i < count; i++) {
+            ratings.push(i + 1)
         }
+        return ratings;
+    }
 
     $scope.advancedSearch = function() {
         var params = [];
@@ -196,13 +196,13 @@
     }
     $scope.goToPage = function(pageNo) {
 
-        if(pageNo < 1 || pageNo > Math.ceil($scope.data.length/$scope.entryCount)) return;
-        $scope.currentPage=pageNo;
+        if (pageNo < 1 || pageNo > Math.ceil($scope.data.length / $scope.entryCount)) return;
+        $scope.currentPage = pageNo;
     }
 
     $scope.getIncidentType = function() {
         var req = {
-            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -222,7 +222,7 @@
     }
     $scope.getIncidentCategory = function() {
         var req = {
-            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-category/incident-categories',
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-category/incident-categories',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -243,7 +243,7 @@
     }
     $scope.getIncidentLoc = function() {
         var req = {
-            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -264,7 +264,7 @@
     }
     $scope.getIncidentLocDetail = function() {
         var req = {
-            url: 'https://108296e7.ngrok.io/rmsrest/s/table-maintenance/incident-location-detail/incident-location/' + $scope.SincidentLoc,
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-location-detail/incident-location/' + $scope.SincidentLoc,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -289,7 +289,7 @@
             }
 
             var req = {
-                url: 'https://108296e7.ngrok.io/rmsrest/s/search-incident',
+                url: 'https://b2897cdb.ngrok.io/rmsrest/s/search-incident',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -320,7 +320,7 @@
             }
 
             var req = {
-                url: 'https://108296e7.ngrok.io/rmsrest/s/user-lookup',
+                url: 'https://b2897cdb.ngrok.io/rmsrest/s/user-lookup',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
