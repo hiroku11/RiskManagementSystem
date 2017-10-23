@@ -315,7 +315,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         // { "active": false, "description": "Crime" ,"name":"crimeForm","tab":5},
         //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
         //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
-        { "active": false, "description": "Supporting Documents", "name": "supportingDocumentsForm", "tab": 8 }
+        { "active": false, "description": "Supporting Documents", "name": "supportingDocumentsForm", "tab": 8 },
+        { "active": false, "description": "Summary", "name": "summaryForm", "tab": 9 }
     ];
 
     $scope.supportingDocuments = [{}, {}, {}, {}, {}];
@@ -581,8 +582,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.supportingDocumentsFormData = new FormData();
         }
         //$scope.supportingDocumentsFormData.append("uniqueIncidentId",$scope.incident.uniqueIncidentId);
-        let fileName = $event.target.files[0].name;
-        $scope.supportingDocumentsFormData.append(fileName, $event.target.files[0]);
+        //let fileName = $event.target.files[0].name;
+        $scope.supportingDocumentsFormData.append("file", $event.target.files[0]);
         $scope.supportingDocumentsFormData.append("fileDescription", doc.description);
     }
 

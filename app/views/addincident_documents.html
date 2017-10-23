@@ -18,7 +18,7 @@
                 </div>
             <div class="col-sm-12 col-md-4">
                 <label>Document</label>
-                <input class="form-control" type="file" ng-model="doc.file" ng-change="selectSupportingDocumnet(doc,$event)" ng-disabled="doc.documentType == undefined || doc.description == undefined"/>
+                <input class="form-control" type="file" ng-model="doc.file" ng-upload-change="selectSupportingDocumnet(doc,$event)" ng-disabled="doc.documentType == undefined || doc.description == undefined"/>
             </div>
         </div>
         <!-- <div class="row">
