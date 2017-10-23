@@ -17,7 +17,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getData = function(params) {
 
         var req = {
-            url: 'http://localhost:8088/rmsrest/s/incident' + $scope.incident.uniqueIncidentId,
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident' + $scope.incident.uniqueIncidentId,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -315,14 +315,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         // { "active": false, "description": "Crime" ,"name":"crimeForm","tab":5},
         //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
         //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
-        { "active": false, "description": "Supporting Documents", "name": "documentsForm", "tab": 8 }
+        { "active": false, "description": "Supporting Documents", "name": "supportingDocumentsForm", "tab": 8 }
     ];
 
     $scope.supportingDocuments = [{}, {}, {}, {}, {}];
     $scope.activeTab = { "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 };
     $scope.calendar = {
         open:function($event,which){
-            $event.prevendDefault();
+            $event.preventDefault();
             $scope.calendar.opened[which]=true;
         },
         opened: {
