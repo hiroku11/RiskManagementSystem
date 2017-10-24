@@ -28,6 +28,10 @@ riskManagementSystem.config(['$stateProvider', '$urlRouterProvider', '$compilePr
         url:"/editincident/:uniqueIncidentId",
         templateUrl: 'app/views/addincident.html',
         controller: 'addIncidentController',
+    }).state('claims', {
+        url:"/claims",
+        templateUrl: 'app/views/claims.html',
+        controller: 'claimsController',
     })
 }]);
 

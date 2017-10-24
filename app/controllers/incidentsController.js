@@ -1,4 +1,4 @@
-﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function($scope, AppService, rmsService, $location, $window, $http) {
+﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http',"helperFunctions", function ($scope, AppService, rmsService, $location, $window, $http,helperFunctions) {
 
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
@@ -14,7 +14,8 @@
     $scope.sortBy = "uniqueIncidentId";
     $scope.reverse = false;
 
-    $scope.changeSortBy = function(sortBy) {
+    //pagination functions starts
+    $scope.changeSortBy = function (sortBy) {
         if ($scope.sortBy == sortBy) {
             $scope.reverse = !$scope.reverse;
         } else {
@@ -23,7 +24,15 @@
         }
     }
 
-    $scope.getData = function(params) {
+    $scope.range = helperFunctions.range;
+    $scope.goToPage = function (pageNo) {
+        if (pageNo < 1 || pageNo > Math.ceil($scope.data.length / $scope.entryCount)) return;
+        $scope.currentPage = pageNo;
+    }
+    //pagination functions ends
+
+
+    $scope.getData = function (params) {
         // var filter = JSON.parse(params)
         var fil = {
             "paging": { "currentPage": 0, "pageSize": 50 },
@@ -43,7 +52,7 @@
         }
         AppService.ShowLoader();
         var getIncident = $http(req);
-        getIncident.then(function(response) {
+        getIncident.then(function (response) {
             if (response.data.length != 0) {
                 $scope.data = response.data;
             }
@@ -54,125 +63,117 @@
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
     $scope.getData();
     //To clear search params
-    $scope.clearSearchParams = function() {
-            $scope.IncidentId = "";
-            $scope.IncOpenedDate = "";
-            $scope.idOp = "";
-            $scope.opendateop = "";
-            $scope.closedateop = "";
-            $scope.IncClosedDate = "";
-            $scope.IncidentStatus = "";
+    $scope.clearSearchParams = function () {
+        $scope.IncidentId = "";
+        $scope.IncOpenedDate = "";
+        $scope.idOp = "";
+        $scope.opendateop = "";
+        $scope.closedateop = "";
+        $scope.IncClosedDate = "";
+        $scope.IncidentStatus = "";
 
-            $scope.SincidentType = "";
-            $scope.SIncidentCat = "";
-            $scope.SincidentLoc = "";
-            $scope.SincidentLocDetail = "";
-            $scope.prop = false;
-            $scope.cAttack = false;
-            $scope.Acc = false;
-            $scope.Asset = false;
-            $scope.user = "";
-        }
-        //declaring variables
+        $scope.SincidentType = "";
+        $scope.SIncidentCat = "";
+        $scope.SincidentLoc = "";
+        $scope.SincidentLocDetail = "";
+        $scope.prop = false;
+        $scope.cAttack = false;
+        $scope.Acc = false;
+        $scope.Asset = false;
+        $scope.user = "";
+    }
+    //declaring variables
 
     // $scope.
 
-    $scope.range = function(count) {
-        count = count / $scope.entryCount;
-        var ratings = [];
-        for (var i = 0; i < count; i++) {
-            ratings.push(i + 1)
-        }
-        return ratings;
-    }
 
-    $scope.advancedSearch = function() {
+    $scope.advancedSearch = function () {
         var params = [];
         var filters = [{
-                "field": "uniqueIncidentId",
-                "operator": $scope.idOp,
-                "value": $scope.IncidentId
+            "field": "uniqueIncidentId",
+            "operator": $scope.idOp,
+            "value": $scope.IncidentId
 
-            },
-            {
-                "field": "openedDateTime",
-                "operator": $scope.opendateop,
-                "value": $scope.IncOpenedDate ? $scope.IncOpenedDate + " " + "00:00:00" : undefined
+        },
+        {
+            "field": "openedDateTime",
+            "operator": $scope.opendateop,
+            "value": $scope.IncOpenedDate ? $scope.IncOpenedDate + " " + "00:00:00" : undefined
 
-            },
-            {
-                "field": "closedDateTime",
-                "operator": $scope.closedateop,
-                "value": $scope.IncClosedDate ? $scope.IncClosedDate + " " + "00:00:00" : undefined
+        },
+        {
+            "field": "closedDateTime",
+            "operator": $scope.closedateop,
+            "value": $scope.IncClosedDate ? $scope.IncClosedDate + " " + "00:00:00" : undefined
 
-            },
-            {
-                "field": "incidentStatus",
-                "operator": "EQ",
-                "value": $scope.IncidentStatus
+        },
+        {
+            "field": "incidentStatus",
+            "operator": "EQ",
+            "value": $scope.IncidentStatus
 
-            },
+        },
 
-            {
-                "field": "typeCode",
-                "operator": "EQ",
-                "value": $scope.SincidentType
+        {
+            "field": "typeCode",
+            "operator": "EQ",
+            "value": $scope.SincidentType
 
-            },
+        },
 
-            {
-                "field": "locationCode",
-                "operator": "EQ",
-                "value": $scope.SincidentLoc
+        {
+            "field": "locationCode",
+            "operator": "EQ",
+            "value": $scope.SincidentLoc
 
-            },
-            {
-                "field": "locationDetailCode",
-                "operator": "EQ",
-                "value": $scope.SincidentLocDetail
-
-
-            },
-
-            {
-                "field": "propertyDamage",
-                "operator": "EQ",
-                "value": $scope.prop == true ? 'Y' : 'N'
+        },
+        {
+            "field": "locationDetailCode",
+            "operator": "EQ",
+            "value": $scope.SincidentLocDetail
 
 
-            },
-            {
-                "field": "criminalAttack",
-                "operator": "EQ",
-                "value": $scope.cAttack == true ? 'Y' : 'N'
+        },
+
+        {
+            "field": "propertyDamage",
+            "operator": "EQ",
+            "value": $scope.prop == true ? 'Y' : 'N'
 
 
-            },
-            {
-                "field": "accidentDamage",
-                "operator": "EQ",
-                "value": $scope.Acc == true ? 'Y' : 'N'
+        },
+        {
+            "field": "criminalAttack",
+            "operator": "EQ",
+            "value": $scope.cAttack == true ? 'Y' : 'N'
 
 
-            },
-            {
-                "field": "vehicleOrAssetDamage",
-                "operator": "EQ",
-                "value": $scope.Asset == true ? 'Y' : 'N'
+        },
+        {
+            "field": "accidentDamage",
+            "operator": "EQ",
+            "value": $scope.Acc == true ? 'Y' : 'N'
 
-            },
-            {
-                "field": "reportedBy",
-                "operator": "EQ",
-                "value": $scope.user
 
-            }
+        },
+        {
+            "field": "vehicleOrAssetDamage",
+            "operator": "EQ",
+            "value": $scope.Asset == true ? 'Y' : 'N'
+
+        },
+        {
+            "field": "reportedBy",
+            "operator": "EQ",
+            "value": $scope.user
+
+        }
 
 
 
@@ -194,13 +195,8 @@
     function checkParams(param) {
         return param.value != "" && param.value != undefined;
     }
-    $scope.goToPage = function(pageNo) {
 
-        if (pageNo < 1 || pageNo > Math.ceil($scope.data.length / $scope.entryCount)) return;
-        $scope.currentPage = pageNo;
-    }
-
-    $scope.getIncidentType = function() {
+    $scope.getIncidentType = function () {
         var req = {
             url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
             method: "GET",
@@ -210,17 +206,17 @@
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.incidentType = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getIncidentCategory = function() {
+    $scope.getIncidentCategory = function () {
         var req = {
             url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-category/incident-categories',
             method: "GET",
@@ -231,17 +227,17 @@
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.incidentCategory = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getIncidentLoc = function() {
+    $scope.getIncidentLoc = function () {
         var req = {
             url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
             method: "GET",
@@ -252,17 +248,17 @@
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.incidentLoc = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getIncidentLocDetail = function() {
+    $scope.getIncidentLocDetail = function () {
         var req = {
             url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-location-detail/incident-location/' + $scope.SincidentLoc,
             method: "GET",
@@ -273,80 +269,79 @@
         }
         AppService.ShowLoader();
 
-        $http(req).then(function(response) {
+        $http(req).then(function (response) {
             $scope.incidentLocDetail = response.data;
 
             AppService.HideLoader();
 
 
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
-    $scope.getEntries = function() {
-            var fil = {
-                "paging": { "currentPage": 0, "pageSize": $scope.entryCount }
-            }
-
-            var req = {
-                url: 'https://b2897cdb.ngrok.io/rmsrest/s/search-incident',
-                method: "GET",
-                headers: {
-                    'X-AUTH-TOKEN': $scope.token,
-                    'Search': JSON.stringify(fil)
-
-
-                },
-            }
-            AppService.ShowLoader();
-            var getIncident = $http(req);
-            getIncident.then(function(response) {
-                $scope.data = response.data;
-                AppService.HideLoader();
-            });
+    $scope.getEntries = function () {
+        var fil = {
+            "paging": { "currentPage": 0, "pageSize": $scope.entryCount }
         }
-        //user lookup
-    $scope.userLookup = function() {
-            var fil = {
-                "paging": { "currentPage": 0, "pageSize": 50 },
-                "sorts": [{ "field": "firstName", "order": "ASC" }],
-                "filters": [{
 
-                    "field": "fullName",
-                    "operator": "CONTAINS",
-                    "value": $scope.user
-
-                }]
-            }
-
-            var req = {
-                url: 'https://b2897cdb.ngrok.io/rmsrest/s/user-lookup',
-                method: "GET",
-                headers: {
-                    'X-AUTH-TOKEN': $scope.token,
-                    'Search': JSON.stringify(fil)
+        var req = {
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/search-incident',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+                'Search': JSON.stringify(fil)
 
 
-                },
-            }
-
-            $http(req).then(function(response) {
-                debugger
-                $scope.userInfo = response.data;
-
-
-            }, function(error) {
-
-            })
-
+            },
         }
-        //auto populate DDL
+        AppService.ShowLoader();
+        var getIncident = $http(req);
+        getIncident.then(function (response) {
+            $scope.data = response.data;
+            AppService.HideLoader();
+        });
+    }
+    //user lookup
+    $scope.userLookup = function () {
+        var fil = {
+            "paging": { "currentPage": 0, "pageSize": 50 },
+            "sorts": [{ "field": "firstName", "order": "ASC" }],
+            "filters": [{
+
+                "field": "fullName",
+                "operator": "CONTAINS",
+                "value": $scope.user
+
+            }]
+        }
+
+        var req = {
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/user-lookup',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+                'Search': JSON.stringify(fil)
+
+
+            },
+        }
+
+        $http(req).then(function (response) {
+            debugger
+            $scope.userInfo = response.data;
+
+
+        }, function (error) {
+
+        })
+
+    }
+    //auto populate DDL
     $scope.getIncidentType();
     $scope.getIncidentCategory();
     $scope.getIncidentLoc();
-    $scope.loadAPI = function() {
+    $scope.loadAPI = function () {
         AppService.ShowLoader();
-
         AppService.HideLoader();
     }
 

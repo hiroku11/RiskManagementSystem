@@ -1,4 +1,4 @@
-﻿<div class="row header">
+<div class="row header">
     <ng-include src="'app/views/header.html'"></ng-include>
 </div>
 <div class="row" style="padding-top:0">
@@ -23,7 +23,8 @@
                 </div>
             </div>
             <h3>
-                <span class="incidentLabel">Incidents |</span>
+                <!-- <These buttons need to be changed according to the claims page> -->
+                <span class="incidentLabel">Claims |</span>
                 <a class="btn btn-primary add-incident" ui-sref="addincident"> <i class="glyphicon glyphicon-plus menu-icon"></i>Add</a>
 
                 <a class="btn btn-danger delete-incident"> <i class="glyphicon glyphicon-trash menu-icon"></i>Delete</a>
@@ -110,25 +111,25 @@
             </table>
 
             <nav aria-label="Page navigation" ng-if="data && data.length > 0">
-                    <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="entryCount" ng-change="getEntries()"
-                    />
-    
-                    <ul class="pagination" ng-if="data.length!=0">
-                        <li>
-                            <a aria-label="Previous" ng-click="goToPage(currentPage - 1)" ng-class="{disabled:currentPage==1}">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="page in range(data.length,entryCount)"><a ng-click="goToPage(page)">{{page}}</a></li>
-                        <li>
-                            <a aria-label="Next" ng-click="goToPage(currentPage + 1)" ng-class="{disabled:currentPage==Math.ceil(data.length/entryCount)}">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <span>{{entryCount * currentPage - entryCount + 1}} - {{entryCount * currentPage > data.length ? data.length : entryCount * currentPage}} of {{data.length}}</span>
-                </nav>
-                <h3 class="text-center">no records found!</h3>
+                <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="entryCount" ng-change="getEntries()"
+                />
+
+                <ul class="pagination" ng-if="data.length!=0">
+                    <li>
+                        <a aria-label="Previous" ng-click="goToPage(currentPage - 1)" ng-class="{disabled:currentPage==1}">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li ng-repeat="page in range(data.length,entryCount)"><a ng-click="goToPage(page)">{{page}}</a></li>
+                    <li>
+                        <a aria-label="Next" ng-click="goToPage(currentPage + 1)" ng-class="{disabled:currentPage==Math.ceil(data.length/entryCount)}">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+                <span>{{entryCount * currentPage - entryCount + 1}} - {{entryCount * currentPage > data.length ? data.length : entryCount * currentPage}} of {{data.length}}</span>
+            </nav>
+            <h3 class="text-center">no records found!</h3>
 
 
             <div id="myModal" class="modal fade" role="dialog">

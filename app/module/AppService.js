@@ -69,6 +69,17 @@
             $location.path("/login");
         }
     })
+    
+    riskManagementSystem.service("helperFunctions",function(){
+        this.range = function (count,itemPerPage) {
+            count = count / itemPerPage;
+            var ranges = [];
+            for (var i = 0; i < count; i++) {
+                ranges.push(i + 1)
+            }
+            return ranges;
+        }
+    })
 
 
 
