@@ -21,6 +21,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         "supportingDocuments":[]
     }
 
+    if($state.params.uniqueIncidentId){
+        $scope.incident.uniqueIncidentId = $state.params.uniqueIncidentId;
+    }
 
     $scope.getData = function(params) {
         var req = {
@@ -36,13 +39,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (response.data.length != 0) {
                 $scope.data = response.data;
             }
-
-
-
-
             AppService.HideLoader();
-
-
         }, function(error) {
             AppService.HideLoader();
         })
