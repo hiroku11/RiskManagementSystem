@@ -14,18 +14,21 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.accidentLoc = {};
     $scope.partsJson = [];
     $scope.Math = Math;
-    $scope.getData = function(params) {
+    $scope.incident = {
+        "incidentId": "",
+        "uniqueIncidentId": "",
+        "incidentStatus": "",
+        "supportingDocuments":[]
+    }
 
+
+    $scope.getData = function(params) {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident' + $scope.incident.uniqueIncidentId,
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/' + $scope.incident.uniqueIncidentId,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
-
-
             },
-
-
         }
         AppService.ShowLoader();
         var getIncident = $http(req);
@@ -45,11 +48,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
-    $scope.incident = {
-        "incidentId": "",
-        "uniqueIncidentId": "",
-        "incidentStatus": ""
-    }
 
     $scope.logIncidentDetails = {
         "incidentId": null,
@@ -199,6 +197,26 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.injuredPersons = [];
     $scope.partsSelected = [];
+
+    $scope.getSupportingDocuments =function(){
+        //get all documnets
+
+        $scope.supportingDocumentsFormData.append("uniqueIncidentId", $scope.incident.uniqueIncidentId);
+        var req = {
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/document/documents-for-incident/' + $scope.incident.uniqueIncidentId,
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token,
+            },
+        }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
+            AppService.HideLoader();
+            $scope.incident.supportingDocuments = response.data;
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
     //  $scope.myObj = {$scope.injuredPerson.bodyParts : []}
 
     //Click event
@@ -465,7 +483,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
 
-        if (dir != "back" && dir != "next" && $scope.activeTab.completed != true) {
+        if (dir != "back" && dir != "next" && $scope.activeTab.completed != true || typeof dir == 'undefined') {
             if ($scope.activeTab.tab == 2) {
                 $scope.logIncident();
             }
@@ -494,6 +512,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $(".content")[0].scrollTop = 0;
         if ($scope.activeTab.tab == 3) {
             $scope.initializeAccidentPlaceAndTime();
+        }
+        if($scope.activeTab.name == "supportingDocumentsForm"){
+            $scope.getSupportingDocuments();
         }
 
     }
@@ -604,6 +625,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         AppService.ShowLoader();
         $http(req).then(function(response) {
             AppService.HideLoader();
+            $scope.incident.supportingDocuments = response.data;
         }, function(error) {
             AppService.HideLoader();
         })

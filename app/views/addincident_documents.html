@@ -34,14 +34,16 @@
                             <th>Document Name</th>
                             <th>Date Added</th>
                             <th>Added By</th>
+                            <th>Modify</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Video</td>
-                            <td>abc.mpeg</td>
-                            <td>12/05/2017</td>
-                            <td>user</td>
+                        <tr ng-repeat="doc in incident.supportingDocuments">
+                            <td>{{doc.fileContentType}}</td>
+                            <td>{{doc.fileName}}</td>
+                            <td>{{doc.lastUpdatedBy}}</td>
+                            <td>{{doc.createdBy}}</td>
+                            <td><span class="glyphicon glyphicon-trash"></span> <span class="glyphicon glyphicon-download-alt"></span></td>
                         </tr>
                     </tbody>
                 </table>
