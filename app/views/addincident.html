@@ -2,11 +2,11 @@
     <ng-include src="'app/views/header.html'"></ng-include>
 </div>
 <div class="row" style="padding-top:0">
-    <div class="col-md-2 navbar hidden-sm hidden-xs">
+    <div class="col-md-2 navbar hidden-md hidden-sm hidden-xs">
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
 
-    <div class="col-md-10 content">
+    <div class="col-md-12 col-lg-10 content">
         <ul class="nav nav-tabs">
             <li ng-class="{active:tab.active,disabled:!tab.active}" ng-repeat="tab in tabs | orderBy : 'tab'">
                 <a>{{tab.description}} <span ng-if="tab.completed" class="glyphicon glyphicon-ok"></span>

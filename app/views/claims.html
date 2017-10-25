@@ -2,12 +2,12 @@
     <ng-include src="'app/views/header.html'"></ng-include>
 </div>
 <div class="row" style="padding-top:0">
-    <div class="col-md-2 navbar">
+    <div class="col-md-2 navbar hidden-md hidden-sm hidden-xs">
         <ng-include src="'app/views/menu.html'"></ng-include>
     </div>
 
 
-    <div class="col-md-10 content">
+    <div class="col-md-12 col-lg-10 content">
         <div class="incidents">
             <div class="pull-right advanced-search">
                 <a class="btn btn-primary" id="btnAdvanceSearch" data-toggle="modal" data-target="#myModal" ng-click="loadAPI()">Advanced Search</a>
