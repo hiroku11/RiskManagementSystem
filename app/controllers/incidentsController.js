@@ -1,4 +1,4 @@
-﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http',"helperFunctions", function ($scope, AppService, rmsService, $location, $window, $http,helperFunctions) {
+﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', "helperFunctions", function ($scope, AppService, rmsService, $location, $window, $http, helperFunctions) {
 
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
@@ -31,7 +31,16 @@
     }
     //pagination functions ends
 
-
+    $scope.incidentSelectionChanged = function (incident) {
+        if(typeof incident == 'undefined' && $scope.allIncidentsSelected){
+            $scope.data.forEach(item => item.selected = true);
+        }else{
+            if(!incident.selected){
+                $scope.allIncidentsSelected = false;
+            }
+        }
+    }
+    
     $scope.getData = function (params) {
         // var filter = JSON.parse(params)
         var fil = {
@@ -336,6 +345,7 @@
         })
 
     }
+
     //auto populate DDL
     $scope.getIncidentType();
     $scope.getIncidentCategory();

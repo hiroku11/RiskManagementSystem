@@ -59,11 +59,9 @@
 </div>
 <script>
     $(document).on("click",function(event){
-        event.preventDefault();
+        //event.preventDefault();
         event.stopPropagation();
         let $elm= $(event.target);
-        debugger
-
         if( $elm.data("elem") != "smallMenu"){
             var scope = angular.element($(".sm-navbar")).scope();
             scope.showMenu = false;

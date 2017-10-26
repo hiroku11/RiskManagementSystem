@@ -33,7 +33,7 @@
             <table class="table table-bordered incident-list">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" class="checkbox checkbox-primary" onclick="" style="display:inline" /> All
+                        <th><input type="checkbox" class="checkbox checkbox-primary"  style="display:inline"  ng-model="allIncidentsSelected" ng-change="incidentSelectionChanged()"/> All
                         </th>
                         <th ng-click="changeSortBy('uniqueIncidentId')">Incident ID
                             <span ng-if="sortBy == 'uniqueIncidentId' && !reverse" class="glyphicon glyphicon-sort-by-attributes"></span>
@@ -78,7 +78,7 @@
                 <tbody>
                     <tr ng-repeat="incident in data  | filter:search  | limitTo : entryCount : (entryCount * currentPage - entryCount) | orderBy : sortBy : reverse">
                         <td>
-                            <input type="checkbox" class="checkbox checkbox-primary" name="">
+                            <input type="checkbox" ng-model="incident.selected" ng-change="incidentSelectionChanged(incident)" ng-checked="incident.selected" class="checkbox checkbox-primary">
                         </td>
                         <td>
                             <a ui-sref="editincident({uniqueIncidentId: incident.uniqueIncidentId})">{{incident.uniqueIncidentId}}</a>
@@ -105,7 +105,6 @@
                             {{incident.closedDateTime==null?"":incident.closedDateTime}}
                         </td>
                     </tr>
-
                 </tbody>
             </table>
 
