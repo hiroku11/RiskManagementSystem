@@ -60,6 +60,9 @@
                 $document.on('click', closeHandler);
 
                 var updateSelectionLists = function () {
+                    if(typeof $scope.resolvedOptions == 'undefined'){
+                        $scope.resolvedOptions = [];
+                    }
                     if (!$ngModelCtrl.$viewValue) {
                         if ($scope.selectedOptions) {
                             $scope.selectedOptions = [];
