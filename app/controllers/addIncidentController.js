@@ -1,4 +1,5 @@
-var addIncidentController = riskManagementSystem.controller("addIncidentController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function($scope, AppService, rmsService, $location, $window, $http) {
+var addIncidentController = riskManagementSystem.controller("addIncidentController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http','$state',
+ function($scope, AppService, rmsService, $location, $window, $http,$state) {
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
@@ -785,11 +786,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
-
             },
         }
         AppService.ShowLoader();
-
         $http(req).then(function(response) {
             //change the options as required by the multiselect plugin/module
             $scope.distinguishFeatures = response.data;
@@ -800,9 +799,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
 
-    $scope.getDistinguishFeaturesDetails = function() {
+    $scope.getDistinguishFeaturesDetails = function(feature) {
+        debugger
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature-details',
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature/' + feature[0],
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1330,7 +1330,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getSuspectType();
     $scope.getAgency();
     $scope.getDistinguishFeatures();
-    $scope.getDistinguishFeaturesDetails();
+    //$scope.getDistinguishFeaturesDetails();
     $scope.getEntrypoint();
     $scope.getIncidentLoc();
     $scope.getIncidentType();

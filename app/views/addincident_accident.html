@@ -223,14 +223,9 @@
                 <label>Gender Other</label>
                 <input type="number" ng-disabled="injuredPerson.genderType.id != 'OTHER'" class="form-control" ng-model="injuredPerson.genderTypeOther">
             </div>
-            <div class="col-sm-12 col-md-4">
-                <label>Gender Other</label>
-                <input type="number" ng-disabled="injuredPerson.genderType.id != 'OTHER'" class="form-control" ng-model="injuredPerson.genderTypeOther">
-            </div>
         </div>
-
         <div class="row">
-            <div class="col-md-4 col-sm-12">
+            <!-- <div class="col-md-4 col-sm-12">
                 <label>Distinguishing Features</label>
                 <select class="form-control" multiple ng-model="injuredPerson.distinguishingFeature" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeatures">
                 </select>
@@ -243,6 +238,30 @@
             <div class="col-md-4 col-sm-12">
                 <label>Please Specify If others</label>
                 <select class="form-control" ng-model="injuredPerson.distinguishingFeatureDetail" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetailsOptions">
+                </select>
+            </div> -->
+            <div class="col-md-3 col-sm-12">
+                <label>Distinguishing Features</label>
+                <select class="form-control" multiple ng-model="injuredPerson.distinguishingFeature" 
+                ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeatures"
+                ng-change="getDistinguishFeaturesDetails(injuredPerson.distinguishingFeature)">
+                </select>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <label>Distinguishing Features Details</label>
+                <select multiple class="form-control" ng-disabled="!injuredPerson.distinguishingFeature" ng-model="injuredPerson.distinguishingFeatureDetail" 
+                ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetails">
+
+                </select>
+            </div>
+            <div class="col-md-2 col-sm-12 text-center move-buttons">
+                <button ng-click="addFeatureToSelectedList()" title="Move to right" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                <button ng-click="removeFeatureToSelectedList()" title="Move to left" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-left"></span></button>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Selected Distinguishing Features</label>
+                <select multiple class="form-control" ng-model="injuredPerson.distinguishingFeatures" 
+                ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in injuredPerson.distinguishingFeatures">
                 </select>
             </div>
         </div>
@@ -407,7 +426,7 @@
                     <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="witness.genderType.id" />
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <label>Distinguishing Features</label>
                     <multiselect ng-model="witness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
@@ -422,22 +441,30 @@
                     <label>Please Specify If others</label>
                     <input ng-model="witness.otherDistinguishFeatures" class="form-control" />
                 </div>
-            </div>
+            </div> -->
             <div class="row">
-
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-3 col-sm-12">
                     <label>Distinguishing Features</label>
-                    <multiselect ng-model="witness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
-                    </multiselect>
+                    <select class="form-control" multiple ng-model="witness.distinguishingFeature"
+                    ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeatures"
+                    ng-change="getDistinguishFeaturesDetails(witness.distinguishingFeature)">
+                    </select>
                 </div>
-                <div class="col-md-4 col-sm-12">
+                <div class="col-md-3 col-sm-12">
                     <label>Distinguishing Features Details</label>
-                    <multiselect ng-model="witness.distinguishingFeatureDetail" options="$parent.distinguishFeaturesDetailsOptions" id-prop="id" display-prop="description">
-                    </multiselect>
+                    <select multiple class="form-control" ng-disabled="!witness.distinguishingFeature" ng-model="witness.distinguishingFeatureDetail" 
+                    ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetails">
+                    </select>
+                </div>
+                <div class="col-md-2 col-sm-12 text-center move-buttons">
+                    <button ng-click="addFeatureToSelectedList()" title="Move to right" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button ng-click="removeFeatureToSelectedList()" title="Move to left" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-left"></span></button>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <label>Please Specify If others</label>
-                    <input ng-model="witness.otherDistinguishFeatures" class="form-control" />
+                    <label>Selected Distinguishing Features</label>
+                    <select multiple class="form-control" ng-model="witness.distinguishingFeatures" 
+                    ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in witness.distinguishingFeatures">
+                    </select>
                 </div>
             </div>
             <div class="row">
