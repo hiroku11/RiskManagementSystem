@@ -685,14 +685,21 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.removeFeatureToSelectedList= function(context){
 
-        context.distinguishingFeatures.map(item,index =>{
+        context.distinguishingFeatures.map((item,index) =>{
             context.distinguishingFeaturesOptions.splice(index,1);
+            $scope.distinguishFeaturesDetails.push(item);
         });
         context.distinguishingFeatures = context.distinguishingFeaturesOptions;
-        // context.distinguishingFeaturesOptions.splice(context.distinguishingFeaturesOptions.indexOf(context.distinguishingFeatures),1);
-        // context.distinguishingFeaturesOptions.splice(context.distinguishingFeaturesOptions.indexOf(context.distinguishingFeatures),1)
+        $scope.distinguishFeaturesDetails.sort((a,b)=> {
+            if (a.description < b.description)
+              return -1;
+            if (a.description > b.description)
+              return 1;
+            return 0;
+          });
     }
     $scope.addFeatureToSelectedList = function(context){
+        if(context.distinguishingFeatureDetail){
         //shal delete context.distinguishingFeaturesOptions && distinguishingFeatureDetail distinguishingFeature properties when sending request to backend
         if(!context.distinguishingFeaturesOptions){
             context.distinguishingFeaturesOptions = [];
@@ -703,8 +710,16 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     context.distinguishingFeaturesOptions.push(item);
                     context.distinguishingFeatures = context.distinguishingFeaturesOptions;
                 }
-                
             });
+            context.distinguishingFeatures.map((item,index)=> {
+                $scope.distinguishFeaturesDetails.map((element,index) =>{
+                    if(item.id == element.id)
+                        $scope.distinguishFeaturesDetails.splice(index,1);
+                });
+                //$scope.distinguishFeaturesDetails.splice( $scope.distinguishFeaturesDetails.indexOf(item),1)
+            })
+        
+        }
     }
 
     $scope.openMap = function() {
@@ -824,7 +839,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
 
     $scope.getDistinguishFeaturesDetails = function(feature) {
-        debugger
         var req = {
             url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature/' + feature[0].id,
             method: "GET",
