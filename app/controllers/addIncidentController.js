@@ -687,7 +687,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         context.distinguishingFeatures.map(item,index =>{
             context.distinguishingFeaturesOptions.splice(index,1);
-        })
+        });
+        context.distinguishingFeatures = context.distinguishingFeaturesOptions;
         // context.distinguishingFeaturesOptions.splice(context.distinguishingFeaturesOptions.indexOf(context.distinguishingFeatures),1);
         // context.distinguishingFeaturesOptions.splice(context.distinguishingFeaturesOptions.indexOf(context.distinguishingFeatures),1)
     }
