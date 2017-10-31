@@ -133,25 +133,25 @@
                 <div class="col-md-3 col-sm-12">
                     <label>Distinguishing Features</label>
                     <select class="form-control" multiple ng-model="suspect.distinguishingFeature" 
-                    ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeatures"
+                    ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeatures  track by distinguishFeature.id"
                     ng-change="getDistinguishFeaturesDetails(suspect.distinguishingFeature)">
+
                     </select>
                 </div>
                 <div class="col-md-3 col-sm-12">
                     <label>Distinguishing Features Details</label>
                     <select multiple class="form-control" ng-disabled="!suspect.distinguishingFeature" ng-model="suspect.distinguishingFeatureDetail" 
-                    ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetails">
-
+                    ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeaturesDetails track by distinguishFeature.id">
                     </select>
                 </div>
                 <div class="col-md-2 col-sm-12 text-center move-buttons">
-                    <button ng-click="addFeatureToSelectedList()" title="Move to right" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
-                    <button ng-click="removeFeatureToSelectedList()" title="Move to left" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-left"></span></button>
+                    <button ng-click="addFeatureToSelectedList(suspect)" title="Move to right" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                    <button ng-disabled="suspect.distinguishingFeaturesOptions && suspect.distinguishingFeaturesOptions.length == 0" ng-click="removeFeatureToSelectedList(suspect)" title="Move to left" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-left"></span></button>
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <label>Selected Distinguishing Features</label>
-                    <select multiple class="form-control" ng-model="suspect.distinguishingFeatures" 
-                    ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in suspect.distinguishingFeatures">
+                    <select multiple class="form-control" ng-model="suspect.distinguishingFeatures"
+                    ng-options="distinguishFeature.description for distinguishFeature in suspect.distinguishingFeaturesOptions">
                     </select>
                 </div>
             </div>

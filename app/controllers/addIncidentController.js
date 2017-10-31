@@ -683,6 +683,29 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     }
 
+    $scope.removeFeatureToSelectedList= function(context){
+
+        context.distinguishingFeatures.map(item,index =>{
+            context.distinguishingFeaturesOptions.splice(index,1);
+        })
+        // context.distinguishingFeaturesOptions.splice(context.distinguishingFeaturesOptions.indexOf(context.distinguishingFeatures),1);
+        // context.distinguishingFeaturesOptions.splice(context.distinguishingFeaturesOptions.indexOf(context.distinguishingFeatures),1)
+    }
+    $scope.addFeatureToSelectedList = function(context){
+        //shal delete context.distinguishingFeaturesOptions && distinguishingFeatureDetail distinguishingFeature properties when sending request to backend
+        if(!context.distinguishingFeaturesOptions){
+            context.distinguishingFeaturesOptions = [];
+            context.distinguishingFeatures = [];
+        }
+        context.distinguishingFeatureDetail.map(item => {
+                if(context.distinguishingFeaturesOptions.indexOf(item) == -1){
+                    context.distinguishingFeaturesOptions.push(item);
+                    context.distinguishingFeatures = context.distinguishingFeaturesOptions;
+                }
+                
+            });
+    }
+
     $scope.openMap = function() {
         $("#mapModal").modal('show');
         $('#mapModal').on('shown.bs.modal', function() {
@@ -802,7 +825,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.getDistinguishFeaturesDetails = function(feature) {
         debugger
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature/' + feature[0],
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature/' + feature[0].id,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
