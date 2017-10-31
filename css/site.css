@@ -752,3 +752,13 @@ a {
     background-color: #868e96;
     border-color: #868e96;
 }
+
+.pac-container{
+    z-index: 99999999;
+    max-width: 400px;
+}
+
+#pac-input{
+    max-width: 400px;
+    margin-top:8px;
+}

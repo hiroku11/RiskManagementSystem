@@ -114,7 +114,11 @@ riskManagementSystem.directive("ngUploadChange",function(){
 riskManagementSystem.directive("mapsDirective", function () {
     return {
         restrict: 'E',
-        template: `<div id = "sample" style = "width:570px; height:400px;"></div>`,
+        template: `<div>
+        <input id="pac-input" class="form-control" type="text" placeholder="Search Box">
+        <div id = "sample" style = "width:570px; height:400px;"></div>
+        </div>
+        `,
         link:  function (scope, element, attrs) {
 
                 var markers = [];
@@ -127,10 +131,64 @@ riskManagementSystem.directive("mapsDirective", function () {
                     setMapOnAll(null);
                     placeMarkerAndPanTo(event.latLng, map);
                 });
+
+                var input = document.getElementById('pac-input');
+                var searchBox = new google.maps.places.SearchBox(input);
+                map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+                map.addListener('bounds_changed', function() {
+                    searchBox.setBounds(map.getBounds());
+                  });
+                  searchBox.addListener('places_changed', function() {
+                    var places = searchBox.getPlaces();
+          
+                    if (places.length == 0) {
+                      return;
+                    }
+          
+                    // Clear out the old markers.
+                    markers.forEach(function(marker) {
+                      marker.setMap(null);
+                    });
+                    markers = [];
+          
+                    // For each place, get the icon, name and location.
+                    var bounds = new google.maps.LatLngBounds();
+                    places.forEach(function(place) {
+                      if (!place.geometry) {
+                        console.log("Returned place contains no geometry");
+                        return;
+                      }
+                      var icon = {
+                        url: place.icon,
+                        size: new google.maps.Size(71, 71),
+                        origin: new google.maps.Point(0, 0),
+                        anchor: new google.maps.Point(17, 34),
+                        scaledSize: new google.maps.Size(25, 25)
+                      };
+                      placeMarkerAndPanTo(place.geometry.location, map)
+          
+                      if (place.geometry.viewport) {
+                        // Only geocodes have viewport.
+                        bounds.union(place.geometry.viewport);
+                      } else {
+                        bounds.extend(place.geometry.location);
+                      }
+                    });
+                    map.fitBounds(bounds);
+                  });
+
                 function setMapOnAll(map) {
                     for (var i = 0; i < markers.length; i++) {
                         markers[i].setMap(map);
                     }
+                }
+                function initAutocomplete() {
+                    var map = new google.maps.Map(document.getElementById('map'), {
+                      center: {lat: -33.8688, lng: 151.2195},
+                      zoom: 13,
+                      mapTypeId: 'roadmap'
+                    });
                 }
                 function geocodeLatLng(geocoder, map, latlang, infowindow) {
                     var latlngStr = latlang.split(',');
@@ -144,7 +202,6 @@ riskManagementSystem.directive("mapsDirective", function () {
                                     address: results[0].formatted_address,
                                     latlng: latlng
                                 }
-                                debugger
                                 if(typeof scope.$parent["logIncidentDetails"]["placeOfIncident"]!= "undefined"){
                                     scope.$parent["logIncidentDetails"]["placeOfIncident"] = "http://maps.google.com/maps?q=" + latlng.lat + "+" + latlng.lng
                                 }else{
@@ -165,20 +222,16 @@ riskManagementSystem.directive("mapsDirective", function () {
                         map: map
                     });
                     markers.push(marker);
-                    
                     var geocoder = new google.maps.Geocoder;
                     google.maps.event.addListener(marker, 'click', function (event) {
                         var infowindow = new google.maps.InfoWindow();
-                        
                         if(event){
                             geocodeLatLng(geocoder, map, event.latLng.toUrlValue(), infowindow);
                         }else{
                             geocodeLatLng(geocoder, map, this.position.lat() +","+this.position.lng(), infowindow);
                         }
-                        
                         infowindow.open(map, this);
                     });
-                    
                     google.maps.event.trigger( marker, 'click' );
                     map.panTo(latLng);
                 }
