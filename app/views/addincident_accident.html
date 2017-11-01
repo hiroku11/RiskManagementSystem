@@ -14,7 +14,7 @@
                 </div> -->
                 <p class="input-group">
                     <input type="text" ng-focus="calendar.open($event,'accidentDate')" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="accidentDetails.accident.accidentDate" 
-                    is-open="calendar.opened.accidentDate" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                    is-open="calendar.opened.accidentDate" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats"/>
                     <span class="input-group-addon" ng-click="calendar.open($event,'accidentDate')">
                             <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -22,8 +22,8 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div><label>Time of Incident:</label></div>
-                <input class="form-control small-control" type="text" placeholder="HH" ng-model="accidentDetails.accident.accidentTimeHrs">:
-                <input class="form-control  small-control" type="text" placeholder="MM" ng-model="accidentDetails.accident.accidentTimeMin">
+                <input class="form-control small-control" type="number" placeholder="HH" ng-model="accidentDetails.accident.accidentTimeHrs">:
+                <input class="form-control  small-control" type="number" placeholder="MM" ng-model="accidentDetails.accident.accidentTimeMin">
             </div>
             <div class="col-md-4 col-sm-12">
                 <div><label>Place of Incident:</label></div>
@@ -34,17 +34,15 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location:</label>
-                <select class="form-control" ng-model="accidentDetails.accident.accidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
-                    <option value=''>Select</option>
+                <select class="form-control" ng-model="accidentDetails.accident.accidentLocation.id" 
+                ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
                 </select>
 
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location Details:</label>
-
-                <select ng-model="accidentDetails.accident.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accident.accidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accident.accidentLocation.id})[0].incidentLocationDetails) ">
-
-                <option value=''>Select</option>
+                <select ng-model="accidentDetails.accident.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accident.accidentLocation.id" 
+                ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accident.accidentLocation.id})[0].incidentLocationDetails) ">
                 </select>
             </div>
             <div class="col-md-4 col-sm-12">
@@ -131,7 +129,6 @@
             <div class="col-sm-12 col-md-2">
                 <label>Title:</label>
                 <select class="form-control" ng-model="injuredPerson.title">
-							<option>Select</option>
 							<option>Mr</option>
 							<option>Mrs</option>
 							<option>Ms</option>
@@ -203,11 +200,11 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Postal Code</label>
-                <input class="form-control" type="text" ng-model="injuredPerson.addresses[0].postcode">
+                <input class="form-control" type="number" ng-model="injuredPerson.addresses[0].postcode">
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Phone</label>
-                <input class="form-control" type="text" ng-model="injuredPerson.phone">
+                <input class="form-control" type="tel" ng-model="injuredPerson.phone">
             </div>
         </div>
         <div class="row">
@@ -221,25 +218,10 @@
             </div>
             <div class="col-sm-12 col-md-4">
                 <label>Gender Other</label>
-                <input type="number" ng-disabled="injuredPerson.genderType.id != 'OTHER'" class="form-control" ng-model="injuredPerson.genderTypeOther">
+                <input type="text" ng-disabled="injuredPerson.genderType.id != 'OTHER'" class="form-control" ng-model="injuredPerson.genderTypeOther">
             </div>
         </div>
         <div class="row">
-            <!-- <div class="col-md-4 col-sm-12">
-                <label>Distinguishing Features</label>
-                <select class="form-control" multiple ng-model="injuredPerson.distinguishingFeature" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeatures">
-                </select>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <label>Distinguishing Features Details</label>
-                <select class="form-control" ng-model="injuredPerson.distinguishingFeatureDetail" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetailsOptions">
-                </select>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <label>Please Specify If others</label>
-                <select class="form-control" ng-model="injuredPerson.distinguishingFeatureDetail" ng-options="distinguishFeature.id as distinguishFeature.description for distinguishFeature in distinguishFeaturesDetailsOptions">
-                </select>
-            </div> -->
             <div class="col-md-3 col-sm-12">
                 <label>Distinguishing Features</label>
                 <select class="form-control" multiple ng-model="injuredPerson.distinguishingFeature" 
@@ -276,7 +258,6 @@
             <div class="col-md-2 col-sm-12">
                 <label>Witness</label>
                 <select class="form-control" ng-model="accidentDetails.anyWitness">
-                    <option value=""--Select--></option>
                                 <option value="Y">Yes</option>
                                 <option value="N">No</option>
                             </select>
