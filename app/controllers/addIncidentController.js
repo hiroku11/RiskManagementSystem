@@ -511,9 +511,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         if ($scope.activeTab.tab == 3) {
             $scope.initializeAccidentPlaceAndTime();
         }
-        if($scope.activeTab.name == "supportingDocumentsForm"){
-            $scope.getSupportingDocuments();
-        }
+        // if($scope.activeTab.name == "supportingDocumentsForm"){
+        //     $scope.getSupportingDocuments();
+        // }
 
     }
 

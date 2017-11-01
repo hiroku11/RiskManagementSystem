@@ -762,3 +762,8 @@ a {
     max-width: 400px;
     margin-top:8px;
 }
+
+.doc-actions  span{
+    padding: 5px;
+    font-size: 15px;
+}
