@@ -685,9 +685,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.removeFeatureToSelectedList= function(context){
 
-        context.distinguishingFeatures.map((item,index) =>{
-            context.distinguishingFeaturesOptions.splice(index,1);
-            $scope.distinguishFeaturesDetails.push(item);
+        context.distinguishingFeatures.map((item) =>{
+            context.distinguishingFeaturesOptions.splice(context.distinguishingFeaturesOptions.indexOf(item),1);
+            if(item.parentId == context.distinguishingFeature[0].id){
+                $scope.distinguishFeaturesDetails.push(item);
+            }
+            
         });
         context.distinguishingFeatures = context.distinguishingFeaturesOptions;
         $scope.distinguishFeaturesDetails.sort((a,b)=> {
@@ -848,9 +851,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         AppService.ShowLoader();
         $http(req).then(function(response) {
-
             //change the options as required by the multiselect plugin/module
             $scope.distinguishFeaturesDetails = response.data;
+            $scope.distinguishFeaturesDetails.map((item)=>{
+                item.parentId = feature[0].id;
+            })
             $scope.distinguishFeaturesDetailsOptions = $scope.distinguishFeaturesDetails;
             AppService.HideLoader();
         }, function(error) {
