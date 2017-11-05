@@ -18,7 +18,7 @@ body {
 
 .content {
     overflow-y: auto;
-    height: calc(100% - 150px);
+    height: calc(100% - 120px);
 }
 
 * {
@@ -766,4 +766,9 @@ a {
 .doc-actions  span{
     padding: 5px;
     font-size: 15px;
+}
+
+.stat-icon{
+    padding: 10px;
+    font-size: 20px;
 }

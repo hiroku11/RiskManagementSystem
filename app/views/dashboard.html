@@ -7,57 +7,50 @@
     </div>
     <div class="col-md-12 col-lg-10 content">
 
-        <div class="row top-summary">
-            <div class="col-md-3">
+        <div class="row" style="margin:0;">
+            <div class="col-md-3 col-sm-12">
                 <div class="row panel">
-                    <a href="#">
-                        <div class="col-md-3">
+                        <div class="col-sm-3 stat-icon" >
                             <i class="glyphicon glyphicon-dashboard"></i>
                         </div>
-                        <div class="col-md-9">
-                            <div class="big-text">200</div>
+                        <div class="col-sm-9">
+                            <div class="big-text">{{incidentReportCount.totalIncidents}}</div>
                             <div class="">Total Incidents</div>
                         </div>
-                    </a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12">
                 <div class="row panel">
-                    <a>
-                        <div class="col-md-3">
+                        <div class="col-sm-3 stat-icon">
                             <i class="glyphicon glyphicon-eye-open"></i>
                         </div>
-                        <div class="col-md-9">
-                            <div class="big-text">78</div>
+                        <div class="col-sm-9">
+                            <div class="big-text">{{incidentReportCount.openCount}}</div>
                             <div class="">Open Incidents</div>
                         </div>
-                    </a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12">
                 <div class="row panel">
-                    <a href="#">
-                        <div class="col-md-3">
+                        <div class="col-sm-3 stat-icon">
                             <i class="glyphicon glyphicon-adjust"></i>
                         </div>
-                        <div class="col-md-9">
-                            <div class="big-text">32</div>
+                        <div class="col-sm-9">
+                            <div class="big-text">{{incidentReportCount.inProgressCount}}</div>
                             <div class="">In Progress Incidents</div>
                         </div>
-                    </a>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 col-sm-12">
                 <div class="row panel">
-                    <a href="#">
-                        <div class="col-md-3">
+                    
+                        <div class="col-sm-3 stat-icon">
                             <i class="glyphicon glyphicon-eye-close"></i>
                         </div>
-                        <div class="col-md-9">
-                            <div class="big-text">90</div>
+                        <div class="col-sm-9">
+                            <div class="big-text">{{incidentReportCount.closedCount}}</div>
                             <div class="">Closed Incidents</div>
                         </div>
-                    </a>
                 </div>
             </div>
         </div>
