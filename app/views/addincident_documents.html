@@ -9,7 +9,8 @@
                 </div>
             <div class="col-sm-12 col-md-4">
                 <label>Document</label>
-                <input class="form-control" type="file" ng-model="doc.file" ng-upload-change="selectSupportingDocumnet(doc,$event)" ng-disabled="doc.documentType == undefined || doc.description == undefined"/>
+                <input class="form-control" type="file" ng-model="doc.file" ng-upload-change="selectSupportingDocumnet(doc,$event)" 
+                ng-disabled="doc.description == undefined"/>
             </div>
         </div>
         <!-- <div class="row">
@@ -28,12 +29,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="doc in incident.supportingDocuments">
+                        <tr ng-repeat="doc in incident.supportingDocuments track by $index">
                             <td>{{doc.fileContentType}}</td>
-                            <td>{{doc.fileName}}</td>
+                            <td>{{doc.originalFileName}}</td>
                             <td>{{doc.fileDescription}}</td>
-                            <td class="doc-actions"><span ng-click="removeDocumnet(doc)" class="glyphicon glyphicon-trash"></span> 
-                                <span class="glyphicon glyphicon-download-alt" ng-click="downloadDocumnet(doc)"></span></td>
+                            <td class="doc-actions"><span ng-click="removeSupportingDocumnet(doc,$index)" class="glyphicon glyphicon-trash"></span> 
+                                <span class="glyphicon glyphicon-download-alt" ng-click="downloadSupportingDocumnet(doc,$index)"></span></td>
                         </tr>
                     </tbody>
                 </table>

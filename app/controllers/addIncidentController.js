@@ -2071,7 +2071,41 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
+    $scope.removeSupportingDocumnet = function(doc,index){
+        var req = {
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/document/delete-document/'+doc.id,
+            method: "DELETE",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            }
+        }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
+            AppService.HideLoader();
+            $scope.incident.supportingDocuments.splice(index,1);
+            
+        }, function(error) {
+            AppService.HideLoader();
+        })
+        
+    }
 
+    $scope.downloadSupportingDocumnet=function(doc){
+        //rmsrest/s/document/delete-document/57
+        var req = {
+            url: 'https://b2897cdb.ngrok.io//rmsrest/s/document/download-document/'+doc.id,
+            method: "DELETE",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            }
+        }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
+            AppService.HideLoader();            
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
 
 
 
