@@ -2091,23 +2091,23 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
     $scope.downloadSupportingDocumnet=function(doc){
-        //rmsrest/s/document/delete-document/57
-        var req = {
-            url: 'https://b2897cdb.ngrok.io//rmsrest/s/document/download-document/'+doc.id,
-            method: "DELETE",
+        let req = {
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/document/download-document/'+doc.id,
+            method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
-            }
+            },
+            responseType: 'arraybuffer'
         }
         AppService.ShowLoader();
         $http(req).then(function(response) {
-            AppService.HideLoader();            
+            AppService.HideLoader();  
+            let blob = new Blob([response.data], {type: doc.fileContentType});
+            saveAs(blob, doc.originalFileName);
         }, function(error) {
             AppService.HideLoader();
         })
     }
-
-
 
     $scope.logOutUser = rmsService.logOutUser;
     $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint'];
