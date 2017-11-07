@@ -1,4 +1,4 @@
-﻿var dashboardController = riskManagementSystem.controller("dashboardController", ["$scope", "AppService", "rmsService", '$http', '$location', function($scope, AppService, rmsService, $http, $location) {
+﻿var dashboardController = riskManagementSystem.controller("dashboardController", ["$scope", "AppService", "rmsService", '$http', '$location', function ($scope, AppService, rmsService, $http, $location) {
 
 
     $scope.token = localStorage.getItem('rmsAuthToken');
@@ -7,6 +7,12 @@
     //$scope.role = $scope.loggedInUser.roles[0];
     $scope.thisView = "dashboard";
     $scope.logOutUser = rmsService.logOutUser;
+    $scope.adminRoles = ['INVESTIGATOR', 'CLAIMS_HANDLER', 'ADMIN'];
+
+    let roles = $scope.adminRoles.some(role => $scope.loggedInUser.roles.includes(role));
+    if (!roles.length) {
+        $location.path("/incidents")
+    }
     // $scope.lookUp = function() {
     //     var req = {
     //         url: 'https://b2897cdb.ngrok.io/rmsrest/s/user-lookup',
@@ -25,7 +31,7 @@
     //     })
     // }
 
-    $scope.getIncidentReportCount = function() {
+    $scope.getIncidentReportCount = function () {
         var req = {
             url: 'https://b2897cdb.ngrok.io/rmsrest/s/admin/admin-dashboard-hdr-stat',
             method: "GET",
@@ -33,24 +39,24 @@
         }
         AppService.ShowLoader();
         var loginPromise = $http(req);
-        loginPromise.then(function(response) {
+        loginPromise.then(function (response) {
             $scope.incidentReportCount = response.data;
             AppService.HideLoader();
-        }, function(error) {
+        }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    
-    $scope.logOut = function() {
+
+    $scope.logOut = function () {
         AppService.ShowLoader();
         localStorage.removeItem("rmsAuthToken");
         AppService.HideLoader();
         $location.path("/login");
     }
-    $scope.changeMenu = function() {
-            $scope.thisView = $event.target.id;
+    $scope.changeMenu = function () {
+        $scope.thisView = $event.target.id;
     }
-    
+
     $scope.getIncidentReportCount();
 }])
