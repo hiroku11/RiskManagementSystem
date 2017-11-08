@@ -68,6 +68,10 @@
             localStorage.removeItem("rmsAuthToken");
             $location.path("/login");
         }
+        this.isAdminRole = function(){
+            let adminRoles = ['INVESTIGATOR', 'CLAIMS_HANDLER', 'ADMIN'];
+             return adminRoles.some(role => this.loggedInUser.roles.includes(role)).length? true : false;
+        }
     })
     
     riskManagementSystem.service("helperFunctions",function(){

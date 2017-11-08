@@ -6,7 +6,7 @@
          <span style="font-size:20px" data-elem ="smallMenu" class="glyphicon glyphicon-menu-hamburger" ng-click="showMenu = true"></span>
     </div>
     <ul class="hidden-lg navbar sm-navbar" ng-show="showMenu">
-            <li ng-class="{active:thisView=='dashboard'}" data-elem ="smallMenu">
+            <li ng-class="{active:thisView=='dashboard'}" data-elem ="smallMenu" ng-if="rmsService.isAdminRole()">
                 <a ui-sref="dashboard" title="" data-elem ="smallMenu">
                     <i class="glyphicon glyphicon-dashboard menu-icon"></i> Dashboard
             </a>

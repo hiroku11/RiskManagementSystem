@@ -7,10 +7,7 @@
     //$scope.role = $scope.loggedInUser.roles[0];
     $scope.thisView = "dashboard";
     $scope.logOutUser = rmsService.logOutUser;
-    $scope.adminRoles = ['INVESTIGATOR', 'CLAIMS_HANDLER', 'ADMIN'];
-
-    let roles = $scope.adminRoles.some(role => $scope.loggedInUser.roles.includes(role));
-    if (!roles.length) {
+    if (!rmsService.isAdminRole()) {
         $location.path("/incidents")
     }
     // $scope.lookUp = function() {
