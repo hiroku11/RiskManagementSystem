@@ -37,34 +37,25 @@
         let promise = $http(req);
         promise.then(function (response) {
             $scope.incidentVolumeByStatus = response.data;
-            $scope.setGraphMonths();
+            //$scope.setGraphMonths();
             console.log(response.data);
-            $scope.createIncidentVolumeByStatusGraph();
+            $scope.volumeByStatusMonths =  $scope.incidentVolumeByStatus.map(item =>{
+                return item.monthYear;
+            })
+            $scope.createGraph("Incident volume by status",$scope.groupDataForGraph('monthYear','incidentVolumeByStatus','volumeByStatusMonths'),$scope.volumeByStatusMonths,'incidentVolumeByStatusGraph');
             AppService.HideLoader();
         }, function (error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.setGraphMonths =function(){
-        //assumption made that data will always be sorted for month and status both
-        if(!$scope.volumeByStatusMonths){
-            $scope.volumeByStatusMonths = [];
-        }
-        $scope.incidentVolumeByStatus.forEach((item) => {
-            if($scope.volumeByStatusMonths.indexOf(item.monthYear) == -1){
-                $scope.volumeByStatusMonths.push(item.monthYear);
-            }
-        });
-    }
-
-    $scope.groupDataForStatus =function(){
+    $scope.groupDataForGraph =function(property,array,category){
         let group = {};
-        $scope.incidentVolumeByStatus.map( (item) => {
+        $scope[array].map( (item) => {
             if(!group[item.incidentStatus]){
                 group[item.incidentStatus]={"name":item.incidentStatus,data:[]};
             }
-            let indx = $scope.volumeByStatusMonths.indexOf(item.monthYear);
+            let indx = $scope[category].indexOf(item[property]);
             group[item.incidentStatus]['data'][indx] =item.incidentCount;
            
         });
@@ -84,12 +75,39 @@
         return arr;
     }
 
-    $scope.createIncidentVolumeByStatusGraph =function(){
+    // $scope.groupDataForStatusVolumeByType =function(){
+    //     let group = {};
 
-        Highcharts.chart('incidentVolumeByStatusGraph', {
+    //     $scope.incidentVolumeByTypeStatus.map( (item) => {
+    //         if(!group[item.incidentStatus]){
+    //             group[item.incidentStatus]={"name":item.incidentStatus,data:[]};
+    //         }
+    //         let indx = $scope.incidentTypesByStatus.indexOf(item.incidentType);
+    //         group[item.incidentStatus]['data'][indx] =item.incidentCount;
+           
+    //     });
+
+    //     let arr = [];
+    //     for(let key in group){
+    //         let groupLength = group[key]['data'].length;
+            
+    //         for (let ind = 0; ind < groupLength; ind++) {
+    //             if(typeof group[key].data[ind] == 'undefined'){
+    //                 group[key].data[ind] = 0;
+    //             }
+                
+    //         }
+    //         arr.push(group[key]);
+    //     }
+    //     return arr;
+    // }
+
+    $scope.createGraph =function(title,data,categories,container){
+
+        Highcharts.chart(container, {
             
                 title: {
-                    text: 'Incident Volume by Status'
+                    text: title
                 },
             
                 // subtitle: {
@@ -109,7 +127,7 @@
                     verticalAlign: 'bottom'
                 },   
                  xAxis: {
-                    categories: $scope.volumeByStatusMonths,
+                    categories: categories,//$scope.volumeByStatusMonths,
             
                     labels: {
                         formatter: function () {
@@ -117,7 +135,7 @@
                         }
                     }
                 },            
-                series: $scope.groupDataForStatus(),
+                series: data,//$scope.groupDataForStatusVolume()
                 responsive: {
                     rules: [{
                         condition: {
@@ -135,6 +153,26 @@
             
             });
     }
+
+    $scope.getDashboardIncidentVolumeByTypeStatus = function(){
+        var req = {
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/admin/admin-dashboard-inc-type-by-sts',
+            method: "GET",
+            headers: { 'X-AUTH-TOKEN': $scope.token },
+        }
+        AppService.ShowLoader();
+        let promise = $http(req);
+        promise.then(function (response) {
+            $scope.incidentVolumeByTypeStatus = response.data;
+            $scope.incidentTypesByStatus = response.data.map(item => item.incidentType);
+            console.log(response.data);
+            $scope.createGraph("Incident volume by incident type & status",$scope.groupDataForGraph('incidentType','incidentVolumeByTypeStatus','incidentTypesByStatus'),$scope.incidentTypesByStatus,'incidentGroupedByType');
+            //$scope.createGraph(incidentGroupedByType);
+            AppService.HideLoader();
+        }, function (error) {
+            AppService.HideLoader();
+        })
+    }
     $scope.logOut = function () {
         AppService.ShowLoader();
         localStorage.removeItem("rmsAuthToken");
@@ -144,7 +182,15 @@
     $scope.changeMenu = function () {
         $scope.thisView = $event.target.id;
     }
-
+    $scope.$watch('graph',function(){
+        //get graph data when needed
+        if($scope.graph == 2 ){
+            $scope.getDashboardIncidentVolumeByTypeStatus()
+        }
+        if($scope.graph == 1){
+            $scope.getDashboardIncidentVolumeByStatus();
+        }
+    })
     $scope.getIncidentReportCount();
     $scope.getDashboardIncidentVolumeByStatus();
 }])
