@@ -6,6 +6,10 @@ var claimsController = riskManagementSystem.controller("claimsController", ["$sc
         $scope.authorizedUser = rmsService.decryptToken();
         $scope.loggedInUser = rmsService.getLoggedInUser();
         // $scope.data = [];
+        $scope.isAdminRole = rmsService.isAdminRole()
+        if (!$scope.isAdminRole ) {
+            $location.path("/incidents");
+        }
         $scope.currentPage = 1;
         $scope.entryCount = 10;
         $scope.logOutUser = rmsService.logOutUser;

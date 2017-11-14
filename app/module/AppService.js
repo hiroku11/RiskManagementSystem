@@ -70,8 +70,9 @@
         }
         this.isAdminRole = function(){
             let adminRoles = ['INVESTIGATOR', 'CLAIMS_HANDLER', 'ADMIN'];
-             return adminRoles.some(role => this.loggedInUser.roles.includes(role)).length? true : false;
+            return  adminRoles.some(role => this.loggedInUser.roles.includes(role));
         }
+        
     })
     
     riskManagementSystem.service("helperFunctions",function(){

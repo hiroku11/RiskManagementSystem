@@ -4,6 +4,10 @@
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
+    $scope.isAdminRole = rmsService.isAdminRole()
+    if (!$scope.isAdminRole ) {
+        $location.path("/incidents");
+    }
     // $scope.data = [];
     $scope.currentPage = 1;
     $scope.entryCount = 10;

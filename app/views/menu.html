@@ -1,5 +1,5 @@
 ﻿<ul>
-    <li ng-class="{active:thisView=='dashboard'}" ng-if="rmsService.isAdminRole()">
+    <li ng-class="{active:thisView=='dashboard'}" ng-if="isAdminRole">
         <a ui-sref="dashboard" title="">
             <i class="glyphicon glyphicon-dashboard menu-icon"></i> Dashboard
         </a>

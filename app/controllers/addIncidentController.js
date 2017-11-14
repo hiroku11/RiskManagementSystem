@@ -5,6 +5,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
     $scope.logOutUser = rmsService.logOutUser;
+    $scope.isAdminRole = rmsService.isAdminRole()
+    if (!$scope.isAdminRole ) {
+        $location.path("/incidents");
+    }
+    
     $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint'];
     $scope.incidentType = {};
     $scope.incidentLoc = {};
