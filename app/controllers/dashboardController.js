@@ -75,32 +75,6 @@
         return arr;
     }
 
-    // $scope.groupDataForStatusVolumeByType =function(){
-    //     let group = {};
-
-    //     $scope.incidentVolumeByTypeStatus.map( (item) => {
-    //         if(!group[item.incidentStatus]){
-    //             group[item.incidentStatus]={"name":item.incidentStatus,data:[]};
-    //         }
-    //         let indx = $scope.incidentTypesByStatus.indexOf(item.incidentType);
-    //         group[item.incidentStatus]['data'][indx] =item.incidentCount;
-           
-    //     });
-
-    //     let arr = [];
-    //     for(let key in group){
-    //         let groupLength = group[key]['data'].length;
-            
-    //         for (let ind = 0; ind < groupLength; ind++) {
-    //             if(typeof group[key].data[ind] == 'undefined'){
-    //                 group[key].data[ind] = 0;
-    //             }
-                
-    //         }
-    //         arr.push(group[key]);
-    //     }
-    //     return arr;
-    // }
 
     $scope.createGraph =function(title,data,categories,container){
 
@@ -190,7 +164,66 @@
         if($scope.graph == 1){
             $scope.getDashboardIncidentVolumeByStatus();
         }
+        if($scope.graph == 3){
+            $scope.getDashboardIncidentVolumeByEventType();
+        }
     })
+
+    $scope.getDashboardIncidentVolumeByEventType = function(){
+        var req = {
+            url: 'https://b2897cdb.ngrok.io/rmsrest/s/admin/admin-dashboard-inc-vol-by-event-type',
+            method: "GET",
+            headers: { 'X-AUTH-TOKEN': $scope.token },
+        }
+        AppService.ShowLoader();
+        let promise = $http(req);
+        promise.then(function (response) {
+            $scope.incidentVolumeByEventType = response.data;
+            $scope.incidentVolumeByEventTypeCategories = $scope.getMonthsIncidentEvenetType();
+            // $scope.incidentVolumeByEventTypeKeys = Object.keys(response.data);
+            // $scope.incidentVolumeByEventTypeKeys  = $scope.incidentVolumeByEventTypeKeys.map(item => item.replace(/([A-Z]+)/g, " $1"));
+            $scope.createGraph("Incident volume by event type", $scope.groupDataForEventGraph() ,$scope.incidentVolumeByEventTypeCategories,'incidentGroupedByEvents');
+            AppService.HideLoader();
+        }, function (error) {
+            AppService.HideLoader();
+        })
+    }
+
+    $scope.groupDataForEventGraph = function(){
+        let arr =[];
+        let months = $scope.getMonthsIncidentEvenetType();
+        for(let key in $scope.incidentVolumeByEventType){
+            let obj = {
+                name: (key.charAt(0).toUpperCase()+ key.slice(1)).replace(/([A-Z]+)/g, " $1"),
+                data:[]
+            }
+            $scope.incidentVolumeByEventType[key].forEach(item =>{
+                obj.data[months.indexOf(item.monthYear)] = item.incidentCount;
+            })
+            let groupLength = obj.data.length;
+            
+            for (let ind = 0; ind < groupLength; ind++) {
+                if(typeof obj.data[ind] == 'undefined'){
+                    obj.data[ind] = 0;
+                }
+            }
+            arr.push(obj);
+        }
+        return arr;
+    }
+
+    $scope.getMonthsIncidentEvenetType =function(){
+        let arr = [ ] ;
+        for(let key in  $scope.incidentVolumeByEventType) {
+            $scope.incidentVolumeByEventType[key].forEach(item=> {
+              if(arr.indexOf(item.monthYear) == -1) {
+                arr.push(item.monthYear);
+              }
+            })
+          }
+          return arr;
+    }
+    
     $scope.getIncidentReportCount();
     $scope.getDashboardIncidentVolumeByStatus();
 }])
