@@ -303,8 +303,6 @@
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
                 'Search': JSON.stringify(fil)
-
-
             },
         }
         AppService.ShowLoader();

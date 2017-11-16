@@ -109,8 +109,7 @@
             </table>
 
             <nav aria-label="Page navigation" ng-if="data && data.length > 0">
-                    <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="entryCount" ng-change="getEntries()"
-                    />
+                    <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="$parent.entryCount" ng-change="getEntries()"></select>
     
                     <ul class="pagination" ng-if="data.length!=0">
                         <li>
