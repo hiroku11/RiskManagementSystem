@@ -49,7 +49,7 @@
             }
 
         }
-
+        this.baseEndpointUrl = "https://b2897cdb.ngrok.io";
         this.getLoggedInUser = function() {
             if (this.loggedInUser) {
                 return this.loggedInUser;

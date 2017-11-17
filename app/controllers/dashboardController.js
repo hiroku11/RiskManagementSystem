@@ -13,7 +13,7 @@
     }
     $scope.getIncidentReportCount = function () {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/admin/admin-dashboard-hdr-stat',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/admin/admin-dashboard-hdr-stat',
             method: "GET",
             headers: { 'X-AUTH-TOKEN': $scope.token },
         }
@@ -29,7 +29,7 @@
 
     $scope.getDashboardIncidentVolumeByStatus = function(){
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/admin/admin-dashboard-inc-volume-by-sts',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/admin/admin-dashboard-inc-volume-by-sts',
             method: "GET",
             headers: { 'X-AUTH-TOKEN': $scope.token },
         }
@@ -130,7 +130,7 @@
 
     $scope.getDashboardIncidentVolumeByTypeStatus = function(){
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/admin/admin-dashboard-inc-type-by-sts',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/admin/admin-dashboard-inc-type-by-sts',
             method: "GET",
             headers: { 'X-AUTH-TOKEN': $scope.token },
         }
@@ -171,7 +171,7 @@
 
     $scope.getDashboardIncidentVolumeByEventType = function(){
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/admin/admin-dashboard-inc-vol-by-event-type',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/admin/admin-dashboard-inc-vol-by-event-type',
             method: "GET",
             headers: { 'X-AUTH-TOKEN': $scope.token },
         }
@@ -225,5 +225,4 @@
     }
     
     $scope.getIncidentReportCount();
-    $scope.getDashboardIncidentVolumeByStatus();
 }])

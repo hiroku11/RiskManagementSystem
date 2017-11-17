@@ -1,13 +1,13 @@
-var claimsController = riskManagementSystem.controller("claimsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http',"helperFunctions",
-    function ($scope, AppService, rmsService, $location, $window, $http,helperFunctions) {
+var claimsController = riskManagementSystem.controller("claimsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', "helperFunctions",
+    function ($scope, AppService, rmsService, $location, $window, $http, helperFunctions) {
 
         $scope.token = localStorage.getItem('rmsAuthToken');
-        $scope.thisView = "incidents";
+        $scope.thisView = "claims";
         $scope.authorizedUser = rmsService.decryptToken();
         $scope.loggedInUser = rmsService.getLoggedInUser();
         // $scope.data = [];
         $scope.isAdminRole = rmsService.isAdminRole()
-        if (!$scope.isAdminRole ) {
+        if (!$scope.isAdminRole) {
             $location.path("/incidents");
         }
         $scope.currentPage = 1;
@@ -36,4 +36,22 @@ var claimsController = riskManagementSystem.controller("claimsController", ["$sc
         }
         //pagination functions ends
 
+        $scope.getClaims = function () {
+            var req = {
+                url: rmsService.baseEndpointUrl+"/rmsrest/s/claim/claimHandlerLoginId/" +$scope.authorizedUser.loginId,
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token,
+                },
+            }
+            AppService.ShowLoader();
+            let promise = $http(req);
+            promise.then(function (response) {
+                $scope.data = response.data;
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
+        $scope.getClaims();
     }]); 

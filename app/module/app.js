@@ -32,7 +32,12 @@ riskManagementSystem.config(['$stateProvider', '$urlRouterProvider', '$compilePr
         url:"/claims",
         templateUrl: 'app/views/claims.html',
         controller: 'claimsController',
+    }).state('investigations', {
+        url:"/investigations",
+        templateUrl: 'app/views/investigations.html',
+        controller: 'investigationsController',
     })
+    //investigations
 }]);
 
  riskManagementSystem.directive('autoComplete', function($timeout) {
