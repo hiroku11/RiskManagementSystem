@@ -148,7 +148,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <label>Incident Description</label>
-                        <textarea ng-model="logIncidentDetails.incidentDescription" class="form-control" required></textarea>
+                        <textarea ng-model="logIncidentDetails.incidentDescription" class="form-control" ></textarea>
                     </div>
                 </div>
 
@@ -160,7 +160,7 @@
 
 
                             <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="logIncidentDetails.date" ng-focus="calendar.open($event,'date')"
-                            is-open="calendar.opened.date" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats"/>
+                            is-open="calendar.opened.date" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats"/>
                             <span class="input-group-addon" ng-click="calendar.open($event,'date')">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>

@@ -9,7 +9,7 @@
                  data-date-format="dd/mm/yyyy" ng-model="crimeDetails.crime.date"> -->
                 <p class="input-group">
                     <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="crimeDetails.crime.date" 
-                    is-open="calendar.opened.date" ng-focus="calendar.open($event,'date')" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    is-open="calendar.opened.date" ng-focus="calendar.open($event,'date')" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
                     <span class="input-group-addon" ng-click="calendar.open($event,'date')">
                             <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -414,12 +414,12 @@
             </div>
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Statement</label>
                 <input class="form-control" type="file">
             </div>
-        </div>
+        </div> -->
         <div class="row ">
             <div class="col-md-6 col-sm-12">
                 <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>

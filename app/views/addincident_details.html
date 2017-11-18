@@ -258,7 +258,8 @@
                     <span class="input-group-addon">
                                 <span class="fa fa-gbp"></span>
                     </span>
-                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue" pattern="^[1-9](,\d{3}){1,2}(\.\d{2})?$">
+                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue" > 
+                    <!-- pattern="^[1-9](,\d{3}){1,2}(\.\d{2})?$" -->
                 </p>
             </div>
 
@@ -293,7 +294,7 @@
                 <p class="input-group">
 
                     <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="loss.date" ng-focus="calendar.open($event,'date')"
-                     is-open="calendar.opened.date" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                     is-open="calendar.opened.date" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
                     <span class="input-group-addon" ng-click="calendar.open($event,'date')">
                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>

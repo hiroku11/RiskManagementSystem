@@ -14,6 +14,24 @@
     $scope.logOutUser = rmsService.logOutUser;
     $scope.Math = window.Math;
     $scope.entry = [{ value: 10 }, { value: 20 }, { value: 50 }];
+    //declaring variables
+
+    $scope.IncOpenedDate = '';
+    $scope.IncClosedDate = '';
+    $scope.IncidentStatus = '';
+    $scope.incidentType = '';
+    $scope.incidentLoc = '';
+    $scope.incidentLocDetail = '';
+    $scope.user = '';
+    $scope.idOp = "";
+    $scope.opendateop = "";
+    $scope.closedateop = "";
+   
+
+    $scope.SincidentType = "";
+    $scope.SIncidentCat = "";
+    $scope.SincidentLoc = "";
+    $scope.SincidentLocDetail = "";
 
     $scope.sortBy = "uniqueIncidentId";
     $scope.reverse = false;
@@ -95,9 +113,7 @@
         $scope.Asset = false;
         $scope.user = "";
     }
-    //declaring variables
-
-    // $scope.
+    
 
 
     $scope.advancedSearch = function () {
@@ -111,13 +127,13 @@
         {
             "field": "openedDateTime",
             "operator": $scope.opendateop,
-            "value": $scope.IncOpenedDate ? $scope.IncOpenedDate + " " + "00:00:00" : undefined
+            "value": $scope.IncOpenedDate == '' ? $scope.IncOpenedDate : $scope.IncOpenedDate + " " + "00:00:00" 
 
         },
         {
             "field": "closedDateTime",
             "operator": $scope.closedateop,
-            "value": $scope.IncClosedDate ? $scope.IncClosedDate + " " + "00:00:00" : undefined
+            "value": $scope.IncClosedDate == '' ? $scope.IncClosedDate : $scope.IncClosedDate + " " + "00:00:00" 
 
         },
         {
