@@ -1,0 +1,52 @@
+<div class="conatiner-fluid" ng-show="activeTab.tab==9">
+        <h2>Incident Summary</h2>
+        <h4>Log Incident</h4>
+        <span>Incident Reported By</span>
+        <div class="row">
+                <div class="col-sm-12">
+                        <label>User Id:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.loginId}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-md-4 col-sm-12">
+                        <label>First Name:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.firstName}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                        <label>Middle Name:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.middleName}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                        <label>Last Name:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.lastName}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-md-4 col-sm-12">
+                        <label>Organization:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.position.organization.description}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                        <label>Department:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.position.department}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                        <label>Last Name:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.position.positionLevel.description}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-md-4 col-sm-12">
+                        <label>Phone:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.phone}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                        <label>Alternate Phone:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.alternatePhone}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                        <label>Email:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.email}}</label>
+                </div>
+        </div>
+        <span>Suspect</span>
+        
+</div>
+<style>
+        .summary-text {
+                font-weight: normal;
+                padding-left: 5px;
+                padding-right: 5px;
+        }
+</style>

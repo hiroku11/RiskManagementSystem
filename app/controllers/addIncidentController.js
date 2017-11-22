@@ -342,6 +342,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.supportingDocuments = [{}, {}, {}, {}, {}];
     $scope.activeTab = { "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 };
+    //$scope.activeTab ={ "active": false, "description": "Summary", "name": "summaryForm", "tab": 9 };
     $scope.calendar = {
         open:function($event,which){
             $event.preventDefault();
@@ -2114,6 +2115,25 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         })
     }
 
+    $scope.getincidentSummary = function(){
+        ///rmsrest/s/incident/uniqueIncidentId/IN010917203918
+        let req = {
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/uniqueIncidentId/IN171117041334',
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+        }
+        AppService.ShowLoader();
+        $http(req).then(function(response) {
+          $scope.incidentSummary = response.data;
+          console.log(response.data);
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+
+    $scope.getincidentSummary();
     $scope.logOutUser = rmsService.logOutUser;
     $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint'];
 
