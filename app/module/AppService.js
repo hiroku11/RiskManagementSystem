@@ -66,6 +66,7 @@
         }
         this.logOutUser = function() {
             localStorage.removeItem("rmsAuthToken");
+            this.authorisedUserDetails = null;
             $location.path("/login");
         }
         this.isAdminRole = function(){
