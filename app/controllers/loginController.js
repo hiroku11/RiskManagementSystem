@@ -1,8 +1,9 @@
 ﻿var loginController = riskManagementSystem.controller("loginController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', function($scope, AppService, rmsService, $location, $window, $http) {
     this.AppService = AppService;
+    $scope.adminRoles =['INVESTIGATOR','CLAIMS_HANDLER','ADMIN'];
     $scope.loginUser = function() {
         var req = {
-            url: rmsService.baseEndpointUrl+'/rmsrest/p/api/login',
+            url: 'https://b2897cdb.ngrok.io/rmsrest/p/api/login',
             method: "POST",
             headers: { 'Authorization': 'Basic ' + $window.btoa(unescape(encodeURIComponent($scope.username + ':' + $scope.password))) },
         }
@@ -13,9 +14,10 @@
             var token = response.data.XAuthToken;
             localStorage.setItem("rmsAuthToken", token);
             AppService.HideLoader();
-            if (!rmsService.isAdminRole()) {
-                $location.path("/incidents")
-            }
+           let roles = $scope.adminRoles.some(role =>  rmsService.loggedInUser.roles.includes(role));
+           if(!roles.length){
+            $location.path("/incidents")
+           }
             $location.path("/dashboard")
         }, function(error) {
             //show user that credentials are not correct
