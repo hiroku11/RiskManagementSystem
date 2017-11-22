@@ -49,7 +49,7 @@
             }
 
         }
-        this.baseEndpointUrl = "https://b2897cdb.ngrok.io";
+
         this.getLoggedInUser = function() {
             if (this.loggedInUser) {
                 return this.loggedInUser;
@@ -68,11 +68,6 @@
             localStorage.removeItem("rmsAuthToken");
             $location.path("/login");
         }
-        this.isAdminRole = function(){
-            let adminRoles = ['INVESTIGATOR', 'CLAIMS_HANDLER', 'ADMIN'];
-            return  adminRoles.some(role => this.loggedInUser.roles.includes(role));
-        }
-        
     })
     
     riskManagementSystem.service("helperFunctions",function(){

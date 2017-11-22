@@ -99,7 +99,13 @@
                     </select>
             </div>
 
-           
+            <div class="col-sm-12 col-md-3">
+                <label>Injury Type Detail</label>
+                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetailsSpec.id" ng-disabled="!injuredPerson.injuryTypeDetail.id" ng-options="injuryTypeDetailsSpec.id as injuryTypeDetailsSpec.description for injuryTypeDetailsSpec in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails.injuryTypeDetailSpecs) ">
+                    <option value=''>--Select--</option>
+                    </select>
+            </div>
+
         </div>
 
         <div class="row">
@@ -194,7 +200,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Postal Code</label>
-                <input class="form-control"  ng-model="injuredPerson.addresses[0].postcode">
+                <input class="form-control" type="number" ng-model="injuredPerson.addresses[0].postcode">
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Phone</label>
@@ -312,6 +318,9 @@
                         <td>{{person.bodyParts.toString()}}</td>
                         <td>
                             <a ng-click="deleteInjured(person)">
+                                <i class="glyphicon glyphicon-trash"></i>
+                            </a>
+                            <a ng-click="updateInjured(person)">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
 
@@ -456,21 +465,18 @@
                 </div>
             </div>
 
-            <div id="tblWitness" class="table-wrapper inline" ng-if="witnesses.length > 0">
+            <div id="tblWitness" class="table-wrapper inline" ng-if="accidentDetails.witnesses.length > 0">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Age</th>
-                            <th>GenderType</th>
-                            <th>organization</th>
-                            <th>City</th>
-                            <th>county</th>
-                            <th>postcode</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Statement</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="witness in witnesses">
+                        <tr ng-repeat="witness in accidentDetails.witnesses">
                             <td>{{witness.firstName}} {{witness.LastName}}</td>
                             <td>{{witness.age}}</td>
                             <td>{{witness.genderType.id}}</td>
