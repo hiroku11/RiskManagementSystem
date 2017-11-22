@@ -7,7 +7,7 @@
     </div>
 
 
-    <div class="col-md-12 col-lg-10 content">
+    <div class="col-md-10 content">
         <div class="incidents">
             <div class="pull-right advanced-search">
                 <a class="btn btn-primary" id="btnAdvanceSearch" data-toggle="modal" data-target="#myModal" ng-click="loadAPI()">Advanced Search</a>
@@ -108,9 +108,8 @@
                 </tbody>
             </table>
 
-            <nav aria-label="Page navigation" ng-if="data && data.length > 0">
-                    <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="entryCount" ng-change="getEntries()"
-                    />
+            <nav aria-label="Page navigation">
+                    <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="$parent.entryCount" ng-change="getEntries()"></select>
     
                     <ul class="pagination" ng-if="data.length!=0">
                         <li>
@@ -126,7 +125,7 @@
                         </li>
                     </ul>
                     <span>{{entryCount * currentPage - entryCount + 1}} - {{entryCount * currentPage > data.length ? data.length : entryCount * currentPage}} of {{data.length}}</span>
-                </nav>
+            </nav>
                 <h3 class="text-center" ng-if="!data || data.length == 0">no records found!</h3>
 
 

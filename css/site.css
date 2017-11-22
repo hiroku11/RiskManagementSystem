@@ -19,6 +19,7 @@ body {
 .content {
     overflow-y: auto;
     height: calc(100% - 120px);
+    padding-right: 1em;
 }
 
 * {
@@ -223,7 +224,7 @@ h5 {
 .navbar+div {
     padding-left: 1em;
     padding-top: 1em;
-    padding-right: 0;
+    padding-right: 1em;
 }
 
 
@@ -333,17 +334,17 @@ h5 {
     margin: 10px -15px;
 }
 
-.table-bordered>tbody>tr>td,
+/* .table-bordered>tbody>tr>td,
 .table-bordered>tbody>tr>th,
 .table-bordered>tfoot>tr>td,
 .table-bordered>tfoot>tr>th,
 .table-bordered>thead>tr>td,
 .table-bordered>thead>tr>th {
     border: 1px solid #8c1519;
-}
+} */
 
 .table-bordered {
-    border: 1px solid #8c1519;
+    /* border: 1px solid #8c1519; */
     font-size: 14px;
 }
 
@@ -397,7 +398,6 @@ a i {
     .modal-content {
         width: 100% !important
     }
-
 }
 @media only screen and (min-width: 410px) and (max-width:767px) {
     .incidentLabel{
@@ -776,4 +776,8 @@ a {
 .stat-icon{
     padding: 10px;
     font-size: 20px;
+}
+
+.table{
+    background-color: #fff;
 }

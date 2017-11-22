@@ -4,6 +4,10 @@
     $scope.thisView = "incidents";
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
+    $scope.isAdminRole = rmsService.isAdminRole()
+    if (!$scope.isAdminRole ) {
+        $location.path("/incidents");
+    }
     // $scope.data = [];
     $scope.currentPage = 1;
     $scope.entryCount = 10;
@@ -49,7 +53,7 @@
             "filters": params
         }
         var req = {
-            url: 'https://b2897cdb.ngrok.io//rmsrest/s/search-incident',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/search-incident',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -65,13 +69,7 @@
             if (response.data.length != 0) {
                 $scope.data = response.data;
             }
-
-
-
-
             AppService.HideLoader();
-
-
         }, function (error) {
             AppService.HideLoader();
         })
@@ -207,7 +205,7 @@
 
     $scope.getIncidentType = function () {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/incident-type/incident-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -227,7 +225,7 @@
     }
     $scope.getIncidentCategory = function () {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-category/incident-categories',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/incident-category/incident-categories',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -248,7 +246,7 @@
     }
     $scope.getIncidentLoc = function () {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/incident-location/incident-locations',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -269,7 +267,7 @@
     }
     $scope.getIncidentLocDetail = function () {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-location-detail/incident-location/' + $scope.SincidentLoc,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/incident-location-detail/incident-location/' + $scope.SincidentLoc,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -294,13 +292,11 @@
         }
 
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/search-incident',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/search-incident',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
                 'Search': JSON.stringify(fil)
-
-
             },
         }
         AppService.ShowLoader();
@@ -325,7 +321,7 @@
         }
 
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/user-lookup',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/user-lookup',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,

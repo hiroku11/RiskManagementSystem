@@ -5,6 +5,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.authorizedUser = rmsService.decryptToken();
     $scope.loggedInUser = rmsService.getLoggedInUser();
     $scope.logOutUser = rmsService.logOutUser;
+    $scope.isAdminRole = rmsService.isAdminRole()
+    if (!$scope.isAdminRole ) {
+        $location.path("/incidents");
+    }
+    
     $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint'];
     $scope.incidentType = {};
     $scope.incidentLoc = {};
@@ -30,7 +35,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
     $scope.getData = function(params) {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/' + $scope.incident.uniqueIncidentId,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/' + $scope.incident.uniqueIncidentId,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -203,7 +208,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.supportingDocumentsFormData.append("uniqueIncidentId", $scope.incident.uniqueIncidentId);
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/document/documents-for-incident/' + $scope.incident.uniqueIncidentId,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/document/documents-for-incident/' + $scope.incident.uniqueIncidentId,
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -526,7 +531,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         // $scope.suspects.push($scope.suspect);
         $scope.suspect.distinguishingFeatureDetails = $scope.suspect.distinguishFeatures;
         var req = {
-          url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
+          url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
           method: "PUT",
           headers: {
               'X-AUTH-TOKEN': $scope.token
@@ -554,7 +559,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
       }
       $scope.getSuspectData=function(){
           var req = {
-              url: 'https://b2897cdb.ngrok.io/rmsrest/s/suspect/suspects/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
+              url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect/suspects/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
               method: "GET",
               headers: {
                   'X-AUTH-TOKEN': $scope.token
@@ -577,7 +582,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
      if(person.suspectCategory == 'NON-EMPLOYEE'){
    
       var req = {
-                url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/remove-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+'/suspectId/' + person.id,
+                url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/remove-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+'/suspectId/' + person.id,
                 method: "DELETE",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -596,7 +601,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
      }
      else{
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/remove-employee-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+ '/employeeId/' + person.id,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/remove-employee-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+ '/employeeId/' + person.id,
             method: "DELETE",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -660,7 +665,7 @@ $scope.updateSuspect = function(person){
 
     $scope.editsuspect = false;
     var req = {
-        url: 'https://b2897cdb.ngrok.io/rmsrest/s/suspect/update-suspect',
+        url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect/update-suspect',
         method: "POST",
         headers: {
             'X-AUTH-TOKEN': $scope.token
@@ -681,7 +686,7 @@ $scope.updateSuspect = function(person){
     $scope.addEmployeeSuspect = function(person) {
         if (person.selected) {
             var req = {
-                url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-employee-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+ '/employeeId/' + person.id,
+                url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-employee-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+ '/employeeId/' + person.id,
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -703,7 +708,7 @@ $scope.updateSuspect = function(person){
         } else {
 
             var req = {
-                url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/remove-employee-suspect//uniqueIncidentId/'+$scope.incident.uniqueIncidentId+ '/employeeId/' + person.id,
+                url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/remove-employee-suspect//uniqueIncidentId/'+$scope.incident.uniqueIncidentId+ '/employeeId/' + person.id,
                 method: "DELETE",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -739,7 +744,7 @@ $scope.updateSuspect = function(person){
     $scope.addExistingSuspect = function(person) {
         if (person.selected) {
             var req = {
-                url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-existing-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+'/suspectId/' + person.id,
+                url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-existing-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+'/suspectId/' + person.id,
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -763,7 +768,7 @@ $scope.updateSuspect = function(person){
         } else {
 
             var req = {
-                url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/remove-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+'/suspectId/' + person.id,
+                url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/remove-suspect/uniqueIncidentId/'+$scope.incident.uniqueIncidentId+'/suspectId/' + person.id,
                 method: "DELETE",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -808,7 +813,7 @@ $scope.updateSuspect = function(person){
         }
 
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/reported-loss/create-reported-loss/' + $scope.incident.uniqueIncidentId,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/reported-loss/create-reported-loss/' + $scope.incident.uniqueIncidentId,
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -895,7 +900,7 @@ $scope.updateSuspect = function(person){
     $scope.updateLoss= function(){
        $scope.editLoss = false;
        var req = {
-        url: 'https://b2897cdb.ngrok.io/rmsrest/s/reported-loss/update-reported-loss',
+        url: rmsService.baseEndpointUrl+'/rmsrest/s/reported-loss/update-reported-loss',
         method: "PUT",
         headers: {
             'X-AUTH-TOKEN': $scope.token
@@ -941,7 +946,7 @@ $scope.updateSuspect = function(person){
         }
         $scope.supportingDocumentsFormData.append("uniqueIncidentId", $scope.incident.uniqueIncidentId);
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/document/save-documents',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/document/save-documents',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -960,7 +965,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getUserInfo = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-incident',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-incident',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -985,7 +990,7 @@ $scope.updateSuspect = function(person){
         $scope.logIncidentDetails.criminalAttack ? $scope.logIncidentDetails.criminalAttack = "Y" : $scope.logIncidentDetails.criminalAttack = "N";
         $scope.incident.incidentStatus = 'DRAFT';
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/log-incident',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/log-incident',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1064,7 +1069,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getSuspectType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/suspect-type/suspect-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/suspect-type/suspect-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1087,7 +1092,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getIncidentType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-type/incident-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/incident-type/incident-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1108,7 +1113,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getIncidentLoc = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/incident-location/incident-locations',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/incident-location/incident-locations',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1130,7 +1135,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getEntrypoint = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/entry-point/entry-points',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/entry-point/entry-points',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1153,7 +1158,7 @@ $scope.updateSuspect = function(person){
     $scope.getDistinguishFeatures = function() {
 
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature/distinguishing-features',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/distinguishing-feature/distinguishing-features',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1172,7 +1177,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getDistinguishFeaturesDetails = function(feature) {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature/' + feature[0].id,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature/' + feature[0].id,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1195,7 +1200,7 @@ $scope.updateSuspect = function(person){
     $scope.getAgency = function() {
 
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/external-agency/external-agencies',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/external-agency/external-agencies',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1216,7 +1221,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getAccidentLoc = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/accident-location/accident-locations',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/accident-location/accident-locations',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1237,7 +1242,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getAccidentType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/accident-type/accident-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/accident-type/accident-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1258,7 +1263,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getAssetCategory = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/asset-category/asset-categories',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/asset-category/asset-categories',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1280,7 +1285,7 @@ $scope.updateSuspect = function(person){
     var bodyPart = [];
     $scope.getBodyPart = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/body-part/body-parts',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/body-part/body-parts',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1304,7 +1309,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getClaimRegType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/claim-request-registration-type/claim-request-registration-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/claim-request-registration-type/claim-request-registration-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1322,7 +1327,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getClaimStatus = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/claim-status/claim-statuses',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/claim-status/claim-statuses',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1343,7 +1348,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getClaimType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/claim-type/claim-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/claim-type/claim-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1364,7 +1369,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getDepartment = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/department/departments',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/department/departments',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1385,7 +1390,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getDocCategory = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/document-category/document-categories',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/document-category/document-categories',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1406,7 +1411,7 @@ $scope.updateSuspect = function(person){
     }
     $scope.getDocType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/document-type/document-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/document-type/document-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1428,7 +1433,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getEmpType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/employee-type/employee-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/employee-type/employee-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1450,7 +1455,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getEventType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/event-type/event-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/event-type/event-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1472,7 +1477,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getGenderType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/gender-type/gender-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/gender-type/gender-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1494,7 +1499,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getInjuredPersonType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/injured-person-type/injured-person-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/injured-person-type/injured-person-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1513,7 +1518,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getInjuryCause = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/injury-cause/injury-causes',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/injury-cause/injury-causes',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1530,7 +1535,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getInjuryType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/injury-type/injury-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/injury-type/injury-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1548,7 +1553,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getLossType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/loss-type/loss-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/loss-type/loss-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1570,7 +1575,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getOrg = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/organization/organizations',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/organization/organizations',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1592,7 +1597,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getPolicyType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/policy-type/policy-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/policy-type/policy-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1614,7 +1619,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getPos = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/position/positions',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/position/positions',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1636,7 +1641,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getPosLevel = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/position-level/position-levels',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/position-level/position-levels',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1658,7 +1663,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getVehicleDamageType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/vehicle-damage-type/vehicle-damage-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/vehicle-damage-type/vehicle-damage-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1680,7 +1685,7 @@ $scope.updateSuspect = function(person){
 
     $scope.getWeaponType = function() {
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/table-maintenance/weapon-type/weapon-types',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/table-maintenance/weapon-type/weapon-types',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1736,7 +1741,7 @@ $scope.updateSuspect = function(person){
         $scope.incidentDetails.incidentId = $scope.incident.incidentId;
         $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-incident-details',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-incident-details',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1763,7 +1768,7 @@ $scope.updateSuspect = function(person){
         $scope.crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
 
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-crime-details',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-crime-details',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1785,7 +1790,7 @@ $scope.updateSuspect = function(person){
         $scope.crimeDetails.incidentId = $scope.incident.incidentId;
         $scope.crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-asset-details',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-asset-details',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -2157,7 +2162,7 @@ $scope.updateSuspect = function(person){
         $scope.accidentDetails.incidentId = $scope.incident.incidentId;
         $scope.accidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-accident-details',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-accident-details',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -2192,7 +2197,7 @@ $scope.updateSuspect = function(person){
         }
 
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/user-lookup',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/user-lookup',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -2229,7 +2234,7 @@ $scope.updateSuspect = function(person){
             }]
         }
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/suspect-lookup',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect-lookup',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -2259,7 +2264,7 @@ $scope.updateSuspect = function(person){
             }]
         }
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/injured-person-lookup',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/injured-person-lookup',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -2288,7 +2293,7 @@ $scope.updateSuspect = function(person){
             }]
         }
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/witness-lookup',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/witness-lookup',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -2316,7 +2321,7 @@ $scope.updateSuspect = function(person){
             }]
         }
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/crime-suspect-lookup',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/crime-suspect-lookup',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -2337,7 +2342,7 @@ $scope.updateSuspect = function(person){
         $scope.investigationDetails.incidentId = $scope.incident.incidentId;
         $scope.investigationDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/incident/add-investigation-details',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-investigation-details',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -2354,7 +2359,7 @@ $scope.updateSuspect = function(person){
 
     $scope.removeSupportingDocumnet = function(doc,index){
         var req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/document/delete-document/'+doc.id,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/document/delete-document/'+doc.id,
             method: "DELETE",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -2373,7 +2378,7 @@ $scope.updateSuspect = function(person){
 
     $scope.downloadSupportingDocumnet=function(doc){
         let req = {
-            url: 'https://b2897cdb.ngrok.io/rmsrest/s/document/download-document/'+doc.id,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/document/download-document/'+doc.id,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
