@@ -119,14 +119,14 @@
                                 <span aria-hidden="true">&laquo;</span>
                             </a>
                         </li>
-                        <li ng-repeat="page in range(data.length,entryCount)"><a ng-click="goToPage(page)">{{page}}</a></li>
+                        <li ng-repeat="page in range(data.length,$parent.entryCount)"><a ng-click="goToPage(page)">{{page}}</a></li>
                         <li>
-                            <a aria-label="Next" ng-click="goToPage(currentPage + 1)" ng-class="{disabled:currentPage==Math.ceil(data.length/entryCount)}">
+                            <a aria-label="Next" ng-click="goToPage(currentPage + 1)" ng-class="{disabled:currentPage==Math.ceil(data.length/$parent.entryCount)}">
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
                     </ul>
-                    <span>{{entryCount * currentPage - entryCount + 1}} - {{entryCount * currentPage > data.length ? data.length : entryCount * currentPage}} of {{data.length}}</span>
+                    <span>{{$parent.entryCount * currentPage - $parent.entryCount + 1}} - {{$parent.entryCount * currentPage > data.length ? data.length : $parent.entryCount * currentPage}} of {{data.length}}</span>
                 </nav>
                 <h3 class="text-center" ng-if="!data || data.length == 0">no records found!</h3>
     

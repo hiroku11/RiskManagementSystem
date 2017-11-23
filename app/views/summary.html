@@ -40,7 +40,41 @@
                         <label>Email:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.email}}</label>
                 </div>
         </div>
-        <span>Suspect</span>
+        <span>Incident Details</span>
+        <div class="row">
+                <div class="col-md-4 col-sm-12">
+                        <label>Place Of Incident:</label><label class="summary-text">{{::incidentSummary.placeOfIncident}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentType.id != 'OTHER'">
+                        <label>Incident Type:</label><label class="summary-text">{{::incidentSummary.incidentType.description}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12"  ng-if="incidentSummary.incidentType.id == 'OTHER'">
+                        <label>Entry Point:</label><label class="summary-text">{{::incidentSummary.incidentTypeOther}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12" ng-if="incidentSummary.entryPoint.id != 'OTHER'">
+                        <label>Incident Type:</label><label class="summary-text">{{::incidentSummary.entryPoint.description}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12"  ng-if="incidentSummary.entryPoint.id == 'OTHER'">
+                        <label>Entry Point:</label><label class="summary-text">{{::incidentSummary.entryPointOther}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-md-4 col-sm-12">
+                        <label>Incident Location:</label><label class="summary-text">{{::incidentSummary.incidentLocation.decription}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                        <label>Incident Type:</label><label class="summary-text">{{::incidentSummary.incidentLocationDetail.description}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                        <label>Date Of Incident:</label><label class="summary-text">{{::incidentSummary.incidentOpenedDateTime}}</label>
+                </div>
+
+        </div>
+        <div class="row">
+                <div class="col-md-12 col-sm-12" ng-if="incidentSummary.incidentType.id != 'OTHER'">
+                        <label>Incident Description:</label><label class="summary-text">{{::incidentSummary.incidentDescription}}</label>
+                </div>
+        </div>
         
 </div>
 <style>
@@ -48,5 +82,7 @@
                 font-weight: normal;
                 padding-left: 5px;
                 padding-right: 5px;
+                text-overflow: ellipsis;
+                white-space: nowrap;
         }
 </style>

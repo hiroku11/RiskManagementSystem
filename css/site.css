@@ -419,17 +419,17 @@ a i {
 .nav-tabs {
     border-bottom: 1px solid #555;
 }
-
-.nav-tabs>li.active>button,
-.nav-tabs>li.active>button:focus,
-.nav-tabs>li.active>button:hover {
+.nav-tabs>li>button{
     border-bottom-right-radius: 0px;
     border-bottom-left-radius: 0px;
+}
+.nav-tabs>li.active>button,
+.nav-tabs>li.active>button:focus,
+.nav-tabs>li>button:hover {
     background-color: #8c1519;
     color: white;
     /*background-color: #efd1d4;
     color: #555;*/
-    cursor: default;
     border: 1px solid #555;
     ;
     border-bottom-color: transparent;
