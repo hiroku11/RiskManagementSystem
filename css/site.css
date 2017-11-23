@@ -420,9 +420,11 @@ a i {
     border-bottom: 1px solid #555;
 }
 
-.nav-tabs>li.active>a,
-.nav-tabs>li.active>a:focus,
-.nav-tabs>li.active>a:hover {
+.nav-tabs>li.active>button,
+.nav-tabs>li.active>button:focus,
+.nav-tabs>li.active>button:hover {
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
     background-color: #8c1519;
     color: white;
     /*background-color: #efd1d4;
@@ -433,11 +435,11 @@ a i {
     border-bottom-color: transparent;
 }
 
-.nav-tabs>li>a {
+.nav-tabs>li>button {
     border: 1px solid #555;
 }
 
-.nav-tabs li a {
+.nav-tabs li button {
     background-color: white;
 }
 
