@@ -566,7 +566,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
       }
       $scope.getSuspectData=function(){
           var req = {
-              url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect/suspects/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
+              url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect/suspect-table/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
               method: "GET",
               headers: {
                   'X-AUTH-TOKEN': $scope.token
@@ -673,7 +673,7 @@ $scope.updateSuspect = function(person){
     $scope.editsuspect = false;
     var req = {
         url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect/update-suspect',
-        method: "POST",
+        method: "PUT",
         headers: {
             'X-AUTH-TOKEN': $scope.token
         },
@@ -845,6 +845,9 @@ $scope.updateSuspect = function(person){
             "id": null,
             "incident": {},
             "statusFlag": "ACTIVE",
+            "date": null,
+            "timeHrsContacted": null,
+            "timeMinContacted": null
 
         }
     }
@@ -852,7 +855,7 @@ $scope.updateSuspect = function(person){
     $scope.getLossData = function(){
        
         var req = {
-            url: ' https://b2897cdb.ngrok.io/rmsrest/s/reported-loss/reported-losses/incidentId/' + $scope.incident.incidentId,
+            url: rmsService.baseEndpointUrl + '/rmsrest/s/reported-loss/reported-loss-table/incidentId/' + $scope.incident.incidentId,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -878,7 +881,7 @@ $scope.updateSuspect = function(person){
     $scope.deleteLoss = function(loss) {
 
         var req = {
-            url: ' http://localhost:8088/rmsrest/s/reported-loss/delete-reported-loss/reportedLossId/'+ loss.id,
+            url: rmsService.baseEndpointUrl + '/rmsrest/s/reported-loss/delete-reported-loss/reportedLossId/'+ loss.id,
             method: "DELETE",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -928,7 +931,9 @@ $scope.updateSuspect = function(person){
         "id": null,
         "incident": {},
         "statusFlag": "ACTIVE",
-
+        "date": null,
+        "timeHrsContacted": null,
+        "timeMinContacted": null
     }
     
     }

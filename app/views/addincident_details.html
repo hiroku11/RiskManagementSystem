@@ -182,7 +182,7 @@
                     <a class="btn btn-primary" ng-click="addSuspect()">Add Suspect</a>
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="editsuspect">
-                    <a class="btn btn-primary" ng-click="updateSuspect(suspect)">Update Suspect</a>
+                    <a class="btn btn-success" ng-click="updateSuspect(suspect)">Update Suspect</a>
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="loggedInUser.roles[0] == 'INVESTIGATOR' || 
                loggedInUser.roles[0] == 'CLAIMS_HANDLER' || loggedInUser.roles[0] == 'ADMIN'">
@@ -232,8 +232,8 @@
                             <td>
                                 <a ng-click="deleteSuspect(suspect)">
                                     <i class="glyphicon glyphicon-trash"></i>
-                                </a>
-                                <a ng-click="loadSuspect(suspect)">
+                                </a> &nbsp;&nbsp;&nbsp;
+                                <a ng-click="loadSuspect(suspect)" ng-if="suspect.suspectCategory == 'NON-EMPLOYEE'">
                                 
                                    <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
@@ -265,7 +265,7 @@
                     <span class="input-group-addon">
                                 <span class="fa fa-gbp"></span>
                     </span>
-                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue" pattern="^[1-9](,\d{3}){1,2}(\.\d{2})?$">
+                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue">
                 </p>
             </div>
 
@@ -299,11 +299,13 @@
 
                 <p class="input-group">
 
-                    <input type="text" class="form-control" uib-datepicker-popup="dd-MM-yyyy" ng-model="loss.date" ng-focus="calendar.open($event,'date')"
-                     is-open="calendar.opened.date" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
+                    <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd-MM-yyyy" ng-model="loss.date" ng-focus="calendar.open($event,'date')"
+                     is-open="calendar.opened.date" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
                     <span class="input-group-addon" ng-click="calendar.open($event,'date')">
                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
+                   
+                   
 
                 </p>
 
@@ -339,7 +341,7 @@
                 <button class="btn btn-primary" ng-click="addLoss()" ng-if="!editLoss">Add Loss</button>
             </div>
             <div class="col-sm-12 col-md-4" ng-if="editLoss">
-                <a class="btn btn-primary" ng-click="updateLoss(loss)">Update Loss</a>
+                <a class="btn btn-success" ng-click="updateLoss(loss)">Update Loss</a>
             </div>
         </div>
         <div class="table-wrapper inline" ng-if="incidentDetails.reportedLosses.length > 0">
@@ -349,8 +351,8 @@
                     <tr>
                         <th>Loss Type</th>
                         <th>Loss Value</th>
-                        <th>Time Police Called</th>
-                        <th>Time Fire Station Called</th>
+                        <th>Date External Agency Called</th>
+                        <th>Time External Agency Called</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -365,7 +367,7 @@
                             <a ng-click="deleteLoss(loss)">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
-                           
+                            &nbsp;&nbsp;
                             <a ng-click="loadLoss(loss)">
                             
                                <i class="glyphicon glyphicon-pencil"></i>
