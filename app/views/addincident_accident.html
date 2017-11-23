@@ -22,8 +22,8 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div><label>Time of Incident:</label></div>
-                <input class="form-control small-control" type="number" placeholder="HH" ng-model="accidentDetails.accident.accidentTimeHrs">:
-                <input class="form-control  small-control" type="number" placeholder="MM" ng-model="accidentDetails.accident.accidentTimeMin">
+                <input class="form-control small-control" type="text" placeholder="HH" ng-model="accidentDetails.accident.accidentTimeHrs">:
+                <input class="form-control  small-control" type="text" placeholder="MM" ng-model="accidentDetails.accident.accidentTimeMin">
             </div>
             <div class="col-md-4 col-sm-12">
                 <div><label>Place of Incident:</label></div>
@@ -100,7 +100,7 @@
             </div>
 
             <div class="col-sm-12 col-md-3">
-                <label>Injury Type Detail</label>
+                <label>Injury Type Detail Other</label>
                 <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetailsSpec.id" ng-disabled="!injuredPerson.injuryTypeDetail.id" ng-options="injuryTypeDetailsSpec.id as injuryTypeDetailsSpec.description for injuryTypeDetailsSpec in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails.injuryTypeDetailSpecs) ">
                     <option value=''>--Select--</option>
                     </select>
@@ -200,7 +200,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Postal Code</label>
-                <input class="form-control" type="number" ng-model="injuredPerson.addresses[0].postcode">
+                <input class="form-control" type="text" ng-model="injuredPerson.addresses[0].postcode">
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Phone</label>

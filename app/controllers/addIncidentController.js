@@ -805,7 +805,6 @@ $scope.updateSuspect = function(person){
         if ($scope.loss.date == null) {
             $scope.loss.dateTimeContacted = $scope.loss.date;
         } else {
-
             $scope.loss.dateTimeContacted = $scope.loss.date + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
         }
         $scope.loss.incident ={
@@ -813,15 +812,12 @@ $scope.updateSuspect = function(person){
         }
 
         var req = {
-            url: rmsService.baseEndpointUrl+'/rmsrest/s/reported-loss/create-reported-loss/' + $scope.incident.uniqueIncidentId,
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/reported-loss/create-reported-loss',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
             },
-            data:{"incident": {
-                "id" : $scope.incident.incidentId,
-                
-          }}
+            data:$scope.loss
         }
         AppService.ShowLoader();
     
