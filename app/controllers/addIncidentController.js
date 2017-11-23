@@ -342,6 +342,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         { "active": false, "description": "Summary", "name": "summaryForm", "tab": 9 }
     ];
 
+    $scope.changeTab = function(tab){
+        //naviigate through tabs as well
+        $scope.activeTab.active = false;
+        $scope.activeTab = tab;
+        $scope.activeTab.active = true;
+    }
+
     $scope.supportingDocuments = [{}, {}, {}, {}, {}];
     $scope.activeTab = { "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 };
     //$scope.activeTab ={ "active": false, "description": "Summary", "name": "summaryForm", "tab": 9 };

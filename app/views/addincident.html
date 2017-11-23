@@ -8,8 +8,8 @@
 
     <div class="col-md-12 col-lg-10 content">
         <ul class="nav nav-tabs">
-            <li ng-class="{active:tab.active,disabled:!tab.active}" ng-repeat="tab in tabs | orderBy : 'tab'">
-                <a>{{tab.description}} <span ng-if="tab.completed" class="glyphicon glyphicon-ok"></span>
+            <li ng-class="{active:tab.active,disabled:!tab.completed}" ng-repeat="tab in tabs | orderBy : 'tab'" >
+                <a ng-click="changeTab(tab)">{{tab.description}} <span ng-if="tab.completed" class="glyphicon glyphicon-ok"></span>
                 </a>
             </li>
         </ul>
@@ -196,15 +196,15 @@
                 </div>
 
                 <div class="row ">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
                         <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
                     </div>
 
-                    <!-- <div class="col-md-6 ">
-                        <button type="button" ng-click="submitForm('logIncidentForm','back')" class="btn btn-secondary pull-right">Back</button>
+                    <div class="col-md-6" ng-if ="activeTab.tab == 1 && activeTab.completed">
+                        <!-- <button type="button" ng-click="submitForm('logIncidentForm','back')" class="btn btn-secondary pull-right">Back</button> -->
                         <button type="button" ng-click="submitForm('logIncidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
-                    </div> -->
+                    </div>
 
                 </div>
             </form>
