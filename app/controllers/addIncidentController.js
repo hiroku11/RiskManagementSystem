@@ -331,7 +331,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         distinguishingFeatureDetails: null,
         distinguishingFeature: null
     }
-    $scope.tabs = [{ "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
+    $scope.tabs = [{ "active": false, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 },
         { "active": false, "description": "Incident Details", "name": "incidentDetailsForm", "tab": 2 },
         // { "active": false, "description": "Accident" ,"name":"accidentForm","tab":3},
         // { "active": false, "description": "Assets" ,"name":"assetsForm","tab":4},
@@ -339,7 +339,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //{ "active": false, "description": "Claim", "name": "claimForm", "tab": 6 },
         //{ "active": false, "description": "Investigation", "name": "investigationForm", "tab": 7 },
         { "active": false, "description": "Supporting Documents", "name": "supportingDocumentsForm", "tab": 8 },
-        { "active": false, "description": "Summary", "name": "summaryForm", "tab": 9 }
+        { "active": true, "description": "Summary", "name": "summaryForm", "tab": 9 }
     ];
 
     $scope.changeTab = function(tab){
@@ -350,8 +350,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
 
     $scope.supportingDocuments = [{}, {}, {}, {}, {}];
-    $scope.activeTab = { "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 };
-    //$scope.activeTab ={ "active": false, "description": "Summary", "name": "summaryForm", "tab": 9 };
+    //$scope.activeTab = { "active": true, "description": "Log Incident", "name": "logIncidentForm", "tab": 1 };
+    $scope.activeTab ={ "active": true, "description": "Summary", "name": "summaryForm", "tab": 9 };
     $scope.calendar = {
         open:function($event,which){
             $event.preventDefault();
@@ -2401,7 +2401,7 @@ $scope.updateSuspect = function(person){
     $scope.getincidentSummary = function(){
         ///rmsrest/s/incident/uniqueIncidentId/IN010917203918
         let req = {
-            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/uniqueIncidentId/IN171117041334',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/uniqueIncidentId/IN011117154413',
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token

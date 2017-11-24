@@ -40,7 +40,7 @@
                         <label>Email:</label><label class="summary-text">{{::incidentSummary.incidentReportedBy.email}}</label>
                 </div>
         </div>
-        <span>Incident Details</span>
+        <h4>Incident Details</h4>
         <div class="row">
                 <div class="col-md-4 col-sm-12">
                         <label>Place Of Incident:</label><label class="summary-text">{{::incidentSummary.placeOfIncident}}</label>
@@ -48,34 +48,121 @@
                 <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentType.id != 'OTHER'">
                         <label>Incident Type:</label><label class="summary-text">{{::incidentSummary.incidentType.description}}</label>
                 </div>
-                <div class="col-md-4 col-sm-12"  ng-if="incidentSummary.incidentType.id == 'OTHER'">
-                        <label>Entry Point:</label><label class="summary-text">{{::incidentSummary.incidentTypeOther}}</label>
+                <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentType.id == 'OTHER'">
+                        <label>Incident Type:</label><label class="summary-text">{{::incidentSummary.incidentTypeOther}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12" ng-if="incidentSummary.entryPoint.id != 'OTHER'">
-                        <label>Incident Type:</label><label class="summary-text">{{::incidentSummary.entryPoint.description}}</label>
+                        <label>Entry Point:</label><label class="summary-text">{{::incidentSummary.entryPoint.description}}</label>
                 </div>
-                <div class="col-md-4 col-sm-12"  ng-if="incidentSummary.entryPoint.id == 'OTHER'">
+                <div class="col-md-4 col-sm-12" ng-if="incidentSummary.entryPoint.id == 'OTHER'">
                         <label>Entry Point:</label><label class="summary-text">{{::incidentSummary.entryPointOther}}</label>
                 </div>
         </div>
         <div class="row">
                 <div class="col-md-4 col-sm-12">
-                        <label>Incident Location:</label><label class="summary-text">{{::incidentSummary.incidentLocation.decription}}</label>
+                        <label>Incident Location:</label><label class="summary-text">{{::incidentSummary.incidentLocation.description}}</label>
                 </div>
-                <div class="col-md-4 col-sm-12">
-                        <label>Incident Type:</label><label class="summary-text">{{::incidentSummary.incidentLocationDetail.description}}</label>
+                <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentLocation.id != 'OTHER'">
+                        <label>Incident Location Details:</label><label class="summary-text">{{::incidentSummary.incidentLocationDetail.description}}</label>
+                </div>
+                <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentLocation.id == 'OTHER'">
+                        <label>Incident Location Details:</label><label class="summary-text">{{::incidentSummary.incidentLocationOther}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
                         <label>Date Of Incident:</label><label class="summary-text">{{::incidentSummary.incidentOpenedDateTime}}</label>
                 </div>
-
         </div>
         <div class="row">
-                <div class="col-md-12 col-sm-12" ng-if="incidentSummary.incidentType.id != 'OTHER'">
+                <div class="col-sm-4 col-lg-4">
+                        <label>Asset Damage:</label><label class="summary-text">{{::incidentSummary.assetDamage}}</label>
+                </div>
+                <div class="col-sm-4 col-lg-4">
+                        <label>Criminal Attack:</label><label class="summary-text">{{::incidentSummary.criminalAttack}}</label>
+                </div>
+                <div class="col-sm-4 col-lg-4">
+                        <label>Accident Damange:</label><label class="summary-text">{{::incidentSummary.accidentDamage}}</label>
+                </div>
+                <div class="col-md-12 col-sm-12">
                         <label>Incident Description:</label><label class="summary-text">{{::incidentSummary.incidentDescription}}</label>
                 </div>
         </div>
-        
+        <h4 ng-if="incidentSummary.suspects.length>0">Suspects</h4>
+        <table class="table table-bordered" ng-if="incidentSummary.suspects.length>0">
+                <thead>
+                        <tr>
+                                <th>Suspect type</th>
+                                <th>Name</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Address</th>
+                                <th>City</th>
+                                <th>County</th>
+                                <th>PostCode</th>
+                        </tr>
+
+                </thead>
+                <tbody>
+                        <tr ng-repeat="suspect in incidentSummary.suspects">
+                                <td>
+                                        {{suspect.suspectType != 'OTHER' ? suspect.suspectType.description : suspect.suspectTypeOther}}
+                                </td>
+                                <td>
+                                        {{::suspect.firstName}} {{::suspect.middleName}} {{::suspect.lastName}}
+                                </td>
+                                <td>
+                                        {{::suspect.age}}
+                                </td>
+                                <td>
+                                        {{suspect.genderType != 'OTHER' ? suspect.genderType.description : suspect.genderTypeOther}}
+                                </td>
+
+                                <td>
+                                        {{::suspect.addresses[0].organizationName}} {{::suspect.addresses[0].buildingName}} {{::suspect.addresses[0].localityName}}
+                                        {{::suspect.addresses[0].streetName}}
+                                </td>
+                                <td>
+                                        {{::suspect.addresses[0].city}}
+                                </td>
+                                <td>
+                                        {{::suspect.addresses[0].county}}
+                                </td>
+                                <td>
+                                        {{::suspect.addresses[0].postcode}}
+                                </td>
+
+                        </tr>
+                </tbody>
+        </table>
+        <h4 ng-if="incidentSummary.reportedLosses.length > 0">Reported Losses</h4>
+        <table class="table table-bordered" ng-if="incidentSummary.reportedLosses.length > 0">
+                <thead>
+                        <tr>
+                                <th>Loss Type</th>
+                                <th>Loss value</th>
+                                <th>External Agency</th>
+                                <th>Cost Estimation</th>
+                        </tr>
+
+                </thead>
+                <tbody>
+                        <tr ng-repeat = "loss in incidentSummary.reportedLosses">
+                                <td>{{loss.losType.id != 'OTHER'?loss.lossType.description : loss.losTypeOther}}</td>
+                                <td>
+                                        {{::loss.lossValue}}
+                                </td>
+                                <td>
+                                        {{loss.externalAgencyContacted.id != 'OTHER'? loss.externalAgencyContacted.description : loss.externalAgencyTypeOther}}
+                                </td>
+                                <td>
+                                        {{::loss.costEstimation}}
+                                </td>
+                        </tr>
+                </tbody>
+        </table>
+        <h4>Accident Details</h4>
+        <div class="row">
+
+        </div>
 </div>
 <style>
         .summary-text {
