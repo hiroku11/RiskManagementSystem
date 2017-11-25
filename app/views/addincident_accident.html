@@ -2,7 +2,6 @@
     <h4>Accident Details</h4>
     <form ng-submit="submitForm('accidentForm')">
 
-        <!-- <div class="body-part"></div> -->
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Date of Accident: (DD/MM/YYYY)</label>
@@ -13,7 +12,7 @@
                     </span>
                 </div> -->
                 <p class="input-group">
-                    <input type="text" ng-focus="calendar.open($event,'accidentDate')" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="accidentDetails.accident.accidentDate" 
+                    <input type="text" ng-focus="calendar.open($event,'accidentDate')" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" ng-model="accidentDetails.accidentDate" 
                     is-open="calendar.opened.accidentDate" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats"/>
                     <span class="input-group-addon" ng-click="calendar.open($event,'accidentDate')">
                             <span class="glyphicon glyphicon-calendar"></span>
@@ -22,47 +21,51 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <div><label>Time of Incident:</label></div>
-                <input class="form-control small-control" type="text" placeholder="HH" ng-model="accidentDetails.accident.accidentTimeHrs">:
-                <input class="form-control  small-control" type="text" placeholder="MM" ng-model="accidentDetails.accident.accidentTimeMin">
+                <input class="form-control small-control" type="text" placeholder="HH" ng-model="accidentDetails.accidentTimeHrs">:
+                <input class="form-control  small-control" type="text" placeholder="MM" ng-model="accidentDetails.accidentTimeMin">
             </div>
             <div class="col-md-4 col-sm-12">
                 <div><label>Place of Incident:</label></div>
-                <input class="form-control" type="text" ng-model="accidentDetails.accident.accidentPlace" />
+                <input class="form-control" type="text" ng-model="accidentDetails.accidentPlace" />
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location:</label>
-                <select class="form-control" ng-model="accidentDetails.accident.accidentLocation.id" 
+                <select class="form-control" ng-model="accidentDetails.accidentLocation.id" 
                 ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
                 </select>
 
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location Details:</label>
-                <select ng-model="accidentDetails.accident.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accident.accidentLocation.id" 
-                ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accident.accidentLocation.id})[0].incidentLocationDetails) ">
+                <select ng-model="accidentDetails.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accidentLocation.id" 
+                ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accidentLocation.id})[0].incidentLocationDetails) ">
                 </select>
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location Others:</label>
-                <input class="form-control" type="text" ng-disabled="accidentLocationDetails.accident.accidentLocation.id !='OTHER'" ng-model="accidentLocationDetails.accident.accidentLocationOther" />
-
-
+                <input class="form-control" type="text" ng-disabled="accidentLocationDetails.accident.accidentLocation.id !='OTHER'" ng-model="accidentLocationDetails.accidentLocationOther" />
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Accident Type</label>
-                <select class="form-control" ng-model="accidentDetails.accident.accidentType.id">
+                <select class="form-control" ng-model="accidentDetails.accidentType.id">
                         <option value="NATURAL">Natural</option>
                         <option value="ACCIDENT">Accident</option>
                     </select>
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Accident Description:</label>
-                <textarea class="form-control" ng-model="accidentDetails.accident.accidentDescription"></textarea>
+                <textarea class="form-control" ng-model="accidentDetails.accidentDescription"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <button class="btn btn-info" ng-click="addAccident()">Save</button>
+               
             </div>
         </div>
 
@@ -275,7 +278,7 @@
 
         <div class="row">
             <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" ng-click="addInjuredPerson()">Add Injured Person</a>
+                <a class="btn btn-primary" ng-click="addInjuredPerson()" ng-disabled="!accAdded">Add Injured Person</a>
             </div>
             <div class="col-sm-12 col-md-4">
                 <a class="btn btn-primary" data-toggle="modal" data-target="#myModal5">Add Existing Injured Person</a>

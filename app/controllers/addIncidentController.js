@@ -28,6 +28,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.editsuspect = false;
     $scope.editLoss = false;
+    $scope.accAdded = false;
 
     if($state.params.uniqueIncidentId){
         $scope.incident.uniqueIncidentId = $state.params.uniqueIncidentId;
@@ -162,13 +163,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.accidentDetails = {
         "incidentId": $scope.incident.incidentId,
         "uniqueIncidentId": $scope.incident.uniqueIncidentId,
-        accident: {},
-        newInjuredPersons: [],
-        existingInjuredPersons: [],
-        employeeInjuredPersons: [],
-        newWitnesses: [],
-        existingWitnesses: [],
-        employeeWitnesses: []
+        //accident: {},
+        // newInjuredPersons: [],
+        // existingInjuredPersons: [],
+        // employeeInjuredPersons: [],
+        // newWitnesses: [],
+        // existingWitnesses: [],
+        // employeeWitnesses: []
     }
 
     $scope.investigationDetails = {
@@ -536,7 +537,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.addSuspect = function() {
         //  $scope.incidentDetails.newSuspects.push($scope.suspect);
         // $scope.suspects.push($scope.suspect);
-        $scope.suspect.distinguishingFeatureDetails = $scope.suspect.distinguishFeatures;
+        $scope.suspect.distinguishingFeatureDetails = $scope.suspect.distinguishingFeatures;
         var req = {
           url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
           method: "PUT",
@@ -679,13 +680,15 @@ $scope.updateSuspect = function(person){
         },
         data:$scope.suspect
     }
+    
     AppService.ShowLoader();
 
     $http(req).then(function(response) {
       
         $scope.getSuspectData();
+        $scope.suspect.distinguishingFeatures = $scope.suspect.distinguishFeaturesDetails;
         AppService.HideLoader();
-        $scope.editsuspect = false;
+        
     }, function(error) {
         AppService.HideLoader();
     })
@@ -808,7 +811,7 @@ $scope.updateSuspect = function(person){
         }
     }
 
-    $scope.addLoss = function() {
+    $scope.addLoss = function(loss) {
         if ($scope.loss.date == null) {
             $scope.loss.dateTimeContacted = $scope.loss.date;
         } else {
@@ -874,8 +877,9 @@ $scope.updateSuspect = function(person){
     }
 
     $scope.loadLossData = function(loss){
-        $scope.loss = loss;
         $scope.editLoss = true;
+        $scope.loss = loss;
+       
     }
        //delete loss data from table
     $scope.deleteLoss = function(loss) {
@@ -936,6 +940,33 @@ $scope.updateSuspect = function(person){
         "timeMinContacted": null
     }
     
+    }
+    $scope.addAccident = function(){
+        $scope.accAdded = true;
+        if ($scope.accidentDetails.accidentDate == null) {
+            $scope.accidentDetails.accidentDateTime = $scope.accidentDetails.accidentDate;
+        } else {
+            $scope.accidentDetails.accidentDateTime = $scope.accidentDetails.accidentDate + " " + $scope.accidentDetails.accidentTimeHrs + ":" + $scope.accidentDetails.accidentTimeMin;
+        }
+        $scope.accidentDetails.incident ={
+            id: $scope.incident.incidentId
+        }
+        var req = {
+            url: rmsService.baseEndpointUrl+'rmsrest/s/accident/add-or-update-accident',
+            method: "POST",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data:$scope.accidentDetails
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+           AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+        
     }
     
     $scope.selectSupportingDocumnet = function(doc, $event) {
