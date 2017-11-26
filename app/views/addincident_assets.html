@@ -8,7 +8,7 @@
 
 
             </div>
-            <div class="col-sm-12 col-md-6" ng-if="assetDetail.assetCategory.id == 'OTHER'">
+            <div class="col-sm-12 col-md-6">
                 <label>If Category Other</label>
                 <input class="form-control" ng-disabled="assetDetail.assetCategory.id != 'OTHER'" type="text" ng-model="assetDetail.otherDescription">
 
@@ -255,12 +255,12 @@
         <div class="row ">
             <div class="col-md-6 col-sm-12">
                 <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
-                <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
+                <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 
                 <div class="col-md-6 col-sm-12">
                     <button type="button" ng-click="submitForm('assetsForm','back')" class="btn btn-secondary pull-right">Back</button>
-                    <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('assetsForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
+                    <button type="button" ng-click="submitForm('assetsForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
                 </div>
 
             </div>

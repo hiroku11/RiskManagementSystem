@@ -197,6 +197,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
              }
        
      }
+     $scope.claimDetail = {
+         "id":null,
+         "incident":{},
+         "statusFlag": null,
+         "claimType":{
+             "id":null
+         },
+        "policyType":{
+            "id":null
+        } 
+
+
+     }
     $scope.investigationDetails = {
         "incidentId": "",
         "uniqueIncidentId": "",
@@ -513,10 +526,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                // $scope.addIncidentDetails();
             }
             if (formName == "accidentForm") {
-                $scope.addAccidentDetails();
+                //$scope.addAccidentDetails();
             }
             if (formName == "assetsForm") {
-                $scope.addAssetDetails();
+                //$scope.addAssetDetails();
             }
             if (formName == "crimeForm") {
                 $scope.addCrimeDetails();
