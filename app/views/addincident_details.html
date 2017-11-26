@@ -230,7 +230,7 @@
                             <td>{{suspect.addresses[0].county}}</td>
                             <td>{{suspect.addresses[0].postcode}}</td>
                             <td>
-                                <a ng-click="deleteSuspect(suspect)">
+                                <a ng-click="deleteSuspect(suspect)" ng-if="suspect.suspectCategory == 'NON-EMPLOYEE'">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a> &nbsp;&nbsp;&nbsp;
                                 <a ng-click="loadSuspect(suspect)" ng-if="suspect.suspectCategory == 'NON-EMPLOYEE'">

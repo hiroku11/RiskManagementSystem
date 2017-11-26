@@ -29,6 +29,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     $scope.editsuspect = false;
     $scope.editLoss = false;
     $scope.accAdded = false;
+    $scope.editInjured = false;
+    $scope.editWitness = false;
+    $scope.editequipment = false;
+    $scope.editvehicle = false;
+    $scope.editBuilding = false;
 
     if($state.params.uniqueIncidentId){
         $scope.incident.uniqueIncidentId = $state.params.uniqueIncidentId;
@@ -116,6 +121,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
     }
+    $scope.vehicles=[];
     $scope.equipment = {
 
         "assetCategory": {
@@ -124,6 +130,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
     }
+    $scope.equipments=[];
     $scope.building = {
 
         "assetCategory": {
@@ -132,6 +139,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
     }
+    $scope.buildings = [];
     $scope.loss = {
         "id": null,
         "incident": {},
@@ -161,8 +169,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
 
     $scope.accidentDetails = {
-        "incidentId": $scope.incident.incidentId,
-        "uniqueIncidentId": $scope.incident.uniqueIncidentId,
+        incident:{},
+        id:null
+        // "incidentId": $scope.incident.incidentId,
+        // "uniqueIncidentId": $scope.incident.uniqueIncidentId,
         //accident: {},
         // newInjuredPersons: [],
         // existingInjuredPersons: [],
@@ -171,7 +181,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         // existingWitnesses: [],
         // employeeWitnesses: []
     }
-
+    
+    $scope.assetDetail = {
+        
+        
+       
+             "id": null,
+             "incident": {},
+             "statementDescription": null,
+             "otherDescription": null,
+             "statusFlag": null,
+             "assetCategory": {
+                 "id": null,
+                 "description": null
+             }
+       
+     }
     $scope.investigationDetails = {
         "incidentId": "",
         "uniqueIncidentId": "",
@@ -282,24 +307,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.myObj = { temp: $scope.injuredPerson.bodyParts }
     }
 
-    $scope.assetDetail = {
-        "incidentId": $scope.incident.incidentId,
-        "uniqueIncidentId": $scope.incident.uniqueIncidentId,
-        "asset": {
-            "id": null,
-            "incident": {},
-            "statementDescription": null,
-            "otherDescription": null,
-            "statusFlag": null,
-            "assetCategory": {
-                "id": null,
-                "description": null
-            }
-        },
-        "equipments": [],
-        "vehicles": [],
-        "buildings": []
-    }
     $scope.Crimesuspects = [];
     $scope.crimeDetails = {
         "crime": {
@@ -428,9 +435,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
     }
     $scope.handleTabsForRoles();
     $scope.initializeAccidentPlaceAndTime = function() {
-        $scope.accidentDetails.accident.accidentPlace = $scope.logIncidentDetails.placeOfIncident
-        $scope.accidentDetails.accident.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident;
-        $scope.accidentDetails.accident.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident
+        $scope.accidentDetails.accidentPlace = $scope.logIncidentDetails.placeOfIncident
+        $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident;
+        $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident
     }
 
     $scope.getDayClass = function(data) {
@@ -595,7 +602,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-                data:$scope.suspect
+               
             }
             AppService.ShowLoader();
         
@@ -614,7 +621,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             headers: {
                 'X-AUTH-TOKEN': $scope.token
             },
-            data:$scope.suspect
+           
         }
         AppService.ShowLoader();
     
@@ -665,15 +672,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 $scope.loadSuspect = function(person){
       $scope.editsuspect = true;
       $scope.suspect = person;
-      
-
+    
 }
 //update existing suspect record
 $scope.updateSuspect = function(person){
 
     $scope.editsuspect = false;
     var req = {
-        url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect/update-suspect',
+        url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect/update-suspect/',
         method: "PUT",
         headers: {
             'X-AUTH-TOKEN': $scope.token
@@ -723,7 +729,7 @@ $scope.updateSuspect = function(person){
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-                data:$scope.suspect
+               
             }
             AppService.ShowLoader();
         
@@ -783,7 +789,7 @@ $scope.updateSuspect = function(person){
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-                data:$scope.suspect
+               
             }
             AppService.ShowLoader();
         
@@ -951,8 +957,9 @@ $scope.updateSuspect = function(person){
         $scope.accidentDetails.incident ={
             id: $scope.incident.incidentId
         }
+       
         var req = {
-            url: rmsService.baseEndpointUrl+'rmsrest/s/accident/add-or-update-accident',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/accident/add-or-update-accident',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -963,6 +970,7 @@ $scope.updateSuspect = function(person){
     
         $http(req).then(function(response) {
            AppService.HideLoader();
+           $scope.accidentDetails.id = response.data.id;
         }, function(error) {
             AppService.HideLoader();
         })
@@ -1029,7 +1037,7 @@ $scope.updateSuspect = function(person){
         $scope.logIncidentDetails.criminalAttack ? $scope.logIncidentDetails.criminalAttack = "Y" : $scope.logIncidentDetails.criminalAttack = "N";
         $scope.incident.incidentStatus = 'DRAFT';
         var req = {
-            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/log-incident',
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-or-update-log-incident',
             method: "POST",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
@@ -1040,6 +1048,7 @@ $scope.updateSuspect = function(person){
 
         $http(req).then(function(response) {
             //$scope.incidentSecond = response.data;
+            $scope.logIncidentDetails.incidentId = response.data.id;
             $scope.incident.incidentStatus = response.data.incidentStatus;
             $scope.incident.incidentId = response.data.id;
             $scope.incident.uniqueIncidentId = response.data.uniqueIncidentId;
@@ -1824,81 +1833,739 @@ $scope.updateSuspect = function(person){
         })
     }
 
-    $scope.addAssetDetails = function() {
+  
 
-        $scope.crimeDetails.incidentId = $scope.incident.incidentId;
-        $scope.crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
+    $scope.addInjuredPerson = function() {
+       // $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
+       // $scope.injuredPersons.push($scope.injuredPerson);
+        //reset the object
+        // $scope.injuredPerson = {
+        //     addresses: [],
+        //     bodyParts: [],
+        // }
+
+        // $scope.myObj = { temp: [] };
+
+
+        $scope.injuredPerson.distinguishingFeatureDetails = $scope.injuredPerson.distinguishingFeatures;
+        $scope.myObj.temp.map(function(d){
+            bodyPart.map(function(i){
+                if(i.description == d){
+                    var part = {
+                        id: i.id,
+                        description : d
+                    }
+                    $scope.injuredPerson.bodyParts.push(part);
+                 
+                }
+               
+            })
+            
+        })
         var req = {
-            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-asset-details',
-            method: "POST",
+          url: rmsService.baseEndpointUrl+'/rmsrest/s/accident/add-injured-person/accidentId/' + $scope.accidentDetails.id,
+          method: "PUT",
+          headers: {
+              'X-AUTH-TOKEN': $scope.token
+          },
+          data:$scope.injuredPerson
+      }
+      AppService.ShowLoader();
+  
+      $http(req).then(function(response) {
+          $scope.getInjuredData();
+        
+          AppService.HideLoader();
+      }, function(error) {
+          AppService.HideLoader();
+      })
+          //reinitialize the injured person so that new can be added
+          $scope.injuredPerson = {
+            addresses: [],
+            bodyParts: [],
+            distinguishingFeatureDetails: null,
+            distinguishingFeature: null,
+    
+        }
+        $scope.myObj = { temp: [] };
+    
+  
+
+    }
+    $scope.getInjuredData=function(){
+        var req = {
+            url: rmsService.baseEndpointUrl+'/rmsrest/s/injured-person/injured-person-table/accidentId/'+ $scope.accidentDetails.id,
+            method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token
             },
-            data: $scope.assetDetail
+          
         }
         AppService.ShowLoader();
-
+    
         $http(req).then(function(response) {
-            //$scope.incidentSecond = response.data;
+           
+            $scope.injuredPersons = response.data;
             AppService.HideLoader();
         }, function(error) {
             AppService.HideLoader();
         })
     }
 
-    $scope.addInjuredPerson = function() {
-       // $scope.accidentDetails.newInjuredPersons.push($scope.injuredPerson);
-       // $scope.injuredPersons.push($scope.injuredPerson);
-        //reset the object
-        $scope.injuredPerson = {
-            addresses: [],
-            bodyParts: [],
-        }
-
-        $scope.myObj = { temp: [] };
-
-    }
+    
     $scope.addEmployeeInjured = function(person) {
         if (person.selected) {
-            $scope.accidentDetails.employeeInjuredPersons.push({ 'loginId': person.id });
-            $scope.injuredPersons.push(person);
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/accident/add-employee-injured-person/accidentId/'+
+                $scope.accidentDetails.id+ '/employeeId/' + person.id,
+                method: "PUT",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+             
+            }
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+                $scope.getInjuredData();
+              
+                AppService.HideLoader();
+            }, function(error) {
+                AppService.HideLoader();
+            })
+        
         } else {
-            $scope.accidentDetails.employeeInjuredPersons.map(function(val, index) {
-                // push({'id':person.id});
-                if (val.id == person.id) {
-                    $scope.accidentDetails.employeeInjuredPersons.splice(index, 1);
-                }
-            })
-            $scope.injuredPersons.map(function(val, index) {
 
-                if (val.id == person.id) {
-                    $scope.injuredPersons.splice(index, 1);
-
-                }
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/accident/remove-employee-injured-person/accidentId/'+
+                $scope.accidentDetails.id+ '/employeeId/' + person.id,
+                method: "DELETE",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+               
+            }
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+                $scope.getInjuredData();
+              
+                AppService.HideLoader();
+            }, function(error) {
+                AppService.HideLoader();
             })
+          
         }
     }
 
     $scope.addExistingInjured = function(person) {
-            if (person.selected) {
-                $scope.accidentDetails.existingInjuredPersons.push({ 'id': person.id });
-                $scope.injuredPersons.push(person);
-            } else {
-                $scope.accidentDetails.existingInjuredPersons.map(function(val, index) {
-                    // push({'id':person.id});
-                    if (val.id == person.id) {
-                        $scope.accidentDetails.existingInjuredPersons.splice(index, 1);
-                    }
-                })
-                $scope.injuredPersons.map(function(val, index) {
+        if (person.selected) {
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/accident/add-existing-injured-person/accidentId/'+
+                $scope.accidentDetails.id+ '/injuredPersonId/' + person.id,
+                method: "PUT",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+             
+            }
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+                $scope.getInjuredData();
+              
+                AppService.HideLoader();
+            }, function(error) {
+                AppService.HideLoader();
+            })
+        
+        } else {
 
-                    if (val.id == person.id) {
-                        $scope.injuredPersons.splice(index, 1);
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/accident/remove-injured-person/accidentId/'+
+                $scope.accidentDetails.id+ '/injuredPersonId/' + person.id,
+                method: "DELETE",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+               
+            }
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+                $scope.getInjuredData();
+              
+                AppService.HideLoader();
+            }, function(error) {
+                AppService.HideLoader();
+            })
+          
+        }
+        }
+         //Delete Injured person data
+    $scope.deleteInjured = function(person) {
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/accident/remove-injured-person/accidentId/'+
+            $scope.accidentDetails.id+ '/injuredPersonId/' + person.id,
+            method: "DELETE",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+          
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+            $scope.getInjuredData();
+          
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+      
+    }
+    $scope.loadInjured = function(person){
+        $scope.editInjured = true;
+        $scope.injuredPerson = person;
+      
+  }
+  //update existing suspect record
+  $scope.updateInjured = function(person){
+  
+      $scope.editInjured = false;
+      var req = {
+          url: rmsService.baseEndpointUrl+
+          '/rmsrest/s/injured-person/update-injured-person/',
+          method: "PUT",
+          headers: {
+              'X-AUTH-TOKEN': $scope.token
+          },
+          data:$scope.injuredPerson
+      }
+      
+      AppService.ShowLoader();
+  
+      $http(req).then(function(response) {
+        
+          $scope.getInjuredData();
+          $scope.injuredPerson.distinguishingFeatures = $scope.injuredPerson.distinguishFeaturesDetails;
+          AppService.HideLoader();
+          
+      }, function(error) {
+          AppService.HideLoader();
+      })
+  }
+    //Witness 
+    $scope.addWitness = function() {
+        $scope.witness.distinguishingFeatureDetails = $scope.witness.distinguishingFeatures;
+     
+        var req = {
+          url: rmsService.baseEndpointUrl+
+          '/rmsrest/s/accident/add-witness/accidentId/' 
+          + $scope.accidentDetails.id,
+          method: "PUT",
+          headers: {
+              'X-AUTH-TOKEN': $scope.token
+          },
+          data:$scope.witness
+      }
+      AppService.ShowLoader();
+  
+      $http(req).then(function(response) {
+          $scope.getWitnessData();
+        
+          AppService.HideLoader();
+      }, function(error) {
+          AppService.HideLoader();
+      })
+         
+        
+        // $scope.accidentDetails.newWitnesses.push($scope.witness);
+        // $scope.witnesses.push($scope.witness);
+        //reset the object
+        $scope.witness = {
+            addresses: [],
+            distinguishingFeatureDetails: null,
+            distinguishingFeature: null
+        }
 
-                    }
+    }
+    $scope.getWitnessData = function(){
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/witness/witness-table/accidentId/'+
+             $scope.accidentDetails.id,
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+          
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+           
+            $scope.witnesses = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.addEmployeeWitness = function(person) {
+        if (person.selected) {
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/accident/add-employee-witness/accidentId/'+
+                $scope.accidentDetails.id+ '/employeeId/' + person.id,
+                method: "PUT",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+             
+            }
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+                $scope.getWitnessData();
+               
+                AppService.HideLoader();
+            }, function(error) {
+                AppService.HideLoader();
+            })
+        
+        } else {
+
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/accident/remove-employee-witness/accidentId/'+
+                $scope.accidentDetails.id+ '/employeeId/' + person.id,
+                method: "DELETE",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+                data:$scope.suspect
+            }
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+                $scope.getWitnessData();
+              
+                AppService.HideLoader();
+            }, function(error) {
+                AppService.HideLoader();
+            })
+          
+        }
+    }
+    //delete witness
+    $scope.deleteWitness = function(person) {
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/accident/remove-witness/accidentId/'+
+            $scope.accidentDetails.id+ '/witnessId/' + person.id,
+            method: "DELETE",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+            $scope.getWitnessData();
+          
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    
+    }
+    $scope.loadWitness= function(person){
+        $scope.editWitness = true;
+        $scope.witness = person
+    }
+    $scope.updateWitness = function(person){
+        
+            $scope.editWitness = false;
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/witness/update-witness/',
+                method: "PUT",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+                data:$scope.witness
+            }
+            
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+              
+                $scope.getWitnessData();
+                $scope.witness.distinguishingFeatures = $scope.witness.distinguishFeaturesDetails;
+                AppService.HideLoader();
+                
+            }, function(error) {
+                AppService.HideLoader();
+            })
+        }
+
+
+    $scope.addExistingWitness = function(person) {
+        if (person.selected) {
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/accident/add-existing-witness/accidentId/'+
+                $scope.accidentDetails.id+ '/witnessId/' + person.id,
+                method: "PUT",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+             
+            }
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+                $scope.getWitnessData();
+                $scope.witness.distinguishingFeatures = $scope.witness.distinguishFeaturesDetails;
+                
+                AppService.HideLoader();
+            }, function(error) {
+                AppService.HideLoader();
+            })
+        
+        } else {
+
+            var req = {
+                url: rmsService.baseEndpointUrl+
+                '/rmsrest/s/accident/remove-witness/accidentId/'+
+                $scope.accidentDetails.id+ '/witnessId/' + person.id,
+                method: "DELETE",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+                
+            }
+            AppService.ShowLoader();
+        
+            $http(req).then(function(response) {
+                $scope.getWitnessData();
+                $scope.witness.distinguishingFeatures = $scope.witness.distinguishFeaturesDetails;
+                
+                AppService.HideLoader();
+            }, function(error) {
+                AppService.HideLoader();
+            })
+          
+        }
+    }
+    $scope.addAssetDetails = function() {
+               $scope.assetDetail.incident.id = $scope.incident.incidentId 
+                var req = {
+                    url: rmsService.baseEndpointUrl+'/rmsrest/s/asset/add-or-update-asset',
+                    method: "POST",
+                    headers: {
+                        'X-AUTH-TOKEN': $scope.token
+                    },
+                    data: $scope.assetDetail
+                }
+                AppService.ShowLoader();
+        
+                $http(req).then(function(response) {
+                   $scope.assetDetail.id = response.data.id;
+                    AppService.HideLoader();
+                }, function(error) {
+                    AppService.HideLoader();
                 })
             }
+    $scope.addBuilding = function() {
+           var req = {
+             url: rmsService.baseEndpointUrl+
+             '/rmsrest/s/asset/add-building/assetId/' 
+             + $scope.assetDetail.id,
+             method: "PUT",
+             headers: {
+                 'X-AUTH-TOKEN': $scope.token
+             },
+             data:$scope.building
+         }
+         AppService.ShowLoader();
+     
+         $http(req).then(function(response) {
+             $scope.getBuilding();
+           
+             AppService.HideLoader();
+         }, function(error) {
+             AppService.HideLoader();
+         })
+            
+           
+          
+        $scope.building = {};
+
+    }
+    $scope.getBuilding = function(){
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/building/building-table/assetId/' 
+            + $scope.assetDetail.id,
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+           
         }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+           $scope.buildings = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.deleteBuiding = function(building){
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/asset/remove-building/assetId/'+
+            $scope.assetDetail.id+ '/buildingId/' + building.id,
+            method: "DELETE",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+          
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+            $scope.getBuilding();
+          
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.loadBuilding = function(data){
+        $scope.editBuilding = true;
+        $scope.building = data;
+
+    }
+    $scope.updateBuilding = function(){
+       $scope.editBuilding = false;
+       var req = {
+        url: rmsService.baseEndpointUrl+
+        '/rmsrest/s/building/update-building/',
+        method: "PUT",
+        headers: {
+            'X-AUTH-TOKEN': $scope.token
+        },
+        data:$scope.building
+    }
+    
+    AppService.ShowLoader();
+
+    $http(req).then(function(response) {
+      
+        $scope.getBuilding();
+            AppService.HideLoader();
+        
+    }, function(error) {
+        AppService.HideLoader();
+    })
+    }
+    $scope.addVehicle = function() {
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/asset/add-vehicle/' 
+            + $scope.assetDetail.id,
+            method: "PUT",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data:$scope.vehicle
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+            $scope.getVehicle();
+          
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+           
+          
+         
+     
+        $scope.vehicle = {};
+
+    }
+    $scope.loadVehicle = function(data){
+        $scope.editvehicle = true;
+        $scope.vehicle= data;
+    }
+    $scope.getVehicle = function(){
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/vehicle/vehicle-table/assetId/' 
+            + $scope.assetDetail.id,
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+           
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+           $scope.vehicles = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.deleteVehicle = function(data){
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/asset/remove-vehicle/assetId/'+
+            $scope.assetDetail.id+ '/vehicleId/' + building.id,
+            method: "DELETE",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+          
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+            $scope.getVehicle();
+          
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })   
+    }
+    $scope.updateVehicle = function(){
+        $scope.editvehicle = false;
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/vehicle/update-vehicle/',
+            method: "PUT",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data:$scope.vehicle
+        }
+        
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+          
+            $scope.getVehicle();
+                AppService.HideLoader();
+            
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.addEquipement = function() {
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/asset/add-equipment/assetId/' 
+            + $scope.assetDetail.id,
+            method: "PUT",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data:$scope.equipment
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+            $scope.getEquipment();
+          
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+       
+        $scope.equipment = {};
+
+
+    }
+    $scope.loadEquipment=function(data){
+        $scope.editequipment = true;
+        $scope.equipment = data;
+    }
+    $scope.getEquipment = function(){
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/equipment/equipment-table/assetId/' 
+            + $scope.assetDetail.id,
+            method: "GET",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+           
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+           $scope.equipments = response.data;
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.updateEquipment = function(){
+        $scope.editequipment = false;
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/equipment/update-equipment/',
+            method: "PUT",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+            data:$scope.equipment
+        }
+        
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+          
+            $scope.getEquipment();
+                AppService.HideLoader();
+            
+        }, function(error) {
+            AppService.HideLoader();
+        })
+    }
+    $scope.deleteEquipment = function(data){
+        var req = {
+            url: rmsService.baseEndpointUrl+
+            '/rmsrest/s/asset/remove-equipment/assetId/'+
+            $scope.assetDetail.id+ '/equipmentId/' + building.id,
+            method: "DELETE",
+            headers: {
+                'X-AUTH-TOKEN': $scope.token
+            },
+          
+        }
+        AppService.ShowLoader();
+    
+        $http(req).then(function(response) {
+            $scope.getVehicle();
+          
+            AppService.HideLoader();
+        }, function(error) {
+            AppService.HideLoader();
+        })   
+    }
      
         //Delete Crime suspect
     $scope.deleteCrimeSuspect = function(person) {
@@ -1938,90 +2605,9 @@ $scope.updateSuspect = function(person){
             person.selected = false;
 
         }
-        //Delete Injured person data
-    $scope.deleteInjured = function(person) {
-            var flag = false;
+       
+        
 
-            for (var i = 0; i < $scope.accidentDetails.existingInjuredPersons.length && flag == false; i++) {
-                if ($scope.accidentDetails.existingInjuredPersons[i].id == person.id) {
-                    $scope.accidentDetails.existingInjuredPersons.splice(i, 1);
-                    flag = true;
-                    break;
-                }
-            }
-            for (var i = 0; i < $scope.accidentDetails.employeeInjuredPersons.length && flag == false; i++) {
-                if ($scope.accidentDetails.employeeInjuredPersons[i].id == person.id) {
-                    $scope.accidentDetails.employeeInjuredPersons.splice(i, 1);
-                    flag = true;
-                    break;
-                }
-            }
-            for (var i = 0; i < $scope.accidentDetails.newInjuredPersons.length && flag == false; i++) {
-                if ($scope.accidentDetails.newInjuredPersons[i].firstName == person.firstName &&
-                    $scope.accidentDetails.newInjuredPersons[i].middleName == person.middleName) {
-                    $scope.accidentDetails.newInjuredPersons.splice(i, 1);
-                    flag = true;
-                    break;
-                }
-            }
-
-
-            $scope.injuredPersons.map(function(val, index) {
-
-                if (val.id == person.id) {
-                    $scope.injuredPersons.splice(index, 1);
-
-                }
-            })
-            person.selected = false;
-        }
-        //delete witness
-    $scope.deleteWitness = function(person) {
-        var flag = false;
-
-        for (var i = 0; i < $scope.accidentDetails.existingWitnesses.length && flag == false; i++) {
-            if ($scope.accidentDetails.existingWitnesses[i].id == person.id) {
-                $scope.accidentDetails.existingWitnesses.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-        for (var i = 0; i < $scope.accidentDetails.employeeWitnesses.length && flag == false; i++) {
-            if ($scope.accidentDetails.employeeWitnesses[i].id == person.id) {
-                $scope.accidentDetails.employeeWitnesses.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-        for (var i = 0; i < $scope.accidentDetails.newWitnesses.length && flag == false; i++) {
-            if ($scope.accidentDetails.newWitnesses[i].firstName == person.firstName &&
-                $scope.accidentDetails.newWitnesses[i].middleName == person.middleName) {
-                $scope.accidentDetails.newWitnesses.splice(i, 1);
-                flag = true;
-                break;
-            }
-        }
-
-
-        $scope.witnesses.map(function(val, index) {
-
-            if (val.id == person.id) {
-                $scope.witnesses.splice(index, 1);
-
-            }
-        })
-        person.selected = false;
-    }
-
-    $scope.addWitness = function() {
-        $scope.accidentDetails.newWitnesses.push($scope.witness);
-        $scope.witnesses.push($scope.witness);
-        //reset the object
-        $scope.witness = {
-            addresses: []
-        }
-
-    }
 
     $scope.addCrimeWitness = function() {
         $scope.crimeDetails.newWitnesses.push($scope.crimeWitness);
@@ -2043,47 +2629,7 @@ $scope.updateSuspect = function(person){
             distinguishingFeature: null
         }
     }
-    $scope.addEmployeeWitness = function(person) {
-        if (person.selected) {
-            $scope.accidentDetails.employeeWitnesses.push({ 'loginId': person.id });
-            $scope.witnesses.push(person);
-        } else {
-            $scope.accidentDetails.employeeWitnesses.map(function(val, index) {
-
-                if (val.id == person.id) {
-                    $scope.accidentDetails.employeeWitnesses.splice(index, 1);
-                }
-            })
-            $scope.witnesses.map(function(val, index) {
-
-                if (val.id == person.id) {
-                    $scope.injuredPersons.splice(index, 1);
-
-                }
-            })
-        }
-    }
-
-    $scope.addExistingWitness = function(person) {
-        if (person.selected) {
-            $scope.accidentDetails.existingWitnesses.push({ 'id': person.id });
-            $scope.witnesses.push(person);
-        } else {
-            $scope.accidentDetails.existingWitnesses.map(function(val, index) {
-
-                if (val.id == person.id) {
-                    $scope.accidentDetails.existingWitnesses.splice(index, 1);
-                }
-            })
-            $scope.witnesses.map(function(val, index) {
-
-                if (val.id == person.id) {
-                    $scope.injuredPersons.splice(index, 1);
-
-                }
-            })
-        }
-    }
+    
     $scope.addAssetWitness = function() {
         $scope.assetDetail.newWitnesses.push($scope.assetWitness);
         //reset the object
@@ -2181,22 +2727,7 @@ $scope.updateSuspect = function(person){
             })
         }
     }
-    $scope.addBuilding = function() {
-        $scope.assetDetail.buildings.push($scope.building);
-        $scope.building = {};
-
-    }
-    $scope.addVehicle = function() {
-        $scope.assetDetail.vehicles.push($scope.vehicle);
-        $scope.vehicle = {};
-
-    }
-    $scope.addEquipement = function() {
-        $scope.assetDetail.equipments.push($scope.equipment);
-        $scope.equipment = {};
-
-
-    }
+  
     $scope.addAccidentDetails = function() {
         $scope.accidentDetails.incidentId = $scope.incident.incidentId;
         $scope.accidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;

@@ -56,7 +56,7 @@
                 <label>Claim Requested Date</label>
                 <p class="input-group">
                     <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" is-open="calendar.opened.requestedDate" ng-focus="calendar.open($event,'requestedDate')"
-                    datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.requestedDate"/>
+                    datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.requestedDate"/>
                     <span class="input-group-addon" ng-click="calendar.open($event,'requestedDate')">
                             <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -150,7 +150,7 @@
                 <p class="input-group">
 
                         <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy"  is-open="calendar.opened.approvedDate" ng-focus="calendar.open($event,'approvedDate')"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.approvedDate"/>
+                            datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.approvedDate"/>
                         <span class="input-group-addon" ng-click="calendar.open($event,'approvedDate')">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -161,7 +161,7 @@
                 <label>Claim Settled Date</label>
                 <p class="input-group">
                         <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy"  is-open="calendar.opened.settledDate" ng-focus="calendar.open($event,'settledDate')"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.settledDate"/>
+                            datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.settledDate"/>
                         <span class="input-group-addon" ng-click="calendar.open($event,'settledDate')">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
