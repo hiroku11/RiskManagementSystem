@@ -56,7 +56,7 @@
                 <label>Claim Requested Date</label>
                 <p class="input-group">
                     <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy" is-open="calendar.opened.requestedDate" ng-focus="calendar.open($event,'requestedDate')"
-                    datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.requestedDate"/>
+                    datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.requestedDate"/>
                     <span class="input-group-addon" ng-click="calendar.open($event,'requestedDate')">
                             <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -70,7 +70,7 @@
 
             <div class="col-md-4 col-sm-12">
                 <label>Claim Type</label>
-                <select class="form-control" ng-options="claimType.id as claimType.description for claimType in claimType" ng-model="SclaimType" />
+                <select class="form-control" ng-options="claimType.id as claimType.description for claimType in claimType" ng-model="claimDetail.claimType.id" />
 
                 <!--<select class="form-control">
                         <option>Auto Physical Damage</option>
@@ -80,7 +80,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>If Claim Type Others</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text"  ng-disabled="claimDetail.claimType.id != 'OTHER'">
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Claimant Name</label>
@@ -98,30 +98,31 @@
                 <input class="form-control" type="text">
             </div>
             <div class="col-md-4 col-sm-12">
-                <label>Type of Policy</label>
-                <select class="form-control" ng-options="policyType.id as policyType.description for policyType in policyType" ng-model="SpolicyType" />
-
-                <!--<select class="form-control">
-
-                        <option>Vehicle</option>
-                        <option>Property</option>
-                        <option>Individual</option>
-                        <option>Other</option>
-                    </select>-->
-
+                    <label>Insured Name</label>
+                    <input class="form-control" type="text">
             </div>
+           
         </div>
 
         <div class="row">
-
-            <div class="col-md-4 col-sm-12">
+                <div class="col-md-4 col-sm-12">
+                        <label>Type of Policy</label>
+                        <select class="form-control" ng-options="policyType.id as policyType.description for policyType in policyType" ng-model="claimDetail.policyType.id" />
+        
+                        <!--<select class="form-control">
+        
+                                <option>Vehicle</option>
+                                <option>Property</option>
+                                <option>Individual</option>
+                                <option>Other</option>
+                            </select>-->
+        
+                    </div>
+            <div class="col-md-4 col-sm-12" >
                 <label>If Type of Policy Others</label>
-                <input class="form-control" type="text">
+                <input class="form-control" type="text" ng-disabled="claimDetail.policyType.id != 'OTHER'">
             </div>
-            <div class="col-md-4 col-sm-12">
-                <label>Insured Name</label>
-                <input class="form-control" type="text">
-            </div>
+            
             <div class="col-md-4 col-sm-12">
                 <label>Investigator Name</label>
                 <input class="form-control" type="text">
@@ -150,7 +151,7 @@
                 <p class="input-group">
 
                         <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy"  is-open="calendar.opened.approvedDate" ng-focus="calendar.open($event,'approvedDate')"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.approvedDate"/>
+                            datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.approvedDate"/>
                         <span class="input-group-addon" ng-click="calendar.open($event,'approvedDate')">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -161,7 +162,7 @@
                 <label>Claim Settled Date</label>
                 <p class="input-group">
                         <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd/MM/yyyy"  is-open="calendar.opened.settledDate" ng-focus="calendar.open($event,'settledDate')"
-                            datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.settledDate"/>
+                            datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" ng-model="claim.settledDate"/>
                         <span class="input-group-addon" ng-click="calendar.open($event,'settledDate')">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>

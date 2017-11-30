@@ -110,7 +110,7 @@
 
             <nav aria-label="Page navigation" ng-if="data && data.length > 0">
                     <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="$parent.entryCount" ng-change="getEntries()"></select>
-    
+
                     <ul class="pagination">
                         <li>
                             <a aria-label="Previous" ng-click="goToPage(currentPage - 1)" ng-class="{disabled:currentPage==1}">
@@ -151,7 +151,7 @@
                                         <option value="ENDS_WITH">Ends with</option>
                                         <option value="CONTAINS">Contains</option>
                                         <option value="NOT_CONTAINS">Does not contain</option>
-                        
+
                                     </select>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-6">
@@ -167,8 +167,8 @@
                                     <select class="form-control" ng-model="opendateop">
                         <option value="GT" selected>Greater than or equal to</option>
                         <option value="LT">Less than or equal to</option>
-                        
-                        
+
+
                     </select>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-6">
@@ -186,11 +186,11 @@
                                     <label>Incident Closed Date</label>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-2">
-                                    <select class="form-control" ng-model="closedateop">    
+                                    <select class="form-control" ng-model="closedateop">
                         <option value="GT" selected>Greater than or equal to</option>
                         <option value="LT">Less than or equal to</option>
-                        
-                        
+
+
                     </select>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-6">
@@ -227,7 +227,7 @@
                                     <select class="form-control" ng-model="personInjured">
                                      <option value="Y" selected>Yes</option>
                                     <option value="N">No</option>
-                       
+
                                 </select>
                                 </div>
                             </div>-->
@@ -239,7 +239,7 @@
                                     <select class="form-control" ng-model="propertyDamage">
                                      <option value="Y" selected>Yes</option>
                                     <option value="N">No</option>
-                       
+
                                 </select>
                                 </div>
                             </div>
@@ -251,7 +251,7 @@
                                     <select class="form-control" ng-model="crimeInvolved">
                                      <option value="Y" selected>Yes</option>
                                     <option value="N">No</option>
-                       
+
                                 </select>
                                 </div>
                             </div>-->
@@ -271,11 +271,10 @@
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-6">
 
-                                    <input type="checkbox" ng-model="prop" />Property Damage <br/>
+                                    <input type="checkbox" ng-model="prop" />Asset Damage <br/>
                                     <input type="checkbox" ng-model="cAttack" />Criminal Attack <br/>
                                     <input type="checkbox" ng-model="Acc" />Accident Damage<br/>
-                                    <input type="checkbox" ng-model="Asset" />Vehicle / Asset Damage<br/>
-
+                                  
                                 </div>
                             </div>
                             <div class="row">

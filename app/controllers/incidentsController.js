@@ -149,7 +149,7 @@
         },
 
         {
-            "field": "propertyDamage",
+            "field": "assetDamage",
             "operator": "EQ",
             "value": $scope.prop == true ? 'Y' : 'N'
 
@@ -169,12 +169,7 @@
 
 
         },
-        {
-            "field": "vehicleOrAssetDamage",
-            "operator": "EQ",
-            "value": $scope.Asset == true ? 'Y' : 'N'
-
-        },
+       
         {
             "field": "reportedBy",
             "operator": "EQ",

@@ -4,18 +4,32 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Category</label>
-                <select class="form-control" ng-options="assetCat.id as assetCat.description for assetCat in assetCat" ng-model="assetDetail.asset.assetCategory.id" />
+                <select class="form-control" ng-options="assetCat.id as assetCat.description for assetCat in assetCat" ng-model="assetDetail.assetCategory.id" />
 
 
             </div>
-            <div class="col-sm-12 col-md-6" ng-if="assetDetail.asset.assetCategory.id == 'OTHER'">
+            <div class="col-sm-12 col-md-6">
                 <label>If Category Other</label>
-                <input class="form-control" ng-disabled="assetDetail.asset.assetCategory.id != 'OTHER'" type="text" ng-model="assetDetail.asset.otherDescription">
+                <input class="form-control" ng-disabled="assetDetail.assetCategory.id != 'OTHER'" type="text" ng-model="assetDetail.otherDescription">
 
             </div>
         </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-12">
+                        <label>Statement Description</label>
+                        <input class="form-control" ng-model="assetDetail.statementDescription"></textarea>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <button class="btn btn-primary" ng-click="addAssetDetails()">Save</button>
+                   
+                </div>
+            </div>
+       
+       
 
-        <div class="building-section" ng-if="assetDetail.asset.assetCategory.id== 'BUILDING'">
+        <div class="building-section" ng-if="assetDetail.assetCategory.id== 'BUILDING'">
             <h4>Building</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -34,25 +48,42 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4" ng-if="!editBuilding">
                     <a class="btn btn-primary" ng-click="addBuilding()">Add Building</a>
                 </div>
+                <div class="col-sm-12 col-md-4" ng-if="editBuilding">
+                        <a class="btn btn-success" ng-click="updateBuilding(building)">
+                            Update Building</a>
+                    </div>
             </div>
             <div class="table-wrapper inline">
-                <table class="table table-bordered" ng-if="assetDetail.buildings.length >0">
+                <table class="table table-bordered" ng-if="buildings.length >0">
                     <thead>
                         <tr>
                             <th>Building Id</th>
                             <th>Building Description</th>
                             <th>Incident Description</th>
+                            <td>
+                                &nbsp;
+                            </td>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="building in assetDetail.buildings">
+                        <tr ng-repeat="building in buildings">
                             <td>{{building.buildingId}}</td>
                             <td>{{building.buildingDescription}}</td>
                             <td>{{building.incidentDescription}}</td>
+                            <td>
+                                    <a ng-click="deleteBuilding(building)">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a> &nbsp;&nbsp;&nbsp;
+                                    <a ng-click="loadBuilding(building)">
+                                    
+                                       <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+    
+                                </td>
 
                         </tr>
                     </tbody>
@@ -64,7 +95,7 @@
 
 
 
-        <div class="equipment-section" ng-if="assetDetail.asset.assetCategory.id == 'EQUIPMENT'">
+        <div class="equipment-section" ng-if="assetDetail.assetCategory.id == 'EQUIPMENT'">
             <h4>Equipment</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -83,25 +114,41 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4" ng-if="!editequipment">
                     <a class="btn btn-primary" ng-click="addEquipement()">Add Equipment</a>
                 </div>
+                <div class="col-sm-12 col-md-4" ng-if="editequipment">
+                        <a class="btn btn-success" ng-click="updateEquipment(equipment)">
+                            Update Equipment</a>
+                    </div>
             </div>
             <div class="table-wrapper inline">
-                <table class="table table-bordered" ng-if="assetDetail.equipments.length >0">
+                <table class="table table-bordered" ng-if="equipments.length >0">
                     <thead>
                         <tr>
                             <th>Equipment Id</th>
                             <th>Serial Number</th>
                             <th>Equipment Details</th>
+                            <th>&nbsp;</th>
 
                         </tr>
                     </thead>
                     <tbody>
-                        <tr ng-repeat="equipment in assetDetail.equipments">
+                        <tr ng-repeat="equipment in equipments">
                             <td>{{equipment.equipmentId}}</td>
                             <td>{{equipment.serialNumber}}</td>
                             <td>{{equipment.equipmentDetails}}</td>
+                            <td>
+                                    <a ng-click="deleteEquipment(equipment)">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a> &nbsp;&nbsp;&nbsp;
+                                    <a ng-click="loadEquipment(equipment)">
+                                    
+                                       <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+    
+                                </td>
+
 
                         </tr>
                     </tbody>
@@ -111,7 +158,7 @@
         </div>
 
 
-        <div class="vehicle-section" ng-if="assetDetail.asset.assetCategory.id == 'VEHICLE'">
+        <div class="vehicle-section" ng-if="assetDetail.assetCategory.id == 'VEHICLE'">
             <h4>Vehicle</h4>
             <div class="row">
                 <div class="col-sm-12 col-md-4">
@@ -162,26 +209,42 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-4" ng-if="!editvehicle">
                     <a class="btn btn-primary" ng-click="addVehicle()">Add Vehicle</a>
                 </div>
+                <div class="col-sm-12 col-md-4" ng-if="editvehicle">
+                        <a class="btn btn-success" ng-click="updateVehicle(vehicle)">
+                            Update Vehicle</a>
+                    </div>
             </div>
-            <table class="table table-bordered" ng-if="assetDetail.vehicles.length >0">
+            <table class="table table-bordered" ng-if="vehicles.length >0">
                 <thead>
                     <tr>
                         <th>Registration Id</th>
                         <th>Engine Number</th>
                         <th>Chasis Number</th>
                         <th>Comment</th>
+                        <th>&nbsp;</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="vehicle in assetDetail.vehicles track by $index">
+                    <tr ng-repeat="vehicle in vehicles track by $index">
                         <td>{{vehicle.vehicleRegistrationId}}</td>
                         <td>{{vehicle.engineNumber}}</td>
                         <td>{{vehicle.chasisNumber}}</td>
                         <td>{{vehicle.commentDescription}}</td>
+                        <td>
+                                <a ng-click="deleteVehicle(vehicle)">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a> &nbsp;&nbsp;&nbsp;
+                                <a ng-click="loadVehicle(vehicle)">
+                                
+                                   <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+
+                            </td>
+
 
                     </tr>
                 </tbody>
@@ -192,131 +255,15 @@
         <div class="row ">
             <div class="col-md-6 col-sm-12">
                 <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
-                <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
+                <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 
                 <div class="col-md-6 col-sm-12">
                     <button type="button" ng-click="submitForm('assetsForm','back')" class="btn btn-secondary pull-right">Back</button>
-                    <button type="button" ng-disabled="!activeTab.completed" ng-click="submitForm('assetsForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
+                    <button type="button" ng-click="submitForm('assetsForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
                 </div>
 
             </div>
     </form>
 
 </div>
-<!-- <div id="myModal10" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Existing Witness Lookup</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 ">
-                        <label>Existing Witness</label>
-                        <div class="input-group">
-                            <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness" ng-model-options="{'debounce':500}" />
-
-                            <span class="input-group-addon" ng-click="witnessLookup(existingWitness)">
-                        <span class="glyphicon glyphicon-search"></span>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="person in witnessData">
-                                <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addAssetExistingWitness(person)" /></td>
-                                <td>{{person.firstName}} {{person.LastName}}</td>
-                                <td>{{person.age}}</td>
-                                <td>{{person.genderTypeCode}}</td>
-                                <td>{{person.phone}}</td>
-                                <td>{{person.email}}</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-            <div class=" modal-footer ">
-
-
-                <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
-            </div>
-        </div>
-
-    </div>
-</div> -->
-<!-- <div id="myModal11" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h3 class="modal-title">Employee Witness Lookup</h3>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 ">
-                        <label>Employee Witness</label>
-                        <div class="input-group">
-                            <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness" ng-model-options="{'debounce':500}" />
-                            <span class="input-group-addon" ng-click="userLookup(employeeWitness)">
-                                <span class="glyphicon glyphicon-search"></span>
-                            </span>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="row">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th style="width:5%"></th>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Phone</th>
-                                <th>Mail</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="person in userInfo">
-                                <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addAssetEmployeeWitness(person)" />
-                                </td>
-                                <td>{{person.firstName}} {{person.LastName}}</td>
-                                <td>{{person.age}}</td>
-                                <td>{{person.genderTypeCode}}</td>
-                                <td>{{person.phone}}</td>
-                                <td>{{person.email}}</td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-            </div>
-            <div class=" modal-footer ">
-
-
-                <a class="btn btn-danger " class="close " data-dismiss="modal">Close</a>
-            </div>
-        </div>
-
-    </div>
-</div> -->

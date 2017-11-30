@@ -1,2 +1,0 @@
-# RiskManagementSystem
-Risk Management System
