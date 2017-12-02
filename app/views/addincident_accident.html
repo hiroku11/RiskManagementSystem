@@ -490,14 +490,15 @@
                 <tbody>
                     <tr ng-repeat="person in injuredPersons">
 
-                        <td>{{person.firstName}} {{person.LastName}}</td>
-                        <td>{{person.age}}</td>
-                        <td>{{person.genderType.id}}</td>
-                        <td>{{person.addresses[0].organizationName}}</td>
-                        <td>{{person.addresses[0].city}}</td>
-                        <td>{{person.addresses[0].county}}</td>
-                        <td>{{person.addresses[0].postcode}}</td>
-                        <td>{{person.bodyParts.toString()}}</td>
+                        <td>{{::person.firstName}} {{::person.LastName}}</td>
+                        <td>{{::person.age}}</td>
+                        <td>{{::person.genderType.id}}</td>
+                        <td>{{::person.addresses[0].organizationName}}</td>
+                        <td>{{::person.addresses[0].city}}</td>
+                        <td>{{::person.addresses[0].county}}</td>
+                        <td>{{::person.addresses[0].postcode}}</td>
+                        <td> {{getPartsString(person)}}
+                                </td>
                         <td>
                             <a ng-click="deleteInjured(person)" ng-if="person.injuredPersonCategory == 'NON-EMPLOYEE'">
                                 <i class="glyphicon glyphicon-trash"></i>

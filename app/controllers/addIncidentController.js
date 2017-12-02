@@ -1854,15 +1854,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
 
             $scope.injuredPerson.distinguishingFeatureDetails = $scope.injuredPerson.distinguishingFeatures;
-            $scope.myObj.temp.map(function (d) {
-                bodyPart.map(function (i) {
-                    if (i.description == d) {
+            $scope.myObj.temp.map(function (d,index) {
+                bodyPart.map(function (item,i) {
+                    if (item.description == d) {
                         var part = {
-                            id: i.id,
+                            id: item.id,
                             description: d
                         }
-                        $scope.injuredPerson.bodyParts.push(part);
-
+                        $scope.injuredPerson.bodyParts[index] = part;
                     }
 
                 })
@@ -1880,7 +1879,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.getInjuredData();
-
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
@@ -1894,9 +1892,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             }
             $scope.myObj = { temp: [] };
-
-
-
+        }
+        $scope.getPartsString=function(person){
+            return person.bodyParts.map(function(el){return el.description}).join(",");
         }
         $scope.getInjuredData = function () {
             var req = {
@@ -2042,12 +2040,31 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.injuredPerson.distinguishingFeatures = rmsService.cloneObject($scope.injuredPerson.distinguishingFeatureDetails);
             $scope.injuredPerson.distinguishingFeature = [];
             $scope.injuredPerson.distinguishingFeature.push($scope.distinguishFeatures[0]);
+            $scope.myObj={temp:[]}
+            person.bodyParts.map(function(part){
+                $scope.myObj.temp.push(part.description)
+            })
             $scope.getDistinguishFeaturesDetails([$scope.distinguishFeatures[0]]);
         }
         //update existing injuredPerson record
         $scope.updateInjured = function (person) {
 
             $scope.editInjured = false;
+            $scope.injuredPerson.bodyParts = [];
+            $scope.myObj.temp.map(function (d,index) {
+                bodyPart.map(function (item,i) {
+                    if (item.description == d) {
+                        var part = {
+                            id: item.id,
+                            description: d
+                        }
+                        $scope.injuredPerson.bodyParts[index] = part;
+                    }
+
+                })
+
+            });
+            
             var req = {
                 url: rmsService.baseEndpointUrl +
                 '/rmsrest/s/injured-person/update-injured-person/',
