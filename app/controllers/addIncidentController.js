@@ -199,7 +199,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "id": null,
                 "description": null
             }
-
         }
         $scope.claimDetail = {
             "id": null,
@@ -211,9 +210,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "policyType": {
                 "id": null
             }
-            
-
-
         }
         $scope.investigationDetails = {
             "incidentId": "",
@@ -338,8 +334,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "anyWitness": null,
             "date":null,
             "timeHrs":null,
-            "timeMin":null
-            
+            "timeMin":null            
 
 
 
