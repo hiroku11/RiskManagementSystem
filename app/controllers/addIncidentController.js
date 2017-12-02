@@ -1054,9 +1054,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
 
         $scope.openBodyPartModal = function () {
-
+            
             $("#bodyModal").modal('show');
-
+            setTimeout(function(){
+                $(".dropdown-toggle").trigger('click').trigger('click');
+            },100)
+            // $("#bodyModal").on('show.bs.modal', function (e) {
+               
+                
+            // });
+            
+            //toggleDropdown();
         }
 
         $scope.removeFeatureToSelectedList = function (context) {
