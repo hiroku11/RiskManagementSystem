@@ -364,7 +364,7 @@ function($scope, AppService, rmsService, $location, $window, $http,$state) {
    ];
 
    $scope.changeTab = function(tab){
-       //naviigate through tabs as well
+       //navigate through tabs as well
        $scope.activeTab.active = false;
        $scope.activeTab = tab;
        $scope.activeTab.active = true;
@@ -684,13 +684,19 @@ $scope.deleteSuspect = function(person) {
 }
 $scope.loadSuspect = function(person){
      $scope.editsuspect = true;
-     $scope.suspect = person;
-   
+     $scope.suspect = rmsService.cloneObject(person);
+     $scope.suspect.distinguishingFeaturesOptions = rmsService.cloneObject($scope.suspect.distinguishingFeatureDetails);
+     $scope.suspect.distinguishingFeatures = rmsService.cloneObject($scope.suspect.distinguishingFeatureDetails);
+     $scope.suspect.distinguishingFeature = [];
+     $scope.suspect.distinguishingFeature.push($scope.distinguishFeatures[0]);
+     $scope.getDistinguishFeaturesDetails([$scope.distinguishFeatures[0]]);
 }
 //update existing suspect record
 $scope.updateSuspect = function(person){
 
    $scope.editsuspect = false;
+   person.distinguishingFeatureDetails =  rmsService.cloneObject(person.distinguishingFeatures);
+   //person.distinguishingFeatureDetails = rmsService.cloneObject(person.distinguishingFeaturesOptions);
    var req = {
        url: rmsService.baseEndpointUrl+'/rmsrest/s/suspect/update-suspect/',
        method: "PUT",
@@ -1080,14 +1086,17 @@ $scope.updateSuspect = function(person){
 
    $scope.removeFeatureToSelectedList= function(context){
 
-       context.distinguishingFeatures.map((item) =>{
+       context.distinguishingFeatures.map((item,index) =>{
            context.distinguishingFeaturesOptions.splice(context.distinguishingFeaturesOptions.indexOf(item),1);
            if(item.parentId == context.distinguishingFeature[0].id){
-               $scope.distinguishFeaturesDetails.push(item);
+               $scope.distinguishFeaturesDetails.push(rmsService.cloneObject(item));
            }
-           
+           if(context.distinguishingFeatureDetails[0].id == item.id){
+            context.distinguishingFeatures.splice(index,1);
+           }
        });
-       context.distinguishingFeatures = context.distinguishingFeaturesOptions;
+       
+       context.distinguishingFeaturesOptions = rmsService.cloneObject(context.distinguishingFeatures);
        $scope.distinguishFeaturesDetails.sort((a,b)=> {
            if (a.description < b.description)
              return -1;
@@ -1105,8 +1114,8 @@ $scope.updateSuspect = function(person){
        }
        context.distinguishingFeatureDetail.map(item => {
                if(context.distinguishingFeaturesOptions.indexOf(item) == -1){
-                   context.distinguishingFeaturesOptions.push(item);
-                   context.distinguishingFeatures = context.distinguishingFeaturesOptions;
+                   context.distinguishingFeaturesOptions.push(rmsService.cloneObject(item));
+                   context.distinguishingFeatures = rmsService.cloneObject(context.distinguishingFeaturesOptions);
                }
            });
            context.distinguishingFeatures.map((item,index)=> {
@@ -2044,10 +2053,14 @@ $scope.updateSuspect = function(person){
    }
    $scope.loadInjured = function(person){
        $scope.editInjured = true;
-       $scope.injuredPerson = person;
-     
+       $scope.injuredPerson = rmsService.cloneObject(person);
+        $scope.injuredPerson.distinguishingFeaturesOptions = rmsService.cloneObject($scope.injuredPerson.distinguishingFeatureDetails);
+        $scope.injuredPerson.distinguishingFeatures = rmsService.cloneObject($scope.injuredPerson.distinguishingFeatureDetails);
+        $scope.injuredPerson.distinguishingFeature = [];
+        $scope.injuredPerson.distinguishingFeature.push($scope.distinguishFeatures[0]);
+        $scope.getDistinguishFeaturesDetails([$scope.distinguishFeatures[0]]);
  }
- //update existing suspect record
+ //update existing injuredPerson record
  $scope.updateInjured = function(person){
  
      $scope.editInjured = false;
@@ -2200,7 +2213,12 @@ $scope.updateSuspect = function(person){
    }
    $scope.loadWitness= function(person){
        $scope.editWitness = true;
-       $scope.witness = person
+       $scope.witness = rmsService.cloneObject(person);
+       $scope.witness.distinguishingFeaturesOptions = rmsService.cloneObject($scope.witness.distinguishingFeatureDetails);
+       $scope.witness.distinguishingFeatures = rmsService.cloneObject($scope.witness.distinguishingFeatureDetails);
+       $scope.witness.distinguishingFeature = [];
+       $scope.witness.distinguishingFeature.push($scope.distinguishFeatures[0]);
+       $scope.getDistinguishFeaturesDetails([$scope.distinguishFeatures[0]]);
    }
    $scope.updateWitness = function(person){
        

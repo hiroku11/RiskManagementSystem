@@ -73,6 +73,9 @@
             let adminRoles = ['INVESTIGATOR', 'CLAIMS_HANDLER', 'ADMIN'];
             return  adminRoles.some(role => this.loggedInUser.roles.includes(role));
         }
+        this.cloneObject = function(obj){
+            return JSON.parse(JSON.stringify(obj));
+        }
         
     })
     
