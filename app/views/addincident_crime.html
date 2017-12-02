@@ -221,10 +221,10 @@
                             <td>{{person.addresses[0].postcode}}</td>
                             <td>{{person.phone}}</td>
                             <td>
-                                <a ng-click="deleteCrimeWitness(person)">
+                                <a ng-click="deleteCrimeWitness(person)" ng-if="person.witnessCategory == 'NON-EMPLOYEE'">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
-                                <a ng-click="loadCrimeWitness(person)">
+                                <a ng-click="loadCrimeWitness(person)" ng-if="person.witnessCategory == 'NON-EMPLOYEE'">
                                     <i class="glyphicon glyphicon-pencil"></i>
                                 </a>
                             </td>
@@ -615,7 +615,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="person in userInfo">
+                            <tr ng-repeat="person in crimeSuspectData">
                                 <td>
                                     <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addCrimeExistingSuspect(person)"
                                     />

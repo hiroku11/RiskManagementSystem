@@ -211,6 +211,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "policyType": {
                 "id": null
             }
+            
 
 
         }
@@ -1797,10 +1798,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.crimeDetails.crimeDateTime = null
             }
              else{
-                $scope.crimeDetails.crimeDateTime = $scope.crimeDetails.date + " " + $scope.crimeDetails.timeHrs + ":" + $scope.crimeDetails.timeMin;
+                $scope.crimeDetails.crimeDateTime = $scope.crimeDetails.date + " " + $scope.crimeDetails.timeHrs + ":" + $scope.crimeDetails.timeMin + ":00";
                 
              }
-              delete $scope.crimeDetails.timeHrs;
+            delete $scope.crimeDetails.timeHrs;
             delete $scope.crimeDetails.timeMin;
             delete $scope.crimeDetails.date;
             $scope.crimeDetails.incident.id = $scope.incident.incidentId;
@@ -2617,7 +2618,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getCrimeSuspectData = function () {
             var req = {
                 url: rmsService.baseEndpointUrl + 
-                '/rmsrest/s/crime-suspect/crime-suspect-table/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
+                '/rmsrest/s/crime-suspect/crime-suspect-table/crimeId/' + $scope.crimeDetails.id,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2713,7 +2714,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 var req = {
                     url: rmsService.baseEndpointUrl +
                         '/rmsrest/s/crime/add-employee-crime-suspect/crimeId/' +
-                        $scope.crimeDetails.id + '/crimeSuspectId/' + person.id,
+                        $scope.crimeDetails.id + '/employeeId/' + person.id,
                     method: "PUT",
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
