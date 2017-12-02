@@ -426,6 +426,133 @@
                         </tr>
                 </tbody>
         </table>
+        <h4>Claim Details</h4>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim ID:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimId}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claimant Name:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimantName}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Insured Name:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.insuredName}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Status:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimStatus.description}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Type:</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimType.id !='OTHER'?incidentSummary.claim.claimType.description : incidentSummary.claim.claimTypeOther}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Request Type:</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimRequestRegistrationType.id != 'OTHER'?incidentSummary.claim.claimRequestRegistrationType.description : incidentSummary.claim.claimRequestRegistrationTypeOther}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Policy No.:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.policyNumber}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Policy Holder Name:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.policyHolderName}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Policy Type:</label>
+                        <label class="summary-text">{{incidentSummary.claim.policyType.id !='OTHER' ? incidentSummary.claim.policyType.description : incidentSummary.claim.policyTypeOther}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Security Requested:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.securityRequested}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Training Requested:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.trainingRequested}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Handler:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimHandler}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Requested Amount:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimRequestedAmount}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Requested Date:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimRequestedDate}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Requested By:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimRequestedBy}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Approved By:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimApprovedBy}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Approved Amount:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimApprovedAmount}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Approved Date:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimApprovedDate}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Settlement By:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimSettlementBy}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Settlement Amount:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimSettlementAmount}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Settlement Date:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimSettlementDate}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Declined By:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimDeclinedBy}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Declined Date:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimDeclinedDate}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Declined Comments:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimDeclinedComments}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Reopened By:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimReopenedBy}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Reopened Date:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimReopenedDate}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Claim Reopened Comments:</label>
+                        <label class="summary-text">{{::incidentSummary.claim.claimReopenedComments}}</label>
+                </div>
+        </div>
         <h4>Investigation</h4>
         <div class="row">
                 <div class="col-sm-12 col-md-4">
@@ -433,16 +560,53 @@
                         <label class="summary-text">{{::incidentSummary.investigation.securityRequested}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                        <label>Security Requested:</label>
+                        <label>Training Requested:</label>
                         <label class="summary-text">{{::incidentSummary.investigation.trainingRequested}}</label>
                 </div>
-                <!-- <div class="col-sm-12 col-md-4">
-                        <label>Security Requested:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.securityRequested}}</label>
-                </div> -->
+                <div class="col-sm-12 col-md-4">
+                        <label>Reviewed Investigation Records:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.reviewedInvestigationRecords}}</label>
+                </div>
 
         </div>
-
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Reviewed CCTV:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.reviewedCCTV}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Reviewed Pictures:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.reviewedPictures}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Reviewed Witness Statement:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.reviewedWitnessStatement}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-4">
+                        <label>Reviewed Learner Records:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.reviewedLearnerRecords}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Reviewed Asset Records:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.reviewedAssetRecords}}</label>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                        <label>Reviewed Compliance Records:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.reviewedComplianceRecords}}</label>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-sm-12 col-md-6">
+                        <label>Investigator:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.investigator}}</label>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                        <label>INvestigator Statement:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.investigatorStatement}}</label>
+                </div>
+        </div>
         <h4>Supporting Documents</h4>
         <table class="table table-bordered">
                 <thead>
@@ -469,7 +633,7 @@
                 </div>
 
         </div>
-        
+
 </div>
 <style>
         .summary-text {
