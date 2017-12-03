@@ -3353,6 +3353,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
                 $scope.incidentSummary = response.data;
                 console.log(response.data);
+                AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
             })
