@@ -38,7 +38,7 @@ function ($scope, AppService, rmsService, $location, $window, $http, helperFunct
 
     $scope.getInvestigations = function () {
         var req = {
-            url: rmsService.baseEndpointUrl+"/rmsrest/s/investigation/investigatorLoginId/" +$scope.authorizedUser.loginId,
+            url: rmsService.baseEndpointUrl+"investigation/investigatorLoginId/" +$scope.authorizedUser.loginId,
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,

@@ -45,7 +45,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getData = function (params) {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/' + $scope.incident.uniqueIncidentId,
+                url: rmsService.baseEndpointUrl + 'incident/' + $scope.incident.uniqueIncidentId,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -248,7 +248,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $scope.supportingDocumentsFormData.append("uniqueIncidentId", $scope.incident.uniqueIncidentId);
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/document/documents-for-incident/' + $scope.incident.uniqueIncidentId,
+                url: rmsService.baseEndpointUrl + 'document/documents-for-incident/' + $scope.incident.uniqueIncidentId,
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -559,7 +559,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             // $scope.suspects.push($scope.suspect);
             $scope.suspect.distinguishingFeatureDetails = $scope.suspect.distinguishingFeatures;
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/add-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
+                url: rmsService.baseEndpointUrl + 'incident/add-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -587,7 +587,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getSuspectData = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/suspect/suspect-table/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
+                url: rmsService.baseEndpointUrl + 'suspect/suspect-table/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -610,7 +610,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (person.suspectCategory == 'NON-EMPLOYEE') {
 
                 var req = {
-                    url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/remove-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/suspectId/' + person.id,
+                    url: rmsService.baseEndpointUrl + 'incident/remove-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/suspectId/' + person.id,
                     method: "DELETE",
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
@@ -629,7 +629,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
             else {
                 var req = {
-                    url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/remove-employee-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/employeeId/' + person.id,
+                    url: rmsService.baseEndpointUrl + 'incident/remove-employee-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/employeeId/' + person.id,
                     method: "DELETE",
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
@@ -673,7 +673,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.editsuspect = false;
             person.distinguishingFeatureDetails = rmsService.cloneObject(person.distinguishingFeatures);
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/suspect/update-suspect/',
+                url: rmsService.baseEndpointUrl + 'suspect/update-suspect/',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -696,7 +696,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.addEmployeeSuspect = function (person) {
             if (person.selected) {
                 var req = {
-                    url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/add-employee-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/employeeId/' + person.id,
+                    url: rmsService.baseEndpointUrl + 'incident/add-employee-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/employeeId/' + person.id,
                     method: "PUT",
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
@@ -718,7 +718,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             } else {
 
                 var req = {
-                    url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/remove-employee-suspect//uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/employeeId/' + person.id,
+                    url: rmsService.baseEndpointUrl + 'incident/remove-employee-suspect//uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/employeeId/' + person.id,
                     method: "DELETE",
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
@@ -754,7 +754,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.addExistingSuspect = function (person) {
             if (person.selected) {
                 var req = {
-                    url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/add-existing-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/suspectId/' + person.id,
+                    url: rmsService.baseEndpointUrl + 'incident/add-existing-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/suspectId/' + person.id,
                     method: "PUT",
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
@@ -778,7 +778,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             } else {
 
                 var req = {
-                    url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/remove-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/suspectId/' + person.id,
+                    url: rmsService.baseEndpointUrl + 'incident/remove-suspect/uniqueIncidentId/' + $scope.incident.uniqueIncidentId + '/suspectId/' + person.id,
                     method: "DELETE",
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
@@ -822,7 +822,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
 
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/reported-loss/create-reported-loss',
+                url: rmsService.baseEndpointUrl + 'reported-loss/create-reported-loss',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -858,7 +858,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getLossData = function () {
 
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/reported-loss/reported-loss-table/incidentId/' + $scope.incident.incidentId,
+                url: rmsService.baseEndpointUrl + 'reported-loss/reported-loss-table/incidentId/' + $scope.incident.incidentId,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -885,7 +885,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.deleteLoss = function (loss) {
 
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/reported-loss/delete-reported-loss/reportedLossId/' + loss.id,
+                url: rmsService.baseEndpointUrl + 'reported-loss/delete-reported-loss/reportedLossId/' + loss.id,
                 method: "DELETE",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -910,7 +910,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.updateLoss = function () {
             $scope.editLoss = false;
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/reported-loss/update-reported-loss',
+                url: rmsService.baseEndpointUrl + 'reported-loss/update-reported-loss',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -953,7 +953,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
 
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/accident/add-or-update-accident',
+                url: rmsService.baseEndpointUrl + 'accident/add-or-update-accident',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -987,7 +987,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
             $scope.supportingDocumentsFormData.append("uniqueIncidentId", $scope.incident.uniqueIncidentId);
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/document/save-documents',
+                url: rmsService.baseEndpointUrl + 'document/save-documents',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -1006,7 +1006,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getUserInfo = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/add-incident',
+                url: rmsService.baseEndpointUrl + 'incident/add-incident',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1031,7 +1031,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.logIncidentDetails.criminalAttack ? $scope.logIncidentDetails.criminalAttack = "Y" : $scope.logIncidentDetails.criminalAttack = "N";
             $scope.incident.incidentStatus = 'DRAFT';
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/add-or-update-log-incident',
+                url: rmsService.baseEndpointUrl + 'incident/add-or-update-log-incident',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1122,7 +1122,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getSuspectType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/suspect-type/suspect-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/suspect-type/suspect-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1145,7 +1145,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getIncidentType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/incident-type/incident-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/incident-type/incident-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1166,7 +1166,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getIncidentLoc = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/incident-location/incident-locations',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/incident-location/incident-locations',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1188,7 +1188,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getEntrypoint = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/entry-point/entry-points',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/entry-point/entry-points',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1211,7 +1211,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getDistinguishFeatures = function () {
 
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/distinguishing-feature/distinguishing-features',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/distinguishing-feature/distinguishing-features',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1230,7 +1230,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getDistinguishFeaturesDetails = function (feature) {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/distinguishing-feature-detail/distinguishing-feature/' + feature[0].id,
+                url: rmsService.baseEndpointUrl + 'table-maintenance/distinguishing-feature-detail/distinguishing-feature/' + feature[0].id,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1253,7 +1253,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getAgency = function () {
 
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/external-agency/external-agencies',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/external-agency/external-agencies',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1274,7 +1274,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getAccidentLoc = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/accident-location/accident-locations',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/accident-location/accident-locations',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1295,7 +1295,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getAccidentType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/accident-type/accident-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/accident-type/accident-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1316,7 +1316,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getAssetCategory = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/asset-category/asset-categories',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/asset-category/asset-categories',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1338,7 +1338,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         var bodyPart = [];
         $scope.getBodyPart = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/body-part/body-parts',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/body-part/body-parts',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1362,7 +1362,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getClaimRegType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/claim-request-registration-type/claim-request-registration-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/claim-request-registration-type/claim-request-registration-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1380,7 +1380,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getClaimStatus = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/claim-status/claim-statuses',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/claim-status/claim-statuses',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1401,7 +1401,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getClaimType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/claim-type/claim-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/claim-type/claim-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1422,7 +1422,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getDepartment = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/department/departments',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/department/departments',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1443,7 +1443,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getDocCategory = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/document-category/document-categories',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/document-category/document-categories',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1464,7 +1464,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getDocType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/document-type/document-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/document-type/document-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1486,7 +1486,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getEmpType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/employee-type/employee-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/employee-type/employee-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1508,7 +1508,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getEventType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/event-type/event-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/event-type/event-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1530,7 +1530,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getGenderType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/gender-type/gender-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/gender-type/gender-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1552,7 +1552,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getInjuredPersonType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/injured-person-type/injured-person-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/injured-person-type/injured-person-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1571,7 +1571,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getInjuryCause = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/injury-cause/injury-causes',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/injury-cause/injury-causes',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1588,7 +1588,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getInjuryType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/injury-type/injury-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/injury-type/injury-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1606,7 +1606,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getLossType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/loss-type/loss-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/loss-type/loss-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1628,7 +1628,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getOrg = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/organization/organizations',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/organization/organizations',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1650,7 +1650,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getPolicyType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/policy-type/policy-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/policy-type/policy-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1672,7 +1672,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getPos = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/position/positions',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/position/positions',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1694,7 +1694,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getPosLevel = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/position-level/position-levels',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/position-level/position-levels',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1716,7 +1716,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getVehicleDamageType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/vehicle-damage-type/vehicle-damage-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/vehicle-damage-type/vehicle-damage-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1738,7 +1738,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.getWeaponType = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/table-maintenance/weapon-type/weapon-types',
+                url: rmsService.baseEndpointUrl + 'table-maintenance/weapon-type/weapon-types',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1794,7 +1794,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.incidentDetails.incidentId = $scope.incident.incidentId;
             $scope.incidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/add-incident-details',
+                url: rmsService.baseEndpointUrl + 'incident/add-incident-details',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1826,7 +1826,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
 
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/crime/add-or-update-crime',
+                url: rmsService.baseEndpointUrl + 'crime/add-or-update-crime',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1876,7 +1876,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             })
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/accident/add-injured-person/accidentId/' + $scope.accidentDetails.id,
+                url: rmsService.baseEndpointUrl + 'accident/add-injured-person/accidentId/' + $scope.accidentDetails.id,
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1906,7 +1906,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.getInjuredData = function () {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/injured-person/injured-person-table/accidentId/' + $scope.accidentDetails.id,
+                url: rmsService.baseEndpointUrl + 'injured-person/injured-person-table/accidentId/' + $scope.accidentDetails.id,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -1929,7 +1929,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (person.selected) {
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/accident/add-employee-injured-person/accidentId/' +
+                    'accident/add-employee-injured-person/accidentId/' +
                     $scope.accidentDetails.id + '/employeeId/' + person.id,
                     method: "PUT",
                     headers: {
@@ -1951,7 +1951,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/accident/remove-employee-injured-person/accidentId/' +
+                    'accident/remove-employee-injured-person/accidentId/' +
                     $scope.accidentDetails.id + '/employeeId/' + person.id,
                     method: "DELETE",
                     headers: {
@@ -1976,7 +1976,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (person.selected) {
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/accident/add-existing-injured-person/accidentId/' +
+                    'accident/add-existing-injured-person/accidentId/' +
                     $scope.accidentDetails.id + '/injuredPersonId/' + person.id,
                     method: "PUT",
                     headers: {
@@ -1998,7 +1998,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/accident/remove-injured-person/accidentId/' +
+                    'accident/remove-injured-person/accidentId/' +
                     $scope.accidentDetails.id + '/injuredPersonId/' + person.id,
                     method: "DELETE",
                     headers: {
@@ -2022,7 +2022,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.deleteInjured = function (person) {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/accident/remove-injured-person/accidentId/' +
+                'accident/remove-injured-person/accidentId/' +
                 $scope.accidentDetails.id + '/injuredPersonId/' + person.id,
                 method: "DELETE",
                 headers: {
@@ -2075,7 +2075,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/injured-person/update-injured-person/',
+                'injured-person/update-injured-person/',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2101,7 +2101,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/accident/add-witness/accidentId/'
+                'accident/add-witness/accidentId/'
                 + $scope.accidentDetails.id,
                 method: "PUT",
                 headers: {
@@ -2133,7 +2133,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getWitnessData = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/witness/witness-table/accidentId/' +
+                'witness/witness-table/accidentId/' +
                 $scope.accidentDetails.id,
                 method: "GET",
                 headers: {
@@ -2155,7 +2155,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (person.selected) {
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/accident/add-employee-witness/accidentId/' +
+                    'accident/add-employee-witness/accidentId/' +
                     $scope.accidentDetails.id + '/employeeId/' + person.id,
                     method: "PUT",
                     headers: {
@@ -2177,7 +2177,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/accident/remove-employee-witness/accidentId/' +
+                    'accident/remove-employee-witness/accidentId/' +
                     $scope.accidentDetails.id + '/employeeId/' + person.id,
                     method: "DELETE",
                     headers: {
@@ -2201,7 +2201,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.deleteWitness = function (person) {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/accident/remove-witness/accidentId/' +
+                'accident/remove-witness/accidentId/' +
                 $scope.accidentDetails.id + '/witnessId/' + person.id,
                 method: "DELETE",
                 headers: {
@@ -2234,7 +2234,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.editWitness = false;
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/witness/update-witness/',
+                'witness/update-witness/',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2260,7 +2260,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (person.selected) {
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/accident/add-existing-witness/accidentId/' +
+                    'accident/add-existing-witness/accidentId/' +
                     $scope.accidentDetails.id + '/witnessId/' + person.id,
                     method: "PUT",
                     headers: {
@@ -2283,7 +2283,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/accident/remove-witness/accidentId/' +
+                    'accident/remove-witness/accidentId/' +
                     $scope.accidentDetails.id + '/witnessId/' + person.id,
                     method: "DELETE",
                     headers: {
@@ -2307,7 +2307,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.addAssetDetails = function () {
             $scope.assetDetail.incident.id = $scope.incident.incidentId
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/asset/add-or-update-asset',
+                url: rmsService.baseEndpointUrl + 'asset/add-or-update-asset',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2326,7 +2326,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.addBuilding = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/asset/add-building/assetId/'
+                'asset/add-building/assetId/'
                 + $scope.assetDetail.id,
                 method: "PUT",
                 headers: {
@@ -2352,7 +2352,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getBuilding = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/building/building-table/assetId/'
+                'building/building-table/assetId/'
                 + $scope.assetDetail.id,
                 method: "GET",
                 headers: {
@@ -2372,7 +2372,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.deleteBuiding = function (building) {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/asset/remove-building/assetId/' +
+                'asset/remove-building/assetId/' +
                 $scope.assetDetail.id + '/buildingId/' + building.id,
                 method: "DELETE",
                 headers: {
@@ -2399,7 +2399,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.editBuilding = false;
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/building/update-building/',
+                'building/update-building/',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2421,7 +2421,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.addVehicle = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/asset/add-vehicle/'
+                'asset/add-vehicle/'
                 + $scope.assetDetail.id,
                 method: "PUT",
                 headers: {
@@ -2452,7 +2452,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getVehicle = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/vehicle/vehicle-table/assetId/'
+                'vehicle/vehicle-table/assetId/'
                 + $scope.assetDetail.id,
                 method: "GET",
                 headers: {
@@ -2472,7 +2472,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.deleteVehicle = function (data) {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/asset/remove-vehicle/assetId/' +
+                'asset/remove-vehicle/assetId/' +
                 $scope.assetDetail.id + '/vehicleId/' + building.id,
                 method: "DELETE",
                 headers: {
@@ -2494,7 +2494,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.editvehicle = false;
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/vehicle/update-vehicle/',
+                'vehicle/update-vehicle/',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2516,7 +2516,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.addEquipement = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/asset/add-equipment/assetId/'
+                'asset/add-equipment/assetId/'
                 + $scope.assetDetail.id,
                 method: "PUT",
                 headers: {
@@ -2545,7 +2545,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getEquipment = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/equipment/equipment-table/assetId/'
+                'equipment/equipment-table/assetId/'
                 + $scope.assetDetail.id,
                 method: "GET",
                 headers: {
@@ -2566,7 +2566,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.editequipment = false;
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/equipment/update-equipment/',
+                'equipment/update-equipment/',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2588,7 +2588,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.deleteEquipment = function (data) {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/asset/remove-equipment/assetId/' +
+                'asset/remove-equipment/assetId/' +
                 $scope.assetDetail.id + '/equipmentId/' + building.id,
                 method: "DELETE",
                 headers: {
@@ -2611,7 +2611,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $scope.crimeSuspect.distinguishingFeatureDetails = $scope.crimeSuspect.distinguishingFeatures;
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/crime/add-crime-suspect/crimeId/' +
+                url: rmsService.baseEndpointUrl + 'crime/add-crime-suspect/crimeId/' +
                 $scope.crimeDetails.id,
                 method: "PUT",
                 headers: {
@@ -2639,7 +2639,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.updateCrimeSuspect = function (person) {
             $scope.editCrimeSuspect = false;
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/crime-suspect/update-crime-suspect/',
+                url: rmsService.baseEndpointUrl + 'crime-suspect/update-crime-suspect/',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2662,7 +2662,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getCrimeSuspectData = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/crime-suspect/crime-suspect-table/crimeId/' + $scope.crimeDetails.id,
+                'crime-suspect/crime-suspect-table/crimeId/' + $scope.crimeDetails.id,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2683,7 +2683,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/crime/remove-crime-suspect/crimeId/' + $scope.crimeDetails.id + '/crimeSuspectId/' + person.id,
+                'crime/remove-crime-suspect/crimeId/' + $scope.crimeDetails.id + '/crimeSuspectId/' + person.id,
 
                 method: "DELETE",
                 headers: {
@@ -2716,7 +2716,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (person.selected) {
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/crime/add-existing-crime-suspect/crimeId/' +
+                    'crime/add-existing-crime-suspect/crimeId/' +
                     $scope.crimeDetails.id + '/crimeSuspectId/' + person.id,
                     method: "PUT",
                     headers: {
@@ -2738,7 +2738,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/crime/remove-crime-suspect/crimeId/' +
+                    'crime/remove-crime-suspect/crimeId/' +
                     $scope.crimeDetails.id + '/crimeSuspectId/' + person.id,
                     method: "DELETE",
                     headers: {
@@ -2762,7 +2762,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (person.selected) {
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/crime/add-employee-crime-suspect/crimeId/' +
+                    'crime/add-employee-crime-suspect/crimeId/' +
                     $scope.crimeDetails.id + '/employeeId/' + person.id,
                     method: "PUT",
                     headers: {
@@ -2784,7 +2784,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/crime/remove-employee-crime-suspect/crimeId/' +
+                    'crime/remove-employee-crime-suspect/crimeId/' +
                     $scope.crimeDetails.id + '/employeeId/' + person.id,
                     method: "DELETE",
                     headers: {
@@ -2810,7 +2810,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.crimeWitness.distinguishingFeatureDetails = $scope.crimeWitness.distinguishingFeatures;
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/crime/add-witness/crimeId/' +
+                'crime/add-witness/crimeId/' +
                 $scope.crimeDetails.id,
                 method: "PUT",
                 headers: {
@@ -2838,7 +2838,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.updateCrimeWitness = function (person) {
             $scope.editCrimeWitness = false;
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/witness/update-witness/',
+                url: rmsService.baseEndpointUrl + 'witness/update-witness/',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2861,7 +2861,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getCrimeWitnessData = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/witness/witness-table/crimeId/' + $scope.crimeDetails.id,
+                'witness/witness-table/crimeId/' + $scope.crimeDetails.id,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2882,7 +2882,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             var req = {
                 url: rmsService.baseEndpointUrl +
-                '/rmsrest/s/crime/remove-witness/crimeId/' + $scope.crimeDetails.id +
+                'crime/remove-witness/crimeId/' + $scope.crimeDetails.id +
                 '/witnessId/' + person.id,
 
                 method: "DELETE",
@@ -2915,7 +2915,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.addCrimeExistingWitness = function (person) {
             if (person.selected) {
                 var req = {
-                    url: rmsService.baseEndpointUrl + '/rmsrest/s/crime/add-existing-witness/crimeId/' + $scope.crimeDetails.id + '/witnessId/' + person.id,
+                    url: rmsService.baseEndpointUrl + 'crime/add-existing-witness/crimeId/' + $scope.crimeDetails.id + '/witnessId/' + person.id,
                     method: "PUT",
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
@@ -2936,7 +2936,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/crime/remove-witness/crimeId/' +
+                    'crime/remove-witness/crimeId/' +
                     $scope.crimeDetails.id + '/witnessId/' + person.id,
                     method: "DELETE",
                     headers: {
@@ -2960,7 +2960,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if (person.selected) {
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/crime/add-employee-witness/crimeId/' +
+                    'crime/add-employee-witness/crimeId/' +
                     $scope.crimeDetails.id + '/employeeId/' + person.id,
                     method: "PUT",
                     headers: {
@@ -2982,7 +2982,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 var req = {
                     url: rmsService.baseEndpointUrl +
-                    '/rmsrest/s/crime/remove-employee-witness/crimeId/' +
+                    'crime/remove-employee-witness/crimeId/' +
                     $scope.crimeDetails.id + '/employeeId/' + person.id,
                     method: "DELETE",
                     headers: {
@@ -3042,7 +3042,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //        $scope.accidentDetails.incidentId = $scope.incident.incidentId;
         //        $scope.accidentDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
         //        var req = {
-        //            url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/add-accident-details',
+        //            url: rmsService.baseEndpointUrl+'incident/add-accident-details',
         //            method: "POST",
         //            headers: {
         //                'X-AUTH-TOKEN': $scope.token
@@ -3077,7 +3077,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
 
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/user-lookup',
+                url: rmsService.baseEndpointUrl + 'user-lookup',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -3114,7 +3114,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }]
             }
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/suspect-lookup',
+                url: rmsService.baseEndpointUrl + 'suspect-lookup',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -3144,7 +3144,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }]
             }
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/injured-person-lookup',
+                url: rmsService.baseEndpointUrl + 'injured-person-lookup',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -3173,7 +3173,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }]
             }
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/witness-lookup',
+                url: rmsService.baseEndpointUrl + 'witness-lookup',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -3201,7 +3201,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }]
             }
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/crime-suspect-lookup',
+                url: rmsService.baseEndpointUrl + 'crime-suspect-lookup',
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -3222,7 +3222,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.investigationDetails.incidentId = $scope.incident.incidentId;
             $scope.investigationDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/add-investigation-details',
+                url: rmsService.baseEndpointUrl + 'incident/add-investigation-details',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -3239,7 +3239,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.removeSupportingDocumnet = function (doc, index) {
             var req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/document/delete-document/' + doc.id,
+                url: rmsService.baseEndpointUrl + 'document/delete-document/' + doc.id,
                 method: "DELETE",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -3258,7 +3258,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.downloadSupportingDocumnet = function (doc) {
             let req = {
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/document/download-document/' + doc.id,
+                url: rmsService.baseEndpointUrl + 'document/download-document/' + doc.id,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -3276,10 +3276,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.getincidentSummary = function () {
-            ///rmsrest/s/incident/uniqueIncidentId/IN010917203918
+            //incident/uniqueIncidentId/IN010917203918
             let req = {
-                //url: rmsService.baseEndpointUrl+'/rmsrest/s/incident/uniqueIncidentId/IN011117154413',
-                url: rmsService.baseEndpointUrl + '/rmsrest/s/incident/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
+                //url: rmsService.baseEndpointUrl+'incident/uniqueIncidentId/IN011117154413',
+                url: rmsService.baseEndpointUrl + 'incident/uniqueIncidentId/' + $scope.incident.uniqueIncidentId,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -3288,7 +3288,29 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.ShowLoader();
             $http(req).then(function (response) {
                 $scope.incidentSummary = response.data;
-                console.log(response.data);
+                //console.log(response.data);
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
+
+        $scope.submitIncident =function(){
+             //incident/uniqueIncidentId/IN010917203918
+             let req = {
+                url: rmsService.baseEndpointUrl + 'incident/submit-incident',
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+                data:{
+                    "incidentId": $scope.incident.incidentId,
+                    "uniqueIncidentId": $scope.incident.uniqueIncidentId
+                }
+            }
+            AppService.ShowLoader();
+            $http(req).then(function (response) {
+                //$scope.incidentSummary = response.data;
+                //console.log(response.data);
             }, function (error) {
                 AppService.HideLoader();
             })
