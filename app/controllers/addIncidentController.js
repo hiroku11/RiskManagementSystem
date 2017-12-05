@@ -41,27 +41,28 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         if ($state.params.uniqueIncidentId) {
             $scope.incident.uniqueIncidentId = $state.params.uniqueIncidentId;
+            $scope.editIncidentMode  = true;
         }
 
-        $scope.getData = function (params) {
-            var req = {
-                url: rmsService.baseEndpointUrl + 'incident/' + $scope.incident.uniqueIncidentId,
-                method: "GET",
-                headers: {
-                    'X-AUTH-TOKEN': $scope.token
-                },
-            }
-            AppService.ShowLoader();
-            var getIncident = $http(req);
-            getIncident.then(function (response) {
-                if (response.data.length != 0) {
-                    $scope.data = response.data;
-                }
-                AppService.HideLoader();
-            }, function (error) {
-                AppService.HideLoader();
-            })
-        }
+        // $scope.getData = function (params) {
+        //     var req = {
+        //         url: rmsService.baseEndpointUrl + 'incident/' + $scope.incident.uniqueIncidentId,
+        //         method: "GET",
+        //         headers: {
+        //             'X-AUTH-TOKEN': $scope.token
+        //         },
+        //     }
+        //     AppService.ShowLoader();
+        //     var getIncident = $http(req);
+        //     getIncident.then(function (response) {
+        //         if (response.data.length != 0) {
+        //             $scope.data = response.data;
+        //         }
+        //         AppService.HideLoader();
+        //     }, function (error) {
+        //         AppService.HideLoader();
+        //     })
+        // }
 
 
         $scope.logIncidentDetails = {
@@ -74,8 +75,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "accidentDamage": "",
             "assetDamage": "",
             "placeOfIncident": "",
-
             "incidentDescription": "",
+            "incidentTypeOther": null,
+            "entryPointOther": null,
+            "incidentLocationOther": null,
             "entryPoint": {
                 "id": "",
                 "description": null
@@ -504,8 +507,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.tabs[index - 1].active = true;
                 //$scope.tab = $scope.tabs[index - 1].tab;
                 $scope.activeTab = $scope.tabs[index - 1];
-                $scope.getData();
-
+                //$scope.getData();
+                $scope.getincidentSummary();
             } else {
                 if ($scope.activeTab.formAction == "saveContinue" || dir == "next") {
 
@@ -1015,20 +1018,21 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
-                $scope.incident = response.data;
+                $scope.userInfo = response.data;
+                //$scope.incident = response.data;
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
             })
         }
-        $scope.getUserInfo();
+        
 
         $scope.logIncident = function () {
-            $scope.logIncidentDetails.dateOfIncident = $scope.logIncidentDetails.date + " " + $scope.logIncidentDetails.timeHrsContacted + ":" + $scope.logIncidentDetails.timeMinContacted;
-
-            $scope.logIncidentDetails.accidentDamage ? $scope.logIncidentDetails.accidentDamage = "Y" : $scope.logIncidentDetails.accidentDamage = "N";
-            $scope.logIncidentDetails.assetDamage ? $scope.logIncidentDetails.assetDamage = "Y" : $scope.logIncidentDetails.assetDamage = "N";
-            $scope.logIncidentDetails.criminalAttack ? $scope.logIncidentDetails.criminalAttack = "Y" : $scope.logIncidentDetails.criminalAttack = "N";
+            let logIncidentDetails = rmsService.cloneObject($scope.logIncidentDetails);
+            logIncidentDetails.dateOfIncident = logIncidentDetails.date + " " + logIncidentDetails.timeHrsContacted + ":" + logIncidentDetails.timeMinContacted;
+            logIncidentDetails.accidentDamage ? logIncidentDetails.accidentDamage = "Y" : logIncidentDetails.accidentDamage = "N";
+            logIncidentDetails.assetDamage ? logIncidentDetails.assetDamage = "Y" : logIncidentDetails.assetDamage = "N";
+            logIncidentDetails.criminalAttack ? logIncidentDetails.criminalAttack = "Y" : logIncidentDetails.criminalAttack = "N";
             $scope.incident.incidentStatus = 'DRAFT';
             var req = {
                 url: rmsService.baseEndpointUrl + 'incident/add-or-update-log-incident',
@@ -1036,7 +1040,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-                data: $scope.logIncidentDetails
+                data: logIncidentDetails
             }
             AppService.ShowLoader();
 
@@ -1757,37 +1761,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             })
         }
-        $scope.getSuspectType();
-        $scope.getAgency();
-        $scope.getDistinguishFeatures();
-        //$scope.getDistinguishFeaturesDetails();
-        $scope.getEntrypoint();
-        $scope.getIncidentLoc();
-        $scope.getIncidentType();
-        $scope.getSuspectType();
-        $scope.getAccidentLoc();
-        $scope.getAccidentType();
-        $scope.getAssetCategory();
-        $scope.getBodyPart();
-        $scope.getClaimRegType();
-        $scope.getClaimStatus();
-        $scope.getClaimType();
-        $scope.getDepartment();
-        $scope.getDocCategory();
-        $scope.getDocType();
-        $scope.getEmpType();
-        $scope.getEventType();
-        $scope.getGenderType();
-        $scope.getInjuredPersonType();
-        $scope.getInjuryType();
-        $scope.getInjuryCause();
-        $scope.getLossType();
-        $scope.getOrg();
-        $scope.getPolicyType();
-        $scope.getPos();
-        $scope.getPosLevel();
-        $scope.getVehicleDamageType();
-        $scope.getWeaponType();
+       
 
         $scope.addIncidentDetails = function () {
 
@@ -3288,6 +3262,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.ShowLoader();
             $http(req).then(function (response) {
                 $scope.incidentSummary = response.data;
+                if($scope.editIncidentMode){
+                    $scope.prepareEditIncidentData();
+                }
+                AppService.HideLoader();
                 //console.log(response.data);
             }, function (error) {
                 AppService.HideLoader();
@@ -3311,14 +3289,76 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
                 //$scope.incidentSummary = response.data;
                 //console.log(response.data);
+                $location.path("/incidents");
             }, function (error) {
                 AppService.HideLoader();
+                alert("Some issue occured while submitting the incident!");
             })
         }
 
+        $scope.prepareEditIncidentData =function(){
+            let incidentSummary = rmsService.cloneObject($scope.incidentSummary);
+            $scope.userInfo = incidentSummary.incidentReportedBy;
+            for(let key in $scope.logIncidentDetails){
+                $scope.logIncidentDetails[key] = incidentSummary[key];
+                if(incidentSummary[key] == 'Y'){
+                    $scope.logIncidentDetails[key] = true;
+                    if(key == "accidentDamage"){
+                        $scope.addTab('accidentForm');
+                    }
+                    if(key == "assetDamage"){
+                        $scope.addTab('assetsForm');
+                    }
+                    if(key == "criminalAttack"){
+                        $scope.addTab('crimeForm');
+                    }
+                }
+                if(incidentSummary[key] == 'N'){
+                    $scope.logIncidentDetails[key] = false
+                }
+            }
+            $scope.handleTabsForRoles()
+        }
+        if($scope.editIncidentMode){
+            $scope.getincidentSummary();
+            
+        }else{
+            $scope.getUserInfo();
+        }
+
+        //get data for dropdown and other details
+        $scope.getSuspectType();
+        $scope.getAgency();
+        $scope.getDistinguishFeatures();
+        //$scope.getDistinguishFeaturesDetails();
+        $scope.getEntrypoint();
+        $scope.getIncidentLoc();
+        $scope.getIncidentType();
+        $scope.getSuspectType();
+        $scope.getAccidentLoc();
+        $scope.getAccidentType();
+        $scope.getAssetCategory();
+        $scope.getBodyPart();
+        $scope.getClaimRegType();
+        $scope.getClaimStatus();
+        $scope.getClaimType();
+        $scope.getDepartment();
+        $scope.getDocCategory();
+        $scope.getDocType();
+        $scope.getEmpType();
+        $scope.getEventType();
+        $scope.getGenderType();
+        $scope.getInjuredPersonType();
+        $scope.getInjuryType();
+        $scope.getInjuryCause();
+        $scope.getLossType();
+        $scope.getOrg();
+        $scope.getPolicyType();
+        $scope.getPos();
+        $scope.getPosLevel();
+        $scope.getVehicleDamageType();
+        $scope.getWeaponType();
         
-        $scope.logOutUser = rmsService.logOutUser;
-        $scope.options = ['Scar', 'Balding', 'Glasses', 'Accent', 'Beard', 'Birth Mark', 'Mole', 'Squint'];
 
     }])
 
