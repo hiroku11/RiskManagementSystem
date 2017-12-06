@@ -815,7 +815,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.addLoss = function (loss) {
-            if ($scope.loss.date == null) {
+            if ($scope.loss.date != null) {
                 $scope.loss.dateTimeContacted = $scope.loss.date;
             } else {
                 $scope.loss.dateTimeContacted = $scope.loss.date + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
@@ -3317,8 +3317,20 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     $scope.logIncidentDetails[key] = false
                 }
             }
-            $scope.handleTabsForRoles()
+            $scope.suspects = incidentSummary.suspects;
+
+            $scope.incidentDetails = {
+                "incidentId":  incidentSummary.incidentId,
+                "uniqueIncidentId": incidentSummary.uniqueIncidentId,
+                "newSuspects": incidentSummary.newSuspects || [],
+                "existingSuspects": incidentSummary.existingSuspects || [],
+                "employeeSuspects": incidentSummary.employeeSuspects || [],
+                "reportedLosses":  incidentSummary.reportedLosses || []
+            }
+            $scope.handleTabsForRoles();
         }
+
+
         if($scope.editIncidentMode){
             $scope.getincidentSummary();
             
