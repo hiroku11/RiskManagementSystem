@@ -178,7 +178,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.accidentDetails = {
             incident: {},
             id: null
-            // "incidentId": $scope.incident.incidentId,
+            //"incidentId": $scope.incident.incidentId,
             // "uniqueIncidentId": $scope.incident.uniqueIncidentId,
             //accident: {},
             // newInjuredPersons: [],
@@ -190,9 +190,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.assetDetail = {
-
-
-
             "id": null,
             "incident": {},
             "statementDescription": null,
@@ -2394,9 +2391,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.addVehicle = function () {
             var req = {
-                url: rmsService.baseEndpointUrl +
-                'asset/add-vehicle/'
-                + $scope.assetDetail.id,
+                url: rmsService.baseEndpointUrl +'asset/add-vehicle/assetId/'+ $scope.assetDetail.id,
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -3327,9 +3322,16 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "employeeSuspects": incidentSummary.employeeSuspects || [],
                 "reportedLosses":  incidentSummary.reportedLosses || []
             }
+            $scope.incident.supportingDocuments = incidentSummary.documents;
+            $scope.accidentDetails = incidentSummary.accident;
+            $scope.witnesses = incidentSummary.accident.witnesses;
+            $scope.injuredPersons = incidentSummary.accident.injuredPersons;
+            $scope.assetDetail = incidentSummary.asset;
+            $scope.buildings = incidentSummary.asset.buildings;
+            $scope.equipments = incidentSummary.asset.equipments;
+            $scope.vehicles = incidentSummary.asset.vehicles;
             $scope.handleTabsForRoles();
         }
-
 
         if($scope.editIncidentMode){
             $scope.getincidentSummary();
