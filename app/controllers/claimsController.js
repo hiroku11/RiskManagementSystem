@@ -38,7 +38,7 @@ var claimsController = riskManagementSystem.controller("claimsController", ["$sc
 
         $scope.getClaims = function () {
             var req = {
-                url: rmsService.baseEndpointUrl+"/rmsrest/s/claim/claimHandlerLoginId/" +$scope.authorizedUser.loginId,
+                url: rmsService.baseEndpointUrl+"claim/claimHandlerLoginId/" +$scope.authorizedUser.loginId,
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,

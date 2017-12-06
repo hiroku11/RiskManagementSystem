@@ -2,7 +2,7 @@
     this.AppService = AppService;
     $scope.loginUser = function() {
         var req = {
-            url: rmsService.baseEndpointUrl+'/rmsrest/p/api/login',
+            url: 'https://b2897cdb.ngrok.io/rmsrest/p/api/login',
             method: "POST",
             headers: { 'Authorization': 'Basic ' + $window.btoa(unescape(encodeURIComponent($scope.username + ':' + $scope.password))) },
         }

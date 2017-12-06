@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <div ng-if="logIncidentDetails.accidentDamage == 'Y' || logIncidentDetails.vehicleOrAssetDamage == 'Y' || logIncidentDetails.criminalAttack == 'Y'">
+        <div ng-if="logIncidentDetails.accidentDamage || logIncidentDetails.vehicleOrAssetDamage  || logIncidentDetails.criminalAttack">
             <h3 class="form-title">Suspect</h3>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -265,7 +265,7 @@
                     <span class="input-group-addon">
                                 <span class="fa fa-gbp"></span>
                     </span>
-                    <input class="form-control" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue">
+                    <input class="form-control" blur-to-currency amount="loss.lossValue" placeholder="0,000,000.00" type="text" ng-model="loss.lossValue">
                 </p>
             </div>
 
@@ -296,17 +296,12 @@
         <div class="row" data-id="Police">
             <div class="col-sm-12 col-md-6">
                 <label>Date External Agency Called</label>
-
                 <p class="input-group">
-
-                    <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd-MM-yyyy" ng-model="loss.date" ng-focus="calendar.open($event,'date')"
+                    <input type="text" class="form-control" date-formatter uib-datepicker-popup="dd-MM-yyyy" ng-model="$parent.loss.date" ng-focus="calendar.open($event,'date')"
                      is-open="calendar.opened.date" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
                     <span class="input-group-addon" ng-click="calendar.open($event,'date')">
                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                   
-                   
-
                 </p>
 
             </div>
@@ -322,7 +317,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Incident Reference Number</label>
-                <input class="form-control" type="text" ng-model="incident.uniqueIncidentId" readonly>
+                <input class="form-control" type="text" ng-model="incident.incidentId" readonly>
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Damage Cost Estimation</label>
