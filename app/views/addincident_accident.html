@@ -267,29 +267,29 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-4">
                 <label>Type of injury</label>
                 <select ng-model="injuredPerson.injuryType.id" class="form-control" ng-options="injuryType.id as injuryType.description for injuryType in injuryTypes">
 					<option value="">--Select--</option>
 				</select>
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-4">
                 <label>If Injury Type Other:</label>
                 <input class="form-control" type="text" ng-disabled="injuredPerson.injuryType.id !='OTHER'" ng-model="injuredPerson.injuryTypeOther">
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-4" ng-disabled="injuredPerson.injuryType.id =='OTHER'">
                 <label>Injury Type Detail</label>
                 <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetail.id" ng-disabled="!injuredPerson.injuryType.id" ng-options="injuryTypeDetail.id as injuryTypeDetail.description for injuryTypeDetail in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails) ">
                     <option value=''>Select</option>
                     </select>
             </div>
 
-            <div class="col-sm-12 col-md-3">
+            <!-- <div class="col-sm-12 col-md-3">
                 <label>Injury Type Detail Other</label>
                 <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetailsSpec.id" ng-disabled="!injuredPerson.injuryTypeDetail.id" ng-options="injuryTypeDetailsSpec.id as injuryTypeDetailsSpec.description for injuryTypeDetailsSpec in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails.injuryTypeDetailSpecs) ">
                     <option value=''>--Select--</option>
                     </select>
-            </div>
+            </div> -->
 
         </div>
 

@@ -132,13 +132,17 @@
                 </div>
                 <div class="row">
 
-                    <div class="col-sm-12 col-md-6 ">
+                    <div class="col-sm-12 col-md-4">
                         <label>Incident Location</label>
                         <select class="form-control" ng-model="logIncidentDetails.incidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
                             <option value=''>Select</option>
                         </select>
                     </div>
-                    <div class="col-sm-12 col-md-6 ">
+                    <div class="col-md-4 col-sm-12">
+                        <label>Incident Location Others:</label>
+                        <input class="form-control" type="text" ng-disabled="logIncidentDetails.incidentLocation.id !='OTHER'" ng-model="logIncidentDetails.incidentLocationOther" />
+                    </div>
+                    <div class="col-sm-12 col-md-4">
                         <label>Incident Location Details</label>
                         <select ng-model="logIncidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!logIncidentDetails.incidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
 

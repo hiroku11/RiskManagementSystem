@@ -38,13 +38,13 @@
                 </div>
                 <div class="col-sm-12 col-md-6">
                     <label>Building Name </label>
-                    <input class="form-control" ng-model="building.buildingDescription"></textarea>
+                    <input class="form-control" ng-model="building.buildingName"></textarea>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-12">
                     <label>Description</label>
-                    <input class="form-control" ng-model="building.incidentDescription"></textarea>
+                    <input class="form-control" ng-model="building.buildingDescription"></textarea>
                 </div>
             </div>
             <div class="row">
@@ -61,8 +61,8 @@
                     <thead>
                         <tr>
                             <th>Building Id</th>
+                            <th>Building Name</th>
                             <th>Building Description</th>
-                            <th>Incident Description</th>
                             <td>
                                 &nbsp;
                             </td>
@@ -72,8 +72,8 @@
                     <tbody>
                         <tr ng-repeat="building in buildings">
                             <td>{{building.buildingId}}</td>
+                            <td>{{building.buildingName}}</td>
                             <td>{{building.buildingDescription}}</td>
-                            <td>{{building.incidentDescription}}</td>
                             <td>
                                     <a ng-click="deleteBuilding(building)">
                                         <i class="glyphicon glyphicon-trash"></i>
