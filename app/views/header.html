@@ -64,8 +64,10 @@
         let $elm= $(event.target);
         if( $elm.data("elem") != "smallMenu"){
             var scope = angular.element($(".sm-navbar")).scope();
-            scope.showMenu = false;
-            scope.$apply();
+            if(typeof scope !=="undefined"){
+                scope.showMenu = false;
+                scope.$apply();
+            }
         }
         
     })
