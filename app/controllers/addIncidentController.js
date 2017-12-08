@@ -1,5 +1,5 @@
-var addIncidentController = riskManagementSystem.controller("addIncidentController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', '$state',
-    function ($scope, AppService, rmsService, $location, $window, $http, $state) {
+var addIncidentController = riskManagementSystem.controller("addIncidentController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', '$state','dateformatterFilter',
+    function ($scope, AppService, rmsService, $location, $window, $http, $state,dateformatterFilter) {
         $scope.token = localStorage.getItem('rmsAuthToken');
         $scope.thisView = "incidents";
         $scope.authorizedUser = rmsService.decryptToken();
@@ -826,7 +826,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             let loss = rmsService.cloneObject($scope.loss);
             //$scope.loss.timeHrsContacted;
             //$scope.loss.timeMinContacted;
-            loss.dateTimeContacted = loss.date + " " + loss.timeHrsContacted + ":" +loss.timeMinContacted +":00";
+
+            loss.dateTimeContacted = rmsService.formatDate(loss.date) + " " + (loss.timeHrsContacted || '00') + ":" + (loss.timeMinContacted||'00') +":00";
             $scope.loss.incident = {
                 id: $scope.incident.incidentId
             }
@@ -921,7 +922,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             let loss = rmsService.cloneObject($scope.loss);
             //$scope.loss.timeHrsContacted;
             //$scope.loss.timeMinContacted;
-            loss.dateTimeContacted = loss.date + " " + loss.timeHrsContacted + ":" +loss.timeMinContacted +":00";
+
+            loss.dateTimeContacted = rmsService.formatDate(loss.date) + " " + (loss.timeHrsContacted||'00') + ":" + (loss.timeMinContacted||'00') +":00";
             var req = {
                 url: rmsService.baseEndpointUrl + 'reported-loss/update-reported-loss',
                 method: "PUT",
@@ -954,12 +956,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.addAccident = function () {
             $scope.accAdded = true;
-            if ($scope.accidentDetails.accidentDate == null) {
-                $scope.accidentDetails.accidentDateTime = $scope.accidentDetails.accidentDate;
-            } else {
-                $scope.accidentDetails.accidentDateTime = $scope.accidentDetails.accidentDate + " " + $scope.accidentDetails.accidentTimeHrs + ":" + $scope.accidentDetails.accidentTimeMin;
-            }
-            $scope.accidentDetails.incident = {
+            let accident = rmsService.cloneObject($scope.accidentDetails);
+            accident.accidentDateTime = rmsService.formatDate(accident.accidentDate) + " " + (accident.accidentTimeHrs || '00') + ":" + (accident.accidentTimeMin ||'00') +":00";
+            accident.incident = {
                 id: $scope.incident.incidentId
             }
 
@@ -969,10 +968,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-                data: $scope.accidentDetails
+                data: accident
             }
             AppService.ShowLoader();
-
             $http(req).then(function (response) {
                 AppService.HideLoader();
                 $scope.accidentDetails.id = response.data.id;
@@ -982,15 +980,23 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         }
         $scope.addClaimDetails = function () {
-            
+            if($scope.claimDetail.incident == null){
+                $scope.claimDetail.incident = {};
+            }
              $scope.claimDetail.incident.id= $scope.incident.incidentId;
+             let claim = rmsService.cloneObject( $scope.claimDetail);
+            for(let key in claim){
+                if(key.toLowerCase().indexOf('date')>-1){
+                    claim[key] = rmsService.formatDate(claim[key]);
+                }
+            }
              var req = {
-                 url: rmsService.baseEndpointUrl + '/rmsrest/s/claim/add-or-update-claim',
+                 url: rmsService.baseEndpointUrl + 'claim/add-or-update-claim',
                  method: "POST",
                  headers: {
                      'X-AUTH-TOKEN': $scope.token
                  },
-                 data: $scope.claimDetail
+                 data: claim
              }
              AppService.ShowLoader();
  
@@ -1004,7 +1010,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
          }
          $scope.DeleteClaim = function(){
              var req = {
-                 url: rmsService.baseEndpointUrl + '/rmsrest/s/claim/delete-claim/claimId/'+ $scope.claimDetail.id,
+                 url: rmsService.baseEndpointUrl + 'claim/delete-claim/claimId/'+ $scope.claimDetail.id,
                  method: "DELETE",
                  headers: {
                      'X-AUTH-TOKEN': $scope.token
@@ -1023,7 +1029,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
          }
         $scope.getClaimHandler = function(){
          var req = {
-             url: rmsService.baseEndpointUrl + '/rmsrest/s/claim/incidentId/'+ $scope.incident.incidentId,
+             url: rmsService.baseEndpointUrl + 'claim/incidentId/'+ $scope.incident.incidentId,
              method: "GET",
              headers: {
                  'X-AUTH-TOKEN': $scope.token
@@ -1096,7 +1102,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.logIncident = function () {
             let logIncidentDetails = rmsService.cloneObject($scope.logIncidentDetails);
-            logIncidentDetails.dateOfIncident = logIncidentDetails.date + " " + logIncidentDetails.timeHrsOfIncident + ":" + logIncidentDetails.timeMinOfIncident+":00";
+            logIncidentDetails.dateOfIncident = rmsService.formatDate(logIncidentDetails.date) + " " + (logIncidentDetails.timeHrsOfIncident||'00') + ":" + (logIncidentDetails.timeMinOfIncident ||'00')+":00";
             logIncidentDetails.accidentDamage ? logIncidentDetails.accidentDamage = "Y" : logIncidentDetails.accidentDamage = "N";
             logIncidentDetails.assetDamage ? logIncidentDetails.assetDamage = "Y" : logIncidentDetails.assetDamage = "N";
             logIncidentDetails.criminalAttack ? logIncidentDetails.criminalAttack = "Y" : logIncidentDetails.criminalAttack = "N";
@@ -1854,12 +1860,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.addCrimeDetails = function () {
             let crimeDetails = rmsService.cloneObject($scope.crimeDetails);
-            if (crimeDetails.date == undefined) {
+            if (typeof crimeDetails.date == 'undefined') {
                crimeDetails.crimeDateTime = null
+            }else {
+                crimeDetails.crimeDateTime = rmsService.formatDate(crimeDetails.date) + " " +(crimeDetails.timeHrs||'00') + ":" + (crimeDetails.timeMin||'00') + ":00";
             }
-            else {
-                crimeDetails.crimeDateTime =crimeDetails.date + " " +crimeDetails.timeHrs + ":" + crimeDetails.timeMin + ":00";
-
+            if(crimeDetails.incident == null){
+                crimeDetails.incident = {};
             }
             crimeDetails.incident.id= $scope.incident.incidentId;
             crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
@@ -3416,11 +3423,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.crimeDetails = incidentSummary.crime;
             $scope.crimeWitnesses = incidentSummary.crime.witnesses.concat(incidentSummary.crime.employeeWitnesses);
             $scope.crimesuspects = incidentSummary.crime.crimeSuspects.concat(incidentSummary.crime.employeeCrimeSuspects);
+            $scope.claimDetail = incidentSummary.claim;
+            for(let key in $scope.claimDetail){
+                if(key.toLowerCase().indexOf("date") > -1){
+                    $scope.claimDetail = new Date($scope.claimDetail[key]);
+                }
+            }
+            $scope.investigationDetails = incidentSummary.investigation;
         }
 
         if($scope.editIncidentMode){
-            $scope.getincidentSummary();
-            
+            $scope.getincidentSummary();   
         }else{
             $scope.getUserInfo();
         }

@@ -76,6 +76,11 @@
         this.cloneObject = function(obj){
             return JSON.parse(JSON.stringify(obj));
         }
+        this.formatDate = function(data){
+            let date = new Date(data);
+            let out = (date.getDate().toString().length ==1?'0'+date.getDate():date.getDate()) + "/"+(date.getMonth()+1)+"/"+date.getFullYear();
+            return out;
+        }
         
     })
     
