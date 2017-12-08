@@ -210,7 +210,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             },
             "policyType": {
                 "id": null
-            }
+            },
+            "claimStatus": {
+                "id": null
+              },
         }
         $scope.investigationDetails = {
             "incidentId": "",
@@ -537,6 +540,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }
                 if (formName == "crimeForm") {
                     // $scope.addCrimeDetails();
+                }
+                if(formName == "claimForm"){
+                    $scope.addClaimDetails();
                 }
                 if (formName == "investigationForm") {
                     $scope.addInvestigationDetails();
@@ -974,6 +980,65 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             })
 
+        }
+        $scope.addClaimDetails = function () {
+            
+             $scope.claimDetail.incident.id= $scope.incident.incidentId;
+             var req = {
+                 url: rmsService.baseEndpointUrl + '/rmsrest/s/claim/add-or-update-claim',
+                 method: "POST",
+                 headers: {
+                     'X-AUTH-TOKEN': $scope.token
+                 },
+                 data: $scope.claimDetail
+             }
+             AppService.ShowLoader();
+ 
+             $http(req).then(function (response) {
+                 AppService.HideLoader();
+                 $scope.claimDetail.id = response.data.id;
+             }, function (error) {
+                 AppService.HideLoader();
+             })
+ 
+         }
+         $scope.DeleteClaim = function(){
+             var req = {
+                 url: rmsService.baseEndpointUrl + '/rmsrest/s/claim/delete-claim/claimId/'+ $scope.claimDetail.id,
+                 method: "DELETE",
+                 headers: {
+                     'X-AUTH-TOKEN': $scope.token
+                 },
+                 data: $scope.claimDetail
+             }
+             AppService.ShowLoader();
+ 
+             $http(req).then(function (response) {
+                 AppService.HideLoader();
+                 $scope.claimDetail = {};
+             }, function (error) {
+                 AppService.HideLoader();
+                 alert(error);
+             })
+         }
+        $scope.getClaimHandler = function(){
+         var req = {
+             url: rmsService.baseEndpointUrl + '/rmsrest/s/claim/incidentId/'+ $scope.incident.incidentId,
+             method: "GET",
+             headers: {
+                 'X-AUTH-TOKEN': $scope.token
+             },
+             data: $scope.claimDetail
+         }
+         AppService.ShowLoader();
+ 
+         $http(req).then(function (response) {
+             AppService.HideLoader();
+            // $scope.claimDetail.claimHA
+         }, function (error) {
+             AppService.HideLoader();
+             alert(error);
+         })
         }
 
         $scope.selectSupportingDocumnet = function (doc, $event) {
