@@ -5,7 +5,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.authorizedUser = rmsService.decryptToken();
         $scope.loggedInUser = rmsService.getLoggedInUser();
         $scope.logOutUser = rmsService.logOutUser;
-        $scope.isAdminRole = rmsService.isAdminRole()
+        $scope.isAdminRole = rmsService.isAdminRole();
+        $scope.altInputFormats = ['M!/d!/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy'];
         if (!$scope.isAdminRole) {
             $location.path("/incidents");
         }
@@ -508,7 +509,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 //$scope.tab = $scope.tabs[index - 1].tab;
                 $scope.activeTab = $scope.tabs[index - 1];
                 //$scope.getData();
-                $scope.getincidentSummary();
+                if(!$scope.incidentSummary){
+                    $scope.getincidentSummary();
+                }
+                
             } else {
                 if ($scope.activeTab.formAction == "saveContinue" || dir == "next") {
 
@@ -817,12 +821,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
         }
 
-        $scope.addLoss = function (loss) {
-            if ($scope.loss.date != null) {
-                $scope.loss.dateTimeContacted = $scope.loss.date;
-            } else {
-                $scope.loss.dateTimeContacted = $scope.loss.date + " " + $scope.loss.timeHrsContacted + ":" + $scope.loss.timeMinContacted;
-            }
+        $scope.addLoss = function () {
+
+            let loss = rmsService.cloneObject($scope.loss);
+            //$scope.loss.timeHrsContacted;
+            //$scope.loss.timeMinContacted;
+            loss.dateTimeContacted = loss.date + " " + loss.timeHrsContacted + ":" +loss.timeMinContacted +":00";
             $scope.loss.incident = {
                 id: $scope.incident.incidentId
             }
@@ -833,7 +837,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-                data: $scope.loss
+                data: loss
             }
             AppService.ShowLoader();
 
@@ -845,8 +849,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             })
 
-            delete $scope.loss.timeHrsContacted;
-            delete $scope.loss.timeMinContacted;
+            
 
             //$scope.incidentDetails.reportedLosses.push($scope.loss);
             //reinitialize the loss so that new can be added
@@ -882,7 +885,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
 
-        $scope.loadLossData = function (loss) {
+        $scope.loadLoss = function (loss) {
             $scope.editLoss = true;
             $scope.loss = loss;
 
@@ -915,13 +918,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.updateLoss = function () {
             $scope.editLoss = false;
+            let loss = rmsService.cloneObject($scope.loss);
+            //$scope.loss.timeHrsContacted;
+            //$scope.loss.timeMinContacted;
+            loss.dateTimeContacted = loss.date + " " + loss.timeHrsContacted + ":" +loss.timeMinContacted +":00";
             var req = {
                 url: rmsService.baseEndpointUrl + 'reported-loss/update-reported-loss',
                 method: "PUT",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-                data: $scope.loss
+                data: loss
             }
             AppService.ShowLoader();
 
@@ -932,8 +939,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }, function (error) {
                 AppService.HideLoader();
             })
-            delete $scope.loss.timeHrsContacted;
-            delete $scope.loss.timeMinContacted;
 
             //$scope.incidentDetails.reportedLosses.push($scope.loss);
             //reinitialize the loss so that new can be added
@@ -1091,7 +1096,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.logIncident = function () {
             let logIncidentDetails = rmsService.cloneObject($scope.logIncidentDetails);
-            logIncidentDetails.dateOfIncident = logIncidentDetails.date + " " + logIncidentDetails.timeHrsContacted + ":" + logIncidentDetails.timeMinContacted;
+            logIncidentDetails.dateOfIncident = logIncidentDetails.date + " " + logIncidentDetails.timeHrsOfIncident + ":" + logIncidentDetails.timeMinOfIncident+":00";
             logIncidentDetails.accidentDamage ? logIncidentDetails.accidentDamage = "Y" : logIncidentDetails.accidentDamage = "N";
             logIncidentDetails.assetDamage ? logIncidentDetails.assetDamage = "Y" : logIncidentDetails.assetDamage = "N";
             logIncidentDetails.criminalAttack ? logIncidentDetails.criminalAttack = "Y" : logIncidentDetails.criminalAttack = "N";
@@ -1848,17 +1853,16 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.addCrimeDetails = function () {
-            if ($scope.crimeDetails.date == undefined) {
-                $scope.crimeDetails.crimeDateTime = null
+            let crimeDetails = rmsService.cloneObject($scope.crimeDetails);
+            if (crimeDetails.date == undefined) {
+               crimeDetails.crimeDateTime = null
             }
             else {
-                $scope.crimeDetails.crimeDateTime = $scope.crimeDetails.date + " " + $scope.crimeDetails.timeHrs + ":" + $scope.crimeDetails.timeMin + ":00";
+                crimeDetails.crimeDateTime =crimeDetails.date + " " +crimeDetails.timeHrs + ":" + crimeDetails.timeMin + ":00";
 
             }
-            delete $scope.crimeDetails.timeHrs;
-            delete $scope.crimeDetails.timeMin;
-            delete $scope.crimeDetails.date;
-            $scope.crimeDetails.incident.id = $scope.incident.incidentId;
+            crimeDetails.incident.id= $scope.incident.incidentId;
+            crimeDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
 
 
             var req = {
@@ -1867,7 +1871,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-                data: $scope.crimeDetails
+                data:crimeDetails
             }
             AppService.ShowLoader();
 
@@ -3387,15 +3391,31 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "employeeSuspects": incidentSummary.employeeSuspects || [],
                 "reportedLosses":  incidentSummary.reportedLosses || []
             }
+            $scope.incidentDetails.reportedLosses.map((loss)=>{
+                let splitDate = loss.dateTimeContacted.split(" ");
+                loss.date = new Date(splitDate[0].split("/").reverse().join("-"));
+                let time  = splitDate[1].split(":");
+                loss.timeHrsContacted =  time[0];
+                loss.timeMinContacted =  time[1];
+            });
+
             $scope.incident.supportingDocuments = incidentSummary.documents;
+
+            incidentSummary.accident == null?incidentSummary.accident = {}:incidentSummary.asset;
             $scope.accidentDetails = incidentSummary.accident;
             $scope.witnesses = incidentSummary.accident.witnesses;
             $scope.injuredPersons = incidentSummary.accident.injuredPersons;
+
+            incidentSummary.asset == null?incidentSummary.asset = {}:incidentSummary.asset;
             $scope.assetDetail = incidentSummary.asset;
             $scope.buildings = incidentSummary.asset.buildings;
             $scope.equipments = incidentSummary.asset.equipments;
             $scope.vehicles = incidentSummary.asset.vehicles;
-            $scope.handleTabsForRoles();
+
+            incidentSummary.crime == null?incidentSummary.crime = {}:incidentSummary.crime;
+            $scope.crimeDetails = incidentSummary.crime;
+            $scope.crimeWitnesses = incidentSummary.crime.witnesses.concat(incidentSummary.crime.employeeWitnesses);
+            $scope.crimesuspects = incidentSummary.crime.crimeSuspects.concat(incidentSummary.crime.employeeCrimeSuspects);
         }
 
         if($scope.editIncidentMode){
