@@ -49,7 +49,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-4" ng-if="!editBuilding">
-                    <a class="btn btn-primary" ng-click="addBuilding()">Add Building</a>
+                    <button class="btn btn-primary" ng-click="addBuilding()" ng-disabled="!assetAdded">Add Building</button>
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="editBuilding">
                         <a class="btn btn-success" ng-click="updateBuilding(building)">
@@ -115,7 +115,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-4" ng-if="!editequipment">
-                    <a class="btn btn-primary" ng-click="addEquipement()">Add Equipment</a>
+                    <button class="btn btn-primary" ng-click="addEquipement()" ng-disabled="!assetAdded">Add Equipment</button>
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="editequipment">
                         <a class="btn btn-success" ng-click="updateEquipment(equipment)">
@@ -210,7 +210,7 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-md-4" ng-if="!editvehicle">
-                    <a class="btn btn-primary" ng-click="addVehicle()">Add Vehicle</a>
+                    <button class="btn btn-primary" ng-click="addVehicle()" ng-disabled="!assetAdded">Add Vehicle</button>
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="editvehicle">
                         <a class="btn btn-success" ng-click="updateVehicle(vehicle)">
@@ -254,7 +254,7 @@
 
         <div class="row ">
             <div class="col-md-6 col-sm-12">
-                <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
+                <!-- <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button> -->
                 <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 

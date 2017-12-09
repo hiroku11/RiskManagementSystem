@@ -317,7 +317,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Incident Reference Number</label>
-                <input class="form-control" type="text" ng-model="incident.incidentId" readonly>
+                <input class="form-control" type="text" ng-model="incident.uniqueIncidentId" readonly>
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Damage Cost Estimation</label>
@@ -375,8 +375,8 @@
 
         <div class="row ">
             <div class="col-md-6 col-sm-12">
-                <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
-                <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
+                <!-- <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button> -->
+                <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 
             <div class="col-md-6 col-sm-12">
