@@ -699,14 +699,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
-
                 $scope.getSuspectData();
                 $scope.suspect.distinguishingFeatures = $scope.suspect.distinguishFeaturesDetails;
                 AppService.HideLoader();
-
             }, function (error) {
                 AppService.HideLoader();
-            })
+            });
+            
+            $scope.suspect = {
+                addresses: [{
+                    "id": null,
+                    "statusFlag": "ACTIVE"
+                }]
+            }
         }
         $scope.addEmployeeSuspect = function (person) {
             if (person.selected) {
@@ -892,19 +897,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
                 $scope.incidentDetails.reportedLosses = response.data;
                 $scope.incidentDetails.reportedLosses.map((loss)=>{
-                    if(loss.dateTimeContacted == null) return;
-                    let splitDate = loss.dateTimeContacted.split(" ");
-                    loss.date = new Date(splitDate[0].split("/").reverse().join("-"));
-                    let time  = splitDate[1].split(":");
-                    loss.timeHrsContacted =  time[0];
-                    loss.timeMinContacted =  time[1];
+                  loss = $scope.lossDateFormat(loss);
                 });
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
             })
         }
-
+        $scope.lossDateFormat = function(loss){
+                if(loss.dateTimeContacted == null) return;
+                let splitDate = loss.dateTimeContacted.split(" ");
+                loss.date = splitDate[0];
+                let time  = splitDate[1].split(":");
+                loss.timeHrsContacted =  time[0];
+                loss.timeMinContacted =  time[1];
+                return loss;
+        }
         $scope.loadLoss = function (loss) {
             $scope.editLoss = true;
             $scope.loss = rmsService.cloneObject(loss);
@@ -3397,7 +3405,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
              //incident/uniqueIncidentId/IN010917203918
              let req = {
                 url: rmsService.baseEndpointUrl + 'incident/submit-incident',
-                method: "GET",
+                method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
@@ -3449,12 +3457,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "reportedLosses":  incidentSummary.reportedLosses || []
             }
             $scope.incidentDetails.reportedLosses.map((loss)=>{
-                if(loss.dateTimeContacted == null) return;
-                let splitDate = loss.dateTimeContacted.split(" ");
-                loss.date = new Date(splitDate[0].split("/").reverse().join("-"));
-                let time  = splitDate[1].split(":");
-                loss.timeHrsContacted =  time[0];
-                loss.timeMinContacted =  time[1];
+                loss = $scope.lossDateFormat(loss);
             });
 
             $scope.incident.supportingDocuments = incidentSummary.documents;
