@@ -9,6 +9,7 @@
 
     <div class="col-md-10 content">
         <div class="incidents">
+                <a class="btn btn-primary delete-incident pull-right " ng-click="getData()"> <i class="glyphicon glyphicon-done menu-icon"></i>Reset</a>
             <div class="pull-right advanced-search">
                 <a class="btn btn-primary" id="btnAdvanceSearch" data-toggle="modal" data-target="#myModal" ng-click="loadAPI()">Advanced Search</a>
             </div>
@@ -20,6 +21,7 @@
                     <span class="glyphicon glyphicon-search"></span>
                     </button>
                     </span>
+                  
                 </div>
             </div>
             <h3>
@@ -27,7 +29,7 @@
                 <a class="btn btn-primary add-incident" ui-sref="addincident"> <i class="glyphicon glyphicon-plus menu-icon"></i>Add</a>
 
                 <a class="btn btn-danger delete-incident"> <i class="glyphicon glyphicon-trash menu-icon"></i>Delete</a>
-                <a class="btn btn-primary delete-incident" ng-click="getData()"> <i class="glyphicon glyphicon-done menu-icon"></i>Reset</a>
+               
             </h3>
 
             <table class="table table-bordered incident-list">

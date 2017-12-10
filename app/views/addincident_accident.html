@@ -201,16 +201,16 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-4" ng-if="!editWitness">
-                        <a class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()" ng-disabled="!accAdded">Add Witness</a>
+                        <button class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()" ng-disabled="!accAdded">Add Witness</button>
                     </div>
                     <div class="col-sm-12 col-md-4" ng-if="editWitness">
-                            <a class="btn btn-success" ng-click="updateWitness(witness)">Update Witness</a>
+                            <button class="btn btn-success" ng-click="updateWitness(witness)">Update Witness</button>
                         </div>
                     <div class="col-sm-12 col-md-4">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal7" ng-disabled="!accAdded">Add Existing Witness</a>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal7" ng-disabled="!accAdded">Add Existing Witness</button>
                     </div>
                     <div class="col-sm-12 col-md-4">
-                        <a class="btn btn-primary" data-toggle="modal" data-target="#myModal8" ng-disabled="!accAdded">Add Employee Witness</a>
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal8" ng-disabled="!accAdded">Add Employee Witness</button>
                     </div>
                 </div>
     
@@ -454,18 +454,18 @@
 
         <div class="row">
             <div class="col-sm-12 col-md-4" ng-if="!editInjured">
-                <a class="btn btn-primary" ng-click="addInjuredPerson()" ng-disabled="!accAdded">Add Injured Person</a>
+                <button class="btn btn-primary" ng-click="addInjuredPerson()" ng-disabled="!accAdded">Add Injured Person</button>
             </div>
             <div class="col-sm-12 col-md-4" ng-if="editInjured">
-                    <a class="btn btn-success" ng-click="updateInjured(suspect)">Update Injured Person</a>
+                    <button class="btn btn-success" ng-click="updateInjured(suspect)">Update Injured Person</button>
                 </div>
             <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal5" ng-disabled="!accAdded">Add Existing Injured Person</a>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal5" ng-disabled="!accAdded">Add Existing Injured Person</button>
             </div>
 
 
             <div class="col-sm-12 col-md-4">
-                <a class="btn btn-primary" data-toggle="modal" data-target="#myModal6" ng-disabled="!accAdded">Add Employee Injured Person</a>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal6" ng-disabled="!accAdded">Add Employee Injured Person</button>
             </div>
         </div>
 

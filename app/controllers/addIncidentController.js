@@ -30,6 +30,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.editsuspect = false;
         $scope.editLoss = false;
         $scope.accAdded = false;
+        $scope.assetAdded = false;
         $scope.editInjured = false;
         $scope.editWitness = false;
         $scope.editequipment = false;
@@ -822,16 +823,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.addLoss = function () {
-
-            let loss = rmsService.cloneObject($scope.loss);
-            //$scope.loss.timeHrsContacted;
-            //$scope.loss.timeMinContacted;
-
-            loss.dateTimeContacted = rmsService.formatDate(loss.date) + " " + (loss.timeHrsContacted || '00') + ":" + (loss.timeMinContacted||'00') +":00";
             $scope.loss.incident = {
                 id: $scope.incident.incidentId
             }
 
+            let loss = rmsService.cloneObject($scope.loss);
+            //$scope.loss.timeHrsContacted;
+            //$scope.loss.timeMinContacted;
+            var date = rmsService.formatDate(loss.date);
+            if(date != null){
+                loss.dateTimeContacted = date + " " + (loss.timeHrsContacted || '00') + ":" + (loss.timeMinContacted||'00') +":00";
+            } 
+            else{
+                loss.dateTimeContacted = date;
+            }
+         
+            
             var req = {
                 url: rmsService.baseEndpointUrl + 'reported-loss/create-reported-loss',
                 method: "POST",
@@ -922,8 +929,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             let loss = rmsService.cloneObject($scope.loss);
             //$scope.loss.timeHrsContacted;
             //$scope.loss.timeMinContacted;
-
-            loss.dateTimeContacted = rmsService.formatDate(loss.date) + " " + (loss.timeHrsContacted||'00') + ":" + (loss.timeMinContacted||'00') +":00";
+            var date = rmsService.formatDate(loss.date);
+            if(date != null){
+                loss.dateTimeContacted = date + " " + (loss.timeHrsContacted || '00') + ":" + (loss.timeMinContacted||'00') +":00";
+            } 
+            else{
+                loss.dateTimeContacted = date;
+            }
+            //loss.dateTimeContacted =  rmsService.formatDate(loss.date) + " " + (loss.timeHrsContacted||'00') + ":" + (loss.timeMinContacted||'00') +":00";
             var req = {
                 url: rmsService.baseEndpointUrl + 'reported-loss/update-reported-loss',
                 method: "PUT",
@@ -955,9 +968,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         }
         $scope.addAccident = function () {
-            $scope.accAdded = true;
-            let accident = rmsService.cloneObject($scope.accidentDetails);
-            accident.accidentDateTime = rmsService.formatDate(accident.accidentDate) + " " + (accident.accidentTimeHrs || '00') + ":" + (accident.accidentTimeMin ||'00') +":00";
+            
+            let accident = rmsService.cloneObject($scope.accidentDetails); 
+            var date = rmsService.formatDate(accident.accidentDate);
+            if(date != null){
+                accident.accidentDateTime = date + " " + (accident.accidentTimeHrs || '00') + ":" + (accident.accidentTimeMin ||'00') +":00";
+            } 
+            else{
+                accident.accidentDateTime = date;
+            }
+
+          //  accident.accidentDateTime = rmsService.formatDate(accident.accidentDate) + " " + (accident.accidentTimeHrs || '00') + ":" + (accident.accidentTimeMin ||'00') +":00";
             accident.incident = {
                 id: $scope.incident.incidentId
             }
@@ -973,8 +994,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.ShowLoader();
             $http(req).then(function (response) {
                 AppService.HideLoader();
+                $scope.accAdded = true;
                 $scope.accidentDetails.id = response.data.id;
             }, function (error) {
+                alert(error);
                 AppService.HideLoader();
             })
 
@@ -1102,7 +1125,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.logIncident = function () {
             let logIncidentDetails = rmsService.cloneObject($scope.logIncidentDetails);
-            logIncidentDetails.dateOfIncident = rmsService.formatDate(logIncidentDetails.date) + " " + (logIncidentDetails.timeHrsOfIncident||'00') + ":" + (logIncidentDetails.timeMinOfIncident ||'00')+":00";
+            var date = rmsService.formatDate(logIncidentDetails.date);
+            if(date != null){
+                logIncidentDetails.dateOfIncident = date + " " +  (logIncidentDetails.timeHrsOfIncident||'00') + ":" + (logIncidentDetails.timeMinOfIncident ||'00')+":00";
+            } 
+            else{
+                logIncidentDetails.dateOfIncident = date;
+            }
+            //logIncidentDetails.dateOfIncident = rmsService.formatDate(logIncidentDetails.date) + " " + (logIncidentDetails.timeHrsOfIncident||'00') + ":" + (logIncidentDetails.timeMinOfIncident ||'00')+":00";
             logIncidentDetails.accidentDamage ? logIncidentDetails.accidentDamage = "Y" : logIncidentDetails.accidentDamage = "N";
             logIncidentDetails.assetDamage ? logIncidentDetails.assetDamage = "Y" : logIncidentDetails.assetDamage = "N";
             logIncidentDetails.criminalAttack ? logIncidentDetails.criminalAttack = "Y" : logIncidentDetails.criminalAttack = "N";
@@ -1860,7 +1890,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.addCrimeDetails = function () {
             let crimeDetails = rmsService.cloneObject($scope.crimeDetails);
-            if (typeof crimeDetails.date == 'undefined') {
+            if (crimeDetails.date == 'undefined') {
                crimeDetails.crimeDateTime = null
             }else {
                 crimeDetails.crimeDateTime = rmsService.formatDate(crimeDetails.date) + " " +(crimeDetails.timeHrs||'00') + ":" + (crimeDetails.timeMin||'00') + ":00";
@@ -2365,6 +2395,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.assetDetail.id = response.data.id;
+                $scope.assetAdded = true;
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
