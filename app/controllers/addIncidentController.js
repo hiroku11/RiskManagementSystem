@@ -901,9 +901,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.loadLoss = function (loss) {
             $scope.editLoss = true;
-            $scope.loss = loss;
+            $scope.loss = rmsService.cloneObject(loss);
             if(loss.dateTimeContacted != null && loss.dateTimeContacted != undefined){
-                $scope.loss.date = rmsService.formatDate(loss.dateTimeContacted.split(" ")[0]);
+                $scope.loss.date = new Date(rmsService.formatDate(loss.dateTimeContacted.split(" ")[0]));
                 let time = loss.dateTimeContacted.split(" ")[1].split(":");
                 $scope.loss.timeHrsContacted =  time[0] || "00",
                 $scope.loss.timeMinContacted = time[1] || "00";

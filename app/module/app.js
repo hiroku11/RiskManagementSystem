@@ -114,7 +114,10 @@ riskManagementSystem.filter('dateformatter', function () {
         }
         input = input || '';
         let out = '';
-        let date = new Date(input);
+        if(typeof input.getMonth === 'function'){
+           input = input.toLocaleDateString();
+        }
+        let date = new Date(input.split(" ")[0]);
         out = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
         return out;
     };
