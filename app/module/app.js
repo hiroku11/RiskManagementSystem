@@ -26,6 +26,14 @@ riskManagementSystem.config(['$stateProvider', '$urlRouterProvider', '$compilePr
             controller: 'addIncidentController',
         }).state('editincident', {
             url: "/editincident/:uniqueIncidentId",
+            // resolve: {
+            //     stateToGo: function(service) {
+            //       if (service.getItems().length > 0) {
+            //         return 'child1';
+            //       } else {
+            //         return 'child2';
+            //       }
+            //     },
             templateUrl: 'app/views/addincident.html',
             controller: 'addIncidentController',
         }).state('claims', {
@@ -101,6 +109,9 @@ riskManagementSystem.directive('blurToCurrency', function ($filter) {
 
 riskManagementSystem.filter('dateformatter', function () {
     return function (input) {
+        if(input == null || typeof input == 'undefined'){
+            return null;
+        }
         input = input || '';
         let out = '';
         let date = new Date(input);

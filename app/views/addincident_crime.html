@@ -131,24 +131,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-6">
                     <label>Age</label>
                     <input type="number" class="form-control" ng-model="crimeWitness.age" />
                 </div>
 
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-6">
                     <div>
                         <label>Gender</label>
                     </div>
                     <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="crimeWitness.genderType.id"
                     />
                 </div>
-                <div class="col-sm-12 col-md-4">
+                <!-- <div class="col-sm-12 col-md-4">
                     <label>Gender others</label>
                     <input type="text" class="form-control" ng-model="crimeWitness.genderTypeOther" ng-disabled="crimeWitness.genderType.id != 'OTHER'"
                     />
 
-                </div>
+                </div> -->
             </div>
             <div class="row">
               
@@ -322,25 +322,25 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-6">
                 <label>Age</label>
                 <input type="number" class="form-control" />
             </div>
 
-            <div class="col-sm-12 col-md-4">
+            <div class="col-sm-12 col-md-6">
                 <div>
                     <label>Gender</label>
                 </div>
                 <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="crimeSuspect.genderType.id"
                 />
                 <!--<input name="gender" type="radio"> <span>Male</span>
- <input name="gender" type="radio"> <span>Female</span>-->
+                <input name="gender" type="radio"> <span>Female</span>-->
             </div>
-            <div class="col-sm-12 col-md-4">
+            <!-- <div class="col-sm-12 col-md-4">
                 <label>Gender Other</label>
                 <input type="text" class="form-control" ng-disabled="crimeSuspect.genderType.id != 'OTHER'" ng-model="crimeSuspect.genderTypeOther"
                 />
-            </div>
+            </div> -->
         </div>
         <div class="row">
           
