@@ -886,13 +886,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
-
                 $scope.incidentDetails.reportedLosses = response.data;
+                $scope.incidentDetails.reportedLosses.map((loss)=>{
+                    if(loss.dateTimeContacted == null) return;
+                    let splitDate = loss.dateTimeContacted.split(" ");
+                    loss.date = new Date(splitDate[0].split("/").reverse().join("-"));
+                    let time  = splitDate[1].split(":");
+                    loss.timeHrsContacted =  time[0];
+                    loss.timeMinContacted =  time[1];
+                });
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
