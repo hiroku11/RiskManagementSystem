@@ -57,11 +57,8 @@
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
-
                 'Search': JSON.stringify(fil)
             },
-
-
         }
         AppService.ShowLoader();
         var getIncident = $http(req);
@@ -273,19 +270,15 @@
 
         $http(req).then(function (response) {
             $scope.incidentLocDetail = response.data;
-
             AppService.HideLoader();
-
-
         }, function (error) {
             AppService.HideLoader();
         })
     }
     $scope.getEntries = function () {
         var fil = {
-            "paging": { "currentPage": 0, "pageSize": $scope.entryCount }
+            "paging": { "currentPage": 0, "pageSize": 50 }
         }
-
         var req = {
             url: rmsService.baseEndpointUrl+'search-incident',
             method: "GET",
