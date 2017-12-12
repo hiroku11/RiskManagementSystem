@@ -221,11 +221,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
               },
         }
         $scope.investigationDetails = {
-            "incidentId": "",
-            "uniqueIncidentId": "",
-            "investigation": {
+           
                 "id": null,
-                "incident": null,
+                "incident": {},
                 "statusFlag": null,
                 "securityRequested": "",
                 "trainingRequested": "",
@@ -238,7 +236,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "reviewedComplianceRecords": "",
                 "investigator": {},
                 "investigatorStatement": ""
-            }
+            
         }
 
         $scope.injuredPerson = {
@@ -3322,10 +3320,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.addInvestigationDetails = function () {
-            $scope.investigationDetails.incidentId = $scope.incident.incidentId;
-            $scope.investigationDetails.uniqueIncidentId = $scope.incident.uniqueIncidentId;
+            $scope.investigationDetails.incident.id = $scope.incident.incidentId;
+            $scope.investigationDetails.incident.uniqueIncidentId = $scope.incident.uniqueIncidentId;
             var req = {
-                url: rmsService.baseEndpointUrl + 'incident/add-investigation-details',
+                url: rmsService.baseEndpointUrl + 'investigation/add-or-update-investigation',
                 method: "POST",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
