@@ -147,12 +147,7 @@
             AppService.HideLoader();
         })
     }
-    $scope.logOut = function () {
-        AppService.ShowLoader();
-        localStorage.removeItem("rmsAuthToken");
-        AppService.HideLoader();
-        $location.path("/login");
-    }
+
     $scope.changeMenu = function () {
         $scope.thisView = $event.target.id;
     }
