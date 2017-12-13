@@ -206,11 +206,10 @@
                         <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
                     </div>
 
-                    <div class="col-md-6" ng-if ="activeTab.tab == 1 && activeTab.completed">
+                    <div class="col-md-6">
                         <!-- <button type="button" ng-click="submitForm('logIncidentForm','back')" class="btn btn-secondary pull-right">Back</button> -->
-                        <button type="button" ng-click="submitForm('logIncidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
+                        <button type="button" ng-disabled="!activeTab.completed && !editIncidentMode " ng-click="submitForm('logIncidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
                     </div>
-
                 </div>
             </form>
         </div>

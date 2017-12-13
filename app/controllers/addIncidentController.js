@@ -2407,7 +2407,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
         }
         $scope.addAssetDetails = function () {
-            $scope.assetDetail.incident.id = $scope.incident.incidentId
+            if($scope.assetDetail.incident){
+                $scope.assetDetail.incident.id = $scope.incident.incidentId
+            }else{
+                $scope.assetDetail.incident={
+                    id : $scope.incident.incidentId
+                }
+            }
+            
             var req = {
                 url: rmsService.baseEndpointUrl + 'asset/add-or-update-asset',
                 method: "POST",
