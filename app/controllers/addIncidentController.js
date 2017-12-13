@@ -2509,7 +2509,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 },
                 data: $scope.building
             }
-
+            
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
@@ -2519,7 +2519,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             }, function (error) {
                 AppService.HideLoader();
-            })
+            });
+
+            $scope.building = {};
+            
+
         }
         $scope.addVehicle = function () {
             var req = {
