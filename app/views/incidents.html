@@ -195,12 +195,19 @@
                     </select>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-6">
-                                    <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
+                                        <p class="input-group">
+                                                <input type="text" ng-focus="calendar.open($event,'IncClosedDate')" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="IncClosedDate" 
+                                                is-open="calendar.opened.IncClosedDate" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats"/>
+                                                <span class="input-group-addon" ng-click="calendar.open($event,'IncClosedDate')">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                </span>
+                                            </p>
+                                    <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                         <input type='text' class="form-control" ng-model="IncClosedDate" />
                                         <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-calendar"></span>
                                         </span>
-                                    </div>
+                                    </div> -->
 
                                 </div>
                             </div>
