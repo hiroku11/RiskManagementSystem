@@ -3466,22 +3466,27 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.injuredPersons = incidentSummary.accident.injuredPersons;
 
             incidentSummary.asset == null?incidentSummary.asset = {}:incidentSummary.asset;
-            $scope.assetDetail = incidentSummary.asset;
-            $scope.buildings = incidentSummary.asset.buildings;
-            $scope.equipments = incidentSummary.asset.equipments;
-            $scope.vehicles = incidentSummary.asset.vehicles;
-
+            if(incidentSummary.asset !=null){
+                $scope.assetDetail = incidentSummary.asset;
+                $scope.buildings = incidentSummary.asset.buildings || [];
+                $scope.equipments = incidentSummary.asset.equipments || [];
+                $scope.vehicles = incidentSummary.asset.vehicles || [];
+            }
             incidentSummary.crime == null?incidentSummary.crime = rmsService.cloneObject($scope.crimeDetails):incidentSummary.crime;
             $scope.crimeDetails = incidentSummary.crime;
             $scope.crimeWitnesses = incidentSummary.crime.witnesses.concat(incidentSummary.crime.employeeWitnesses);
             $scope.crimesuspects = incidentSummary.crime.crimeSuspects.concat(incidentSummary.crime.employeeCrimeSuspects);
-            $scope.claimDetail = incidentSummary.claim;
-            for(let key in $scope.claimDetail){
-                if(key.toLowerCase().indexOf("date") > -1){
-                    $scope.claimDetail = new Date($scope.claimDetail[key]);
+           
+            if(incidentSummary.claim !=null){
+                $scope.claimDetail = incidentSummary.claim;
+                for(let key in $scope.claimDetail){
+                    if(key.toLowerCase().indexOf("date") > -1){
+                        $scope.claimDetail = new Date($scope.claimDetail[key]);
+                    }
                 }
             }
-            $scope.investigationDetails = incidentSummary.investigation;
+           
+            $scope.investigationDetails = incidentSummary.investigation!=null?incidentSummary.investigation:$scope.investigationDetails;
         }
 
         if($scope.editIncidentMode){
