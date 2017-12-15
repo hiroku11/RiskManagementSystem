@@ -465,10 +465,10 @@
                     <div class="col-sm-12 col-md-6 ">
                         <label>Existing Crime Witness</label>
                         <div class="input-group">
-                            <input class="form-control" ng-change="witnessLookup(existingCrimeWitness)" placeholder="Type user name" ng-model="existingCrimeWitness"
+                            <input class="form-control" ng-change="crimeWitnessLookup(existingCrimeWitness)" placeholder="Type user name" ng-model="existingCrimeWitness"
                                 ng-model-options="{'debounce':500}" />
 
-                            <span class="input-group-addon" ng-click="witnessLookup(existingCrimeWitness)">
+                            <span class="input-group-addon" ng-click="crimeWitnessLookup(existingCrimeWitness)">
                                 <span class="glyphicon glyphicon-search"></span>
                             </span>
                         </div>
@@ -489,7 +489,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="person in witnessData">
+                            <tr ng-repeat="person in crimeWitnessData">
                                 <td>
                                     <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addCrimeExistingWitness(person)"
                                     />

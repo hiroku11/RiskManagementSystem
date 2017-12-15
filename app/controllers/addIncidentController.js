@@ -3301,6 +3301,34 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             })
         }
+        $scope.crimeWitnessLookup = function(args){
+            var fil = {
+                "paging": { "currentPage": 0, "pageSize": 50 },
+                "sorts": [{ "field": "firstName", "order": "ASC" }],
+                "filters": [{
+                    "field": "fullName",
+                    "operator": "CONTAINS",
+                    "value": args
+
+                }]
+            }
+            var req = {
+                url: rmsService.baseEndpointUrl + 'witness-lookup',
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token,
+                    'Search': JSON.stringify(fil)
+                },
+            }
+            AppService.ShowLoader();
+            $http(req).then(function (response) {
+
+                $scope.crimeWitnessData = response.data;
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
         $scope.crimeSuspectLookup = function (args) {
             var fil = {
                 "paging": { "currentPage": 0, "pageSize": 50 },
