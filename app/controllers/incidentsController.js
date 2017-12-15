@@ -17,6 +17,7 @@
 
     $scope.sortBy = "uniqueIncidentId";
     $scope.reverse = false;
+    $scope.totalIncidentCount = 0;
 
     //pagination functions starts
     $scope.changeSortBy = function (sortBy) {
@@ -30,8 +31,9 @@
 
     $scope.range = helperFunctions.range;
     $scope.goToPage = function (pageNo) {
-        if (pageNo < 1 || pageNo > Math.ceil($scope.data.length / $scope.entryCount)) return;
+        if (pageNo < 1 || pageNo > Math.ceil($scope.totalIncidentCount / $scope.entryCount) || pageNo == $scope.currentPage) return;
         $scope.currentPage = pageNo;
+        $scope.getData();
     }
     //pagination functions ends
 
@@ -48,7 +50,7 @@
     $scope.getData = function (params) {
         // var filter = JSON.parse(params)
         var fil = {
-            "paging": { "currentPage": 0, "pageSize": 50 },
+            "paging": { "currentPage": $scope.currentPage - 1, "pageSize": 50 },
             "sorts": [{ "field": "openedDateTime", "order": "ASC" }],
             "filters": params
         }
@@ -64,7 +66,8 @@
         var getIncident = $http(req);
         getIncident.then(function (response) {
             if (response.data.length != 0) {
-                $scope.data = response.data;
+                $scope.data = response.data.incidents;
+                $scope.totalIncidentCount = response.data.totalRecords;
             }
             AppService.HideLoader();
         }, function (error) {
@@ -290,7 +293,9 @@
         AppService.ShowLoader();
         var getIncident = $http(req);
         getIncident.then(function (response) {
-            $scope.data = response.data;
+            //$scope.data = response.data;
+            $scope.data = response.data.incidents;
+            $scope.totalIncidentCount = response.data.totalRecords;
             AppService.HideLoader();
         });
     }

@@ -80,8 +80,16 @@
             if(data == undefined || data == null){
                 return null;
             }
+            let out = null;
             let date = new Date(data);
-            let out = (date.getDate().toString().length ==1?'0'+date.getDate():date.getDate()) + "/"+(date.getMonth()+1)+"/"+date.getFullYear();
+            if(date.getTime() == date.getTime()){
+                out = (date.getDate().toString().length ==1?'0'+date.getDate():date.getDate()) + "/"+(date.getMonth()+ 1)+"/"+date.getFullYear();
+            }else{
+                let splittedDate  = data.split("/");
+                data = splittedDate[1]+"/" +splittedDate[0]+"/"+splittedDate[2];
+                date  = new Date(data);
+                out = (date.getMonth()+ 1) + "/"+ (date.getDate().toString().length ==1?'0'+date.getDate():date.getDate()) +"/"+date.getFullYear();
+            }
             return out;
         }
         
