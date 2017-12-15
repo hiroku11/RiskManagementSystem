@@ -123,13 +123,13 @@
         {
             "field": "openedDateTime",
             "operator": $scope.opendateop,
-            "value": $scope.IncOpenedDate ? $scope.IncOpenedDate + " " + "00:00:00" : undefined
+            "value": $scope.IncOpenedDate ? rmsService.formatDate($scope.IncOpenedDate) + " " + "00:00:00" : null
 
         },
         {
             "field": "closedDateTime",
             "operator": $scope.closedateop,
-            "value": $scope.IncClosedDate ? $scope.IncClosedDate + " " + "00:00:00" : undefined
+            "value": $scope.IncClosedDate ? rmsService.formatDate($scope.IncClosedDate) + " " + "00:00:00" : null
 
         },
         {
