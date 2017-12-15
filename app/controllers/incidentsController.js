@@ -1,4 +1,4 @@
-﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', "helperFunctions", function ($scope, AppService, rmsService, $location, $window, $http, helperFunctions) {
+﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', "helperFunctions","dateformatterFilter", function ($scope, AppService, rmsService, $location, $window, $http, helperFunctions,dateformatterFilter) {
 
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
@@ -28,6 +28,16 @@
             $scope.reverse = false;
         }
     }
+    //Calendar
+    $scope.calendar = {
+        open: function ($event, which) {
+            $event.preventDefault();
+            $scope.calendar.opened[which] = true;
+        },
+        opened: {
+
+        }
+    };
 
     $scope.range = helperFunctions.range;
     $scope.goToPage = function (pageNo) {
@@ -75,6 +85,11 @@
         })
     }
     $scope.getData();
+    $scope.reset = function(){
+      
+        $scope.clearSearchParams();
+        $scope.getData();
+    }
     //To clear search params
     $scope.clearSearchParams = function () {
         $scope.IncidentId = "";
@@ -111,13 +126,13 @@
         {
             "field": "openedDateTime",
             "operator": $scope.opendateop,
-            "value": $scope.IncOpenedDate ? $scope.IncOpenedDate + " " + "00:00:00" : undefined
+            "value": $scope.IncOpenedDate ? rmsService.formatDate($scope.IncOpenedDate) + " " + "00:00:00" : null
 
         },
         {
             "field": "closedDateTime",
             "operator": $scope.closedateop,
-            "value": $scope.IncClosedDate ? $scope.IncClosedDate + " " + "00:00:00" : undefined
+            "value": $scope.IncClosedDate ? rmsService.formatDate($scope.IncClosedDate) + " " + "00:00:00" : null
 
         },
         {

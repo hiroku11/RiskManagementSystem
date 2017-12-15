@@ -230,7 +230,7 @@ h5 {
 
 /*customized Scroll bar*/
 
-::-webkit-scrollbar {
+/* ::-webkit-scrollbar {
     width: 13px;
 }
 
@@ -249,7 +249,7 @@ h5 {
 
  ::-webkit-scrollbar-thumb:window-inactive {
     background: #8c1519
-}
+} */
 
 
 /*footer*/
