@@ -9,7 +9,7 @@
 
     <div class="col-md-10 content">
         <div class="incidents">
-                <a class="btn btn-primary delete-incident pull-right " ng-click="getData()"> <i class="glyphicon glyphicon-done menu-icon"></i>Reset</a>
+                <a class="btn btn-primary delete-incident pull-right" ng-click="reset()"> <i class="glyphicon glyphicon-done menu-icon"></i>Reset</a>
             <div class="pull-right advanced-search">
                 <a class="btn btn-primary" id="btnAdvanceSearch" data-toggle="modal" data-target="#myModal" ng-click="loadAPI()">Advanced Search</a>
             </div>
@@ -325,9 +325,9 @@
                         </div>
                         <div class=" modal-footer ">
 
-                            <a class="btn btn-primary " ng-click="advancedSearch()">Search</a>
-                            <a class="btn btn-primary " ng-click="clearSearchParams()">Clear</a>
-                            <a class="btn btn-danger " class="close " data-dismiss="modal">Close</a>
+                            <a class="btn btn-primary" ng-click="advancedSearch()">Search</a>
+                            <a class="btn btn-primary" ng-click="clearSearchParams()">Clear</a>
+                            <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
                         </div>
                     </div>
 

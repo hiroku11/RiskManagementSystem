@@ -1,4 +1,4 @@
-﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', "helperFunctions", function ($scope, AppService, rmsService, $location, $window, $http, helperFunctions) {
+﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', "helperFunctions","dateformatterFilter", function ($scope, AppService, rmsService, $location, $window, $http, helperFunctions,dateformatterFilter) {
 
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
@@ -27,6 +27,16 @@
             $scope.reverse = false;
         }
     }
+    //Calendar
+    $scope.calendar = {
+        open: function ($event, which) {
+            $event.preventDefault();
+            $scope.calendar.opened[which] = true;
+        },
+        opened: {
+
+        }
+    };
 
     $scope.range = helperFunctions.range;
     $scope.goToPage = function (pageNo) {
@@ -72,6 +82,11 @@
         })
     }
     $scope.getData();
+    $scope.reset = function(){
+      
+        $scope.clearSearchParams();
+        $scope.getData();
+    }
     //To clear search params
     $scope.clearSearchParams = function () {
         $scope.IncidentId = "";
