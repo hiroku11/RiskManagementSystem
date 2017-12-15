@@ -1,4 +1,4 @@
-﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', "helperFunctions","dateformatterFilter", function ($scope, AppService, rmsService, $location, $window, $http, helperFunctions,dateformatterFilter) {
+﻿var incidentsController = riskManagementSystem.controller("incidentsController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http', "helperFunctions","dateformatterFilter","$timeout", function ($scope, AppService, rmsService, $location, $window, $http, helperFunctions,dateformatterFilter,$timeout) {
 
     $scope.token = localStorage.getItem('rmsAuthToken');
     $scope.thisView = "incidents";
@@ -60,7 +60,7 @@
     $scope.getData = function (params) {
         // var filter = JSON.parse(params)
         var fil = {
-            "paging": { "currentPage": $scope.currentPage - 1, "pageSize": 50 },
+            "paging": { "currentPage": $scope.currentPage - 1, "pageSize": $scope.entryCount },
             "sorts": [{ "field": "openedDateTime", "order": "ASC" }],
             "filters": params
         }
@@ -75,11 +75,10 @@
         AppService.ShowLoader();
         var getIncident = $http(req);
         getIncident.then(function (response) {
-            if (response.data.length != 0) {
                 $scope.data = response.data.incidents;
                 $scope.totalIncidentCount = response.data.totalRecords;
-            }
-            AppService.HideLoader();
+                AppService.HideLoader();
+                $scope.$apply();
         }, function (error) {
             AppService.HideLoader();
         })
