@@ -1183,8 +1183,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.incident.incidentId = response.data.id;
                 $scope.incident.uniqueIncidentId = response.data.uniqueIncidentId;
                 AppService.HideLoader();
+                rmsService.showAlert(false,"Incident logged successfully");
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,"Error occured while logging incident");
             })
         }
 
@@ -1271,8 +1273,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.suspectType = response.data;
                 console.log($scope.suspectType);
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1289,17 +1289,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 },
             }
             AppService.ShowLoader();
-
             $http(req).then(function (response) {
                 $scope.incidentType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
         }
+
         $scope.getIncidentLoc = function () {
             var req = {
                 url: rmsService.baseEndpointUrl + 'table-maintenance/incident-location/incident-locations',
@@ -1310,14 +1307,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 },
             }
             AppService.ShowLoader();
-
-
             $http(req).then(function (response) {
                 $scope.incidentLocations = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1328,17 +1320,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.entryPoint = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1393,17 +1381,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.agencies = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1421,10 +1405,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.accidentLoc = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1435,17 +1416,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.accidentType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1456,17 +1433,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.assetCat = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1527,10 +1500,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.claimStatus = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1548,10 +1518,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.claimType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1562,17 +1529,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.depType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1590,10 +1553,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.docCategory = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1611,10 +1571,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.docType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1633,10 +1590,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.empType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1655,10 +1609,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.eventType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1677,10 +1628,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.genderType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1753,10 +1701,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.lossType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1768,17 +1713,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.organization = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1790,17 +1731,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.policyType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1812,17 +1749,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.position = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1834,17 +1767,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.positionLevel = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1856,17 +1785,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.vehDamageType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1878,17 +1803,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
-
                 },
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
                 $scope.weaponType = response.data;
-
                 AppService.HideLoader();
-
-
             }, function (error) {
                 AppService.HideLoader();
             })
@@ -1912,8 +1833,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 AppService.HideLoader();
+                rmsService.showAlert(true,"Incident details added successfully");
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,"Error occurred while adding incident details. Try again");
             })
         }
 
@@ -1946,10 +1869,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
                 $scope.crimeDetails.id = response.data.id;
                 $scope.crimeAdded = true;
-
+                rmsService.showAlert(true,"Crime details added successfully");
             }, function (error) {
                 AppService.HideLoader();
-                alert("error while saving crime data");
+                rmsService.showAlert(false,"Error while adding crime details. Try again");
             })
         }
 
@@ -1994,8 +1917,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
                 $scope.getInjuredData();
                 AppService.HideLoader();
+                rmsService.showAlert(true,"Injured person added successfully");
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,"Error while adding injured person. Try Again");
             })
             //reinitialize the injured person so that new can be added
             $scope.injuredPerson = {
@@ -2017,12 +1942,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
                 },
-
             }
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
-
                 $scope.injuredPersons = response.data;
                 AppService.HideLoader();
             }, function (error) {
@@ -2041,16 +1964,16 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     headers: {
                         'X-AUTH-TOKEN': $scope.token
                     },
-
                 }
                 AppService.ShowLoader();
 
                 $http(req).then(function (response) {
                     $scope.getInjuredData();
-
                     AppService.HideLoader();
+                    rmsService.showAlert(true,"Employee Injured person added successfully");
                 }, function (error) {
                     AppService.HideLoader();
+                    rmsService.showAlert(false,"Error adding employee injured person. Try Again");
                 })
 
             } else {
@@ -2069,10 +1992,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 $http(req).then(function (response) {
                     $scope.getInjuredData();
-
+                    rmsService.showAlert(true,"Employee injured person deleted successfully");
                     AppService.HideLoader();
                 }, function (error) {
                     AppService.HideLoader();
+                    rmsService.showAlert(false,"Error deleting employee injured person. Try again");
                 })
 
             }
@@ -2094,10 +2018,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 $http(req).then(function (response) {
                     $scope.getInjuredData();
-
                     AppService.HideLoader();
+                    rmsService.showAlert(true,"Existing injured person added successfully");
                 }, function (error) {
                     AppService.HideLoader();
+                    rmsService.showAlert(false,"Error adding existing injured person. Try again");
                 })
 
             } else {
@@ -2116,10 +2041,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
                 $http(req).then(function (response) {
                     $scope.getInjuredData();
-
                     AppService.HideLoader();
+                    rmsService.showAlert(true,"Existing injured person deleted successfully");
                 }, function (error) {
                     AppService.HideLoader();
+                    rmsService.showAlert(true,"Error deleting existing injured person. Try again");
                 })
 
             }
@@ -2140,7 +2066,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.getInjuredData();
-
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
