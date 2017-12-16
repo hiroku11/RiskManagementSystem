@@ -7,6 +7,14 @@
                         <label>User Id:</label>
                         <label class="summary-text">{{::incidentSummary.incidentReportedBy.loginId}}</label>
                 </div>
+                <div class="col-sm-12">
+                        <label>Incident Id:</label>
+                        <label class="summary-text">{{::incident.incidentId}}</label>
+                </div>
+                <div class="col-sm-12">
+                        <label>Uniqueincident Id:</label>
+                        <label class="summary-text">{{::incident.uniqueIncidentId}}</label>
+                </div>
         </div>
         <div class="row">
                 <div class="col-md-4 col-sm-12">
@@ -665,11 +673,16 @@
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
                         <label>Investigator:</label>
                         <label class="summary-text">{{::incidentSummary.investigation.investigator}}</label>
                 </div>
-                <div class="col-sm-12 col-md-6">
+                <div class="col-sm-12 col-md-4">
+                        <label>Investigator Detail:</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.investigatorDetail}}</label>
+                </div>
+                
+                <div class="col-sm-12 col-md-4">
                         <label>INvestigator Statement:</label>
                         <label class="summary-text">{{::incidentSummary.investigation.investigatorStatement}}</label>
                 </div>

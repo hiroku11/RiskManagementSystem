@@ -78,7 +78,6 @@
                 $scope.data = response.data.incidents;
                 $scope.totalIncidentCount = response.data.totalRecords;
                 AppService.HideLoader();
-                $scope.$apply();
         }, function (error) {
             AppService.HideLoader();
         })

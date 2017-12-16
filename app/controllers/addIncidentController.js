@@ -453,6 +453,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.handleTabsForRoles();
         $scope.initializeAccidentPlaceAndTime = function () {
+            if($scope.editIncidentMode) return;
             $scope.accidentDetails.accidentPlace = $scope.logIncidentDetails.placeOfIncident
             $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+$scope.logIncidentDetails.timeHrsOfIncident;
             $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
@@ -1005,7 +1006,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
           //  accident.accidentDateTime = rmsService.formatDate(accident.accidentDate) + " " + (accident.accidentTimeHrs || '00') + ":" + (accident.accidentTimeMin ||'00') +":00";
             accident.incident = {
-                id: $scope.incident.incidentId
+                id: $scope.incident.incidentId,
+                uniqueIncidentId : $scope.incident.uniqueIncidentId
             }
 
             var req = {
@@ -3467,6 +3469,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.userInfo = incidentSummary.incidentReportedBy;
             for(let key in $scope.logIncidentDetails){
                 $scope.logIncidentDetails[key] = incidentSummary[key];
+                if(key.indexOf("Date")>-1 && incidentSummary[key] != null){
+                    let dt= incidentSummary[key].split(" ");
+                    $scope.logIncidentDetails.date = new Date(rmsService.formatDate(dt[0]));
+                    $scope.logIncidentDetails.timeHrsOfIncident = dt[1].split(":")[0];
+                    $scope.logIncidentDetails.timeMinOfIncident = dt[1].split(":")[1];
+                }
                 if(incidentSummary[key] == 'Y'){
                     $scope.logIncidentDetails[key] = true;
                     if(key == "accidentDamage"){
@@ -3501,6 +3509,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             incidentSummary.accident == null?incidentSummary.accident = {}:incidentSummary.asset;
             $scope.accidentDetails = incidentSummary.accident;
+            if($scope.accidentDetails.accidentDateTime != null){
+                let dt= $scope.accidentDetails.accidentDateTime.split(" ");
+                $scope.accidentDetails.accidentDate = new Date(rmsService.formatDate(dt[0]));
+                $scope.accidentDetails.accidentTimeHrs = dt[1].split(":")[0];
+                $scope.accidentDetails.accidentTimeMin = dt[1].split(":")[1];
+            }
             $scope.witnesses = incidentSummary.accident.witnesses;
             $scope.injuredPersons = incidentSummary.accident.injuredPersons;
 
@@ -3513,6 +3527,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
             incidentSummary.crime == null?incidentSummary.crime = rmsService.cloneObject($scope.crimeDetails):incidentSummary.crime;
             $scope.crimeDetails = incidentSummary.crime;
+            if($scope.crimeDetails.crimeDateTime != null){
+                let dt= $scope.crimeDetails.crimeDateTime.split(" ");
+                $scope.crimeDetails.date = new Date(rmsService.formatDate(dt[0]));
+                $scope.crimeDetails.timeHrs = dt[1].split(":")[0];
+                $scope.crimeDetails.timeMin = dt[1].split(":")[1];
+            }
             $scope.crimeWitnesses = incidentSummary.crime.witnesses.concat(incidentSummary.crime.employeeWitnesses);
             $scope.crimesuspects = incidentSummary.crime.crimeSuspects.concat(incidentSummary.crime.employeeCrimeSuspects);
            
