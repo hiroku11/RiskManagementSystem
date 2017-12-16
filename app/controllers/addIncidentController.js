@@ -267,6 +267,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.incident.supportingDocuments = response.data;
             }, function (error) {
                 AppService.HideLoader();
+                
             })
         }
         //  $scope.myObj = {$scope.injuredPerson.bodyParts : []}
@@ -1142,10 +1143,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.userInfo = response.data;
-                //$scope.incident = response.data;
                 AppService.HideLoader();
+                rmsService.showAlert(true,"Incident created successfully.");
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,"Error occured while creating incident.");
             })
         }
         

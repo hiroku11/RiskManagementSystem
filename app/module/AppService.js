@@ -1,30 +1,30 @@
-(function() {
+(function () {
     'use strict';
     var AppService = angular.module('riskManagementSystem')
-        .factory('AppService', function($rootScope, $http, $location, $timeout) {
+        .factory('AppService', function ($rootScope, $http, $location, $timeout) {
             return {
-                ShowLoader: function(message) {
-                    (function() {
+                ShowLoader: function (message) {
+                    (function () {
                         $rootScope.loaderVisibility = true;
                         $rootScope.loaderText = message;
                     })();
                 },
-                HideLoader: function() {
-                    (function() {
+                HideLoader: function () {
+                    (function () {
                         $rootScope.loaderVisibility = false;
                     })();
                 }
             };
         })
 
-    riskManagementSystem.service("rmsService", function($http, $window, $location) {
-        this.decryptToken = function() {
+    riskManagementSystem.service("rmsService", function ($http, $window, $location) {
+        this.decryptToken = function () {
             if (this.authorisedUserDetails) {
                 return this.authorisedUserDetails
             }
             //decrypt the authorization token.
             var token = localStorage.getItem("rmsAuthToken");
-            if(!token){
+            if (!token) {
                 $location.path("/login");
                 return;
             }
@@ -50,7 +50,7 @@
 
         }
         this.baseEndpointUrl = "https://b2897cdb.ngrok.io/rmsrest/s/";
-        this.getLoggedInUser = function() {
+        this.getLoggedInUser = function () {
             if (this.loggedInUser) {
                 return this.loggedInUser;
             } else {
@@ -58,45 +58,61 @@
                 this.getLoggedInUser.userId = this.authorisedUserDetails.loginId;
                 this.loggedInUser.lastName = this.authorisedUserDetails.lastName;
                 this.loggedInUser.firstName = this.authorisedUserDetails.firstName;
-                this.loggedInUser.roles = this.authorisedUserDetails.roles.map(function(item) {
+                this.loggedInUser.roles = this.authorisedUserDetails.roles.map(function (item) {
                     return item.roleName;
                 });
                 return this.loggedInUser;
             }
         }
-        this.logOutUser = function() {
+        this.logOutUser = function () {
             localStorage.removeItem("rmsAuthToken");
             this.authorisedUserDetails = null;
             $location.path("/login");
         }
-        this.isAdminRole = function(){
+        this.isAdminRole = function () {
             let adminRoles = ['INVESTIGATOR', 'CLAIMS_HANDLER', 'ADMIN'];
-            return  adminRoles.some(role => this.loggedInUser.roles.includes(role));
+            return adminRoles.some(role => this.loggedInUser.roles.includes(role));
         }
-        this.cloneObject = function(obj){
+        this.cloneObject = function (obj) {
             return JSON.parse(JSON.stringify(obj));
         }
-        this.formatDate = function(data){
-            if(data == undefined || data == null){
+        this.formatDate = function (data) {
+            if (data == undefined || data == null) {
                 return null;
             }
             let out = null;
             let date = new Date(data);
-            if(date.getTime() == date.getTime()){
-                out = (date.getDate().toString().length ==1?'0'+date.getDate():date.getDate()) + "/"+(date.getMonth()+ 1)+"/"+date.getFullYear();
-            }else{
-                let splittedDate  = data.split("/");
-                data = splittedDate[1]+"/" +splittedDate[0]+"/"+splittedDate[2];
-                date  = new Date(data);
-                out = (date.getMonth()+ 1) + "/"+ (date.getDate().toString().length ==1?'0'+date.getDate():date.getDate()) +"/"+date.getFullYear();
+            if (date.getTime() == date.getTime()) {
+                out = (date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate()) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+            } else {
+                let splittedDate = data.split("/");
+                data = splittedDate[1] + "/" + splittedDate[0] + "/" + splittedDate[2];
+                date = new Date(data);
+                out = (date.getMonth() + 1) + "/" + (date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate()) + "/" + date.getFullYear();
             }
             return out;
         }
-        
+        this.showAlert = function(success, message){
+            if (success) {
+                if (message) {
+                    $("#success-message").text(message);
+                }
+                $("#success-alert").show();
+            } else {
+                if (message) {
+                    $("#error-message").text(message);
+                }
+                $("#error-alert").show()
+            }
+            setTimeout(function(){
+                $("#success-alert,#error-alert").hide()
+            },3000)
+        }
+
     })
-    
-    riskManagementSystem.service("helperFunctions",function(){
-        this.range = function (count,itemPerPage) {
+
+    riskManagementSystem.service("helperFunctions", function () {
+        this.range = function (count, itemPerPage) {
             count = count / itemPerPage;
             var ranges = [];
             for (var i = 0; i < count; i++) {
