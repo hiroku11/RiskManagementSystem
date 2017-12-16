@@ -3,15 +3,15 @@
         <h4>Log Incident</h4>
         <span>Incident Reported By</span>
         <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-4">
                         <label>User Id:</label>
                         <label class="summary-text">{{::incidentSummary.incidentReportedBy.loginId}}</label>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-4 ">
                         <label>Incident Id:</label>
-                        <label class="summary-text">{{::incident.incidentId}}</label>
+                        <label class="summary-text">{{::incident.incidentId || incident.id}}</label>
                 </div>
-                <div class="col-sm-12">
+                <div class="col-sm-12 col-md-4 ">
                         <label>Uniqueincident Id:</label>
                         <label class="summary-text">{{::incident.uniqueIncidentId}}</label>
                 </div>
@@ -40,7 +40,7 @@
                         <label class="summary-text">{{::incidentSummary.incidentReportedBy.position.department.description}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                        <label>Last Name:</label>
+                        <label>Position:</label>
                         <label class="summary-text">{{::incidentSummary.incidentReportedBy.position.positionLevel.description}}</label>
                 </div>
         </div>
@@ -332,7 +332,6 @@
                         <label class="summary-text">{{::incidentSummary.asset.otherDescription}}</label>
                 </div>
         </div>
-        <div class="row">
                 <table class="table table-bordered" ng-if="incidentSummary.asset.vehicles.length >0">
                         <thead>
                                 <tr>
@@ -385,7 +384,7 @@
                         </tbody>
                 </table>
 
-        </div>
+
         <!-- crimeDetails -->
         <h4>Crime Details</h4>
         <div class="row">
@@ -470,7 +469,7 @@
 
                 </thead>
                 <tbody>
-                        <tr ng-repeat="witness in incidentSummary.accident.witnesses">
+                        <tr ng-repeat="witness in incidentSummary.crime.witnesses">
                                 <td>
                                         {{witness.witnessType != 'OTHER' ? witness.witnessType.description : witness.witnessTypeOther}}
                                 </td>
@@ -675,7 +674,7 @@
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Investigator:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.investigator}}</label>
+                        <label class="summary-text">{{::incidentSummary.investigation.investigator.fullName}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Investigator Detail:</label>
@@ -704,9 +703,9 @@
                         </tr>
                 </tbody>
         </table>
-        <div class="row">
+        <div class="row" >
                 <div class="col-sm-6">
-                        <button class="btn btn-primary" type="button" ng-click="submitIncident()">Submit</button>
+                        <button ng-if="incidentSummary.incidentStatus == 'DRAFT'" class="btn btn-primary" type="button" ng-click="submitIncident()">Submit</button>
                 </div>
                 <div class="col-sm-6">
                         <button type="button" ng-click="submitForm('summaryForm','back')" class="btn btn-secondary pull-right">Back</button>

@@ -1035,6 +1035,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.claimDetail.incident = {};
             }
              $scope.claimDetail.incident.id= $scope.incident.incidentId;
+             $scope.claimDetail.incident.uniqueIncidentId= $scope.incident.uniqueIncidentId;
              let claim = rmsService.cloneObject( $scope.claimDetail);
             for(let key in claim){
                 if(key.toLowerCase().indexOf('date')>-1){
@@ -2063,7 +2064,6 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             }
             AppService.ShowLoader();
-
             $http(req).then(function (response) {
                 $scope.getInjuredData();
                 AppService.HideLoader();
@@ -2121,9 +2121,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.getInjuredData();
                 $scope.injuredPerson.distinguishingFeatures = $scope.injuredPerson.distinguishFeaturesDetails;
                 AppService.HideLoader();
+                rmsService.showAlert(true,"Injured person updated successfully");
 
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,"Error updating injured person. Try again+");
             })
         }
         //Witness 
@@ -3393,6 +3395,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.prepareEditIncidentData =function(){
             let incidentSummary = rmsService.cloneObject($scope.incidentSummary);
+            $scope.incident.incidentId = incidentSummary.id;
+            $scope.incident.id = incidentSummary.id;
+            $scope.incident.uniqueIncidentId = incidentSummary.uniqueIncidentId;
             $scope.userInfo = incidentSummary.incidentReportedBy;
             for(let key in $scope.logIncidentDetails){
                 $scope.logIncidentDetails[key] = incidentSummary[key];
@@ -3404,15 +3409,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }
                 if(incidentSummary[key] == 'Y'){
                     $scope.logIncidentDetails[key] = true;
-                    if(key == "accidentDamage"){
-                        $scope.addTab('accidentForm');
+                    if($scope.activeTab.tab != 9){
+                        if(key == "accidentDamage"){
+                            $scope.addTab('accidentForm');
+                        }
+                        if(key == "assetDamage"){
+                            $scope.addTab('assetsForm');
+                        }
+                        if(key == "criminalAttack"){
+                            $scope.addTab('crimeForm');
+                        }
                     }
-                    if(key == "assetDamage"){
-                        $scope.addTab('assetsForm');
-                    }
-                    if(key == "criminalAttack"){
-                        $scope.addTab('crimeForm');
-                    }
+                    
                 }
                 if(incidentSummary[key] == 'N'){
                     $scope.logIncidentDetails[key] = false

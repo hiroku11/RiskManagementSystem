@@ -79,7 +79,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="claim in data  | filter:search  | limitTo : entryCount : (entryCount * currentPage - entryCount) | orderBy : sortBy : reverse">
+                    <tr ng-repeat="claim in data | orderBy : sortBy : reverse">
                         <td>
                             <input type="checkbox" class="checkbox checkbox-primary" name="">
                         </td>
@@ -122,7 +122,7 @@
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
-                    <li ng-repeat="page in range(data.length,$parent.entryCount)"><a ng-click="goToPage(page)">{{page}}</a></li>
+                    <li ng-repeat="page in range(data.length,$parent.entryCount)" ng-class="{'active':currentPage == page}"><a ng-click="goToPage(page)">{{page}}</a></li>
                     <li>
                         <a aria-label="Next" ng-click="goToPage(currentPage + 1)" ng-class="{disabled:currentPage==Math.ceil(data.length/entryCount)}">
                             <span aria-hidden="true">&raquo;</span>

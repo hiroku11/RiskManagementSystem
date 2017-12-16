@@ -9,12 +9,12 @@
             <i class="glyphicon glyphicon-time menu-icon"></i> Incidents
         </a>
     </li>
-    <li ng-class="{active:thisView=='claims'}">
+    <li ng-class="{active:thisView=='claims'}" ng-if="isAdminRole">
         <a ui-sref="claims" title="">
             <i class="glyphicon glyphicon-gift menu-icon"></i> Claims
         </a>
     </li>
-    <li ng-class="{active:thisView=='investigations'}">
+    <li ng-class="{active:thisView=='investigations'}" ng-if="isAdminRole">
         <a ui-sref="investigations" title="">
             <i class="glyphicon glyphicon-search menu-icon"></i> Investigations
         </a>
