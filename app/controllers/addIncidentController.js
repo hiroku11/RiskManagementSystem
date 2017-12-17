@@ -219,6 +219,29 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "claimStatus": {
                 "id": null
               },
+              "securityRequested": "N",
+              "trainingRequested": "N",
+              "claimRequestedAmount": null,
+              "claimRequestedDate": "",
+              "claimRequestedBy": null,
+              "claimApprovedAmount": null,
+              "claimApprovedDate": null,
+              "claimApprovedBy": null,
+              "claimSettlementAmount": null,
+              "claimSettlementDate": null,
+              "claimSettlementBy": null,
+              "claimDeclinedDate": null,
+              "claimDeclinedBy": null,
+              "claimReopenedDate": null,
+              "claimReopenedBy": null,
+              "claimRequestedComments": null,
+              "claimApprovedComments": null,
+              "claimSettlementComments": null,
+              "claimDeclinedComments": null,
+              "claimReopenedComments": null,
+              "claimTypeOther": null,
+              "claimRequestRegistrationTypeOther": null,
+              "policyTypeOther": null
         }
         $scope.investigationDetails = {
            
@@ -3472,10 +3495,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.crimesuspects = incidentSummary.crime.crimeSuspects.concat(incidentSummary.crime.employeeCrimeSuspects);
            
             if(incidentSummary.claim !=null){
-                $scope.claimDetail = incidentSummary.claim;
                 for(let key in $scope.claimDetail){
-                    if(key.toLowerCase().indexOf("date") > -1){
-                        $scope.claimDetail = new Date($scope.claimDetail[key]);
+                    $scope.claimDetail[key] = incidentSummary.claim[key];
+                    if(key.toLowerCase().indexOf("date") > -1 &&  incidentSummary.claim[key] !=null){
+                        $scope.claimDetail[key] = new Date(rmsService.formatDate($scope.claimDetail[key]));
                     }
                 }
             }
