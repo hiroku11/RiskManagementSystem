@@ -5,116 +5,116 @@
         <div class="row">
                 <div class="col-sm-12 col-md-4">
                         <label>User Id:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.loginId}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.loginId}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4 ">
                         <label>Incident Id:</label>
-                        <label class="summary-text">{{::incident.incidentId || incident.id}}</label>
+                        <label class="summary-text">{{incident.incidentId || incident.id}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4 ">
                         <label>Uniqueincident Id:</label>
-                        <label class="summary-text">{{::incident.uniqueIncidentId}}</label>
+                        <label class="summary-text">{{incident.uniqueIncidentId}}</label>
                 </div>
         </div>
         <div class="row">
                 <div class="col-md-4 col-sm-12">
                         <label>First Name:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.firstName}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.firstName}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
                         <label>Middle Name:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.middleName}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.middleName}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
                         <label>Last Name:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.lastName}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.lastName}}</label>
                 </div>
         </div>
         <div class="row">
                 <div class="col-md-4 col-sm-12">
                         <label>Organization:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.position.organization.description}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.position.organization.description}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
                         <label>Department:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.position.department.description}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.position.department.description}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
                         <label>Position:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.position.positionLevel.description}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.position.positionLevel.description}}</label>
                 </div>
         </div>
         <div class="row">
                 <div class="col-md-4 col-sm-12">
                         <label>Phone:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.phone}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.phone}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
                         <label>Alternate Phone:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.alternatePhone}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.alternatePhone}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
                         <label>Email:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentReportedBy.email}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentReportedBy.email}}</label>
                 </div>
         </div>
         <h4>Incident Details</h4>
         <div class="row">
                 <div class="col-md-4 col-sm-12">
                         <label>Place Of Incident:</label>
-                        <label class="summary-text">{{::incidentSummary.placeOfIncident}}</label>
+                        <label class="summary-text">{{incidentSummary.placeOfIncident}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentType.id != 'OTHER'">
                         <label>Incident Type:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentType.description}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentType.description}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentType.id == 'OTHER'">
                         <label>Incident Type:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentTypeOther}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentTypeOther}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12" ng-if="incidentSummary.entryPoint.id != 'OTHER'">
                         <label>Entry Point:</label>
-                        <label class="summary-text">{{::incidentSummary.entryPoint.description}}</label>
+                        <label class="summary-text">{{incidentSummary.entryPoint.description}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12" ng-if="incidentSummary.entryPoint.id == 'OTHER'">
                         <label>Entry Point:</label>
-                        <label class="summary-text">{{::incidentSummary.entryPointOther}}</label>
+                        <label class="summary-text">{{incidentSummary.entryPointOther}}</label>
                 </div>
         </div>
         <div class="row">
                 <div class="col-md-4 col-sm-12">
                         <label>Incident Location:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentLocation.description}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentLocation.description}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentLocation.id != 'OTHER'">
                         <label>Incident Location Details:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentLocationDetail.description}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentLocationDetail.description}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12" ng-if="incidentSummary.incidentLocation.id == 'OTHER'">
                         <label>Incident Location Details:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentLocationOther}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentLocationOther}}</label>
                 </div>
                 <div class="col-md-4 col-sm-12">
                         <label>Date Of Incident:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentOpenedDateTime}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentOpenedDateTime}}</label>
                 </div>
         </div>
         <div class="row">
                 <div class="col-sm-4 col-lg-4">
                         <label>Asset Damage:</label>
-                        <label class="summary-text">{{::incidentSummary.assetDamage}}</label>
+                        <label class="summary-text">{{incidentSummary.assetDamage}}</label>
                 </div>
                 <div class="col-sm-4 col-lg-4">
                         <label>Criminal Attack:</label>
-                        <label class="summary-text">{{::incidentSummary.criminalAttack}}</label>
+                        <label class="summary-text">{{incidentSummary.criminalAttack}}</label>
                 </div>
                 <div class="col-sm-4 col-lg-4">
                         <label>Accident Damange:</label>
-                        <label class="summary-text">{{::incidentSummary.accidentDamage}}</label>
+                        <label class="summary-text">{{incidentSummary.accidentDamage}}</label>
                 </div>
                 <div class="col-md-12 col-sm-12">
                         <label>Incident Description:</label>
-                        <label class="summary-text">{{::incidentSummary.incidentDescription}}</label>
+                        <label class="summary-text">{{incidentSummary.incidentDescription}}</label>
                 </div>
         </div>
         <h4 ng-if="incidentSummary.suspects.length>0">Suspects</h4>
@@ -138,27 +138,27 @@
                                         {{suspect.suspectType != 'OTHER' ? suspect.suspectType.description : suspect.suspectTypeOther}}
                                 </td>
                                 <td>
-                                        {{::suspect.firstName}} {{::suspect.middleName}} {{::suspect.lastName}}
+                                        {{suspect.firstName}} {{suspect.middleName}} {{suspect.lastName}}
                                 </td>
                                 <td>
-                                        {{::suspect.age}}
+                                        {{suspect.age}}
                                 </td>
                                 <td>
                                         {{suspect.genderType != 'OTHER' ? suspect.genderType.description : suspect.genderTypeOther}}
                                 </td>
 
                                 <td>
-                                        {{::suspect.addresses[0].organizationName}} {{::suspect.addresses[0].buildingName}} {{::suspect.addresses[0].localityName}}
-                                        {{::suspect.addresses[0].streetName}}
+                                        {{suspect.addresses[0].organizationName}} {{suspect.addresses[0].buildingName}} {{suspect.addresses[0].localityName}}
+                                        {{suspect.addresses[0].streetName}}
                                 </td>
                                 <td>
-                                        {{::suspect.addresses[0].city}}
+                                        {{suspect.addresses[0].city}}
                                 </td>
                                 <td>
-                                        {{::suspect.addresses[0].county}}
+                                        {{suspect.addresses[0].county}}
                                 </td>
                                 <td>
-                                        {{::suspect.addresses[0].postcode}}
+                                        {{suspect.addresses[0].postcode}}
                                 </td>
 
                         </tr>
@@ -179,13 +179,13 @@
                         <tr ng-repeat="loss in incidentSummary.reportedLosses">
                                 <td>{{loss.losType.id != 'OTHER'?loss.lossType.description : loss.losTypeOther}}</td>
                                 <td>
-                                        {{::loss.lossValue}}
+                                        {{loss.lossValue}}
                                 </td>
                                 <td>
                                         {{loss.externalAgency.id != 'OTHER'? loss.externalAgency.description : loss.externalAgencyTypeOther}}
                                 </td>
                                 <td>
-                                        {{::loss.costEstimation}}
+                                        {{loss.costEstimation}}
                                 </td>
                         </tr>
                 </tbody>
@@ -194,21 +194,21 @@
         <div class="row">
                 <div class="col-sm-12 col-md-4">
                         <label>Accident Type:</label>
-                        <label class="summary-text">{{::incidentSummary.accident.accidentType.description}}</label>
+                        <label class="summary-text">{{incidentSummary.accident.accidentType.description}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Accident Description:</label>
-                        <label class="summary-text">{{::incidentSummary.accident.accidentDescription}}</label>
+                        <label class="summary-text">{{incidentSummary.accident.accidentDescription}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Accident Date/Time:</label>
-                        <label class="summary-text">{{::incidentSummary.accident.accidentDateTime}}</label>
+                        <label class="summary-text">{{incidentSummary.accident.accidentDateTime}}</label>
                 </div>
         </div>
         <div class="row">
                 <div class="col-sm-12 col-md-4">
                         <label>Accident Place:</label>
-                        <label class="summary-text">{{::incidentSummary.accident.accidentPlace}}</label>
+                        <label class="summary-text">{{incidentSummary.accident.accidentPlace}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Accident Location:</label>
@@ -217,7 +217,7 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Accident Location Details:</label>
-                        <label class="summary-text">{{::incidentSummary.accident.accidentLocationDetails.description}}</label>
+                        <label class="summary-text">{{incidentSummary.accident.accidentLocationDetails.description}}</label>
                 </div>
         </div>
         <!-- witnesses -->
@@ -244,27 +244,27 @@
                                         {{witness.witnessType != 'OTHER' ? witness.witnessType.description : witness.witnessTypeOther}}
                                 </td>
                                 <td>
-                                        {{::witness.firstName}} {{::witness.middleName}} {{::witness.lastName}}
+                                        {{witness.firstName}} {{witness.middleName}} {{witness.lastName}}
                                 </td>
                                 <td>
-                                        {{::witness.age}}
+                                        {{witness.age}}
                                 </td>
                                 <td>
                                         {{witness.genderType != 'OTHER' ? witness.genderType.description : witness.genderTypeOther}}
                                 </td>
 
                                 <td>
-                                        {{::witness.addresses[0].organizationName}} {{::witness.addresses[0].buildingName}} {{::witness.addresses[0].localityName}}
-                                        {{::witness.addresses[0].streetName}}
+                                        {{witness.addresses[0].organizationName}} {{witness.addresses[0].buildingName}} {{witness.addresses[0].localityName}}
+                                        {{witness.addresses[0].streetName}}
                                 </td>
                                 <td>
-                                        {{::witness.addresses[0].city}}
+                                        {{witness.addresses[0].city}}
                                 </td>
                                 <td>
-                                        {{::witness.addresses[0].county}}
+                                        {{witness.addresses[0].county}}
                                 </td>
                                 <td>
-                                        {{::witness.addresses[0].postcode}}
+                                        {{witness.addresses[0].postcode}}
                                 </td>
 
                         </tr>
@@ -294,27 +294,27 @@
                                         {{injuredPerson.injuredPersonType != 'OTHER' ? injuredPerson.injuredPersonType.description : witness.witnessTypeOther}}
                                 </td>
                                 <td>
-                                        {{::injuredPerson.firstName}} {{::injuredPerson.middleName}} {{::injuredPerson.lastName}}
+                                        {{injuredPerson.firstName}} {{injuredPerson.middleName}} {{injuredPerson.lastName}}
                                 </td>
                                 <td>
-                                        {{::injuredPerson.age}}
+                                        {{injuredPerson.age}}
                                 </td>
                                 <td>
                                         {{injuredPerson.genderType != 'OTHER' ? injuredPerson.genderType.description : injuredPerson.genderTypeOther}}
                                 </td>
 
                                 <td>
-                                        {{::injuredPerson.addresses[0].organizationName}} {{::injuredPerson.addresses[0].buildingName}} {{::injuredPerson.addresses[0].localityName}}
-                                        {{::injuredPerson.addresses[0].streetName}}
+                                        {{injuredPerson.addresses[0].organizationName}} {{injuredPerson.addresses[0].buildingName}} {{injuredPerson.addresses[0].localityName}}
+                                        {{injuredPerson.addresses[0].streetName}}
                                 </td>
                                 <td>
-                                        {{::injuredPerson.addresses[0].city}}
+                                        {{injuredPerson.addresses[0].city}}
                                 </td>
                                 <td>
-                                        {{::injuredPerson.addresses[0].county}}
+                                        {{injuredPerson.addresses[0].county}}
                                 </td>
                                 <td>
-                                        {{::injuredPerson.addresses[0].postcode}}
+                                        {{injuredPerson.addresses[0].postcode}}
                                 </td>
 
                         </tr>
@@ -325,11 +325,11 @@
         <div class="row">
                 <div class="col-sm-12 col-md-6">
                         <label>Asset Category:</label>
-                        <label class="summary-text">{{::incidentSummary.asset.assetCategory.description}}</label>
+                        <label class="summary-text">{{incidentSummary.asset.assetCategory.description}}</label>
                 </div>
                 <div class="col-sm-12 col-md-6">
                         <label>Other Description:</label>
-                        <label class="summary-text">{{::incidentSummary.asset.otherDescription}}</label>
+                        <label class="summary-text">{{incidentSummary.asset.otherDescription}}</label>
                 </div>
         </div>
                 <table class="table table-bordered" ng-if="incidentSummary.asset.vehicles.length >0">
@@ -390,15 +390,15 @@
         <div class="row">
                 <div class="col-sm-12 col-md-4">
                         <label>Crime Description:</label>
-                        <label class="summary-text">{{::incidentSummary.crime.crimeDescription}}</label>
+                        <label class="summary-text">{{incidentSummary.crime.crimeDescription}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Crime Date Time:</label>
-                        <label class="summary-text">{{::incidentSummary.crime.crimeDateTime}}</label>
+                        <label class="summary-text">{{incidentSummary.crime.crimeDateTime}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Any Witness:</label>
-                        <label class="summary-text">{{::incidentSummary.crime.anyWitness}}</label>
+                        <label class="summary-text">{{incidentSummary.crime.anyWitness}}</label>
                 </div>
         </div>
         <table class="table table-bordered" ng-if="incidentSummary.crime.crimeSuspects.length>0">
@@ -424,27 +424,27 @@
                                         {{crimeSuspect.crimeSuspectType != 'OTHER' ? crimeSuspect.crimeSuspectType.description : crimeSuspect.crimeSuspectTypeOther}}
                                 </td>
                                 <td>
-                                        {{::crimeSuspect.firstName}} {{::crimeSuspect.middleName}} {{::crimeSuspect.lastName}}
+                                        {{crimeSuspect.firstName}} {{crimeSuspect.middleName}} {{crimeSuspect.lastName}}
                                 </td>
                                 <td>
-                                        {{::crimeSuspect.age}}
+                                        {{crimeSuspect.age}}
                                 </td>
                                 <td>
                                         {{crimeSuspect.genderType != 'OTHER' ? crimeSuspect.genderType.description : crimeSuspect.genderTypeOther}}
                                 </td>
 
                                 <td>
-                                        {{::crimeSuspect.addresses[0].organizationName}} {{::crimeSuspect.addresses[0].buildingName}} {{::crimeSuspect.addresses[0].localityName}}
-                                        {{::crimeSuspect.addresses[0].streetName}}
+                                        {{crimeSuspect.addresses[0].organizationName}} {{crimeSuspect.addresses[0].buildingName}} {{crimeSuspect.addresses[0].localityName}}
+                                        {{crimeSuspect.addresses[0].streetName}}
                                 </td>
                                 <td>
-                                        {{::crimeSuspect.addresses[0].city}}
+                                        {{crimeSuspect.addresses[0].city}}
                                 </td>
                                 <td>
-                                        {{::crimeSuspect.addresses[0].county}}
+                                        {{crimeSuspect.addresses[0].county}}
                                 </td>
                                 <td>
-                                        {{::crimeSuspect.addresses[0].postcode}}
+                                        {{crimeSuspect.addresses[0].postcode}}
                                 </td>
 
                         </tr>
@@ -474,27 +474,27 @@
                                         {{witness.witnessType != 'OTHER' ? witness.witnessType.description : witness.witnessTypeOther}}
                                 </td>
                                 <td>
-                                        {{::witness.firstName}} {{::witness.middleName}} {{::witness.lastName}}
+                                        {{witness.firstName}} {{witness.middleName}} {{witness.lastName}}
                                 </td>
                                 <td>
-                                        {{::witness.age}}
+                                        {{witness.age}}
                                 </td>
                                 <td>
                                         {{witness.genderType != 'OTHER' ? witness.genderType.description : witness.genderTypeOther}}
                                 </td>
 
                                 <td>
-                                        {{::witness.addresses[0].organizationName}} {{::witness.addresses[0].buildingName}} {{::witness.addresses[0].localityName}}
-                                        {{::witness.addresses[0].streetName}}
+                                        {{witness.addresses[0].organizationName}} {{witness.addresses[0].buildingName}} {{witness.addresses[0].localityName}}
+                                        {{witness.addresses[0].streetName}}
                                 </td>
                                 <td>
-                                        {{::witness.addresses[0].city}}
+                                        {{witness.addresses[0].city}}
                                 </td>
                                 <td>
-                                        {{::witness.addresses[0].county}}
+                                        {{witness.addresses[0].county}}
                                 </td>
                                 <td>
-                                        {{::witness.addresses[0].postcode}}
+                                        {{witness.addresses[0].postcode}}
                                 </td>
 
                         </tr>
@@ -504,21 +504,21 @@
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim ID:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimId}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimId}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claimant Name:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimantName}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimantName}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Insured Name:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.insuredName}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.insuredName}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Status:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimStatus.description}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimStatus.description}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Type:</label>
@@ -532,11 +532,11 @@
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Policy No.:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.policyNumber}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.policyNumber}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Policy Holder Name:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.policyHolderName}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.policyHolderName}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Policy Type:</label>
@@ -546,144 +546,144 @@
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Security Requested:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.securityRequested}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.securityRequested}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Training Requested:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.trainingRequested}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.trainingRequested}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Handler:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimHandler}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimHandler}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Requested Amount:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimRequestedAmount}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimRequestedAmount}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Requested Date:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimRequestedDate}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimRequestedDate}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Requested By:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimRequestedBy}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimRequestedBy}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Approved By:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimApprovedBy}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimApprovedBy}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Approved Amount:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimApprovedAmount}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimApprovedAmount}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Approved Date:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimApprovedDate}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimApprovedDate}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Settlement By:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimSettlementBy}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimSettlementBy}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Settlement Amount:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimSettlementAmount}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimSettlementAmount}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Settlement Date:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimSettlementDate}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimSettlementDate}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Declined By:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimDeclinedBy}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimDeclinedBy}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Declined Date:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimDeclinedDate}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimDeclinedDate}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Declined Comments:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimDeclinedComments}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimDeclinedComments}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Reopened By:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimReopenedBy}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimReopenedBy}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Reopened Date:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimReopenedDate}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimReopenedDate}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Reopened Comments:</label>
-                        <label class="summary-text">{{::incidentSummary.claim.claimReopenedComments}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimReopenedComments}}</label>
                 </div>
         </div>
         <h4 ng-if="isAdminRole">Investigation</h4>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Security Requested:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.securityRequested}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.securityRequested}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Training Requested:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.trainingRequested}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.trainingRequested}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Reviewed Investigation Records:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.reviewedInvestigationRecords}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.reviewedInvestigationRecords}}</label>
                 </div>
 
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Reviewed CCTV:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.reviewedCCTV}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.reviewedCCTV}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Reviewed Pictures:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.reviewedPictures}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.reviewedPictures}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Reviewed Witness Statement:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.reviewedWitnessStatement}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.reviewedWitnessStatement}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Reviewed Learner Records:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.reviewedLearnerRecords}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.reviewedLearnerRecords}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Reviewed Asset Records:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.reviewedAssetRecords}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.reviewedAssetRecords}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Reviewed Compliance Records:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.reviewedComplianceRecords}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.reviewedComplianceRecords}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
                 <div class="col-sm-12 col-md-4">
                         <label>Investigator:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.investigator.fullName}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.investigator.fullName}}</label>
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Investigator Detail:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.investigatorDetail}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.investigatorDetail}}</label>
                 </div>
                 
                 <div class="col-sm-12 col-md-4">
                         <label>INvestigator Statement:</label>
-                        <label class="summary-text">{{::incidentSummary.investigation.investigatorStatement}}</label>
+                        <label class="summary-text">{{incidentSummary.investigation.investigatorStatement}}</label>
                 </div>
         </div>
         <h4>Supporting Documents</h4>
