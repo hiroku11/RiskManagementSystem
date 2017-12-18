@@ -3318,6 +3318,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.addInvestigationDetails = function () {
+            if($scope.investigationDetails.incident == null){
+                $scope.investigationDetails.incident= {};
+            }
             $scope.investigationDetails.incident.id = $scope.incident.incidentId;
             $scope.investigationDetails.incident.uniqueIncidentId = $scope.incident.uniqueIncidentId;
             var req = {
