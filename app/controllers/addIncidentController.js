@@ -1053,7 +1053,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.accAdded = true;
                 $scope.accidentDetails.id = response.data.id;
             }, function (error) {
-                alert(error);
+                //alert(error);
                 AppService.HideLoader();
             })
 
@@ -1104,7 +1104,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                  $scope.claimDetail = {};
              }, function (error) {
                  AppService.HideLoader();
-                 alert(error);
+                 //alert(error);
              })
          }
         $scope.getClaimHandler = function(){
@@ -1123,7 +1123,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             // $scope.claimDetail.claimHA
          }, function (error) {
              AppService.HideLoader();
-             alert(error);
+             //alert(error);
          })
         }
 
@@ -1212,7 +1212,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.incident.incidentId = response.data.id;
                 $scope.incident.uniqueIncidentId = response.data.uniqueIncidentId;
                 AppService.HideLoader();
-                rmsService.showAlert(false,"Incident logged successfully");
+                rmsService.showAlert(true,"Incident logged successfully");
             }, function (error) {
                 AppService.HideLoader();
                 rmsService.showAlert(false,"Error occured while logging incident");
@@ -2074,7 +2074,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     rmsService.showAlert(true,"Existing injured person deleted successfully");
                 }, function (error) {
                     AppService.HideLoader();
-                    rmsService.showAlert(true,"Error deleting existing injured person. Try again");
+                    rmsService.showAlert(false,"Error deleting existing injured person. Try again");
                 })
 
             }
