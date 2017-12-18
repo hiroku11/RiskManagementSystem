@@ -38,7 +38,7 @@ var claimsController = riskManagementSystem.controller("claimsController", ["$sc
 
         $scope.getClaims = function () {
             var req = {
-                url: rmsService.baseEndpointUrl+"claim/claimHandlerLoginId/" +$scope.authorizedUser.loginId,
+                url: rmsService.baseEndpointUrl+"incidents-for-claims-handler",
                 method: "GET",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token,
@@ -47,7 +47,7 @@ var claimsController = riskManagementSystem.controller("claimsController", ["$sc
             AppService.ShowLoader();
             let promise = $http(req);
             promise.then(function (response) {
-                $scope.data = response.data;
+                $scope.data = response.data.incidents;
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();

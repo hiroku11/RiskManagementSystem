@@ -219,6 +219,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "claimStatus": {
                 "id": null
               },
+              "claimHandler": {
+                "id": null,
+                "loginId": null,
+                "username": null
+              },
               "securityRequested": "N",
               "trainingRequested": "N",
               "claimRequestedAmount": null,
@@ -1168,10 +1173,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
                 $scope.userInfo = response.data;
                 AppService.HideLoader();
-                rmsService.showAlert(true,"Incident created successfully.");
+                //rmsService.showAlert(true,"Incident created successfully.");
             }, function (error) {
                 AppService.HideLoader();
-                rmsService.showAlert(false,"Error occured while creating incident.");
+                //rmsService.showAlert(false,"Error occured while creating incident.");
             })
         }
         

@@ -38,7 +38,8 @@ function ($scope, AppService, rmsService, $location, $window, $http, helperFunct
 
     $scope.getInvestigations = function () {
         var req = {
-            url: rmsService.baseEndpointUrl+"investigation/investigatorLoginId/" +$scope.authorizedUser.loginId,
+            ///rmsrest/s/incidents-for-investigator
+            url: rmsService.baseEndpointUrl+"incidents-for-investigator",
             method: "GET",
             headers: {
                 'X-AUTH-TOKEN': $scope.token,
@@ -47,7 +48,7 @@ function ($scope, AppService, rmsService, $location, $window, $http, helperFunct
         AppService.ShowLoader();
         let promise = $http(req);
         promise.then(function (response) {
-            $scope.data = response.data;
+            $scope.data = response.data.incidents;
             AppService.HideLoader();
         }, function (error) {
             AppService.HideLoader();
