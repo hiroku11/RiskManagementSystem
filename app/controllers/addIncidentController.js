@@ -43,33 +43,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.editequipment = false;
         $scope.editvehicle = false;
         $scope.editBuilding = false;
+        $scope.editassetother = false;
         $scope.crimeAdded = false;
         $scope.editCrimeWitness = false;
         $scope.editCrimeSuspect = false;
-
-
-        
-
-        // $scope.getData = function (params) {
-        //     var req = {
-        //         url: rmsService.baseEndpointUrl + 'incident/' + $scope.incident.uniqueIncidentId,
-        //         method: "GET",
-        //         headers: {
-        //             'X-AUTH-TOKEN': $scope.token
-        //         },
-        //     }
-        //     AppService.ShowLoader();
-        //     var getIncident = $http(req);
-        //     getIncident.then(function (response) {
-        //         if (response.data.length != 0) {
-        //             $scope.data = response.data;
-        //         }
-        //         AppService.HideLoader();
-        //     }, function (error) {
-        //         AppService.HideLoader();
-        //     })
-        // }
-
 
         $scope.logIncidentDetails = {
             "incidentId": null,
@@ -143,6 +120,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
 
         }
+        $scope.assetOther ={
+            "id":null,
+            "assetCategory": {
+                "id": "OTHER",
+                "description": null
+            },
+            addresses: [{
+                "id": null,
+                "statusFlag": "ACTIVE"
+            }],
+        };
+        $scope.assetOthers = [];
         $scope.equipments = [];
         $scope.building = {
 
@@ -201,10 +190,14 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "statementDescription": null,
             "otherDescription": null,
             "statusFlag": null,
-            "assetCategory": {
-                "id": null,
-                "description": null
-            }
+            // "assetCategory": {
+            //     "id": null,
+            //     "description": null
+            // }
+        }
+        $scope.assetCategory = {
+            "id": null,
+            "description": null
         }
         $scope.claimDetail = {
             "id": null,
@@ -227,7 +220,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
               "securityRequested": "N",
               "trainingRequested": "N",
               "claimRequestedAmount": null,
-              "claimRequestedDate": "",
+              "claimRequestedDate": null,
               "claimRequestedBy": null,
               "claimApprovedAmount": null,
               "claimApprovedDate": null,
@@ -253,17 +246,22 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "id": null,
                 "incident": {},
                 "statusFlag": null,
-                "securityRequested": "",
-                "trainingRequested": "",
-                "reviewedInvestigationRecords": "",
-                "reviewedCCTV": "",
-                "reviewedPictures": "",
-                "reviewedWitnessStatement": "",
-                "reviewedLearnerRecords": "",
-                "reviewedAssetRecords": "",
-                "reviewedComplianceRecords": "",
-                "investigator": {},
-                "investigatorStatement": ""
+                "securityRequested": "N",
+                "trainingRequested": "N",
+                "reviewedInvestigationRecords": "N",
+                "reviewedCCTV": "N",
+                "reviewedPictures": "N",
+                "reviewedWitnessStatement": "N",
+                "reviewedLearnerRecords": "N",
+                "reviewedAssetRecords": "N",
+                "reviewedComplianceRecords": "N",
+                
+                "investigatorStatement": "",
+                "investigator":{
+                    "id": null,
+                    "loginId": null,
+                    "username": null
+                }
             
         }
 
@@ -1108,23 +1106,64 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
              })
          }
         $scope.getClaimHandler = function(){
+            
          var req = {
-             url: rmsService.baseEndpointUrl + 'claim/incidentId/'+ $scope.incident.incidentId,
+             url: rmsService.baseEndpointUrl + 'claim-handler-lookup',
              method: "GET",
              headers: {
                  'X-AUTH-TOKEN': $scope.token
              },
-             data: $scope.claimDetail
+             
          }
          AppService.ShowLoader();
  
          $http(req).then(function (response) {
              AppService.HideLoader();
-            // $scope.claimDetail.claimHA
+             $scope.claimHandlerList = response.data;
          }, function (error) {
              AppService.HideLoader();
-             //alert(error);
+            
          })
+        }
+
+        $scope.assignClaimHandler = function(person){
+
+            $scope.claimDetail.claimHandler.id = person.id;
+            $scope.claimDetail.claimHandler.loginId = person.loginId;
+            $scope.claimDetail.claimHandler.username = person.username;
+            $scope.claimHandler = person.firstName + " " + person.lastName;
+        }
+        $scope.getInvestigationHandler = function(){
+            var req = {
+                url: rmsService.baseEndpointUrl + 'investigator-lookup',
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+                
+            }
+            AppService.ShowLoader();
+    
+            $http(req).then(function (response) {
+                AppService.HideLoader();
+                $scope.investigationHandlerList = response.data;
+            }, function (error) {
+                AppService.HideLoader();
+               
+            })
+        }
+
+        $scope.assignInvestigationHandler = function(person){
+            $scope.investigationDetails.investigator.id = person.id;
+            $scope.investigationDetails.investigator.loginId = person.loginId;
+            $scope.investigationDetails.investigator.username = person.username;
+            // $scope.investigatorTeamName = person.teamDescription;
+            // $scope.investigatorTeamId = person.teamLeadLoginId;
+            $scope.invstigatorFirstName = person.firstName;
+            $scope.invstigatorMiddleName = person.middleName;
+            $scope.invstigatorLastName = person.lastName;
+
+            //$scope.investigationHandler = person.firstName + " " + person.lastName;
         }
 
         $scope.selectSupportingDocumnet = function (doc, $event) {
@@ -2544,7 +2583,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             var req = {
                 url: rmsService.baseEndpointUrl +
                 'asset/remove-vehicle/assetId/' +
-                $scope.assetDetail.id + '/vehicleId/' + building.id,
+                $scope.assetDetail.id + '/vehicleId/' + data.id,
                 method: "DELETE",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
@@ -2584,6 +2623,98 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             })
         }
+        //Add asset other//
+        $scope.addAssetOther = function () {
+            var req = {
+                url: rmsService.baseEndpointUrl +'asset/add-asset-type-other/assetId/'+ $scope.assetDetail.id,
+                method: "PUT",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+                data: $scope.assetOther
+            }
+            AppService.ShowLoader();
+
+            $http(req).then(function (response) {
+                $scope.getAssetOther();
+
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+            $scope.assetOther = {};
+
+        }
+        $scope.loadAssetOther = function (data) {
+            $scope.editassetother = true;
+            $scope.assetOther = data;
+        }
+        $scope.getAssetOther = function () {
+            var req = {
+                url: rmsService.baseEndpointUrl +
+                'asset-type-other/asset-type-other-table/assetId/'
+                + $scope.assetDetail.id,
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+
+            }
+            AppService.ShowLoader();
+
+            $http(req).then(function (response) {
+                $scope.assetOthers = response.data;
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
+        $scope.deleteAssetOther = function (data) {
+            var req = {
+                url: rmsService.baseEndpointUrl +
+                'asset/remove-asset-type-other/assetId/' +
+                $scope.assetDetail.id + '/assetTypeOtherId/' + data.id,
+                method: "DELETE",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+
+            }
+            AppService.ShowLoader();
+
+            $http(req).then(function (response) {
+                $scope.getAssetOther();
+
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
+        $scope.updateAssetOther = function () {
+            $scope.editassetother = false;
+            var req = {
+                url: rmsService.baseEndpointUrl +
+                'asset-type-other/update-asset-type-other',
+                method: "PUT",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+                data: $scope.assetOther
+            }
+
+            AppService.ShowLoader();
+
+            $http(req).then(function (response) {
+
+                $scope.getAssetOther();
+                $scope.assetOther = {};
+                AppService.HideLoader();
+
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
+        //equipment//
         $scope.addEquipement = function () {
             var req = {
                 url: rmsService.baseEndpointUrl +
