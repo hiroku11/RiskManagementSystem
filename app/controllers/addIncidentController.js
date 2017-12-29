@@ -1910,7 +1910,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.addCrimeDetails = function () {
             let crimeDetails = rmsService.cloneObject($scope.crimeDetails);
-            if (crimeDetails.date == 'undefined') {
+            if (crimeDetails.date == undefined) {
                crimeDetails.crimeDateTime = null
             }else {
                 crimeDetails.crimeDateTime = rmsService.formatDate(crimeDetails.date) + " " +(crimeDetails.timeHrs||'00') + ":" + (crimeDetails.timeMin||'00') + ":00";
@@ -3606,6 +3606,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             incidentSummary.accident == null?incidentSummary.accident = {}:incidentSummary.asset;
             $scope.accidentDetails = incidentSummary.accident;
+            $scope.accAdded = true;
+            
+            
             if($scope.accidentDetails.accidentDateTime != null){
                 let dt= $scope.accidentDetails.accidentDateTime.split(" ");
                 $scope.accidentDetails.accidentDate = new Date(rmsService.formatDate(dt[0]));
@@ -3622,6 +3625,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.equipments = incidentSummary.asset.equipments || [];
                 $scope.vehicles = incidentSummary.asset.vehicles || [];
             }
+            $scope.assetAdded = true;
             incidentSummary.crime == null?incidentSummary.crime = rmsService.cloneObject($scope.crimeDetails):incidentSummary.crime;
             $scope.crimeDetails = incidentSummary.crime;
             if($scope.crimeDetails.crimeDateTime != null){
@@ -3630,6 +3634,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.crimeDetails.timeHrs = dt[1].split(":")[0];
                 $scope.crimeDetails.timeMin = dt[1].split(":")[1];
             }
+            $scope.crimeAdded = true;
             $scope.crimeWitnesses = incidentSummary.crime.witnesses.concat(incidentSummary.crime.employeeWitnesses);
             $scope.crimesuspects = incidentSummary.crime.crimeSuspects.concat(incidentSummary.crime.employeeCrimeSuspects);
            
