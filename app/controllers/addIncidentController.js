@@ -3588,7 +3588,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     $scope.logIncidentDetails[key] = false
                 }
             }
-            $scope.suspects = incidentSummary.suspects;
+          //  $scope.suspects = incidentSummary.suspects;
 
             $scope.incidentDetails = {
                 "incidentId":  incidentSummary.incidentId,
@@ -3601,6 +3601,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.incidentDetails.reportedLosses.map((loss)=>{
                 loss = $scope.lossDateFormat(loss);
             });
+            $scope.getSuspectData();
+            $scope.getLossData();
 
             $scope.incident.supportingDocuments = incidentSummary.documents;
 
@@ -3615,8 +3617,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.accidentDetails.accidentTimeHrs = dt[1].split(":")[0];
                 $scope.accidentDetails.accidentTimeMin = dt[1].split(":")[1];
             }
-            $scope.witnesses = incidentSummary.accident.witnesses;
-            $scope.injuredPersons = incidentSummary.accident.injuredPersons;
+           // $scope.witnesses = incidentSummary.accident.witnesses;
+            // $scope.injuredPersons = incidentSummary.accident.injuredPersons;
+            $scope.getWitnessData();
+            $scope.getInjuredData();
 
             incidentSummary.asset == null?incidentSummary.asset = {}:incidentSummary.asset;
             if(incidentSummary.asset !=null){
@@ -3624,6 +3628,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.buildings = incidentSummary.asset.buildings || [];
                 $scope.equipments = incidentSummary.asset.equipments || [];
                 $scope.vehicles = incidentSummary.asset.vehicles || [];
+                $scope.assetOthers = incidentSummary.asset.assetTypeOthers || [];
             }
             $scope.assetAdded = true;
             incidentSummary.crime == null?incidentSummary.crime = rmsService.cloneObject($scope.crimeDetails):incidentSummary.crime;
@@ -3635,9 +3640,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.crimeDetails.timeMin = dt[1].split(":")[1];
             }
             $scope.crimeAdded = true;
-            $scope.crimeWitnesses = incidentSummary.crime.witnesses.concat(incidentSummary.crime.employeeWitnesses);
-            $scope.crimesuspects = incidentSummary.crime.crimeSuspects.concat(incidentSummary.crime.employeeCrimeSuspects);
-           
+          //  $scope.crimeWitnesses = incidentSummary.crime.witnesses.concat(incidentSummary.crime.employeeWitnesses);
+           // $scope.crimesuspects = incidentSummary.crime.crimeSuspects.concat(incidentSummary.crime.employeeCrimeSuspects);
+           $scope.getCrimeSuspectData();
+           $scope.getCrimeWitnessData();
             if(incidentSummary.claim !=null){
                 for(let key in $scope.claimDetail){
                     $scope.claimDetail[key] = incidentSummary.claim[key];
