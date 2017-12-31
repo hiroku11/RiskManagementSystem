@@ -1080,7 +1080,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
  
              $http(req).then(function (response) {
                  AppService.HideLoader();
-                 $scope.claimDetail.id = response.data.id;
+                 $scope.claimDetail.id = response.data.claimId;
              }, function (error) {
                  AppService.HideLoader();
              })
