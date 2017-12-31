@@ -279,14 +279,14 @@
             </div>
             <div class="col-sm-12 col-md-4">
                 <label>External Agency Type</label>
-                <select class="form-control" ng-options="agencies.id as agencies.description for agencies in agencies" ng-model="loss.externalAgency.id">
+                <select class="form-control" ng-options="agencies.id as agencies.description for agencies in agencies" ng-model="loss.externalAgency.id" ng-disabled="loss.externalAgencyContacted != 'Y'">
                             <option value="" selected>--Select--</option>
                             </select>
             </div>
             <div class="col-sm-12 col-md-4">
 
                 <label>External Agency Type If Other</label>
-                <input name="" class="form-control" ng-disabled="loss.externalAgency.id !='OTHER'" type="text" placeholder="If external agency Others" ng-model="loss.externalAgencyTypeOther">
+                <input name="" class="form-control" ng-disabled="loss.externalAgency.id !='OTHER' || loss.externalAgencyContacted != 'Y'" type="text" placeholder="If external agency Others" ng-model="loss.externalAgencyTypeOther">
             </div>
 
         </div>
@@ -296,7 +296,7 @@
                 <label>Date External Agency Called</label>
                 <p class="input-group">
                     <input type="text" class="form-control"  uib-datepicker-popup="dd/MM/yyyy" ng-model="loss.date" ng-focus="calendar.open($event,'date')"
-                     is-open="calendar.opened.date" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" />
+                     is-open="calendar.opened.date" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-disabled="loss.externalAgencyContacted != 'Y'"/>
                     <span class="input-group-addon" ng-click="calendar.open($event,'date')">
                                 <span class="glyphicon glyphicon-calendar"></span>
                     </span>
@@ -305,8 +305,8 @@
             </div>
             <div class="col-sm-12 col-md-6">
                 <div> <label>Time External Agency Called</label></div>
-                <input class="form-control small-control" type="text" placeholder="HH" ng-model="loss.timeHrsContacted">:
-                <input class="form-control  small-control" type="text" placeholder="MM" ng-model="loss.timeMinContacted">
+                <input class="form-control small-control" type="text" placeholder="HH" ng-model="loss.timeHrsContacted" ng-disabled="loss.externalAgencyContacted != 'Y'">:
+                <input class="form-control  small-control" type="text" placeholder="MM" ng-model="loss.timeMinContacted" ng-disabled="loss.externalAgencyContacted != 'Y'">
             </div>
         </div>
 

@@ -342,7 +342,7 @@
                                   </tr>
                         </thead>
                         <tbody>
-                                <tr ng-repeat="vehicle in vehicles track by $index">
+                                <tr ng-repeat="vehicle in incidentSummary.asset.vehicles track by $index">
                                         <td>{{vehicle.vehicleRegistrationId}}</td>
                                         <td>{{vehicle.engineNumber}}</td>
                                         <td>{{vehicle.chasisNumber}}</td>
@@ -359,7 +359,7 @@
                                 </tr>
                         </thead>
                         <tbody>
-                                <tr ng-repeat="equipment in equipments">
+                                <tr ng-repeat="equipment in incidentSummary.asset.equipments">
                                         <td>{{equipment.equipmentId}}</td>
                                         <td>{{equipment.serialNumber}}</td>
                                         <td>{{equipment.equipmentDetails}}</td>
@@ -376,14 +376,45 @@
                                 </tr>
                         </thead>
                         <tbody>
-                                <tr ng-repeat="building in buildings">
+                                <tr ng-repeat="building in incidentSummary.asset.buildings">
                                         <td>{{building.buildingId}}</td>
                                         <td>{{building.buildingName}}</td>
                                         <td>{{building.buildingDescription}}</td>
                                 </tr>
                         </tbody>
                 </table>
-
+                <table class="table table-bordered" ng-if="incidentSummary.asset.assetOthers.length >0">
+                        <thead>
+                            <tr>
+                                <th>Asset Id</th>
+                                <th>Asset Name</th>
+                                <th>Asset Description</th>
+        
+                                <th>&nbsp;</th>
+        
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="asset in incidentSummary.asset.assetOthers track by $index">
+                                <td>{{asset.assetTypeOtherId}}</td>
+                                <td>{{asset.assetTypeOtherName}}</td>
+                                <td>{{asset.assetTypeOtherDescription}}</td>
+        
+                                <td>
+                                    <a ng-click="deleteAssetOther(asset)">
+                                        <i class="glyphicon glyphicon-trash"></i>
+                                    </a> &nbsp;&nbsp;&nbsp;
+                                    <a ng-click="loadAssetOther(asset)">
+        
+                                        <i class="glyphicon glyphicon-pencil"></i>
+                                    </a>
+        
+                                </td>
+        
+        
+                            </tr>
+                        </tbody>
+                    </table>
 
         <!-- crimeDetails -->
         <h4>Crime Details</h4>
