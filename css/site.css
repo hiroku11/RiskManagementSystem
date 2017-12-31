@@ -5,7 +5,7 @@ html {
 }
 
 body {
-    background-color: #efd1d4;
+    background-color: #ecedf0;
     overflow: hidden;
 }
 .hide{
@@ -30,6 +30,7 @@ body {
     overflow-y: auto;
     height: calc(100% - 120px);
     padding-right: 1em;
+    border-top:15px solid #8c1519 !important;
 }
 
 * {
@@ -41,10 +42,13 @@ body {
 }
 
 .header {
-    border-bottom: 4px solid #8c1519;
     background-color: #fff;
 }
 
+thead{
+    background-color: #8c1519;
+    color: white;
+}
 .logo img {
     margin-top: 10px;
     width: 96px;
@@ -116,7 +120,7 @@ h4 {
 }
 
 .navbar {
-    background-color: #2e2e2e;
+    
     padding-right: 0;
     padding-left: 0;
     height: 100%;
@@ -126,6 +130,21 @@ h4 {
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+.navbar ul li{
+    background-color: #2e2e2e;
+    border-bottom:2px solid white;
+}
+
+.navbar ul li:hover{
+    background-color: #8c1519;
+    border-bottom:2px solid white;
+}
+
+.btn:hover{
+    background-color: #8c1519;
+    color: white;
 }
 
 a,

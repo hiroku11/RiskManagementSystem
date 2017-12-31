@@ -1,4 +1,14 @@
-﻿<ul>
+﻿<div class="row" style="padding-right:5px;padding-left:5px">
+    <div class="col-sm-6" style="vertical-align:middle">
+        User Image
+    </div>
+    <div class="col-sm-6">
+        <button class="btn pull-right btn-info btn-sm" style="vertical-align:middle">
+            <span class="fa fa-power-off "></span>
+        </button>
+    </div>
+</div>
+<ul>
     <li ng-class="{active:thisView=='dashboard'}" ng-if="isAdminRole">
         <a ui-sref="dashboard" title="">
             <i class="glyphicon glyphicon-dashboard menu-icon"></i> Dashboard
