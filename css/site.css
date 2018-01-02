@@ -823,3 +823,8 @@ a {
 .table{
     background-color: #fff;
 }
+
+.card{
+    background-color: #2e2e2e;
+    color: white;
+}
