@@ -256,7 +256,18 @@ h5 {
     padding-right: 1em;
 }
 
+.dropdown{
+    float: right;
+    width: 200px;
+}
 
+.dropdown-menu{
+    right: 0;
+}
+
+.user-image{
+    width: 30px;
+}
 /*customized Scroll bar*/
 
 /* ::-webkit-scrollbar {
