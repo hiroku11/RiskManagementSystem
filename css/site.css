@@ -45,7 +45,7 @@ body {
     background-color: #fff;
 }
 
-thead{
+.table thead{
     background-color: #8c1519;
     color: white;
 }
@@ -261,7 +261,7 @@ h5 {
     width: 200px;
 }
 
-.dropdown-menu{
+.dropdown .dropdown-menu{
     right: 0;
 }
 
