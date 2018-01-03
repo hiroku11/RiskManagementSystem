@@ -291,7 +291,7 @@
                                 <tbody>
                                     <tr ng-repeat="person in claimHandlerList">
                                         <td>
-                                            <input type="radio" ng-click="assignClaimHandler(person)" />
+                                            <input type="radio" ng-click="assignClaimHandler(person)" name="claimAssign"/>
                                             <!-- <input type="checkbox" class="checkbox checkbox-primary" ng-click="assignClaimHandler(person)" /> -->
                                         </td>
                                         <td>{{person.fullName}}</td>
