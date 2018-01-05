@@ -148,8 +148,7 @@
                                 </td>
 
                                 <td>
-                                        {{suspect.addresses[0].organizationName}} {{suspect.addresses[0].buildingName}} {{suspect.addresses[0].localityName}}
-                                        {{suspect.addresses[0].streetName}}
+                                        {{suspect.addresses[0].organizationName}} {{suspect.addresses[0].buildingName}} {{suspect.addresses[0].localityName}} {{suspect.addresses[0].streetName}}
                                 </td>
                                 <td>
                                         {{suspect.addresses[0].city}}
@@ -254,8 +253,7 @@
                                 </td>
 
                                 <td>
-                                        {{witness.addresses[0].organizationName}} {{witness.addresses[0].buildingName}} {{witness.addresses[0].localityName}}
-                                        {{witness.addresses[0].streetName}}
+                                        {{witness.addresses[0].organizationName}} {{witness.addresses[0].buildingName}} {{witness.addresses[0].localityName}} {{witness.addresses[0].streetName}}
                                 </td>
                                 <td>
                                         {{witness.addresses[0].city}}
@@ -332,89 +330,89 @@
                         <label class="summary-text">{{incidentSummary.asset.otherDescription}}</label>
                 </div>
         </div>
-                <table class="table table-bordered" ng-if="incidentSummary.asset.vehicles.length >0">
-                        <thead>
-                                <tr>
-                                        <th>Registration Id</th>
-                                        <th>Engine Number</th>
-                                        <th>Chasis Number</th>
-                                        <th>Comment</th>
-                                  </tr>
-                        </thead>
-                        <tbody>
-                                <tr ng-repeat="vehicle in incidentSummary.asset.vehicles track by $index">
-                                        <td>{{vehicle.vehicleRegistrationId}}</td>
-                                        <td>{{vehicle.engineNumber}}</td>
-                                        <td>{{vehicle.chasisNumber}}</td>
-                                        <td>{{vehicle.commentDescription}}</td>
-                                </tr>
-                        </tbody>
-                </table>
-                <table class="table table-bordered" ng-if="incidentSummary.asset.equipments.length >0">
-                        <thead>
-                                <tr>
-                                        <th>Equipment Id</th>
-                                        <th>Serial Number</th>
-                                        <th>Equipment Details</th>
-                                </tr>
-                        </thead>
-                        <tbody>
-                                <tr ng-repeat="equipment in incidentSummary.asset.equipments">
-                                        <td>{{equipment.equipmentId}}</td>
-                                        <td>{{equipment.serialNumber}}</td>
-                                        <td>{{equipment.equipmentDetails}}</td>
-                                </tr>
-                        </tbody>
-                </table>
-                <table class="table table-bordered" ng-if="incidentSummary.asset.buildings.length >0">
-                        <thead>
-                                <tr>
-                                        <th>Building Id</th>
-                                        <th>Building Name</th>
-                                        <th>Building Description</th>
+        <table class="table table-bordered" ng-if="incidentSummary.asset.vehicles.length >0">
+                <thead>
+                        <tr>
+                                <th>Registration Id</th>
+                                <th>Engine Number</th>
+                                <th>Chasis Number</th>
+                                <th>Comment</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr ng-repeat="vehicle in incidentSummary.asset.vehicles track by $index">
+                                <td>{{vehicle.vehicleRegistrationId}}</td>
+                                <td>{{vehicle.engineNumber}}</td>
+                                <td>{{vehicle.chasisNumber}}</td>
+                                <td>{{vehicle.commentDescription}}</td>
+                        </tr>
+                </tbody>
+        </table>
+        <table class="table table-bordered" ng-if="incidentSummary.asset.equipments.length >0">
+                <thead>
+                        <tr>
+                                <th>Equipment Id</th>
+                                <th>Serial Number</th>
+                                <th>Equipment Details</th>
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr ng-repeat="equipment in incidentSummary.asset.equipments">
+                                <td>{{equipment.equipmentId}}</td>
+                                <td>{{equipment.serialNumber}}</td>
+                                <td>{{equipment.equipmentDetails}}</td>
+                        </tr>
+                </tbody>
+        </table>
+        <table class="table table-bordered" ng-if="incidentSummary.asset.buildings.length >0">
+                <thead>
+                        <tr>
+                                <th>Building Id</th>
+                                <th>Building Name</th>
+                                <th>Building Description</th>
 
-                                </tr>
-                        </thead>
-                        <tbody>
-                                <tr ng-repeat="building in incidentSummary.asset.buildings">
-                                        <td>{{building.buildingId}}</td>
-                                        <td>{{building.buildingName}}</td>
-                                        <td>{{building.buildingDescription}}</td>
-                                </tr>
-                        </tbody>
-                </table>
-                <table class="table table-bordered" ng-if="incidentSummary.asset.assetOthers.length >0">
-                        <thead>
-                            <tr>
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr ng-repeat="building in incidentSummary.asset.buildings">
+                                <td>{{building.buildingId}}</td>
+                                <td>{{building.buildingName}}</td>
+                                <td>{{building.buildingDescription}}</td>
+                        </tr>
+                </tbody>
+        </table>
+        <table class="table table-bordered" ng-if="incidentSummary.asset.assetOthers.length >0">
+                <thead>
+                        <tr>
                                 <th>Asset Id</th>
                                 <th>Asset Name</th>
                                 <th>Asset Description</th>
-        
+
                                 <th>&nbsp;</th>
-        
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="asset in incidentSummary.asset.assetOthers track by $index">
+
+                        </tr>
+                </thead>
+                <tbody>
+                        <tr ng-repeat="asset in incidentSummary.asset.assetOthers track by $index">
                                 <td>{{asset.assetTypeOtherId}}</td>
                                 <td>{{asset.assetTypeOtherName}}</td>
                                 <td>{{asset.assetTypeOtherDescription}}</td>
-        
+
                                 <td>
-                                    <a ng-click="deleteAssetOther(asset)">
-                                        <i class="glyphicon glyphicon-trash"></i>
-                                    </a> &nbsp;&nbsp;&nbsp;
-                                    <a ng-click="loadAssetOther(asset)">
-        
-                                        <i class="glyphicon glyphicon-pencil"></i>
-                                    </a>
-        
+                                        <a ng-click="deleteAssetOther(asset)">
+                                                <i class="glyphicon glyphicon-trash"></i>
+                                        </a> &nbsp;&nbsp;&nbsp;
+                                        <a ng-click="loadAssetOther(asset)">
+
+                                                <i class="glyphicon glyphicon-pencil"></i>
+                                        </a>
+
                                 </td>
-        
-        
-                            </tr>
-                        </tbody>
-                    </table>
+
+
+                        </tr>
+                </tbody>
+        </table>
 
         <!-- crimeDetails -->
         <h4>Crime Details</h4>
@@ -515,8 +513,7 @@
                                 </td>
 
                                 <td>
-                                        {{witness.addresses[0].organizationName}} {{witness.addresses[0].buildingName}} {{witness.addresses[0].localityName}}
-                                        {{witness.addresses[0].streetName}}
+                                        {{witness.addresses[0].organizationName}} {{witness.addresses[0].buildingName}} {{witness.addresses[0].localityName}} {{witness.addresses[0].streetName}}
                                 </td>
                                 <td>
                                         {{witness.addresses[0].city}}
@@ -557,7 +554,8 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Request Type:</label>
-                        <label class="summary-text">{{incidentSummary.claim.claimRequestRegistrationType.id != 'OTHER'?incidentSummary.claim.claimRequestRegistrationType.description : incidentSummary.claim.claimRequestRegistrationTypeOther}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.claimRequestRegistrationType.id != 'OTHER'?incidentSummary.claim.claimRequestRegistrationType.description
+                                : incidentSummary.claim.claimRequestRegistrationTypeOther}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
@@ -571,7 +569,8 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                         <label>Policy Type:</label>
-                        <label class="summary-text">{{incidentSummary.claim.policyType.id !='OTHER' ? incidentSummary.claim.policyType.description : incidentSummary.claim.policyTypeOther}}</label>
+                        <label class="summary-text">{{incidentSummary.claim.policyType.id !='OTHER' ? incidentSummary.claim.policyType.description :
+                                incidentSummary.claim.policyTypeOther}}</label>
                 </div>
         </div>
         <div class="row" ng-if="isAdminRole">
@@ -711,7 +710,7 @@
                         <label>Investigator Detail:</label>
                         <label class="summary-text">{{incidentSummary.investigation.investigatorDetail}}</label>
                 </div>
-                
+
                 <div class="col-sm-12 col-md-4">
                         <label>INvestigator Statement:</label>
                         <label class="summary-text">{{incidentSummary.investigation.investigatorStatement}}</label>
@@ -734,7 +733,7 @@
                         </tr>
                 </tbody>
         </table>
-        <div class="row" >
+        <div class="row">
                 <div class="col-sm-6">
                         <button ng-if="incidentSummary.incidentStatus == 'DRAFT'" class="btn btn-primary" type="button" ng-click="submitIncident()">Submit</button>
                 </div>
@@ -745,12 +744,3 @@
         </div>
 
 </div>
-<style>
-        .summary-text {
-                font-weight: normal;
-                padding-left: 5px;
-                padding-right: 5px;
-                text-overflow: ellipsis;
-                white-space: nowrap;
-        }
-</style>
