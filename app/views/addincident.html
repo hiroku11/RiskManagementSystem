@@ -139,7 +139,7 @@
                     <div class="col-sm-12 col-md-4">
                         <label>Incident Location</label>
                         <select class="form-control" ng-model="logIncidentDetails.incidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
-                            <option value=''>Select</option>
+                            <option value=''></option>
                         </select>
                     </div>
                     <div class="col-md-4 col-sm-12">
@@ -150,7 +150,7 @@
                         <label>Incident Location Details</label>
                         <select ng-model="logIncidentDetails.incidentLocationDetail.id" class="ddropdown form-control" ng-disabled="!logIncidentDetails.incidentLocation.id" ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':incidentDetails.incidentLocation.id})[0].incidentLocationDetails) ">
 
-                        <option value=''>Select</option>
+                        <option value=''></option>
                         </select>
                     </div>
                 </div>
@@ -167,7 +167,7 @@
                         <label>Date of Incident: (DD/MM/YYYY)</label>
                         <p class="input-group">
                             <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="logIncidentDetails.date" ng-focus="calendar.open($event,'dateIncident')"
-                            is-open="calendar.opened.dateIncident" datepicker-options="dateOptions"  close-text="Close" on-open-focus="true" alt-input-formats="altInputFormats"/>
+                            is-open="calendar.opened.dateIncident" datepicker-options="dateOptions"  close-text="Close" on-open-focus="true" alt-input-formats="altInputFormats" />
                             <span class="input-group-addon" ng-click="calendar.open($event,'dateIncident')">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>

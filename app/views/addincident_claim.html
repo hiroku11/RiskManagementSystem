@@ -38,7 +38,7 @@
             <div class="col-md-4 col-sm-12">
                 <label>Claim Status</label>
                 <select class="form-control" ng-options="claimStatus.id as claimStatus.description for claimStatus in claimStatus" ng-model="claimDetail.claimStatus.id">
-                        <option value=""></option>    
+                        <option value="">--Please Select--</option>    
                 </select>
 
             </div>
@@ -144,7 +144,7 @@
 
         </div>
 
-        <div class="row">
+        <div class="row" ng-if="claimDetail.claimStatus.id=='APPROVED'">
 
             <div class="col-md-3 col-sm-12">
                 <label>Claim Approved Date</label>
@@ -172,12 +172,9 @@
                         <label>Claim Approved Comment</label>
                         <input class="form-control" type="text" ng-model="claimDetail.claimApprovedComments">
                 </div>
-                
-         
-           
-
+            
         </div>
-       <div class="row">
+       <div class="row" ng-if="claimDetail.claimStatus.id=='SETTLED'">
             <div class="col-md-3 col-sm-12">
                     <label>Claim Settled Date</label>
                     <p class="input-group">
@@ -205,7 +202,7 @@
                     </div>
     
        </div>
-       <div class="row">
+       <div class="row" ng-if="claimDetail.claimStatus.id=='DECLINED'">
             <div class="col-md-4 col-sm-12">
                     <label>Claim Declined Date</label>
                     <p class="input-group">
@@ -230,7 +227,7 @@
                     </div>
     
        </div>
-       <div class="row">
+       <div class="row" ng-if="claimDetail.claimStatus.id=='REOPENED'">
             <div class="col-md-4 col-sm-12">
                     <label>Claim ReOpened Date</label>
                     <p class="input-group">
