@@ -83,7 +83,7 @@
             let out = null;
             let date = new Date(data);
             if (date.getTime() == date.getTime()) {
-                out = (date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate()) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear();
+                out = (date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate()) + "/" + ((date.getMonth() + 1).toString().length == 1 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + "/" + date.getFullYear();
             } else {
                 let splittedDate = data.split("/");
                 data = splittedDate[1] + "/" + splittedDate[0] + "/" + splittedDate[2];
