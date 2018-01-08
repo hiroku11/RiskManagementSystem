@@ -108,7 +108,9 @@
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label>Incident Type</label>
-                        <select class="form-control" ng-model="logIncidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType" />
+                        <select class="form-control" ng-model="logIncidentDetails.incidentType.id" ng-options="incidentType.id as incidentType.description for incidentType in incidentType">
+                                <option value=""></option>    
+                        </select>
                     </div>
                     <div class="col-md-4 col-sm-12">
                         <label>Incident Type Other</label>
@@ -118,7 +120,9 @@
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <label>Entry Point</label>
-                        <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint" />
+                        <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint">
+                                <option value=""></option>    
+                        </select>                       
 
                     </div>
 

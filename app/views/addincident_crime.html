@@ -31,7 +31,7 @@
             <div class="col-sm-12 col-md-3">
                 <label>Any Witness</label>
                 <select class="form-control" ng-model="crimeDetails.anyWitness">
-                    <option value="">--Select--</option>
+                    <option value=""></option>
                     <option value="Y">Yes</option>
                     <option value="N">No</option>
                 </select>
@@ -51,7 +51,7 @@
                 <div class="col-sm-12 col-md-3">
                     <label>Title:</label>
                     <select class="form-control" ng-model="crimeWitness.title">
-                        <option>Select</option>
+                            <option value=""></option>
                         <option>Mr</option>
                         <option>Mrs</option>
                         <option>Ms</option>
@@ -140,8 +140,9 @@
                     <div>
                         <label>Gender</label>
                     </div>
-                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="crimeWitness.genderType.id"
-                    />
+                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="crimeWitness.genderType.id">
+                            <option value=""></option>    
+                    </select>
                 </div>
                 <!-- <div class="col-sm-12 col-md-4">
                     <label>Gender others</label>
@@ -241,7 +242,7 @@
             <div class="col-sm-12 col-md-3">
                 <label>Title:</label>
                 <select class="form-control" ng-model="crimeSuspect.title">
-                    <option>Select</option>
+                        <option value=""></option>
                     <option>Mr</option>
                     <option>Mrs</option>
                     <option>Ms</option>
@@ -331,8 +332,9 @@
                 <div>
                     <label>Gender</label>
                 </div>
-                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="crimeSuspect.genderType.id"
-                />
+                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="crimeSuspect.genderType.id">
+                        <option value=""></option>    
+                </select>
                 <!--<input name="gender" type="radio"> <span>Male</span>
                 <input name="gender" type="radio"> <span>Female</span>-->
             </div>
