@@ -1535,11 +1535,33 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
                 bodyPart = response.data;
                 var storeDesc = [];
-                bodyPart.map(function (d) {
+                var bodyPartsFrontArray = [];
+                var bodyPartsBackArray = [];
+                response.data.map(function (d) {
                     storeDesc.push(d.description);
+                    if(d.bodyPartFrontOrBack == 'BACK'){
+                         bodyPartsBackArray.push(d.description);
+                    }
+                    else{
+                         bodyPartsFrontArray.push(d.description);
+                    }
                 });
                 $scope.bodyPartsArray = storeDesc;
+                $scope.bodyPartsFrontArray = bodyPartsFrontArray;
+                $scope.bodyPartsBackArray = bodyPartsBackArray;
                 AppService.HideLoader();
+                // $scope.bodyPartsFrontArray = ["Chest", "Chin", "Face", "Hair", "Head", 
+                //  "Left Ankle", "Left Arm", "Left Ear", "Left Elbow","Left Eye",
+                //  "Left Fingers", "Left Foot", "Left Forearm", "Left Hand", "Left Heel",
+                //  "Left Knee", "Left Leg", "Left Palm", "Left Shoulder", 
+                //  "Left Shoulder Blade", "Left Thigh", "Left Toe", "Left Wrist", "Loin",
+                //  "Nose", "Right Ankle", "Right Arm", "Right Ear", "Right Elbow", "Right Eye",
+                //  "Right Fingers", "Right foot", "Right Forearm", "Right Hand", "Right Heel",
+                //  "Right Knee", "Right Leg", "Right Palm", "Right Shoulder", "Right Shoulder Blade",
+                //  "Right Thigh", "Right Toe", "Right Wrist", "Stomach", "Waist"
+                //   ];
+                // $scope.bodyPartsBackArray  =["Back" , "Buttock", "Nape","Neck", "Right Calf",
+                // "Left Calf","Left Hip","Right Hip",""];
 
             }, function (error) {
                 AppService.HideLoader();
@@ -2485,7 +2507,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             })
         }
-        $scope.deleteBuiding = function (building) {
+        $scope.deleteBuilding = function (building) {
             var req = {
                 url: rmsService.baseEndpointUrl +
                 'asset/remove-building/assetId/' +
@@ -2799,7 +2821,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             var req = {
                 url: rmsService.baseEndpointUrl +
                 'asset/remove-equipment/assetId/' +
-                $scope.assetDetail.id + '/equipmentId/' + building.id,
+                $scope.assetDetail.id + '/equipmentId/' + data.id,
                 method: "DELETE",
                 headers: {
                     'X-AUTH-TOKEN': $scope.token
