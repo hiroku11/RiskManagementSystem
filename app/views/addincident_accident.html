@@ -12,20 +12,25 @@
                     </span>
                 </div> -->
                 <p class="input-group">
-                    <input type="text" ng-focus="calendar.open($event,'accidentDate')" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="accidentDetails.accidentDate" 
-                    is-open="calendar.opened.accidentDate" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats"/>
+                    <input type="text" ng-focus="calendar.open($event,'accidentDate')" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                        ng-model="accidentDetails.accidentDate" is-open="calendar.opened.accidentDate" datepicker-options="dateOptions"
+                        close-text="Close" alt-input-formats="altInputFormats" />
                     <span class="input-group-addon" ng-click="calendar.open($event,'accidentDate')">
-                            <span class="glyphicon glyphicon-calendar"></span>
+                        <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                 </p>
             </div>
             <div class="col-md-4 col-sm-12">
-                <div><label>Time of Accidnet:</label></div>
+                <div>
+                    <label>Time of Accidnet:</label>
+                </div>
                 <input class="form-control small-control" type="text" placeholder="HH" ng-model="accidentDetails.accidentTimeHrs">:
                 <input class="form-control  small-control" type="text" placeholder="MM" ng-model="accidentDetails.accidentTimeMin">
             </div>
             <div class="col-md-4 col-sm-12">
-                <div><label>Place of Accidnet:</label></div>
+                <div>
+                    <label>Place of Accident:</label>
+                </div>
                 <input class="form-control" type="text" ng-model="accidentDetails.accidentPlace" />
             </div>
         </div>
@@ -33,37 +38,41 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location:</label>
-                <select class="form-control" ng-model="accidentDetails.accidentLocation.id" 
-                ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
+                <select class="form-control" ng-model="accidentDetails.accidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
+                        <option value=""></option>
                 </select>
 
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location Details:</label>
-                <select ng-model="accidentDetails.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accidentLocation.id" 
-                ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accidentLocation.id})[0].incidentLocationDetails) ">
+                <select ng-model="accidentDetails.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accidentLocation.id"
+                    ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in ((incidentLocations | filter:{'id':accidentDetails.accidentLocation.id})[0].incidentLocationDetails) ">
+                    <option value=""></option>
                 </select>
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location Others:</label>
-                <input class="form-control" type="text" ng-disabled="accidentDetails.accidentLocation.id !='OTHER'" ng-model="accidentLocationDetails.accidentLocationOther" />
+                <input class="form-control" type="text" ng-disabled="accidentDetails.accidentLocation.id !='OTHER'" ng-model="accidentLocationDetails.accidentLocationOther"
+                />
             </div>
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <label>Accident Type</label>
                 <select class="form-control" ng-model="accidentDetails.accidentType.id">
-                        <option value="NATURAL">Natural</option>
-                        <option value="ACCIDENT">Accident</option>
-                    </select>
+                        <option value=""></option>
+                    <option value="NATURAL">Natural</option>
+                    <option value="ACCIDENT">Accident</option>
+                </select>
             </div>
             <div class="col-md-2 col-sm-12">
-                    <label>Witness</label>
-                    <select class="form-control" ng-model="accidentDetails.anyWitness">
-                                    <option value="Y">Yes</option>
-                                    <option value="N">No</option>
-                                </select>
-                </div>
+                <label>Witness</label>
+                <select class="form-control" ng-model="accidentDetails.anyWitness">
+                        <option value=""></option>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
+            </div>
             <div class="col-sm-12 col-md-6">
                 <label>Accident Description:</label>
                 <textarea class="form-control" ng-model="accidentDetails.accidentDescription" maxlength="256"></textarea>
@@ -72,91 +81,93 @@
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <button class="btn btn-primary" ng-click="addAccident()">Save</button>
-               
+
             </div>
         </div>
         <div ng-if="accidentDetails.anyWitness == 'Y'">
-                <h4 class="form-title">Witness</h4>
-                <div class="row">
-                    <div class="col-sm-12 col-md-3">
-                        <label>Title:</label>
-                        <select class="form-control" ng-model="witness.title">
-                            <option value="">--Select--</option>
-                            <option>Mr</option>
-                            <option>Mrs</option>
-                            <option>Ms</option>
-                            <option>Miss</option>
-                            <option>Master</option>
+            <h4 class="form-title">Witness</h4>
+            <div class="row">
+                <div class="col-sm-12 col-md-3">
+                    <label>Title:</label>
+                    <select class="form-control" ng-model="witness.title">
+                        <option value=""></option>
+                        <option>Mr</option>
+                        <option>Mrs</option>
+                        <option>Ms</option>
+                        <option>Miss</option>
+                        <option>Master</option>
                     </select>
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>First Name:</label>
+                    <input class="form-control" placeholder="First Name" type="text" ng-model="witness.firstName">
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>Middle Name:</label>
+                    <input class="form-control" placeholder="Middle Name" type="text" ng-model="witness.middleName">
+                </div>
+                <div class="col-sm-12 col-md-3">
+                    <label>Last Name:</label>
+                    <input class="form-control" placeholder="Last Name" type="text" ng-model="witness.lastName">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label>Address</label>
+                    <input name="" class="form-control" type="text" ng-model="witness.addresses[0].organizationName">
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <label>Street</label>
+                    <input name="" class="form-control" type="text" ng-model="witness.addresses[0].streetName">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <label>City</label>
+                    <input class="form-control" type="text" ng-model="witness.addresses[0].city">
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <label>County</label>
+                    <input class="form-control" type="text" ng-model="witness.addresses[0].county">
+                </div>
+
+                <div class="col-sm-12 col-md-4">
+                    <label>Country</label>
+                    <input class="form-control" type="text" ng-model="witness.addresses[0].country">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6 row">
+                    <div class="col-sm-10">
+                        <label>Postal Code:</label>
+                        <input class="form-control" type="text" ng-model="witness.addresses[0].postcode">
+                        <!-- <input class="form-control small-control" type="text"> -->
                     </div>
-                    <div class="col-sm-12 col-md-3">
-                        <label>First Name:</label>
-                        <input class="form-control" placeholder="First Name" type="text" ng-model="witness.firstName">
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <label>Middle Name:</label>
-                        <input class="form-control" placeholder="Middle Name" type="text" ng-model="witness.middleName">
-                    </div>
-                    <div class="col-sm-12 col-md-3">
-                        <label>Last Name:</label>
-                        <input class="form-control" placeholder="Last Name" type="text" ng-model="witness.lastName">
+                    <div class="col-sm-2" style="padding-top:1.7em;">
+                        <a class="btn btn-primary">Lookup</a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <label>Address</label>
-                        <input name="" class="form-control" type="text" ng-model="witness.addresses[0].organizationName">
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label>Street</label>
-                        <input name="" class="form-control" type="text" ng-model="witness.addresses[0].streetName">
-                    </div>
+                <div class="col-sm-12 col-md-6">
+                    <label>Phone</label>
+                    <input class="form-control" type="text" ng-model="witness.phone" />
                 </div>
-    
-                <div class="row">
-                    <div class="col-sm-12 col-md-4">
-                        <label>City</label>
-                        <input class="form-control" type="text" ng-model="witness.addresses[0].city">
-                    </div>
-    
-                    <div class="col-sm-12 col-md-4">
-                        <label>County</label>
-                        <input class="form-control" type="text" ng-model="witness.addresses[0].county">
-                    </div>
-    
-                    <div class="col-sm-12 col-md-4">
-                        <label>Country</label>
-                        <input class="form-control" type="text" ng-model="witness.addresses[0].country">
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <label>Age</label>
+                    <input type="number" class="form-control" ng-model="witness.age" />
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6 row">
-                        <div class="col-sm-10">
-                            <label>Postal Code:</label>
-                            <input class="form-control" type="text" ng-model="witness.addresses[0].postcode">
-                            <!-- <input class="form-control small-control" type="text"> -->
-                        </div>
-                        <div class="col-sm-2" style="padding-top:1.7em;">
-                            <a class="btn btn-primary">Lookup</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6">
-                        <label>Phone</label>
-                        <input class="form-control" type="text" ng-model="witness.phone" />
-                    </div>
+
+                <div class="col-sm-12 col-md-6">
+                    <label>Gender</label>
+                    <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="witness.genderType.id">
+                            <option value=""></option>    
+                    </select>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-6">
-                        <label>Age</label>
-                        <input type="number" class="form-control" ng-model="witness.age" />
-                    </div>
-    
-                    <div class="col-sm-12 col-md-6">
-                        <label>Gender</label>
-                        <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="witness.genderType.id" />
-                    </div>
-                </div>
-                <!-- <div class="row">
+            </div>
+            <!-- <div class="row">
                     <div class="col-md-4 col-sm-12">
                         <label>Distinguishing Features</label>
                         <multiselect ng-model="witness.distinguishingFeature" options="$parent.distinguishFeatures" id-prop="id" display-prop="description">
@@ -172,94 +183,97 @@
                         <input ng-model="witness.otherDistinguishFeatures" class="form-control" />
                     </div>
                 </div> -->
-                <div class="row">
-                    <div class="col-md-3 col-sm-12">
-                        <label>Distinguishing Features</label>
-                        <select class="form-control" multiple ng-model="witness.distinguishingFeature" 
-                        ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeatures  track by distinguishFeature.id"
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <label>Distinguishing Features</label>
+                    <select class="form-control" multiple ng-model="witness.distinguishingFeature" ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeatures  track by distinguishFeature.id"
                         ng-change="getDistinguishFeaturesDetails(witness.distinguishingFeature)">
-        
-                        </select>
-                    </div>
-                    <div class="col-md-3 col-sm-12">
-                        <label>Distinguishing Features Details</label>
-                        <select multiple class="form-control" ng-disabled="!witness.distinguishingFeature" ng-model="witness.distinguishingFeatureDetail" 
+
+                    </select>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <label>Distinguishing Features Details</label>
+                    <select multiple class="form-control" ng-disabled="!witness.distinguishingFeature" ng-model="witness.distinguishingFeatureDetail"
                         ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeaturesDetails track by distinguishFeature.id">
-                        </select>
-                    </div>
-                    <div class="col-md-2 col-sm-12 text-center move-buttons">
-                        <button ng-click="addFeatureToSelectedList(witness)" title="Move to right" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
-                        <button ng-disabled="witness.distinguishingFeaturesOptions && witness.distinguishingFeaturesOptions.length == 0" ng-click="removeFeatureToSelectedList(witness)" title="Move to left" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-left"></span></button>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <label>Selected Distinguishing Features</label>
-                        <select multiple class="form-control" ng-model="witness.distinguishingFeatures"
-                        ng-options="distinguishFeature.description for distinguishFeature in witness.distinguishingFeaturesOptions">
-                        </select>
-                    </div>
-                    
+                    </select>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-4" ng-if="!editWitness">
-                        <button class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()" ng-disabled="!accAdded">Add Witness</button>
-                    </div>
-                    <div class="col-sm-12 col-md-4" ng-if="editWitness">
-                            <button class="btn btn-success" ng-click="updateWitness(witness)">Update Witness</button>
-                        </div>
-                    <div class="col-sm-12 col-md-4">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal7" ng-disabled="!accAdded">Add Existing Witness</button>
-                    </div>
-                    <div class="col-sm-12 col-md-4">
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#myModal8" ng-disabled="!accAdded">Add Employee Witness</button>
-                    </div>
+                <div class="col-md-2 col-sm-12 text-center move-buttons">
+                    <button ng-click="addFeatureToSelectedList(witness)" title="Move to right" class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-arrow-right"></span>
+                    </button>
+                    <button ng-disabled="witness.distinguishingFeaturesOptions && witness.distinguishingFeaturesOptions.length == 0" ng-click="removeFeatureToSelectedList(witness)"
+                        title="Move to left" class="btn btn-default" type="button">
+                        <span class="glyphicon glyphicon-arrow-left"></span>
+                    </button>
                 </div>
-    
-                <div id="tblWitness" class="table-wrapper inline" ng-if="witnesses.length > 0">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Organization</th>
-                                <th>City</th>
-                                <th>County</th>
-                                <th>Postcode</th>
-                                <th>&nbsp</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="witness in witnesses">
-                                <td>{{witness.firstName}} {{witness.LastName}}</td>
-                                <td>{{witness.age}}</td>
-                                <td>{{witness.genderType.id}}</td>
-                                <td>{{witness.addresses[0].organizationName}}</td>
-                                <td>{{witness.addresses[0].city}}</td>
-                                <td>{{witness.addresses[0].county}}</td>
-                                <td>{{witness.addresses[0].postcode}}</td>
-                                <td>
-                                        <a ng-click="deleteWitness(witness)" ng-if="witness.witnessCategory == 'NON-EMPLOYEE'">
-                                                <i class="glyphicon glyphicon-trash"></i>
-                                            </a> &nbsp;&nbsp;
-                                            <a ng-click="loadWitness(witness)" ng-if="witness.witnessCategory == 'NON-EMPLOYEE'">
-                                                <i class="glyphicon glyphicon-pencil"></i>
-                                            </a>
-                
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="col-md-4 col-sm-12">
+                    <label>Selected Distinguishing Features</label>
+                    <select multiple class="form-control" ng-model="witness.distinguishingFeatures" ng-options="distinguishFeature.description for distinguishFeature in witness.distinguishingFeaturesOptions">
+                    </select>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-4" ng-if="!editWitness">
+                    <button class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()" ng-disabled="!accAdded">Add Witness</button>
+                </div>
+                <div class="col-sm-12 col-md-4" ng-if="editWitness">
+                    <button class="btn btn-success" ng-click="updateWitness(witness)">Update Witness</button>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal7" ng-disabled="!accAdded">Add Existing Witness</button>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal8" ng-disabled="!accAdded">Add Employee Witness</button>
                 </div>
             </div>
+
+            <div id="tblWitness" class="table-wrapper inline" ng-if="witnesses.length > 0">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Organization</th>
+                            <th>City</th>
+                            <th>County</th>
+                            <th>Postcode</th>
+                            <th>&nbsp</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="witness in witnesses">
+                            <td>{{witness.firstName}} {{witness.LastName}}</td>
+                            <td>{{witness.age}}</td>
+                            <td>{{witness.genderType.id}}</td>
+                            <td>{{witness.addresses[0].organizationName}}</td>
+                            <td>{{witness.addresses[0].city}}</td>
+                            <td>{{witness.addresses[0].county}}</td>
+                            <td>{{witness.addresses[0].postcode}}</td>
+                            <td>
+                                <a ng-click="deleteWitness(witness)" ng-if="witness.witnessCategory == 'NON-EMPLOYEE'">
+                                    <i class="glyphicon glyphicon-trash"></i>
+                                </a> &nbsp;&nbsp;
+                                <a ng-click="loadWitness(witness)" ng-if="witness.witnessCategory == 'NON-EMPLOYEE'">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                </a>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <h4 class="form-title">Injured Person</h4>
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Injured Person Type</label>
                 <select ng-model="injuredPerson.personType.id" class="form-control" ng-options="injuredPersonType.id as injuredPersonType.description for injuredPersonType in injuredPersonTypes">
-						<option value="">--Select--</option>
-					
-					</select>
+                    <option value=""></option>
+
+                </select>
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>If Injured Person Type Other:</label>
@@ -270,8 +284,8 @@
             <div class="col-sm-12 col-md-4">
                 <label>Type of injury</label>
                 <select ng-model="injuredPerson.injuryType.id" class="form-control" ng-options="injuryType.id as injuryType.description for injuryType in injuryTypes">
-					<option value="">--Select--</option>
-				</select>
+                    <option value=""></option>
+                </select>
             </div>
             <div class="col-sm-12 col-md-4">
                 <label>If Injury Type Other:</label>
@@ -279,9 +293,10 @@
             </div>
             <div class="col-sm-12 col-md-4" ng-disabled="injuredPerson.injuryType.id =='OTHER'">
                 <label>Injury Type Detail</label>
-                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetail.id" ng-disabled="!injuredPerson.injuryType.id" ng-options="injuryTypeDetail.id as injuryTypeDetail.description for injuryTypeDetail in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails) ">
-                    <option value=''>Select</option>
-                    </select>
+                <select class="ddropdown form-control" ng-model="injuredPerson.injuryTypeDetail.id" ng-disabled="!injuredPerson.injuryType.id"
+                    ng-options="injuryTypeDetail.id as injuryTypeDetail.description for injuryTypeDetail in ((injuryTypes | filter:{'id':injuredPerson.injuryType.id})[0].injuryTypeDetails) ">
+                    <option value=''></option>
+                </select>
             </div>
 
             <!-- <div class="col-sm-12 col-md-3">
@@ -297,14 +312,15 @@
             <div class="col-sm-12 col-md-6">
                 <label>Cause of Injury</label>
                 <select class="form-control" ng-options="cause.id as cause.description for cause in injuryCauses" ng-model="injuredPerson.injuryCause.id">
-                        <option value="">--Select--</option>
-                    
-                    </select>
+                    <option value=""></option>
+
+                </select>
 
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>Cause of Injury Other</label>
-                <input class="form-control" type="text" ng-disabled="injuredPerson.injuryCause.id !='OTHER'" ng-model="injuredPerson.injuryCauseOther" />
+                <input class="form-control" type="text" ng-disabled="injuredPerson.injuryCause.id !='OTHER'" ng-model="injuredPerson.injuryCauseOther"
+                />
 
             </div>
 
@@ -314,12 +330,13 @@
             <div class="col-sm-12 col-md-2">
                 <label>Title:</label>
                 <select class="form-control" ng-model="injuredPerson.title">
-							<option>Mr</option>
-							<option>Mrs</option>
-							<option>Ms</option>
-							<option>Miss</option>
-							<option>Master</option>
-						</select>
+                        <option value=""></option>
+                    <option>Mr</option>
+                    <option>Mrs</option>
+                    <option>Ms</option>
+                    <option>Miss</option>
+                    <option>Master</option>
+                </select>
             </div>
             <div class="col-sm-12 col-md-3">
                 <label>First Name:</label>
@@ -360,7 +377,7 @@
             </div>
 
             <div class="col-sm-12 col-md-6">
-                <label>	Post Town</label>
+                <label> Post Town</label>
                 <input class="form-control" type="text" ng-model="injuredPerson.addresses[0].postTown">
             </div>
         </div>
@@ -399,32 +416,36 @@
             </div>
             <div class="com-sm-12 col-md-6">
                 <label>Gender:</label>
-                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="injuredPerson.genderType.id" />
+                <select class="form-control" ng-options="genderType.id as genderType.description for genderType in genderType" ng-model="injuredPerson.genderType.id" >
+                        <option value=""></option>    
+                </select>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <label>Distinguishing Features</label>
-                <select class="form-control" multiple ng-model="injuredPerson.distinguishingFeature" 
-                ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeatures  track by distinguishFeature.id"
-                ng-change="getDistinguishFeaturesDetails(injuredPerson.distinguishingFeature)">
-
+                <select class="form-control" multiple ng-model="injuredPerson.distinguishingFeature" ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeatures  track by distinguishFeature.id"
+                    ng-change="getDistinguishFeaturesDetails(injuredPerson.distinguishingFeature)">
                 </select>
             </div>
             <div class="col-md-3 col-sm-12">
                 <label>Distinguishing Features Details</label>
-                <select multiple class="form-control" ng-disabled="!injuredPerson.distinguishingFeature" ng-model="injuredPerson.distinguishingFeatureDetail" 
-                ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeaturesDetails track by distinguishFeature.id">
+                <select multiple class="form-control" ng-disabled="!injuredPerson.distinguishingFeature" ng-model="injuredPerson.distinguishingFeatureDetail"
+                    ng-options=" distinguishFeature.description for distinguishFeature in distinguishFeaturesDetails track by distinguishFeature.id">
                 </select>
             </div>
             <div class="col-md-2 col-sm-12 text-center move-buttons">
-                <button ng-click="addFeatureToSelectedList(injuredPerson)" title="Move to right" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-right"></span></button>
-                <button ng-disabled="injuredPerson.distinguishingFeaturesOptions && injuredPerson.distinguishingFeaturesOptions.length == 0" ng-click="removeFeatureToSelectedList(suspect)" title="Move to left" class="btn btn-default" type="button"><span class="glyphicon glyphicon-arrow-left"></span></button>
+                <button ng-click="addFeatureToSelectedList(injuredPerson)" title="Move to right" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-arrow-right"></span>
+                </button>
+                <button ng-disabled="injuredPerson.distinguishingFeaturesOptions && injuredPerson.distinguishingFeaturesOptions.length == 0"
+                    ng-click="removeFeatureToSelectedList(suspect)" title="Move to left" class="btn btn-default" type="button">
+                    <span class="glyphicon glyphicon-arrow-left"></span>
+                </button>
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Selected Distinguishing Features</label>
-                <select multiple class="form-control" ng-model="injuredPerson.distinguishingFeatures"
-                ng-options="distinguishFeature.description for distinguishFeature in injuredPerson.distinguishingFeaturesOptions">
+                <select multiple class="form-control" ng-model="injuredPerson.distinguishingFeatures" ng-options="distinguishFeature.description for distinguishFeature in injuredPerson.distinguishingFeaturesOptions">
                 </select>
             </div>
         </div>
@@ -432,11 +453,12 @@
             <div class="col-md-2 col-sm-12">
                 <label>Any first aid given</label>
                 <select class="form-control" ng-model="injuredPerson.firstAidGiven">
-					<option value="Y">Yes</option>
-					<option value="N">No</option>
-				</select>
+                        <option value=""></option>
+                    <option value="Y">Yes</option>
+                    <option value="N">No</option>
+                </select>
             </div>
-          
+
 
             <div class="col-md-4 col-sm-12">
                 <label>Selected Body Parts</label>
@@ -453,8 +475,8 @@
                 <button class="btn btn-primary" ng-click="addInjuredPerson()" ng-disabled="!accAdded && !editIncidentMode">Add Injured Person</button>
             </div>
             <div class="col-sm-12 col-md-4" ng-if="editInjured">
-                    <button class="btn btn-success" ng-click="updateInjured(suspect)">Update Injured Person</button>
-                </div>
+                <button class="btn btn-success" ng-click="updateInjured(suspect)">Update Injured Person</button>
+            </div>
             <div class="col-sm-12 col-md-4">
                 <button class="btn btn-primary" data-toggle="modal" data-target="#myModal5" ng-disabled="!accAdded && !editIncidentMode">Add Existing Injured Person</button>
             </div>
@@ -494,7 +516,7 @@
                         <td>{{::person.addresses[0].county}}</td>
                         <td>{{::person.addresses[0].postcode}}</td>
                         <td> {{getPartsString(person)}}
-                                </td>
+                        </td>
                         <td>
                             <a ng-click="deleteInjured(person)" ng-if="person.injuredPersonCategory == 'NON-EMPLOYEE'">
                                 <i class="glyphicon glyphicon-trash"></i>
@@ -508,10 +530,10 @@
                 </tbody>
             </table>
         </div>
-        
+
         <div class="row ">
             <div class="col-md-6 col-sm-12">
-                              <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
+                <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 
             <div class="col-md-6 col-sm-12">
@@ -590,10 +612,11 @@
                         <div class="col-sm-12 col-md-6 ">
                             <label>Existing Injured Person</label>
                             <div class="input-group">
-                                <input class="form-control" ng-change="injuredPersonLookup(existingInjured)" placeholder="Type user name" ng-model="existingInjured" ng-model-options="{'debounce':500}" />
+                                <input class="form-control" ng-change="injuredPersonLookup(existingInjured)" placeholder="Type user name" ng-model="existingInjured"
+                                    ng-model-options="{'debounce':500}" />
 
                                 <span class="input-group-addon" ng-click="injuredPersonLookup(existingInjured)">
-                        <span class="glyphicon glyphicon-search"></span>
+                                    <span class="glyphicon glyphicon-search"></span>
                                 </span>
                             </div>
 
@@ -614,7 +637,10 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in injuredPersonData">
-                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingInjured(person)" /></td>
+                                    <td>
+                                        <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingInjured(person)"
+                                        />
+                                    </td>
                                     <td>{{person.firstName}} {{person.LastName}}</td>
                                     <td>{{person.age}}</td>
                                     <td>{{person.genderTypeCode}}</td>
@@ -650,9 +676,10 @@
                         <div class="col-sm-12 col-md-6 ">
                             <label>Employee Injured injuredPerson</label>
                             <div class="input-group">
-                                <input class="form-control" ng-change="userLookup(employeeinjured)" placeholder="Type user name" ng-model="employeeinjured" ng-model-options="{'debounce':500}" />
+                                <input class="form-control" ng-change="userLookup(employeeinjured)" placeholder="Type user name" ng-model="employeeinjured"
+                                    ng-model-options="{'debounce':500}" />
                                 <span class="input-group-addon" ng-click="userLookup(employeeinjured)">
-                                <span class="glyphicon glyphicon-search"></span>
+                                    <span class="glyphicon glyphicon-search"></span>
                                 </span>
                             </div>
 
@@ -673,7 +700,9 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in userInfo">
-                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeInjured(person)" />
+                                    <td>
+                                        <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeInjured(person)"
+                                        />
                                     </td>
                                     <td>{{person.firstName}} {{person.LastName}}</td>
                                     <td>{{person.age}}</td>
@@ -710,10 +739,11 @@
                         <div class="col-sm-12 col-md-6 ">
                             <label>Existing Witness</label>
                             <div class="input-group">
-                                <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness" ng-model-options="{'debounce':500}" />
+                                <input class="form-control" ng-change="witnessLookup(existingWitness)" placeholder="Type user name" ng-model="existingWitness"
+                                    ng-model-options="{'debounce':500}" />
 
                                 <span class="input-group-addon" ng-click="witnessLookup(existingWitness)">
-                        <span class="glyphicon glyphicon-search"></span>
+                                    <span class="glyphicon glyphicon-search"></span>
                                 </span>
                             </div>
 
@@ -734,7 +764,10 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in witnessData">
-                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingWitness(person)" /></td>
+                                    <td>
+                                        <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addExistingWitness(person)"
+                                        />
+                                    </td>
                                     <td>{{person.firstName}} {{person.LastName}}</td>
                                     <td>{{person.age}}</td>
                                     <td>{{person.genderTypeCode}}</td>
@@ -768,9 +801,10 @@
                         <div class="col-sm-12 col-md-6 ">
                             <label>Employee Witness</label>
                             <div class="input-group">
-                                <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness" ng-model-options="{'debounce':500}" />
+                                <input class="form-control" ng-change="userLookup(employeeWitness)" placeholder="Type user name" ng-model="employeeWitness"
+                                    ng-model-options="{'debounce':500}" />
                                 <span class="input-group-addon" ng-click="userLookup(employeeWitness)">
-                                <span class="glyphicon glyphicon-search"></span>
+                                    <span class="glyphicon glyphicon-search"></span>
                                 </span>
                             </div>
 
@@ -791,7 +825,9 @@
                             </thead>
                             <tbody>
                                 <tr ng-repeat="person in userInfo">
-                                    <td><input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeWitness(person)" />
+                                    <td>
+                                        <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeWitness(person)"
+                                        />
                                     </td>
                                     <td>{{person.firstName}} {{person.LastName}}</td>
                                     <td>{{person.age}}</td>

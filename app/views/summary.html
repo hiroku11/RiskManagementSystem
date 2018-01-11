@@ -163,8 +163,8 @@
                         </tr>
                 </tbody>
         </table>
-        <h4 ng-if="incidentSummary.reportedLosses.length > 0">Reported Losses</h4>
-        <table class="table table-bordered" ng-if="incidentSummary.reportedLosses.length > 0">
+        <h4 ng-if="incidentSummary.reportedLosses.length" >Reported Losses</h4>
+        <table class="table table-bordered" ng-if="incidentSummary.reportedLosses.length" >
                 <thead>
                         <tr>
                                 <th>Loss Type</th>
@@ -587,7 +587,7 @@
                         <label class="summary-text">{{incidentSummary.claim.claimHandler.fullName}}</label>
                 </div>
         </div>
-        <div class="row" ng-if="isAdminRole">
+        <div class="row" ng-if="isAdminRole && incidentSummary.claim.claimStatus.id=='REQUESTED'" >
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Requested Amount:</label>
                         <label class="summary-text">{{incidentSummary.claim.claimRequestedAmount}}</label>
@@ -601,7 +601,7 @@
                         <label class="summary-text">{{incidentSummary.claim.claimRequestedBy}}</label>
                 </div>
         </div>
-        <div class="row" ng-if="isAdminRole">
+        <div class="row" ng-if="isAdminRole && incidentSummary.claim.claimStatus.id=='APPROVED'">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Approved By:</label>
                         <label class="summary-text">{{incidentSummary.claim.claimApprovedBy}}</label>
@@ -615,7 +615,7 @@
                         <label class="summary-text">{{incidentSummary.claim.claimApprovedDate}}</label>
                 </div>
         </div>
-        <div class="row" ng-if="isAdminRole">
+        <div class="row" ng-if="isAdminRole && incidentSummary.claim.claimStatus.id=='SETTLED'">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Settlement By:</label>
                         <label class="summary-text">{{incidentSummary.claim.claimSettlementBy}}</label>
@@ -629,7 +629,7 @@
                         <label class="summary-text">{{incidentSummary.claim.claimSettlementDate}}</label>
                 </div>
         </div>
-        <div class="row" ng-if="isAdminRole">
+        <div class="row" ng-if="isAdminRole && incidentSummary.claim.claimStatus.id=='DECLINED'">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Declined By:</label>
                         <label class="summary-text">{{incidentSummary.claim.claimDeclinedBy}}</label>
@@ -643,7 +643,7 @@
                         <label class="summary-text">{{incidentSummary.claim.claimDeclinedComments}}</label>
                 </div>
         </div>
-        <div class="row" ng-if="isAdminRole">
+        <div class="row" ng-if="isAdminRole && incidentSummary.claim.claimStatus.id=='REOPENED'">
                 <div class="col-sm-12 col-md-4">
                         <label>Claim Reopened By:</label>
                         <label class="summary-text">{{incidentSummary.claim.claimReopenedBy}}</label>

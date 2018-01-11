@@ -7,6 +7,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.logOutUser = rmsService.logOutUser;
         $scope.isAdminRole = rmsService.isAdminRole();
         $scope.altInputFormats = ['M!/d!/yyyy','dd-MMMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy'];
+        $scope.maxDate = new Date();
         $scope.incident = {
             "incidentId": "",
             "uniqueIncidentId": "",
@@ -51,6 +52,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.logIncidentDetails = {
             "incidentId": null,
             "incidentOpenedDateTime": null,
+            "date":new Date(),
             "uniqueIncidentId": null,
             "statusFlag": null,
             "propertyDamage": "Y",
@@ -146,7 +148,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "id": null,
             "incident": {},
             "statusFlag": "ACTIVE",
-            "date": null,
+            "date": new Date(),
             "timeHrsContacted": null,
             "timeMinContacted": null
 
@@ -220,17 +222,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
               "securityRequested": "N",
               "trainingRequested": "N",
               "claimRequestedAmount": null,
-              "claimRequestedDate": null,
+              "claimRequestedDate": new Date(),
               "claimRequestedBy": null,
               "claimApprovedAmount": null,
-              "claimApprovedDate": null,
+              "claimApprovedDate": new Date(),
               "claimApprovedBy": null,
               "claimSettlementAmount": null,
-              "claimSettlementDate": null,
+              "claimSettlementDate": new Date(),
               "claimSettlementBy": null,
-              "claimDeclinedDate": null,
+              "claimDeclinedDate": new Date(),
               "claimDeclinedBy": null,
-              "claimReopenedDate": null,
+              "claimReopenedDate": new Date(),
               "claimReopenedBy": null,
               "claimRequestedComments": null,
               "claimApprovedComments": null,
@@ -365,7 +367,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "crimeDateTime": null,
             "crimeDescription": null,
             "anyWitness": null,
-            "date": null,
+            "date": new Date(),
             "timeHrs": null,
             "timeMin": null,
             "witnesses":[],
@@ -481,9 +483,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.handleTabsForRoles();
         $scope.initializeAccidentPlaceAndTime = function () {
             if($scope.editIncidentMode) return;
-            $scope.accidentDetails.accidentPlace = $scope.logIncidentDetails.placeOfIncident
-            $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+$scope.logIncidentDetails.timeHrsOfIncident;
-            $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
+            $scope.accidentDetails.accidentPlace = $scope.logIncidentDetails.placeOfIncident;
+            $scope.accidentDetails.accidentDate = $scope.logIncidentDetails.date;
+            if($scope.logIncidentDetails.timeHrsOfIncident && $scope.logIncidentDetails.timeMinOfIncident){
+                $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+$scope.logIncidentDetails.timeHrsOfIncident;
+                $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
+            }
+            
         }
 
         $scope.getDayClass = function (data) {
@@ -511,8 +517,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.dateOptions = {
             // dateDisabled: disabled,
+            maxDate: new Date(),
             formatYear: 'yyyy',
-            startingDay: 1
+            startingDay: 1,
+            endDate: new Date()
         };
 
         $scope.submitForm = function (formName, dir, $event) {
