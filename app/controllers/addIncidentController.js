@@ -483,9 +483,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.handleTabsForRoles();
         $scope.initializeAccidentPlaceAndTime = function () {
             if($scope.editIncidentMode) return;
-            $scope.accidentDetails.accidentPlace = $scope.logIncidentDetails.placeOfIncident
-            $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+$scope.logIncidentDetails.timeHrsOfIncident;
-            $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
+            $scope.accidentDetails.accidentPlace = $scope.logIncidentDetails.placeOfIncident;
+            $scope.accidentDetails.accidentDate = $scope.logIncidentDetails.date;
+            if($scope.logIncidentDetails.timeHrsOfIncident && $scope.logIncidentDetails.timeMinOfIncident){
+                $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+$scope.logIncidentDetails.timeHrsOfIncident;
+                $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
+            }
+            
         }
 
         $scope.getDayClass = function (data) {
