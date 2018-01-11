@@ -455,7 +455,7 @@ a i {
 }
 @media only screen and (min-width: 410px) and (max-width:767px) {
     .incidentLabel{
-        display: 
+        display: none;
     }
 }
 @media only screen and (min-width: 768px) and (max-width:1200px) {
@@ -510,12 +510,19 @@ a i {
     height: 511px;
     width: 500px;
     background-image: url('../assets/images/man.png');
+    margin-left: -57%;
+}
+#back{
+    height: 511px;
+    width: 500px;
+    background-image: url('../assets/images/man.png'); 
+    margin-left: -32%;
 }
 
 .Face {
     width: 20px;
     height: 20px;
-    left: 268px;
+    left: 114px;
     top: 181px;
     position: fixed;
 }
@@ -523,7 +530,7 @@ a i {
 .Head {
     width: 20px;
     height: 20px;
-    left: 267px;
+    left: 114px;
     top: 164px;
     position: fixed;
 }
@@ -531,7 +538,7 @@ a i {
 .Left.Ear {
     width: 20px;
     height: 20px;
-    left: 247px;
+    left: 87px;
     top: 185px;
     position: fixed;
 }
@@ -539,7 +546,7 @@ a i {
 .Right.Ear {
     width: 20px;
     height: 20px;
-    left: 288px;
+    left: 137px;
     top: 184px;
     position: fixed;
 }
@@ -547,7 +554,7 @@ a i {
 .Left.Eye {
     width: 20px;
     height: 20px;
-    left: 251px;
+    left: 96px;
     top: 172px;
     position: fixed;
 }
@@ -555,7 +562,7 @@ a i {
 .Right.Eye {
     width: 20px;
     height: 20px;
-    left: 281px;
+    left: 128px;
     top: 172px;
     position: fixed;
 }
@@ -563,7 +570,7 @@ a i {
 .Nose {
     width: 20px;
     height: 20px;
-    left: 268px;
+    left: 114px;
     top: 188px;
     position: fixed;
 }
@@ -571,7 +578,7 @@ a i {
 .Mouth {
     width: 20px;
     height: 20px;
-    left: 267px;
+    left: 114px;
     top: 197px;
     position: fixed;
 }
@@ -579,7 +586,7 @@ a i {
 .Neck {
     width: 20px;
     height: 20px;
-    left: 268px;
+    left: 114px;
     top: 212px;
     position: fixed;
 }
@@ -587,7 +594,7 @@ a i {
 .Chin {
     width: 20px;
     height: 20px;
-    left: 268px;
+    left: 114px;
     top: 201px;
     position: fixed;
 }
@@ -595,15 +602,15 @@ a i {
 .Back.Neck {
     width: 20px;
     height: 20px;
-    left: 268px;
-    top: 212px;
+    left: 480px;
+    top: 306px;
     position: fixed;
 }
 
 .Left.Arm {
     width: 20px;
     height: 20px;
-    left: 208px;
+    left: 54px;
     top: 321px;
     position: fixed;
 }
@@ -611,7 +618,7 @@ a i {
 .Right.Arm {
     width: 20px;
     height: 20px;
-    left: 325px;
+    left: 175px;
     top: 321px;
     position: fixed;
 }
@@ -619,7 +626,7 @@ a i {
 .Left.Hand {
     width: 20px;
     height: 20px;
-    left: 195px;
+    left: 44px;
     top: 368px;
     position: fixed
 }
@@ -627,7 +634,7 @@ a i {
 .Right.Hand {
     width: 20px;
     height: 20px;
-    left: 341px;
+    left: 185px;
     top: 368px;
     position: fixed
 }
@@ -635,7 +642,7 @@ a i {
 .Left.Wrist {
     width: 20px;
     height: 20px;
-    left: 189px;
+    left: 38px;
     top: 384px;
     position: fixed
 }
@@ -643,14 +650,14 @@ a i {
 .Right.Wrist {
     width: 20px;
     height: 20px;
-    left: 346px;
+    left: 189px;
     top: 384px;
     position: fixed
 }
 
 .Left.Fingers {
     height: 20px;
-    left: 181px;
+    left: 23px;
     top: 431px;
     position: fixed
 }
@@ -658,7 +665,7 @@ a i {
 .Right.Fingers {
     width: 20px;
     height: 20px;
-    left: 360px;
+    left: 202px;
     top: 431px;
     position: fixed
 }
@@ -666,7 +673,7 @@ a i {
 .Left.Palm {
     width: 20px;
     height: 20px;
-    left: 181px;
+    left: 29px;
     top: 411px;
     position: fixed
 }
@@ -674,7 +681,7 @@ a i {
 .Right.Palm {
     width: 20px;
     height: 20px;
-    left: 353px;
+    left: 199px;
     top: 411px;
     position: fixed
 }
@@ -682,7 +689,7 @@ a i {
 .Left.Shoulder {
     width: 20px;
     height: 20px;
-    left: 214px;
+    left: 169px;
     top: 267px;
     position: fixed;
 }
@@ -698,7 +705,7 @@ a i {
 .Chest {
     width: 20px;
     height: 20px;
-    left: 267px;
+    left: 116px;
     top: 267px;
     position: fixed;
 }
@@ -706,23 +713,16 @@ a i {
 .Stomach {
     width: 20px;
     height: 20px;
-    left: 267px;
+    left: 116px;
     top: 349px;
     position: fixed;
 }
 
-.Hip {
-    width: 20px;
-    height: 20px;
-    left: 267px;
-    top: 399px;
-    position: fixed;
-}
 
 .Left.Thigh {
     width: 20px;
     height: 20px;
-    left: 241px;
+    left: 89px;
     top: 456px;
     position: fixed;
 }
@@ -730,7 +730,7 @@ a i {
 .Right.Thigh {
     width: 20px;
     height: 20px;
-    left: 295px;
+    left: 144px;
     top: 456px;
     position: fixed;
 }
@@ -738,7 +738,7 @@ a i {
 .Left.Knee {
     width: 20px;
     height: 20px;
-    left: 240px;
+    left: 87px;
     top: 521px;
     position: fixed;
 }
@@ -746,7 +746,7 @@ a i {
 .Right.Knee {
     width: 20px;
     height: 20px;
-    left: 295px;
+    left: 142px;
     top: 521px;
     position: fixed;
 }
@@ -754,7 +754,7 @@ a i {
 .Left.Foot {
     width: 20px;
     height: 20px;
-    left: 247px;
+    left: 94px;
     top: 635px;
     position: fixed;
 }
@@ -762,7 +762,7 @@ a i {
 .Right.Foot {
     width: 20px;
     height: 20px;
-    left: 286px;
+    left: 134px;
     top: 635px;
     position: fixed;
 }
@@ -770,7 +770,7 @@ a i {
 .Left.Leg {
     width: 20px;
     height: 20px;
-    left: 239px;
+    left: 87px;
     top: 573px;
     position: fixed;
 }
@@ -778,7 +778,7 @@ a i {
 .Right.Leg {
     width: 20px;
     height: 20px;
-    left: 294px;
+    left: 143px;
     top: 573px;
     position: fixed;
 }
@@ -786,7 +786,7 @@ a i {
 .Left.Ankle {
     width: 20px;
     height: 20px;
-    left: 288px;
+    left: 92px;
     top: 619px;
     position: fixed;
 }
@@ -794,8 +794,137 @@ a i {
 .Right.Ankle {
     width: 20px;
     height: 20px;
-    left: 288px;
+    left: 136px;
     top: 619px;
+    position: fixed;
+}
+/* Back parts */
+.Back{
+    width: 20px;
+    height: 20px;
+    left: 114px;
+    top: 164px;
+    position: fixed;
+}
+.Buttock{
+    width: 20px;
+    height: 20px;
+    left: 501px;
+    top: 420px;
+    position: fixed;
+}
+.Hair{
+    width: 20px;
+    height: 20px;
+    left: 114px;
+    top: 168px;
+    position: fixed;
+}
+.Left.Calf{
+    width: 20px;
+    height: 20px;
+    left: 450px;
+    top: 556px;
+    position: fixed;
+}
+
+.Left.Elbow{
+    width: 20px;
+    height: 20px;
+    left: 411px;
+    top: 359px;
+    position: fixed;
+}
+.Left.Forearm{
+    width: 20px;
+    height: 20px;
+    left: 406px;
+    top: 374px;
+    position: fixed;
+}
+.Left.Heel{
+    width: 20px;
+    height: 20px;
+    left: 460px;
+    top: 630px;
+    position: fixed;
+}
+.Left.Hip{
+    width: 20px;
+    height: 20px;
+    left: 449px;
+    top: 367px;
+    position: fixed;
+}
+.Left.Shoulder.Blade{
+    width: 20px;
+    height: 20px;
+    left: 455px;
+    top: 271px;
+    position: fixed;
+}
+.Loin{
+    width: 20px;
+    height: 20px;
+    left: 114px;
+    top: 396px;
+    position: fixed;
+}
+.Nape{
+    width: 20px;
+    height: 20px;
+    left: 114px;
+    top: 207px;
+    position: fixed;
+}
+.Right.Calf{
+    width: 20px;
+    height: 20px;
+    left: 510px;
+    top: 556px;
+    position: fixed;
+}
+.Right.Elbow{
+    width: 20px;
+    height: 20px;
+    left: 550px;
+    top: 359px;
+  
+    position: fixed;
+}
+.Right.Forearm{
+    width: 20px;
+    height: 20px;
+    left: 553px;
+    top: 374px;
+    position: fixed;
+}
+.Right.Heel{
+    width: 20px;
+    height: 20px;
+    left: 500px;
+    top: 630px;
+    position: fixed;
+}
+.Right.Hip{
+    width: 20px;
+    height: 20px;
+    left: 512px;
+    top: 367px;
+    position: fixed;
+}
+.Right.Shoulder.Blade{
+    width: 20px;
+    height: 20px;
+    left: 506px;
+    top: 271px;
+    position: fixed;
+}
+.Waist{
+    width: 20px;
+    height: 20px;
+    left: 446px;
+    top: 358px;
     position: fixed;
 }
 

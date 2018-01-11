@@ -88,7 +88,12 @@
                 let splittedDate = data.split("/");
                 data = splittedDate[1] + "/" + splittedDate[0] + "/" + splittedDate[2];
                 date = new Date(data);
-                out = (date.getMonth() + 1) + "/" + (date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate()) + "/" + date.getFullYear();
+                month= date.getMonth() + 1;
+                if(month.length == 1) {
+                    month= "0" + month;
+                }
+               
+                out = month + "/" + (date.getDate().toString().length == 1 ? '0' + date.getDate() : date.getDate()) + "/" + date.getFullYear();
             }
             return out;
         }

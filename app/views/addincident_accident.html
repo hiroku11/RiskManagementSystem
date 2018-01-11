@@ -544,16 +544,30 @@
                             <input type="text" class="form-control" />
                         </div>
                     </div>
-                    <div id="man">
-                        <div ng-repeat="d in bodyPartsArray" ng-class="d" ng-click="changeBodyPart(d)">
-                            <!--<span ng-class="d" ng-if="partsSelected.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
-
-                            </span>-->
-                            <span ng-class="d" ng-if="myObj.temp.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
-
-                            </span>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <div id="man">
+                                <div ng-repeat="d in bodyPartsFrontArray" ng-class="d" ng-click="changeBodyPart(d)">
+                                   
+                                    <span ng-class="d" ng-if="myObj.temp.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
+        
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <div id="back">
+                                <div ng-repeat="d in bodyPartsBackArray" ng-class="d" ng-click="changeBodyPart(d)">
+                   
+                                    <span ng-class="d" ng-if="myObj.temp.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
+        
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
+                   
+                   
                 </div>
                 <div class="modal-footer ">
                     <a class="btn btn-danger" class="close " data-dismiss="modal">Close</a>
