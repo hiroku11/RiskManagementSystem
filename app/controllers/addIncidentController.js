@@ -1390,6 +1390,24 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             })
         }
+        $scope.getIncidentLocDetail = function(){
+            var req = {
+                url: rmsService.baseEndpointUrl + 'table-maintenance/incident-location-detail/incident-location/'
+                + $scope.logIncidentDetails.incidentLocation.id,
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+
+                },
+            }
+            AppService.ShowLoader();
+            $http(req).then(function (response) {
+                $scope.incidentLocationDetails = response.data;
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
         $scope.getEntrypoint = function () {
             var req = {
                 url: rmsService.baseEndpointUrl + 'table-maintenance/entry-point/entry-points',
@@ -1780,6 +1798,42 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.injuryTypes = response.data;
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
+        $scope.getInjuryTypeDetail = function (){
+            var req = {
+                url: rmsService.baseEndpointUrl + 'table-maintenance/injury-type-detail/injury-type/'
+                + $scope.injuredPerson.injuryType.id,
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+            }
+            AppService.ShowLoader();
+
+            $http(req).then(function (response) {
+                $scope.injuryTypeDetails = response.data;
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
+        $scope.getInjuryTypeDetailSpec = function (){
+            var req = {
+                url: rmsService.baseEndpointUrl + 'table-maintenance/injury-type-detail-spec/injury-type-detail/' +
+                $scope.injuredPerson.injuryTypeDetail.id,
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+                },
+            }
+            AppService.ShowLoader();
+
+            $http(req).then(function (response) {
+                $scope.injuryTypeDetailSpecs = response.data;
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
@@ -3681,6 +3735,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                         $scope.claimDetail[key] = new Date(rmsService.formatDate($scope.claimDetail[key]));
                     }
                 }
+                $scope.claimDetail.id = incidentSummary.claim.claimId;
             }
            
             $scope.investigationDetails = incidentSummary.investigation!=null?incidentSummary.investigation:$scope.investigationDetails;
@@ -3699,6 +3754,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //$scope.getDistinguishFeaturesDetails();
         $scope.getEntrypoint();
         $scope.getIncidentLoc();
+        //$scope.getIncidentLocDetail();
         $scope.getIncidentType();
         $scope.getSuspectType();
         $scope.getAccidentLoc();
@@ -3716,6 +3772,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getGenderType();
         $scope.getInjuredPersonType();
         $scope.getInjuryType();
+        //$scope.getInjuryTypeDetail();
+        //$scope.getInjuryTypeDetailSpec();
         $scope.getInjuryCause();
         $scope.getLossType();
         $scope.getOrg();
