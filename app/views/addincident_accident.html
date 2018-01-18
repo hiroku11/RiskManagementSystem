@@ -302,7 +302,7 @@
             </div>
             <div class="col-sm-12 col-md-3">
                 <label>Injury Type Detail Spec</label>
-                <select class="form-control" ng-model="injuredPerson.injuryTypeDetailSpec.id" ng-disabled="!injuredPerson.injuryType.id || injuredPerson.injuryType.id == 'OTHER' || injuryTypeDetailSpecs.length = 0"
+                <select class="form-control" ng-model="injuredPerson.injuryTypeDetailSpec.id" ng-disabled="!injuredPerson.injuryType.id || injuredPerson.injuryType.id == 'OTHER' || injuryTypeDetailSpecs.length == 0"
                     ng-options="injuryTypeDetailSpec.id as injuryTypeDetailSpec.description for injuryTypeDetailSpec in injuryTypeDetailSpecs">
                     <option value=''></option>
                 </select>
