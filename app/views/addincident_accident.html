@@ -45,7 +45,7 @@
             </div>
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location Details:</label>
-                <select ng-model="accidentDetails.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accidentLocation.id"
+                <select ng-model="accidentDetails.accidentLocationDetails.id" class="ddropdown form-control" ng-disabled="!accidentDetails.accidentLocation.id || accidentDetails.accidentLocation.id == 'OTHER'"
                     ng-options="incidentLocationDetail.id as incidentLocationDetail.description for incidentLocationDetail in incidentLocationDetails">
                     <option value=""></option>
                 </select>
@@ -302,7 +302,7 @@
             </div>
             <div class="col-sm-12 col-md-3">
                 <label>Injury Type Detail Spec</label>
-                <select class="form-control" ng-model="injuredPerson.injuryTypeDetailSpec.id" ng-disabled="!injuredPerson.injuryType.id || injuredPerson.injuryType.id == 'OTHER'"
+                <select class="form-control" ng-model="injuredPerson.injuryTypeDetailSpec.id" ng-disabled="!injuredPerson.injuryType.id || injuredPerson.injuryType.id == 'OTHER' || injuryTypeDetailSpecs.length = 0"
                     ng-options="injuryTypeDetailSpec.id as injuryTypeDetailSpec.description for injuryTypeDetailSpec in injuryTypeDetailSpecs">
                     <option value=''></option>
                 </select>
@@ -472,6 +472,10 @@
                 <label>Selected Body Parts</label>
                 <input class="form-control" type="text" ng-model="myObj.temp" readonly/>
             </div>
+            <div class="col-md-4 col-sm-12">
+                <label>Other Body Parts</label>
+                <input class="form-control" type="text" ng-model="myObj.temp" readonly/>
+            </div>
             <div class="col-md-2 col-sm-12">
 
                 <a class="btn btn-primary" ng-click="openBodyPartModal()" style="margin-top:1.5em">Add Injured Body Parts</a>
@@ -569,10 +573,10 @@
                             <multiselect ng-model="myObj.temp" options="bodyPartsArray">
                             </multiselect>
                         </div>
-                        <div class="col-md-6 col-sm-12">
+                        <!-- <div class="col-md-6 col-sm-12">
                             <label>Other Part of body injured</label>
                             <input type="text" class="form-control" />
-                        </div>
+                        </div> -->
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-6">

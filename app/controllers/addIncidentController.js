@@ -323,6 +323,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //     }
         //     $scope.$apply();
         // }
+        $scope.triggerExternalAgency = function(){
+            if($scope.loss.externalAgencyContacted == 'N'){
+                $scope.loss.externalAgency.id = "";
+            }
+        }
         var temp = [];
         $scope.myObj = { temp: [] };
         $scope.changeBodyPart = function (args) {
