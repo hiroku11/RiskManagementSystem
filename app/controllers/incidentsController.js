@@ -164,21 +164,21 @@
         {
             "field": "assetDamage",
             "operator": "EQ",
-            "value": $scope.prop == true ? 'Y' : 'N'
+            "value": $scope.prop == true ? 'Y' : ''
 
 
         },
         {
             "field": "criminalAttack",
             "operator": "EQ",
-            "value": $scope.cAttack == true ? 'Y' : 'N'
+            "value": $scope.cAttack == true ? 'Y' : ''
 
 
         },
         {
             "field": "accidentDamage",
             "operator": "EQ",
-            "value": $scope.Acc == true ? 'Y' : 'N'
+            "value": $scope.Acc == true ? 'Y' : ''
 
 
         },
