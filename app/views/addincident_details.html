@@ -375,7 +375,7 @@
                         <td>{{loss.lossType.id}}</td>
                         <td>{{loss.lossValue}}</td>
                         <td>{{loss.date}}</td>
-                        <td>{{loss.timeHrsContacted}}:{{loss.timeMinContacted}}</td>
+                        <td>{{loss.timeHrsContacted}}<span ng-if="loss.timeHrsContacted">:</span>{{loss.timeMinContacted}}</td>
                         <td>
                             <a ng-click="deleteLoss(loss)">
                                 <i class="glyphicon glyphicon-trash"></i>

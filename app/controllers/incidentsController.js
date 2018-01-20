@@ -87,6 +87,7 @@
       
         $scope.clearSearchParams();
         $scope.getData();
+        $scope.search = "";
     }
     //To clear search params
     $scope.clearSearchParams = function () {

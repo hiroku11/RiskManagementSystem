@@ -48,7 +48,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.crimeAdded = false;
         $scope.editCrimeWitness = false;
         $scope.editCrimeSuspect = false;
-
+        $scope.claimRefId ="";
         $scope.logIncidentDetails = {
             "incidentId": null,
             "incidentOpenedDateTime": null,
@@ -1093,7 +1093,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
  
              $http(req).then(function (response) {
                  AppService.HideLoader();
-                 $scope.claimDetail.id = response.data.claimId;
+                 $scope.claimDetail.id = response.data.id;
+                 $scope.claimRefId = response.data.claimId
              }, function (error) {
                  AppService.HideLoader();
              })
@@ -3553,6 +3554,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
             AppService.ShowLoader();
             $http(req).then(function (response) {
+                $scope.investigationDetails.id = response.data.id;
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
@@ -3740,7 +3742,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                         $scope.claimDetail[key] = new Date(rmsService.formatDate($scope.claimDetail[key]));
                     }
                 }
-                $scope.claimDetail.id = incidentSummary.claim.claimId;
+                $scope.claimRefId = incidentSummary.claim.claimId;
             }
            
             $scope.investigationDetails = incidentSummary.investigation!=null?incidentSummary.investigation:$scope.investigationDetails;
