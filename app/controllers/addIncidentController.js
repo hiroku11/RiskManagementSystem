@@ -3736,12 +3736,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
            $scope.getCrimeSuspectData();
            $scope.getCrimeWitnessData();
             if(incidentSummary.claim !=null){
+                $scope.claimDetail = incidentSummary.claim;
                 for(let key in $scope.claimDetail){
                     $scope.claimDetail[key] = incidentSummary.claim[key];
                     if(key.toLowerCase().indexOf("date") > -1 &&  incidentSummary.claim[key] !=null){
                         $scope.claimDetail[key] = new Date(rmsService.formatDate($scope.claimDetail[key]));
                     }
                 }
+               
+              
                 $scope.claimRefId = incidentSummary.claim.claimId;
             }
            
