@@ -2088,6 +2088,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             return person.bodyParts.map(function(el){return el.description}).join(",");
         }
         $scope.getInjuredData = function () {
+            if(!$scope.accidentDetails.id){
+                return ;
+            }
             var req = {
                 url: rmsService.baseEndpointUrl + 'injured-person/injured-person-table/accidentId/' + $scope.accidentDetails.id,
                 method: "GET",
@@ -2315,6 +2318,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         }
         $scope.getWitnessData = function () {
+            if(!$scope.accidentDetails.id){
+                return;
+            }
             var req = {
                 url: rmsService.baseEndpointUrl +
                 'witness/witness-table/accidentId/' +
@@ -2946,6 +2952,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
         $scope.getCrimeSuspectData = function () {
+            if(!$scope.crimeDetails.id){
+                return;
+            }
             var req = {
                 url: rmsService.baseEndpointUrl +
                 'crime-suspect/crime-suspect-table/crimeId/' + $scope.crimeDetails.id,
@@ -3145,6 +3154,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
         $scope.getCrimeWitnessData = function () {
+            if(!$scope.crimeDetails.id){
+                return;
+            }
             var req = {
                 url: rmsService.baseEndpointUrl +
                 'witness/witness-table/crimeId/' + $scope.crimeDetails.id,
@@ -3646,7 +3658,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.incident.uniqueIncidentId = incidentSummary.uniqueIncidentId;
             $scope.userInfo = incidentSummary.incidentReportedBy;
             for(let key in $scope.logIncidentDetails){
-                $scope.logIncidentDetails[key] = incidentSummary[key];
+                if(key !== 'date'){
+                    $scope.logIncidentDetails[key] = incidentSummary[key];
+                }
                 if(key.indexOf("Date")>-1 && incidentSummary[key] != null){
                     let dt= incidentSummary[key].split(" ");
                     $scope.logIncidentDetails.date = new Date(rmsService.formatDate(dt[0]));
