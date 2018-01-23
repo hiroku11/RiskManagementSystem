@@ -712,9 +712,19 @@
                 </div>
 
                 <div class="col-sm-12 col-md-4">
-                        <label>INvestigator Statement:</label>
+                        <label>Investigator Statement:</label>
                         <label class="summary-text">{{incidentSummary.investigation.investigatorStatement}}</label>
                 </div>
+               
+                        <div class="col-md-6 col-sm-12">
+                            <label>Investigation Team Name</label>
+                            <label class="summary-text">{{incidentSummary.investigation.investigator.investigationTeams[0].teamDescription}} </label>
+                        </div>
+                        <div class="col-md-6 col-sm-12">
+                            <label>Investigation Team Lead ID</label>
+                            <label class="summary-text">{{incidentSummary.investigation.investigator.investigationTeams[0].investigationTeamLeads[0].teamLeadLoginId}}</label>
+                        </div>
+               
         </div>
         <h4>Supporting Documents</h4>
         <table class="table table-bordered">

@@ -286,7 +286,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <label>Any External Agency Contacted</label>
-                <select class="form-control" ng-model="loss.externalAgencyContacted">
+                <select class="form-control" ng-model="loss.externalAgencyContacted" ng-click="triggerExternalAgency()">
                     <option value=""></option>
                     <option value="Y">Yes</option>
                     <option value="N">No</option>
@@ -375,7 +375,7 @@
                         <td>{{loss.lossType.id}}</td>
                         <td>{{loss.lossValue}}</td>
                         <td>{{loss.date}}</td>
-                        <td>{{loss.timeHrsContacted}}:{{loss.timeMinContacted}}</td>
+                        <td>{{loss.timeHrsContacted}}<span ng-if="loss.timeHrsContacted">:</span>{{loss.timeMinContacted}}</td>
                         <td>
                             <a ng-click="deleteLoss(loss)">
                                 <i class="glyphicon glyphicon-trash"></i>
