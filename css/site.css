@@ -365,6 +365,9 @@ h5 {
 
 .searchbox {
     vertical-align: middle;
+    padding-bottom: 10px;
+    float: right;
+    width: 184px;
 }
 .searchbox input{
     height: 30px !important;
