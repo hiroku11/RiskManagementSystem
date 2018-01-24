@@ -9,33 +9,57 @@
 
     <div class="col-md-10 content">
         <div class="incidents">
-                <a class="btn btn-primary delete-incident pull-right" ng-click="reset()"> <i class="glyphicon glyphicon-done menu-icon"></i>Reset</a>
-            <div class="pull-right advanced-search">
-                <a class="btn btn-primary" id="btnAdvanceSearch" data-toggle="modal" data-target="#myModal" ng-click="loadAPI()">Advanced Search</a>
-            </div>
-            <div class="pull-right searchbox">
-                <div class="input-group stylish-input-group">
-                    <input type="text" class="form-control" placeholder="Search" ng-model="search">
-                    <span class="input-group-addon">
-                <button>
-                    <span class="glyphicon glyphicon-search"></span>
-                    </button>
-                    </span>
-                  
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
+                    <h3>
+                        <span class="incidentLabel">Incidents |</span>
+                        <a class="btn btn-sm btn-primary add-incident" ui-sref="addincident">
+                            <i class="glyphicon glyphicon-plus menu-icon"></i>Add</a>
+
+                        <a class="btn btn-sm btn-danger delete-incident">
+                            <i class="glyphicon glyphicon-trash menu-icon"></i>Delete</a>
+
+                    </h3>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <div class="row" style="padding-top:0">
+                        <div class="col-sm-12 col-md-8">
+                            <div class="searchbox" style="padding-bottom:10px;">
+                                <div class="input-group stylish-input-group">
+                                    <input type="text" class="form-control" placeholder="Search" ng-model="search">
+                                    <span class="input-group-addon">
+                                        <button>
+                                            <span class="glyphicon glyphicon-search"></span>
+                                        </button>
+                                    </span>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 col-md-4">
+                            <a class="btn btn-sm btn-primary" id="btnAdvanceSearch" data-toggle="modal" data-target="#myModal" ng-click="loadAPI()">
+                                <i class="glyphicon glyphicon-search"></i>Advanced Search</a>
+                            <a class="btn btn-sm btn-primary delete-incident " ng-click="reset()">
+                                <i class="glyphicon glyphicon-done menu-icon"></i>Reset</a>
+                        </div>
+
+                    </div>
+
+
+
+
                 </div>
             </div>
-            <h3>
-                <span class="incidentLabel">Incidents |</span>
-                <a class="btn btn-primary add-incident" ui-sref="addincident"> <i class="glyphicon glyphicon-plus menu-icon"></i>Add</a>
 
-                <a class="btn btn-danger delete-incident"> <i class="glyphicon glyphicon-trash menu-icon"></i>Delete</a>
-               
-            </h3>
+
+
 
             <table class="table table-bordered incident-list">
                 <thead>
                     <tr>
-                        <th><input type="checkbox" class="checkbox checkbox-primary"  style="display:inline"  ng-model="allIncidentsSelected" ng-change="incidentSelectionChanged()"/> All
+                        <th>
+                            <input type="checkbox" class="checkbox checkbox-primary" style="display:inline" ng-model="allIncidentsSelected" ng-change="incidentSelectionChanged()"
+                            /> All
                         </th>
                         <th ng-click="changeSortBy('uniqueIncidentId')">Incident ID
                             <span ng-if="sortBy == 'uniqueIncidentId' && !reverse" class="glyphicon glyphicon-sort-by-attributes"></span>
@@ -80,7 +104,8 @@
                 <tbody>
                     <tr ng-repeat="incident in data  | filter:search | orderBy : sortBy : reverse track by incident.id">
                         <td>
-                            <input type="checkbox" ng-model="incident.selected" ng-change="incidentSelectionChanged(incident)" ng-checked="incident.selected" class="checkbox checkbox-primary">
+                            <input type="checkbox" ng-model="incident.selected" ng-change="incidentSelectionChanged(incident)" ng-checked="incident.selected"
+                                class="checkbox checkbox-primary">
                         </td>
                         <td>
                             <a ui-sref="editincident({uniqueIncidentId: incident.uniqueIncidentId})">{{incident.uniqueIncidentId}}</a>
@@ -111,23 +136,26 @@
             </table>
 
             <nav aria-label="Page navigation" ng-if="data && data.length > 0">
-                    <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="$parent.entryCount" ng-change="getEntries()"></select>
-                    <ul class="pagination">
-                        <li>
-                            <a aria-label="Previous" ng-click="goToPage(currentPage - 1)" ng-class="{disabled:currentPage==1}">
-                                <span aria-hidden="true">&laquo;</span>
-                            </a>
-                        </li>
-                        <li ng-repeat="page in range(totalIncidentCount,$parent.entryCount)" ng-class="{'active':currentPage == page}"><a ng-click="goToPage(page)">{{page}}</a></li>
-                        <li>
-                            <a aria-label="Next" ng-click="goToPage(currentPage + 1)" ng-class="{disabled:currentPage==Math.ceil(totalIncidentCount/$parent.entryCount)}">
-                                <span aria-hidden="true">&raquo;</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <span>{{$parent.entryCount * currentPage - $parent.entryCount + 1}} - {{$parent.entryCount * currentPage > totalIncidentCount ? totalIncidentCount : $parent.entryCount * currentPage}} of {{totalIncidentCount}}</span>
+                <select class="form-control" ng-options="entry.value as entry.value for entry in entry" ng-model="$parent.entryCount" ng-change="getEntries()"></select>
+                <ul class="pagination">
+                    <li>
+                        <a aria-label="Previous" ng-click="goToPage(currentPage - 1)" ng-class="{disabled:currentPage==1}">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li ng-repeat="page in range(totalIncidentCount,$parent.entryCount)" ng-class="{'active':currentPage == page}">
+                        <a ng-click="goToPage(page)">{{page}}</a>
+                    </li>
+                    <li>
+                        <a aria-label="Next" ng-click="goToPage(currentPage + 1)" ng-class="{disabled:currentPage==Math.ceil(totalIncidentCount/$parent.entryCount)}">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+                <span>{{$parent.entryCount * currentPage - $parent.entryCount + 1}} - {{$parent.entryCount * currentPage > totalIncidentCount
+                    ? totalIncidentCount : $parent.entryCount * currentPage}} of {{totalIncidentCount}}</span>
             </nav>
-                <h3 class="text-center" ng-if="!data || data.length == 0">no records found!</h3>
+            <h3 class="text-center" ng-if="!data || data.length == 0">no records found!</h3>
 
             <div id="myModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
@@ -165,22 +193,23 @@
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-2">
                                     <select class="form-control" ng-model="opendateop">
-                        <option value="GT" selected>Greater than or equal to</option>
-                        <option value="LT">Less than or equal to</option>
+                                        <option value="GT" selected>Greater than or equal to</option>
+                                        <option value="LT">Less than or equal to</option>
 
 
-                    </select>
+                                    </select>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-6">
-                                <p class="input-group">
-                                    <input type="text" ng-focus="calendar.open($event,'IncOpenedDate')" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="IncOpenedDate" 
-                                    is-open="calendar.opened.IncOpenedDate" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats"/>
-                                    <span class="input-group-addon" ng-click="calendar.open($event,'IncOpenedDate')">
+                                    <p class="input-group">
+                                        <input type="text" ng-focus="calendar.open($event,'IncOpenedDate')" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                                            ng-model="IncOpenedDate" is-open="calendar.opened.IncOpenedDate" datepicker-options="dateOptions"
+                                            close-text="Close" alt-input-formats="altInputFormats" />
+                                        <span class="input-group-addon" ng-click="calendar.open($event,'IncOpenedDate')">
                                             <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </p>
+                                        </span>
+                                    </p>
                                 </div>
-                                
+
                                 <!-- <div class="col-lg-4 col-sm-6 col-md-6">
                                     <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                         <input type='text' class="form-control" ng-model="IncOpenedDate" />
@@ -197,20 +226,21 @@
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-2">
                                     <select class="form-control" ng-model="closedateop">
-                        <option value="GT" selected>Greater than or equal to</option>
-                        <option value="LT">Less than or equal to</option>
+                                        <option value="GT" selected>Greater than or equal to</option>
+                                        <option value="LT">Less than or equal to</option>
 
 
-                    </select>
+                                    </select>
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-6">
-                                        <p class="input-group">
-                                                <input type="text" ng-focus="calendar.open($event,'IncClosedDate')" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="IncClosedDate" 
-                                                is-open="calendar.opened.IncClosedDate" datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats"/>
-                                                <span class="input-group-addon" ng-click="calendar.open($event,'IncClosedDate')">
-                                                        <span class="glyphicon glyphicon-calendar"></span>
-                                                </span>
-                                            </p>
+                                    <p class="input-group">
+                                        <input type="text" ng-focus="calendar.open($event,'IncClosedDate')" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
+                                            ng-model="IncClosedDate" is-open="calendar.opened.IncClosedDate" datepicker-options="dateOptions"
+                                            close-text="Close" alt-input-formats="altInputFormats" />
+                                        <span class="input-group-addon" ng-click="calendar.open($event,'IncClosedDate')">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </p>
                                     <!-- <div class='input-group date' data-provide="datepicker" data-date-format="dd/mm/yyyy">
                                         <input type='text' class="form-control" ng-model="IncClosedDate" />
                                         <span class="input-group-addon">
@@ -288,10 +318,13 @@
                                 </div>
                                 <div class="col-lg-4 col-sm-6 col-md-6">
 
-                                    <input type="checkbox" ng-model="prop" />Asset Damage <br/>
-                                    <input type="checkbox" ng-model="cAttack" />Criminal Attack <br/>
-                                    <input type="checkbox" ng-model="Acc" />Accident Damage<br/>
-                                  
+                                    <input type="checkbox" ng-model="prop" />Asset Damage
+                                    <br/>
+                                    <input type="checkbox" ng-model="cAttack" />Criminal Attack
+                                    <br/>
+                                    <input type="checkbox" ng-model="Acc" />Accident Damage
+                                    <br/>
+
                                 </div>
                             </div>
                             <div class="row">

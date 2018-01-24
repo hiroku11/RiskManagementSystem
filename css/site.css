@@ -364,7 +364,14 @@ h5 {
 }
 
 .searchbox {
-    width: 250px;
+    vertical-align: middle;
+}
+.searchbox input{
+    height: 30px !important;
+    padding: 5px;
+}
+.searchbox .input-group-addon{
+    height: 30px !important;
 }
 
 .small-control {
