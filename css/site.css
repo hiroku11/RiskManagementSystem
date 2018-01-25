@@ -526,7 +526,7 @@ a i {
 #back{
     height: 511px;
     width: 500px;
-    background-image: url('../assets/images/man.png'); 
+    background-image: url('../assets/images/back.png'); 
     margin-left: -32%;
 }
 
