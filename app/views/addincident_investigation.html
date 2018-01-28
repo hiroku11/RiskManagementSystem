@@ -34,7 +34,7 @@
                     <label>Last Name</label>
                         <input class="form-control" placeholder="Last Name" type="text" ng-model="invstigatorLastName" readonly>
                 </div>
-                <div class="col-sm-12 col-md-2" style="padding-top:1.7em;">
+                <div class="col-sm-12 col-md-2" style="padding-top:1.7em;" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                         <a class="btn btn-primary" data-toggle="modal" data-target="#investigationHandler">Lookup</a>
                 </div>
             </div>
@@ -129,12 +129,12 @@
                 </div>
             </div> -->
             <div class="row ">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                     <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
                     <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
                 </div>
     
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12 floatRight">
                         <button type="button" ng-click="submitForm('investigationForm','back')" class="btn btn-secondary pull-right">Back</button>
                         <button type="button" ng-click="submitForm('investigationForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
                     </div>
@@ -148,7 +148,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h3 class="modal-title">Claim Handler Lookup</h3>
+                            <h3 class="modal-title">Investigation Handler Lookup</h3>
                         </div>
                         <div class="modal-body">
                            

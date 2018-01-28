@@ -118,7 +118,22 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6 col-sm-12">
+                        <div class="col-md-4 col-sm-12">
+            
+                                <label>Incident Status</label>
+                               
+                                <select class="form-control" ng-model="logIncidentDetails.incidentStatus"
+                                ng-disabled="!editIncidentMode || logIncidentDetails.incidentStatus == 'CLOSED'">
+                                    <option value="DRAFT" selected>Draft</option>
+                                    <option value="NEW">New</option>
+                                    <option value="ASSIGNED">Assigned</option>
+                                    <option value="IN_PROGRESS">In-progress</option>
+                                    <option value="SUSPENDED">Suspended</option>
+                                    <option value="CLOSED">Closed</option>
+                                </select>
+                            </div>
+                       
+                    <div class="col-md-4 col-sm-12">
                         <label>Entry Point</label>
                         <select class="form-control" ng-model="logIncidentDetails.entryPoint.id" ng-options="entryPoint.id as entryPoint.description for entryPoint in entryPoint">
                                 <option value=""></option>    
@@ -126,7 +141,7 @@
 
                     </div>
 
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-4 col-sm-12">
 
 
                         <label>Entry Point If Other</label>
@@ -198,7 +213,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
+                    <div class="col-sm-6">
                         <label>Incident Category</label>
                     </div>
                     <div class="col-sm-12">
@@ -211,15 +226,18 @@
                         <label><input id="CrimeInvolved" value="Y" ng-model="logIncidentDetails.criminalAttack" type="checkbox" ng-change="addTab('crimeForm')"> Criminal Attack</label>
 
                     </div>
-                </div>
+                    </div>
+                   
+                      
+               
 
-                <div class="row ">
-                    <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                         <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
                         <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-6 floatRight">
                         <!-- <button type="button" ng-click="submitForm('logIncidentForm','back')" class="btn btn-secondary pull-right">Back</button> -->
                         <button type="button" ng-click="submitForm('logIncidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
                     </div>

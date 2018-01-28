@@ -19,7 +19,7 @@
                 </textarea>
             </div>
         </div>
-        <div class="row">
+        <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
             <div class="col-sm-12 col-md-4">
                 <button class="btn btn-primary" ng-click="addAssetDetails()">Save</button>
 
@@ -105,7 +105,7 @@
                     <input class="form-control" type="tel" ng-model="assetOther.addresses[0].apartmentNumber">
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <div class="col-sm-12 col-md-4" ng-if="!editassetother">
                     <button class="btn btn-primary" ng-click="addAssetOther()" ng-disabled="!assetAdded">Add Asset</button>
                 </div>
@@ -121,7 +121,7 @@
                         <th>Asset Name</th>
                         <th>Asset Description</th>
 
-                        <th>&nbsp;</th>
+                        <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">&nbsp;</th>
 
                     </tr>
                 </thead>
@@ -131,9 +131,9 @@
                         <td>{{asset.assetTypeOtherName}}</td>
                         <td>{{asset.assetTypeOtherDescription}}</td>
 
-                        <td>
+                        <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                             <a ng-click="deleteAssetOther(asset)">
-                                <i class="glyphicon glyphicon-trash"></i>
+                                 <i class="glyphicon glyphicon-trash"></i>
                             </a> &nbsp;&nbsp;&nbsp;
                             <a ng-click="loadAssetOther(asset)">
 
@@ -172,7 +172,7 @@
                     </textarea>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <div class="col-sm-12 col-md-4" ng-if="!editBuilding">
                     <button class="btn btn-primary" ng-click="addBuilding()" ng-disabled="!assetAdded">Add Building</button>
                 </div>
@@ -188,9 +188,9 @@
                             <th>Building Id</th>
                             <th>Building Name</th>
                             <th>Building Description</th>
-                            <td>
+                            <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                                 &nbsp;
-                            </td>
+                            </th>
 
                         </tr>
                     </thead>
@@ -199,7 +199,7 @@
                             <td>{{building.buildingId}}</td>
                             <td>{{building.buildingName}}</td>
                             <td>{{building.buildingDescription}}</td>
-                            <td>
+                            <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                                 <a ng-click="deleteBuilding(building)">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a> &nbsp;&nbsp;&nbsp;
@@ -238,7 +238,7 @@
                     <textarea class="form-control" ng-model="equipment.equipmentDetails"></textarea>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <div class="col-sm-12 col-md-4" ng-if="!editequipment">
                     <button class="btn btn-primary" ng-click="addEquipement()" ng-disabled="!assetAdded">Add Equipment</button>
                 </div>
@@ -254,7 +254,7 @@
                             <th>Equipment Id</th>
                             <th>Serial Number</th>
                             <th>Equipment Details</th>
-                            <th>&nbsp;</th>
+                            <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">&nbsp;</th>
 
                         </tr>
                     </thead>
@@ -263,7 +263,7 @@
                             <td>{{equipment.equipmentId}}</td>
                             <td>{{equipment.serialNumber}}</td>
                             <td>{{equipment.equipmentDetails}}</td>
-                            <td>
+                            <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                                 <a ng-click="deleteEquipment(equipment)">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a> &nbsp;&nbsp;&nbsp;
@@ -317,10 +317,12 @@
                 </div>
                 <div class="col-sm-12 col-md-4">
                     <label>Vehicle Damage Details</label>
-                    <select class="form-control" ng-options="vehDamageType.id as vehDamageType.description for vehDamageType in vehDamageType"
+                    <multiselect ng-model="vehicleDamageType.temp" options="vehDamageTypedesc">
+                    </multiselect>
+                    <!-- <select class="form-control" ng-options="vehDamageType.id as vehDamageType.description for vehDamageType in vehDamageType"
                         ng-model="vehicle.vehicleDamageType.id">
                         <option value=""></option>    
-                    </select>
+                    </select> -->
 
 
 
@@ -333,7 +335,7 @@
                     <textarea class="form-control" ng-model="vehicle.commentDescription"></textarea>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <div class="col-sm-12 col-md-4" ng-if="!editvehicle">
                     <button class="btn btn-primary" ng-click="addVehicle()" ng-disabled="!assetAdded">Add Vehicle</button>
                 </div>
@@ -349,7 +351,7 @@
                         <th>Engine Number</th>
                         <th>Chasis Number</th>
                         <th>Comment</th>
-                        <th>&nbsp;</th>
+                        <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">&nbsp;</th>
 
                     </tr>
                 </thead>
@@ -359,7 +361,7 @@
                         <td>{{vehicle.engineNumber}}</td>
                         <td>{{vehicle.chasisNumber}}</td>
                         <td>{{vehicle.commentDescription}}</td>
-                        <td>
+                        <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                             <a ng-click="deleteVehicle(vehicle)">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a> &nbsp;&nbsp;&nbsp;
@@ -378,12 +380,12 @@
         </div>
 
         <div class="row ">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <!-- <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button> -->
                 <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12 floatRight">
                 <button type="button" ng-click="submitForm('assetsForm','back')" class="btn btn-secondary pull-right">Back</button>
                 <button type="button" ng-click="submitForm('assetsForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
             </div>

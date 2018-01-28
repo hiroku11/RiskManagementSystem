@@ -86,7 +86,9 @@ img {
     height: 50%;
     transform: translateY(50%);
 }
-
+.floatRight{
+    float: right
+}
 h2,
 h3 {
     margin-top: 0;

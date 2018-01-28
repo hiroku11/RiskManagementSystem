@@ -78,7 +78,7 @@
                 <textarea class="form-control" ng-model="accidentDetails.accidentDescription" maxlength="256"></textarea>
             </div>
         </div>
-        <div class="row">
+        <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
             <div class="col-sm-12 col-md-4">
                 <button class="btn btn-primary" ng-click="addAccident()">Save</button>
 
@@ -213,7 +213,7 @@
                 </div>
 
             </div>
-            <div class="row">
+            <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <div class="col-sm-12 col-md-4" ng-if="!editWitness">
                     <button class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()" ng-disabled="!accAdded">Add Witness</button>
                 </div>
@@ -239,7 +239,7 @@
                             <th>City</th>
                             <th>County</th>
                             <th>Postcode</th>
-                            <th>&nbsp</th>
+                            <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">&nbsp</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -251,7 +251,7 @@
                             <td>{{witness.addresses[0].city}}</td>
                             <td>{{witness.addresses[0].county}}</td>
                             <td>{{witness.addresses[0].postcode}}</td>
-                            <td>
+                            <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                                 <a ng-click="deleteWitness(witness)" ng-if="witness.witnessCategory == 'NON-EMPLOYEE'">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a> &nbsp;&nbsp;
@@ -476,13 +476,13 @@
                 <label>Other Body Parts</label>
                 <input class="form-control" type="text" ng-model="myObj.temp" readonly/>
             </div> -->
-            <div class="col-md-2 col-sm-12">
+            <div class="col-md-2 col-sm-12" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
 
                 <a class="btn btn-primary" ng-click="openBodyPartModal()" style="margin-top:1.5em">Add Injured Body Parts</a>
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
             <div class="col-sm-12 col-md-4" ng-if="!editInjured">
                 <button class="btn btn-primary" ng-click="addInjuredPerson()" ng-disabled="!accAdded && !editIncidentMode">Add Injured Person</button>
             </div>
@@ -514,7 +514,7 @@
                         <th>County</th>
                         <th>Postcode</th>
                         <th>Body Parts</th>
-                        <th>&nbsp;</th>
+                        <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -529,7 +529,7 @@
                         <td>{{::person.addresses[0].postcode}}</td>
                         <td> {{getPartsString(person)}}
                         </td>
-                        <td>
+                        <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                             <a ng-click="deleteInjured(person)" ng-if="person.injuredPersonCategory == 'NON-EMPLOYEE'">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
@@ -544,11 +544,11 @@
         </div>
 
         <div class="row ">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12 floatRight">
                 <button type="button" ng-click="submitForm('accidentForm','back')" class="btn btn-secondary pull-right">Back</button>
                 <button type="button" ng-click="submitForm('accidentForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
             </div>
