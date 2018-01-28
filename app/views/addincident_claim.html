@@ -8,7 +8,7 @@
                                 <input class="form-control" type="text" ng-model="claimHandler" type="text" readonly>
                                
                             </div>
-                            <div class="col-sm-12 col-md-1" style="padding-top:1.7em;">
+                            <div class="col-sm-12 col-md-1" style="padding-top:1.7em;" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'"> 
                                     <a class="btn btn-primary" data-toggle="modal" data-target="#claimHandler">Lookup</a>
                             </div>
                         
@@ -253,8 +253,8 @@
     
        </div>
         
-            <div class="row ">
-                <div class="col-md-6 col-sm-12">
+            <div class="row">
+                <div class="col-md-6 col-sm-12" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                     <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button>
                     <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Save & Continue</button>
                     
@@ -262,7 +262,7 @@
                     
                 </div>
     
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-6 col-sm-12 floatRight">
                         <button type="button" ng-click="submitForm('claimForm','back')" class="btn btn-secondary pull-right">Back</button>
                         <button type="button"  ng-click="submitForm('claimForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
                     </div>

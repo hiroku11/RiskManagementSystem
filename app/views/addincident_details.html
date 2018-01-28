@@ -1,16 +1,7 @@
 <div class="form-content" ng-show="activeTab.tab==2">
     <h2>Incident Details</h2>
-    <form ng-submit="submitForm('incidentDetailsForm')">
-        <div class="row">
-            <div class="col-md-6 col-sm-12">
-
-                <label>Incident Status</label>
-                <input type="text" class="form-control" ng-model="incident.incidentStatus" readonly/>
-
-            </div>
-        </div>
-
-        <div ng-if="logIncidentDetails.accidentDamage || logIncidentDetails.vehicleOrAssetDamage  || logIncidentDetails.criminalAttack">
+    <form ng-submit="submitForm('incidentDetailsForm')">   
+     <div ng-if="logIncidentDetails.accidentDamage || logIncidentDetails.vehicleOrAssetDamage  || logIncidentDetails.criminalAttack">
             <h3 class="form-title">Suspect</h3>
             <div class="row">
                 <div class="col-sm-12 col-md-6">
@@ -189,7 +180,7 @@
 
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <div class="col-sm-12 col-md-4" ng-if="!editsuspect">
                     <a class="btn btn-primary" ng-click="addSuspect()">Add Suspect</a>
                 </div>
@@ -228,7 +219,7 @@
                             <th>City</th>
                             <th>County</th>
                             <th>Postcode</th>
-                            <th>&nbsp;</th>
+                            <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -241,7 +232,7 @@
                             <td>{{suspect.addresses[0].city}}</td>
                             <td>{{suspect.addresses[0].county}}</td>
                             <td>{{suspect.addresses[0].postcode}}</td>
-                            <td>
+                            <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                                 <a ng-click="deleteSuspect(suspect)" ng-if="suspect.suspectCategory == 'NON-EMPLOYEE'">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a> &nbsp;&nbsp;&nbsp;
@@ -349,7 +340,7 @@
             </div>
 
         </div>
-        <div class="row">
+        <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
             <div class="col-sm-12">
                 <button class="btn btn-primary" ng-click="addLoss(loss)" ng-if="!editLoss">Add Loss</button>
             </div>
@@ -366,7 +357,7 @@
                         <th>Loss Value</th>
                         <th>Date External Agency Called</th>
                         <th>Time External Agency Called</th>
-                        <th>&nbsp;</th>
+                        <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -376,7 +367,7 @@
                         <td>{{loss.lossValue}}</td>
                         <td>{{loss.date}}</td>
                         <td>{{loss.timeHrsContacted}}<span ng-if="loss.timeHrsContacted">:</span>{{loss.timeMinContacted}}</td>
-                        <td>
+                        <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                             <a ng-click="deleteLoss(loss)">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
@@ -392,12 +383,12 @@
         </div>
 
         <div class="row ">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <!-- <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button> -->
                 <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12 floatRight">
                 <button type="button" ng-click="submitForm('incidentDetailsForm','back')" class="btn btn-secondary pull-right">Back</button>
                 <button type="button" ng-click="submitForm('incidentDetailsForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
             </div>

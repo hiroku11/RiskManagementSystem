@@ -38,7 +38,7 @@
 
             </div>
         </div>
-        <div class="row">
+        <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
             <div class="col-sm-12 col-md-4">
                 <button class="btn btn-primary" ng-click="addCrimeDetails()">Save</button>
 
@@ -182,7 +182,7 @@
                     </select>
                 </div>
             </div>
-            <div class="row">
+            <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <div class="col-sm-4" ng-if="!editCrimeWitness">
                     <button class="btn btn-primary" ng-click="addCrimeWitness()">Add Witness</button>
                 </div>
@@ -208,7 +208,7 @@
                             <th>County</th>
                             <th>Postcode</th>
                             <th>Phone</th>
-                            <th> &nbsp; </th>
+                            <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'"> &nbsp; </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -221,7 +221,7 @@
                             <td>{{person.addresses[0].county}}</td>
                             <td>{{person.addresses[0].postcode}}</td>
                             <td>{{person.phone}}</td>
-                            <td>
+                            <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                                 <a ng-click="deleteCrimeWitness(person)" ng-if="person.witnessCategory == 'NON-EMPLOYEE'">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </a>
@@ -375,7 +375,7 @@
                 </select>
             </div>
         </div>
-        <div class="row">
+        <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
             <div class="col-sm-4" ng-if="!editCrimeSuspect">
                 <button class="btn btn-primary" ng-click="addCrimeSuspect()" ng-disabled="!crimeAdded">Add Crime Suspect</button>
             </div>
@@ -403,7 +403,7 @@
                         <th>Postcode</th>
                         <th>Phone</th>
                         <th>Age</th>
-                        <th>&nbsp;</th>
+                        <th ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">&nbsp;</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -417,7 +417,7 @@
                         <td>{{person.addresses[0].postcode}}</td>
                         <td>{{person.phone}}</td>
                         <td>{{person.age}}</td>
-                        <td>
+                        <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                             <a ng-click="deleteCrimeSuspect(person)" ng-if="person.crimeSuspectCategory == 'NON-EMPLOYEE'">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </a>
@@ -439,12 +439,12 @@
             </div>
         </div> -->
         <div class="row ">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <!-- <button type="submit" class="btn btn-info" ng-click="activeTab.formAction='save'">Save</button> -->
                 <button type="submit" class="btn btn-primary" ng-click="activeTab.formAction='saveContinue'">Continue</button>
             </div>
 
-            <div class="col-md-6 col-sm-12">
+            <div class="col-md-6 col-sm-12 floatRight">
                 <button type="button" ng-click="submitForm('crimeForm','back')" class="btn btn-secondary pull-right">Back</button>
                 <button type="button" ng-click="submitForm('crimeForm','next')" class="btn btn-success pull-right" style="margin-right:5px">Next</button>
             </div>
