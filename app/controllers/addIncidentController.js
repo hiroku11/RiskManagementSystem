@@ -82,7 +82,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "incidentType": {
                 "id": "",
                 "description": null
-            }
+            },
+            "timeHrsOfIncident":new Date().getHours(),
+            "timeMinOfIncident": new Date().getMinutes()
         }
 
         $scope.suspect = {
@@ -154,8 +156,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "incident": {},
             "statusFlag": "ACTIVE",
             "date": new Date(),
-            "timeHrsContacted": null,
-            "timeMinContacted": null
+            "timeHrsContacted": new Date().getHours(),
+            "timeMinContacted": new Date().getMinutes()
 
 
         }
@@ -382,8 +384,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             "crimeDescription": null,
             "anyWitness": null,
             "date": new Date(),
-            "timeHrs": null,
-            "timeMin": null,
+            "timeHrs": new Date().getHours(),
+            "timeMin": new Date().getMinutes(),
             "witnesses":[],
             "crimeSuspects":[]
         }
@@ -624,6 +626,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             if ($scope.activeTab.tab == 3) {
                 $scope.initializeAccidentPlaceAndTime();
             }
+            // if($scope.activeTab.tab ==4){
+            //     $scope.searchLimit = $scope.searchLimits || 25;
+            // }
             if($scope.activeTab.tab == 5){
                 $scope.initializeCrimeTime();
             }
@@ -1973,6 +1978,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.getVehicleDamageType = function () {
+            $scope.vehDamageTypedesc = []
             var req = {
                 url: rmsService.baseEndpointUrl + 'table-maintenance/vehicle-damage-type/vehicle-damage-types',
                 method: "GET",
@@ -1995,8 +2001,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.vehicleDamageType.temp.map(function(d){
                 $scope.vehDamageType.map(function(v){
                     if(v.description == d){
-                        $scope.vehicle.vehicleDamageType.push({"id": v.id,
-                            "description" : v.description
+                        $scope.vehicle.vehicleDamageTypes.push({"id": v.id
+                          
                         });
                     }
                 })  

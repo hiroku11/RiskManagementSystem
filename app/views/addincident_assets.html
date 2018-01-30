@@ -1,4 +1,4 @@
-<div class="form-content" ng-show="activeTab.tab==4">
+<div class="asset form-content" ng-show="activeTab.tab==4">
     <h2>Assets Details</h2>
     <form ng-submit="submitForm('assetsForm')">
         <div class="row">
@@ -301,32 +301,33 @@
 
                 <div class="col-sm-12 col-md-4">
                     <label>Chasis Number</label>
-                    <input class="form-control" type="text" ng-model="vehicle.chasisNumber">
+                    <input class="form-control" type="text" ng-model="vehicle.chassisNumber">
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-6">
                     <label>Make</label>
                     <input class="form-control" type="text" ng-model="vehicle.make">
                 </div>
 
-                <div class="col-sm-12 col-md-4">
+                <div class="col-sm-12 col-md-6">
                     <label>Model</label>
                     <input class="form-control" type="text" ng-model="vehicle.model">
                 </div>
-                <div class="col-sm-12 col-md-4">
+               
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-6">
                     <label>Vehicle Damage Details</label>
                     <multiselect ng-model="vehicleDamageType.temp" options="vehDamageTypedesc">
                     </multiselect>
-                    <!-- <select class="form-control" ng-options="vehDamageType.id as vehDamageType.description for vehDamageType in vehDamageType"
-                        ng-model="vehicle.vehicleDamageType.id">
-                        <option value=""></option>    
-                    </select> -->
-
-
-
+                 
                 </div>
+                <!-- <div class="col-sm-12 col-md-6">
+                    <label>Selected Vehicle</label>
+                   <input type="text" class="form-control" readonly ng-bind="vehicleDamageType.temp" >
+                </div> -->
             </div>
 
             <div class="row">

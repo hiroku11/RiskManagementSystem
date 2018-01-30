@@ -3,7 +3,7 @@
     <form ng-submit="submitForm('crimeForm')">
 
         <div class="row">
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-4">
                 <label>Crime Date</label>
 
                 <p class="input-group">
@@ -16,7 +16,7 @@
 
                 </p>
             </div>
-            <div class="col-sm-12 col-md-3">
+            <div class="col-sm-12 col-md-2">
                 <div>
                     <label>Time Police Called</label>
                 </div>
@@ -24,11 +24,8 @@
                 <input class="form-control small-control" type="text" placeholder="MM" ng-model="crimeDetails.timeMin">
 
             </div>
-            <div class="col-sm-12 col-md-3">
-                <label>Crime Description</label>
-                <input class="form-control" type="text" ng-model="crimeDetails.crimeDescription">
-            </div>
-            <div class="col-sm-12 col-md-3">
+           
+            <div class="col-sm-12 col-md-4">
                 <label>Any Witness</label>
                 <select class="form-control" ng-model="crimeDetails.anyWitness">
                     <option value=""></option>
@@ -36,6 +33,12 @@
                     <option value="N">No</option>
                 </select>
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <label>Crime Description</label>
+                <textarea class="form-control" ng-model="crimeDetails.crimeDescription"> </textarea>
             </div>
         </div>
         <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
