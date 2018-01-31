@@ -115,7 +115,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "id": "VEHICLE",
                 "description": null
             },
-            "vehicleDamageType":[]
+            "vehicleDamageTypes":[]
               
             
 
@@ -2707,9 +2707,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         }
         $scope.loadVehicle = function (data) {
+            $scope.vehicleDamageType.temp = [];
             $scope.editvehicle = true;
             $scope.vehicle = data;
-            $scope.vehicle.vehicleDamageType.map(function(d){
+            $scope.vehicle.vehicleDamageTypes.map(function(d){
                 $scope.vehicleDamageType.temp.push(d.description);
             })
         }
@@ -2757,7 +2758,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             })
         }
         $scope.updateVehicle = function () {
-            $scope.storeVehDamageType();
+            // $scope.storeVehDamageType();
             $scope.editvehicle = false;
             var req = {
                 url: rmsService.baseEndpointUrl +
@@ -3775,7 +3776,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             incidentSummary.accident == null?incidentSummary.accident = {}:incidentSummary.asset;
             $scope.accidentDetails = incidentSummary.accident;
             $scope.accAdded = true;
-            
+            $scope.assetDetail = incidentSummary.asset;
             
             if($scope.accidentDetails.accidentDateTime != null){
                 let dt= $scope.accidentDetails.accidentDateTime.split(" ");

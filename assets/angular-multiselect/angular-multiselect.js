@@ -35,7 +35,7 @@
             templateUrl: 'multiselect.html',
             link: function ($scope, $element, $attrs, $ngModelCtrl) {
                 $scope.selectionLimit = $scope.selectionLimit || 0;
-                $scope.searchLimit = $scope.searchLimits;
+                $scope.searchLimit = $scope.searchLimit || 25;
 
                 $scope.searchFilter = '';
 
@@ -280,7 +280,7 @@ angular.module("multiselect.html", []).run(["$templateCache", function ($templat
     "        </li>\n" +
     "\n" +
     "        <li ng-show=\"showSearch\" class=\"divider\"></li>\n" +
-    "        <li role=\"presentation\" ng-repeat=\"option in unselectedOptions \"\n" +
+    "        <li role=\"presentation\" ng-repeat=\"option in unselectedOptions | filter:search() | limitTo: searchLimit\"\n" +
     "            ng-if=\"!isSelected(option)\"\n" +
     "            ng-class=\"{disabled : selectionLimit && selectedOptions.length >= selectionLimit}\">\n" +
     "            <a class=\"item-unselected\" href=\"\" title=\"{{showTooltip ? getDisplay(option) : ''}}\" ng-click=\"toggleItem(option); $event.stopPropagation()\" style=\"overflow-x: auto\">\n" +
