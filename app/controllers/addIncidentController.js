@@ -70,7 +70,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "id": "",
                 "description": null
             },
-            "incidentStatus": null,
+            "incidentStatus": 'DRAFT',
             "incidentLocation": {
                 "id": "",
                 "description": null
@@ -503,8 +503,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.accidentDetails.accidentPlace = $scope.logIncidentDetails.placeOfIncident;
                 $scope.accidentDetails.accidentDate = $scope.logIncidentDetails.date;
                 if($scope.logIncidentDetails.timeHrsOfIncident && $scope.logIncidentDetails.timeMinOfIncident){
-                    $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+$scope.logIncidentDetails.timeHrsOfIncident;
-                    $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
+                    $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.toString().length > 1 ? $scope.logIncidentDetails.timeHrsOfIncident: '0'+ $scope.logIncidentDetails.timeHrsOfIncident;
+                    $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.toString().length  >1 ? $scope.logIncidentDetails.timeMinOfIncident: '0' + $scope.logIncidentDetails.timeMinOfIncident;
                 }
             }
           
@@ -516,8 +516,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             else{
                 $scope.crimeDetails.date = $scope.logIncidentDetails.date;
                 if($scope.logIncidentDetails.timeHrsOfIncident && $scope.logIncidentDetails.timeMinOfIncident){
-                    $scope.crimeDetails.timeHrs = $scope.logIncidentDetails.timeHrsOfIncident.length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+$scope.logIncidentDetails.timeHrsOfIncident;
-                    $scope.crimeDetails.timeMin = $scope.logIncidentDetails.timeMinOfIncident.length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
+                    $scope.crimeDetails.timeHrs = $scope.logIncidentDetails.timeHrsOfIncident.toString().length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+ $scope.logIncidentDetails.timeHrsOfIncident;
+                    $scope.crimeDetails.timeMin = $scope.logIncidentDetails.timeMinOfIncident.toString().length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
                 }
             }
             

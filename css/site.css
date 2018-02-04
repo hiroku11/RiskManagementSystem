@@ -87,7 +87,7 @@ img {
     transform: translateY(50%);
 }
 .floatRight{
-    float: right
+    float: right;
 }
 h2,
 h3 {
@@ -465,16 +465,23 @@ a i {
     .modal-content {
         width: 100% !important
     }
+    .floatRight{
+        float: left;
+    }
 }
 @media only screen and (min-width: 410px) and (max-width:767px) {
     .incidentLabel{
         display: none;
+    }
+    .floatRight{
+        float: left;
     }
 }
 @media only screen and (min-width: 768px) and (max-width:1200px) {
     .inline-label {
         margin-top: 0.5em;
     }
+    
 }
 
 @media only screen and (min-width: 768px) and (max-width:991px) {
