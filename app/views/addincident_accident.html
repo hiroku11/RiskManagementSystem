@@ -582,7 +582,7 @@
                     <div class="row">
                         <div class="col-sm-12 col-md-6">
                             <div id="man">
-                                <div ng-repeat="d in bodyPartsFrontArray" ng-class="d" ng-click="changeBodyPart(d)">
+                                <div ng-repeat="d in bodyPartsFrontArray" class="show" ng-class="d" ng-click="changeBodyPart(d)">
                                    
                                     <span ng-class="d" ng-if="myObj.temp.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
         
@@ -592,7 +592,7 @@
                         </div>
                         <div class="col-sm-12 col-md-6">
                             <div id="back">
-                                <div ng-repeat="d in bodyPartsBackArray" ng-class="d" ng-click="changeBodyPart(d)">
+                                <div ng-repeat="d in bodyPartsBackArray" class="show" ng-class="d" ng-click="changeBodyPart(d)">
                    
                                     <span ng-class="d" ng-if="myObj.temp.includes(d)" style="width:9px;height:9px;background-color:red;color:red;border-radius: 9px;">
         

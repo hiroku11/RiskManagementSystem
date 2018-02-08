@@ -368,7 +368,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             }
 
-            $scope.injuredPerson.bodyParts = $scope.temp.myObj;
+            $scope.injuredPerson.bodyParts = $scope.myObj.temp;
 
             //$scope.myObj = { temp: $scope.injuredPerson.bodyParts }
         }
@@ -2698,11 +2698,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
-            })
-
-
-
-
+            });
             $scope.vehicle = {};
 
         }
