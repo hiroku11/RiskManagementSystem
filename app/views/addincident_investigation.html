@@ -168,7 +168,7 @@
                                     <tbody>
                                         <tr ng-repeat="person in investigationHandlerList">
                                             <td>
-                                                <input type="radio" ng-click="assignInvestigationHandler(person)" />
+                                                <input type="radio" ng-click="assignInvestigationHandler(person)" name="investigationAssign"/>
                                                 <!-- <input type="checkbox" class="checkbox checkbox-primary" ng-click="assignClaimHandler(person)" /> -->
                                             </td>
                                             <td>{{person.fullName}}</td>

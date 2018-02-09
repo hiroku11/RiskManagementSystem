@@ -498,7 +498,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="person in userInfo">
+                          
+                            <tr ng-repeat="person in employeeUser" ng-if="person.firstName != ''">
                                 <td>
                                     <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addEmployeeSuspect(person)"
                                     />

@@ -3422,7 +3422,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         //        })
         //    }
         $scope.clearUser = function () {
-            $scope.userInfo = [];
+            $scope.employeeUser = [];
         }
         $scope.userLookup = function (args) {
 
@@ -3451,7 +3451,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.ShowLoader();
             $http(req).then(function (response) {
 
-                $scope.userInfo = response.data;
+                $scope.employeeUser = response.data;
 
                 AppService.HideLoader();
             }, function (error) {
@@ -3815,9 +3815,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                         $scope.claimDetail[key] = new Date(rmsService.formatDate($scope.claimDetail[key]));
                     }
                 }
+                $scope.claimHandler = incidentSummary.claim.claimHandler.firstName + " " + incidentSummary.claim.claimHandler.lastName;
                
               
                 $scope.claimRefId = incidentSummary.claim.claimId;
+                $scope.claimHandler = person.firstName + " " + person.lastName;
             }
            
             $scope.investigationDetails = incidentSummary.investigation!=null?incidentSummary.investigation:$scope.investigationDetails;
