@@ -242,6 +242,21 @@
 
         <h4 class="form-title">Crime Suspect</h4>
         <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <label>Suspect Type</label>
+                <select class="form-control" ng-options="suspectType.id as suspectType.description for suspectType in suspectType" ng-model="crimeSuspect.crimeSuspectType.id">
+                    <option value=""></option>
+                </select>
+
+            </div>
+            <div class="col-sm-12 col-md-6">
+
+                <label>Suspect Type If Other</label>
+                <input name="" class="form-control" ng-disabled="crimeSuspect.crimeSuspectType.id !='OTHER'" type="text" placeholder="If Suspect Others"
+                    ng-model="crimeSuspect.crimeSuspectTypeOther">
+            </div>
+        </div>
+        <div class="row">
             <div class="col-sm-12 col-md-3">
                 <label>Title:</label>
                 <select class="form-control" ng-model="crimeSuspect.title">
@@ -328,7 +343,7 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Age</label>
-                <input type="number" class="form-control" />
+                <input type="number" class="form-control" ng-model="crimeSuspect.age" />
             </div>
 
             <div class="col-sm-12 col-md-6">
@@ -557,7 +572,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="person in userInfo">
+                            <tr ng-repeat="person in employeeUser">
                                 <td>
                                     <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addCrimeEmployeeWitness(person)"
                                     />
@@ -683,7 +698,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="person in userInfo">
+                            <tr ng-repeat="person in employeeUser">
                                 <td>
                                     <input type="checkbox" class="checkbox checkbox-primary" ng-model="person.selected" ng-click="addCrimeEmployeeSuspect(person)"
                                     />

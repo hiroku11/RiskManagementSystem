@@ -489,6 +489,9 @@ a i {
         width: 100% !important
     }
 }
+.show:hover{
+  cursor: pointer;
+}
 
 .nav-tabs {
     border-bottom: 1px solid #555;
@@ -522,8 +525,9 @@ a i {
 }
 
 .modal-content {
-    width: 614px;
-    ;
+    width: 614px; 
+    max-height: 550px;
+    overflow: auto;
 }
 
 #man {

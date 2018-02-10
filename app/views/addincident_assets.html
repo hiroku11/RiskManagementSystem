@@ -360,7 +360,7 @@
                     <tr ng-repeat="vehicle in vehicles track by $index">
                         <td>{{vehicle.vehicleRegistrationId}}</td>
                         <td>{{vehicle.engineNumber}}</td>
-                        <td>{{vehicle.chasisNumber}}</td>
+                        <td>{{vehicle.chassisNumber}}</td>
                         <td>{{vehicle.commentDescription}}</td>
                         <td ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                             <a ng-click="deleteVehicle(vehicle)">
