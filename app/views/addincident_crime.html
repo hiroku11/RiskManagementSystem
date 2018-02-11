@@ -5,16 +5,28 @@
         <div class="row">
             <div class="col-sm-12 col-md-4">
                 <label>Crime Date</label>
-
                 <p class="input-group">
-                    <input type="text" ng-focus="calendar.open($event,'date')" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="crimeDetails.date" is-open="calendar.opened.date"
-                        ng-focus="calendar.open($event,'date')" datepicker-options="dateOptions"  close-text="Close"
+                    <input type="text" class="form-control"  uib-datepicker-popup="dd/MM/yyyy" is-open="calendar.opened.date" ng-focus="calendar.open($event,'date')"
+                    datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" ng-model="crimeDetails.date"/>
+                    <span class="input-group-addon" ng-click="calendar.open($event,'date')">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+                </p>
+                <!-- <p class="input-group">
+                    <input type="text"  class="form-control" uib-datepicker-popup="dd/MM/yyyy" 
+                    ng-model="crimeDetails.date" 
+                        ng-focus="calendar.open($event,'date')" 
+                        is-open="calendar.opened.date"
+                        datepicker-options="dateOptions" 
+                        close-text="Close"
+                        on-open-focus="true" 
                         alt-input-formats="altInputFormats" />
                     <span class="input-group-addon" ng-click="calendar.open($event,'date')">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
 
-                </p>
+                </p> -->
             </div>
             <div class="col-sm-12 col-md-2">
                 <div>
@@ -196,7 +208,7 @@
                     <button class="btn btn-primary" data-toggle="modal" data-target="#myModal12">Add Existing Witness</button>
                 </div>
                 <div class="col-sm-4">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal13">Add Employee Witness</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal13" ng-click="clearUser()">Add Employee Witness</button>
                 </div>
             </div>
 
@@ -406,7 +418,8 @@
             </div>
             <div class="col-sm-4" ng-if="loggedInUser.roles[0] == 'INVESTIGATOR' || 
                loggedInUser.roles[0] == 'CLAIMS_HANDLER' || loggedInUser.roles[0] == 'ADMIN'">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal15" ng-disabled="!crimeAdded">Add Employee Crime Suspect</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal15" ng-disabled="!crimeAdded"
+                ng-click="clearUser()">Add Employee Crime Suspect</button>
             </div>
         </div>
         <div class="table-wrapper inline" ng-if="crimesuspects.length > 0">

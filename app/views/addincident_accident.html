@@ -1,6 +1,6 @@
 <div class="accident form-content" ng-show="activeTab.tab==3">
     <h4>Accident Details</h4>
-    <form ng-submit="submitForm('accidentForm')">
+    <form>
 
         <div class="row">
             <div class="col-md-4 col-sm-12">
@@ -12,13 +12,22 @@
                     </span>
                 </div> -->
                 <p class="input-group">
+                    <input type="text" class="form-control"  uib-datepicker-popup="dd/MM/yyyy" is-open="calendar.opened.accidentDate" ng-focus="calendar.open($event,'accidentDate')"
+                    datepicker-options="dateOptions"  close-text="Close" alt-input-formats="altInputFormats" ng-model="accidentDetails.accidentDate"/>
+                    <span class="input-group-addon" ng-click="calendar.open($event,'accidentDate')">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+
+                </p>
+                <!-- <p class="input-group">
                     <input type="text" ng-focus="calendar.open($event,'accidentDate')" class="form-control" uib-datepicker-popup="dd/MM/yyyy"
                         ng-model="accidentDetails.accidentDate" is-open="calendar.opened.accidentDate" datepicker-options="dateOptions"
-                        close-text="Close" alt-input-formats="altInputFormats" />
+                        close-text="Close" 
+                        on-open-focus="true" alt-input-formats="altInputFormats" />
                     <span class="input-group-addon" ng-click="calendar.open($event,'accidentDate')">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </p>
+                </p> -->
             </div>
             <div class="col-md-4 col-sm-12">
                 <div>
@@ -80,7 +89,7 @@
         </div>
         <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
             <div class="col-sm-12 col-md-4">
-                <button class="btn btn-primary" ng-click="addAccident()">Save</button>
+                <a class="btn btn-primary" ng-click="addAccident()">Save</a>
 
             </div>
         </div>
@@ -224,7 +233,7 @@
                     <button class="btn btn-primary" data-toggle="modal" data-target="#myModal7" ng-disabled="!accAdded">Add Existing Witness</button>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal8" ng-disabled="!accAdded">Add Employee Witness</button>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal8" ng-disabled="!accAdded" ng-click="clearUser()">Add Employee Witness</button>
                 </div>
             </div>
 
@@ -495,7 +504,7 @@
 
 
             <div class="col-sm-12 col-md-4">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal6" ng-disabled="!accAdded && !editIncidentMode">Add Employee Injured Person</button>
+                <button class="btn btn-primary" ng-click="clearUser()" data-toggle="modal" data-target="#myModal6" ng-disabled="!accAdded && !editIncidentMode">Add Employee Injured Person</button>
             </div>
         </div>
 
@@ -559,7 +568,7 @@
         <div class="modal-dialog">
 
             <!-- Modal content-->
-            <div class="modal-content">
+            <div class="modal-content" style="height:auto;max-height:inherit;overflow-x: hidden;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h3 class="modal-title">Body Parts</h3>
@@ -675,7 +684,7 @@
 
         </div>
     </div>
-    <div id="myModal6" class="modal fade" role="dialog" ng-init="clearUser()">
+    <div id="myModal6" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
