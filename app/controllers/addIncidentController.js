@@ -1111,7 +1111,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
              $scope.claimDetail.incident.uniqueIncidentId= $scope.incident.uniqueIncidentId;
              let claim = rmsService.cloneObject( $scope.claimDetail);
             for(let key in claim){
-                if(key.toLowerCase().indexOf('date')>-1){
+                if(key.toLowerCase().indexOf('date')>-1 &&  key != 'lastUpdated' && key != 'lastUpdatedBy'){
                     claim[key] = rmsService.formatDate(claim[key]);
                 }
             }
@@ -1131,6 +1131,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                  $scope.claimRefId = response.data.claimId
              }, function (error) {
                  AppService.HideLoader();
+                 rmsService.showAlert(false,error.data.errorMessages[0]);
+                 
              })
  
          }
@@ -1150,6 +1152,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                  $scope.claimDetail = {};
              }, function (error) {
                  AppService.HideLoader();
+                 rmsService.showAlert(false,error.data.errorMessages[0]);
                  //alert(error);
              })
          }
@@ -1170,12 +1173,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
              $scope.claimHandlerList = response.data;
          }, function (error) {
              AppService.HideLoader();
+             rmsService.showAlert(false,error.data.errorMessages[0]);
             
          })
         }
 
         $scope.assignClaimHandler = function(person){
-
+            if(!$scope.claimDetail.claimHandler){
+                $scope.claimDetail.claimHandler = {};
+            }
             $scope.claimDetail.claimHandler.id = person.id;
             $scope.claimDetail.claimHandler.loginId = person.loginId;
             $scope.claimDetail.claimHandler.username = person.username;
@@ -1197,6 +1203,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.investigationHandlerList = response.data;
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,error.data.errorMessages[0]);
                
             })
         }
@@ -1397,6 +1404,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
+                
             })
         }
 
@@ -2084,7 +2092,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 rmsService.showAlert(true,"Crime details added successfully");
             }, function (error) {
                 AppService.HideLoader();
-                rmsService.showAlert(false,"Error while adding crime details. Try again");
+                rmsService.showAlert(false,error.data.errorMessages[0]);
+               
             })
         }
 
@@ -2132,7 +2141,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 rmsService.showAlert(true,"Injured person added successfully");
             }, function (error) {
                 AppService.HideLoader();
-                rmsService.showAlert(false,"Error while adding injured person. Try Again");
+                rmsService.showAlert(false,error.data.errorMessages[0]);
+                
             })
             //reinitialize the injured person so that new can be added
             $scope.injuredPerson = {
@@ -2165,6 +2175,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,error.data.errorMessages[0]);
             })
         }
 
@@ -2579,6 +2590,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,error.data.errorMessages[0]);
             })
         }
         $scope.addBuilding = function () {
@@ -2600,6 +2612,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,error.data.errorMessages[0]);
             })
 
 
@@ -2625,6 +2638,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,error.data.errorMessages[0]);
             })
         }
         $scope.deleteBuilding = function (building) {
@@ -2646,6 +2660,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,error.data.errorMessages[0]);
             })
         }
         $scope.loadBuilding = function (data) {
@@ -2674,6 +2689,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,error.data.errorMessages[0]);
             });
 
             $scope.building = {};
@@ -3723,7 +3739,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.incident.uniqueIncidentId = incidentSummary.uniqueIncidentId;
             $scope.userInfo = incidentSummary.incidentReportedBy;
             for(let key in $scope.logIncidentDetails){
-                if(key !== 'date'){
+                if(key !== 'date' && key != 'timeHrsOfIncident' && key != 'timeMinOfIncident'){
                     $scope.logIncidentDetails[key] = incidentSummary[key];
                 }
                 if(key.indexOf("Date")>-1 && incidentSummary[key] != null){
@@ -3766,6 +3782,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             });
             $scope.getSuspectData();
             $scope.getLossData();
+            $scope.loss = {
+                "id": null,
+                "incident": {},
+                "statusFlag": "ACTIVE",
+                "date": null,
+                "timeHrsContacted": null,
+                "timeMinContacted": null
+
+            }
 
             $scope.incident.supportingDocuments = incidentSummary.documents;
 
@@ -3773,7 +3798,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.accidentDetails = incidentSummary.accident;
             $scope.accAdded = true;
             $scope.assetDetail = incidentSummary.asset;
-            
+            $scope.accidentDetails.accidentDate = null;
+            $scope.accidentDetails.accidentTimeHrs = null;
+            $scope.accidentDetails.accidentTimeMin = null;
             if($scope.accidentDetails.accidentDateTime != null){
                 let dt= $scope.accidentDetails.accidentDateTime.split(" ");
                 $scope.accidentDetails.accidentDate = new Date(rmsService.formatDate(dt[0]));
@@ -3795,7 +3822,11 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
             $scope.assetAdded = true;
             incidentSummary.crime == null?incidentSummary.crime = rmsService.cloneObject($scope.crimeDetails):incidentSummary.crime;
+            $scope.crimeDetails.date = null;
+            $scope.crimeDetails.timeHrs = null;
+            $scope.crimeDetails.timeMin = null;
             $scope.crimeDetails = incidentSummary.crime;
+           
             if($scope.crimeDetails.crimeDateTime != null){
                 let dt= $scope.crimeDetails.crimeDateTime.split(" ");
                 $scope.crimeDetails.date = new Date(rmsService.formatDate(dt[0]));
@@ -3811,15 +3842,19 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.claimDetail = incidentSummary.claim;
                 for(let key in $scope.claimDetail){
                     $scope.claimDetail[key] = incidentSummary.claim[key];
-                    if(key.toLowerCase().indexOf("date") > -1 &&  incidentSummary.claim[key] !=null){
+                    if(key.toLowerCase().indexOf("date") > -1 &&  incidentSummary.claim[key] !=null 
+                 && key != 'lastUpdated' && key != 'lastUpdatedBy'){
                         $scope.claimDetail[key] = new Date(rmsService.formatDate($scope.claimDetail[key]));
                     }
                 }
-                $scope.claimHandler = incidentSummary.claim.claimHandler.firstName + " " + incidentSummary.claim.claimHandler.lastName;
-               
+                if(incidentSummary.claim.claimHandler){
+                    $scope.claimHandler = incidentSummary.claim.claimHandler.firstName + " " + incidentSummary.claim.claimHandler.lastName;
+  
+                }
+                           
               
                 $scope.claimRefId = incidentSummary.claim.claimId;
-                $scope.claimHandler = person.firstName + " " + person.lastName;
+               
             }
            
             $scope.investigationDetails = incidentSummary.investigation!=null?incidentSummary.investigation:$scope.investigationDetails;

@@ -188,12 +188,12 @@
                     <a class="btn btn-success" ng-click="updateSuspect(suspect)">Update Suspect</a>
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="loggedInUser.roles[0] == 'INVESTIGATOR' || 
-               loggedInUser.roles[0] == 'CLAIMS_HANDLER' || loggedInUser.roles[0] == 'ADMIN'">
+               loggedInUser.roles[0] == 'CLAIMS_HANDLER' || isAdminRole">
                     <a class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add Existing Suspect</a>
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="loggedInUser.roles[0] == 'INVESTIGATOR' || 
-               loggedInUser.roles[0] == 'CLAIMS_HANDLER' || loggedInUser.roles[0] == 'ADMIN'">
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1">Add Suspect Employee</a>
+               loggedInUser.roles[0] == 'CLAIMS_HANDLER' || isAdminRole">
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#myModal1" ng-click="clearUser()">Add Suspect Employee</a>
                 </div>
             </div>
             <!-- <div class="row">
@@ -462,7 +462,7 @@
     </div>
 </div>
 <div id="myModal1" class="modal fade" role="dialog">
-    <div class="modal-dialog" ng-init="clearUser()">
+    <div class="modal-dialog">
 
         <!-- Modal content-->
         <div class="modal-content">

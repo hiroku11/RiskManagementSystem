@@ -529,7 +529,12 @@ a i {
     max-height: 550px;
     overflow: auto;
 }
-
+#error-message{
+    background-color: rgb(240, 74, 74);
+}
+.uib-datepicker-popup{
+    height: auto !important;
+}
 #man {
     height: 511px;
     width: 500px;
