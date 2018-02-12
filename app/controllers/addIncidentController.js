@@ -2712,7 +2712,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
                 $scope.getVehicle();
                 $scope.vehicle = {};
-                vehicleDamageType.temp = [];
+                $scope.vehicleDamageType.temp = [];
+                
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
