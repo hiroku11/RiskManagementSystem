@@ -2711,12 +2711,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.getVehicle();
-
+                $scope.vehicle = {};
+                $scope.vehicleDamageType.temp = [];
+                
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
+                rmsService.showAlert(false,error.data.errorMessages[0]);
             });
-            $scope.vehicle = {};
+         
 
         }
         $scope.loadVehicle = function (data) {
