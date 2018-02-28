@@ -1210,6 +1210,13 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.assignInvestigationHandler = function(person){
+            if($scope.investigationDetails.investigator === null){
+                $scope.investigationDetails.investigator = {
+                    "id": null,
+                    "loginId": null,
+                    "username": null
+                }
+            }    
             $scope.investigationDetails.investigator.id = person.id;
             $scope.investigationDetails.investigator.loginId = person.loginId;
             $scope.investigationDetails.investigator.username = person.username;
@@ -3862,6 +3869,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
            
             $scope.investigationDetails = incidentSummary.investigation!=null?incidentSummary.investigation:$scope.investigationDetails;
+            incidentSummary.investigation.investigator = (incidentSummary.investigation.investigator == null) ? 
+            incidentSummary.investigation.investigator = {
+                "id": null,
+                "loginId": null,
+                "username": null
+            } : null;
         }
 
         if($scope.editIncidentMode){
