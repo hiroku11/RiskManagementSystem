@@ -48,6 +48,8 @@ riskManagementSystem.config(['$stateProvider', '$urlRouterProvider', '$compilePr
     //investigations
 }]);
 
+
+
 riskManagementSystem.directive('autoComplete', function ($timeout) {
     return function (scope, iElement, iAttrs) {
         iElementautocomplete({

@@ -18,6 +18,7 @@
         })
 
     riskManagementSystem.service("rmsService", function ($http, $window, $location) {
+        this.authorisedUserDetails = false;
         this.decryptToken = function () {
             if (this.authorisedUserDetails) {
                 return this.authorisedUserDetails
