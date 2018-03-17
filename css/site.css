@@ -527,11 +527,12 @@ a i {
 .modal-content {
     width: 614px; 
     max-height: 550px;
-    overflow: auto;
+    
 }
-#error-message{
-    background-color: rgb(240, 74, 74);
+.modal-body{
+   overflow-y: auto;
 }
+
 .uib-datepicker-popup{
     height: auto !important;
 }

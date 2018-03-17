@@ -499,13 +499,17 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
         $scope.handleTabsForRoles();
         $scope.initializeAccidentPlaceAndTime = function () {
-            if($scope.editIncidentMode) {return;}
+            if($scope.accidentDetails.accidentDate || $scope.accidentDetails.accidentTimeMin
+             || $scope.accidentDetails.accidentTimeMin) {return;}
             else{
-                $scope.accidentDetails.accidentPlace = $scope.logIncidentDetails.placeOfIncident;
-                $scope.accidentDetails.accidentDate = $scope.logIncidentDetails.date;
+                $scope.accidentDetails.accidentPlace = $scope.accidentDetails.accidentPlace ?
+                 $scope.accidentDetails.accidentPlace: $scope.logIncidentDetails.placeOfIncident ;
+                $scope.accidentDetails.accidentDate =  $scope.logIncidentDetails.dateIncident ;
                 if($scope.logIncidentDetails.timeHrsOfIncident && $scope.logIncidentDetails.timeMinOfIncident){
-                    $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.toString().length > 1 ? $scope.logIncidentDetails.timeHrsOfIncident: '0'+ $scope.logIncidentDetails.timeHrsOfIncident;
-                    $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.toString().length  >1 ? $scope.logIncidentDetails.timeMinOfIncident: '0' + $scope.logIncidentDetails.timeMinOfIncident;
+                    $scope.accidentDetails.accidentTimeHrs = $scope.logIncidentDetails.timeHrsOfIncident.toString().length > 1 ? $scope.logIncidentDetails.timeHrsOfIncident: '0'+ $scope.logIncidentDetails.timeHrsOfIncident ;
+                    
+                    $scope.accidentDetails.accidentTimeMin = $scope.logIncidentDetails.timeMinOfIncident.toString().length  >1 ? $scope.logIncidentDetails.timeMinOfIncident: '0' + $scope.logIncidentDetails.timeMinOfIncident ;
+                     
                 }
             }
           
@@ -513,9 +517,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         }
 
         $scope.initializeCrimeTime = function(){
-            if($scope.editIncidentMode) {return;}
+            if($scope.crimeDetails.date ||  $scope.crimeDetails.timeHrs || $scope.crimeDetails.timeMin ) {return;}
             else{
-                $scope.crimeDetails.date = $scope.logIncidentDetails.date;
+                $scope.crimeDetails.date = $scope.logIncidentDetails.dateIncident;
                 if($scope.logIncidentDetails.timeHrsOfIncident && $scope.logIncidentDetails.timeMinOfIncident){
                     $scope.crimeDetails.timeHrs = $scope.logIncidentDetails.timeHrsOfIncident.toString().length > 1?$scope.logIncidentDetails.timeHrsOfIncident:'0'+ $scope.logIncidentDetails.timeHrsOfIncident;
                     $scope.crimeDetails.timeMin = $scope.logIncidentDetails.timeMinOfIncident.toString().length  >1 ?$scope.logIncidentDetails.timeMinOfIncident:'0' + $scope.logIncidentDetails.timeMinOfIncident;
@@ -1285,12 +1289,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
         $scope.logIncident = function () {
             let logIncidentDetails = rmsService.cloneObject($scope.logIncidentDetails);
-            var date = rmsService.formatDate(logIncidentDetails.date);
+            var date = rmsService.formatDate(logIncidentDetails.dateIncident);
             if(date != null){
-                logIncidentDetails.dateOfIncident = date + " " +  (logIncidentDetails.timeHrsOfIncident||'00') + ":" + (logIncidentDetails.timeMinOfIncident ||'00')+":00";
+                logIncidentDetails.incidentOpenedDateTime = date + " " +  (logIncidentDetails.timeHrsOfIncident||'00') + ":" + (logIncidentDetails.timeMinOfIncident ||'00')+":00";
             } 
             else{
-                logIncidentDetails.dateOfIncident = date;
+                logIncidentDetails.incidentOpenedDateTime = date;
             }
             //logIncidentDetails.dateOfIncident = rmsService.formatDate(logIncidentDetails.date) + " " + (logIncidentDetails.timeHrsOfIncident||'00') + ":" + (logIncidentDetails.timeMinOfIncident ||'00')+":00";
             logIncidentDetails.accidentDamage ? logIncidentDetails.accidentDamage = "Y" : logIncidentDetails.accidentDamage = "N";
@@ -1302,7 +1306,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             else{
                 $scope.incident.incidentStatus = 'DRAFT';
             }
-            
+            delete logIncidentDetails.date;
+            delete logIncidentDetails.dateIncident;
             var req = {
                 url: rmsService.baseEndpointUrl + 'incident/add-or-update-log-incident',
                 method: "POST",
@@ -1470,6 +1475,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 AppService.HideLoader();
             })
         }
+       
+     
         $scope.getEntrypoint = function () {
             var req = {
                 url: rmsService.baseEndpointUrl + 'table-maintenance/entry-point/entry-points',
@@ -1561,6 +1568,24 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.accidentLoc = response.data;
+                AppService.HideLoader();
+            }, function (error) {
+                AppService.HideLoader();
+            })
+        }
+        $scope.getAccLocDetail = function(){
+            var req = {
+                url: rmsService.baseEndpointUrl + 'table-maintenance//accident-location-detail/accident-location/'
+                + $scope.accidentDetails.accidentLocation.id,
+                method: "GET",
+                headers: {
+                    'X-AUTH-TOKEN': $scope.token
+
+                },
+            }
+            AppService.ShowLoader();
+            $http(req).then(function (response) {
+                $scope.incidentLocationDetails = response.data;
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
@@ -2352,7 +2377,15 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
 
                 $scope.getInjuredData();
-                $scope.injuredPerson.distinguishingFeatures = $scope.injuredPerson.distinguishFeaturesDetails;
+                // $scope.injuredPerson.distinguishingFeatures = $scope.injuredPerson.distinguishFeaturesDetails;
+                $scope.injuredPerson = {
+                    addresses: [],
+                    bodyParts: [],
+                    distinguishingFeatureDetails: null,
+                    distinguishingFeature: null,
+    
+                }
+                $scope.myObj = { temp: [] };
                 AppService.HideLoader();
                 rmsService.showAlert(true,"Injured person updated successfully");
 
@@ -2752,8 +2785,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             $http(req).then(function (response) {
                 $scope.vehicles = response.data;
-                
-               
+                $scope.vehicle = {};
+                $scope.vehicleDamageType.temp = [];
                 AppService.HideLoader();
             }, function (error) {
                 AppService.HideLoader();
@@ -2773,6 +2806,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             AppService.ShowLoader();
 
             $http(req).then(function (response) {
+                $scope.editvehicle = false;
                 $scope.getVehicle();
 
                 AppService.HideLoader();
@@ -3736,6 +3770,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $http(req).then(function (response) {
                 //$scope.incidentSummary = response.data;
                 //console.log(response.data);
+                AppService.HideLoader();
                 $location.path("/incidents");
             }, function (error) {
                 AppService.HideLoader();
@@ -3755,7 +3790,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 }
                 if(key.indexOf("Date")>-1 && incidentSummary[key] != null){
                     let dt= incidentSummary[key].split(" ");
-                    $scope.logIncidentDetails.date = new Date(rmsService.formatDate(dt[0]));
+                    $scope.logIncidentDetails.dateIncident = new Date(rmsService.formatDate(dt[0]));
                     $scope.logIncidentDetails.timeHrsOfIncident = dt[1].split(":")[0];
                     $scope.logIncidentDetails.timeMinOfIncident = dt[1].split(":")[1];
                 }
@@ -3778,6 +3813,8 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                     $scope.logIncidentDetails[key] = false
                 }
             }
+
+            $scope.logIncidentDetails.incidentLocationDetail = incidentSummary.incidentLocationDetail;
           //  $scope.suspects = incidentSummary.suspects;
 
             $scope.incidentDetails = {
@@ -3807,7 +3844,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
 
             incidentSummary.accident == null?incidentSummary.accident = {}:incidentSummary.asset;
             $scope.accidentDetails = incidentSummary.accident;
-            $scope.accAdded = true;
+            $scope.accAdded = incidentSummary.accident ? true :false
             $scope.assetDetail = incidentSummary.asset;
             $scope.accidentDetails.accidentDate = null;
             $scope.accidentDetails.accidentTimeHrs = null;
@@ -3818,11 +3855,16 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.accidentDetails.accidentTimeHrs = dt[1].split(":")[0];
                 $scope.accidentDetails.accidentTimeMin = dt[1].split(":")[1];
             }
-           // $scope.witnesses = incidentSummary.accident.witnesses;
+            else{
+                $scope.initializeAccidentPlaceAndTime();
+            }
+            // $scope.witnesses = incidentSummary.accident.witnesses;
             // $scope.injuredPersons = incidentSummary.accident.injuredPersons;
             $scope.getWitnessData();
             $scope.getInjuredData();
-
+             
+           
+            $scope.getDistinguishFeaturesDetails();
             incidentSummary.asset == null?incidentSummary.asset = {}:incidentSummary.asset;
             if(incidentSummary.asset !=null){
                 $scope.assetDetail = incidentSummary.asset;
@@ -3843,6 +3885,9 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.crimeDetails.date = new Date(rmsService.formatDate(dt[0]));
                 $scope.crimeDetails.timeHrs = dt[1].split(":")[0];
                 $scope.crimeDetails.timeMin = dt[1].split(":")[1];
+            }
+            else{
+                $scope.initializeCrimeTime();
             }
             $scope.crimeAdded = true;
           //  $scope.crimeWitnesses = incidentSummary.crime.witnesses.concat(incidentSummary.crime.employeeWitnesses);
@@ -3875,6 +3920,12 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 "loginId": null,
                 "username": null
             } : null;
+           
+            if($scope.logIncidentDetails.incidentLocation) $scope.getIncidentLocDetail()  ;
+            if($scope.accidentDetails.accidentLocation) $scope.getAccLocDetail();
+           
+            
+         
         }
 
         if($scope.editIncidentMode){
@@ -3887,10 +3938,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getSuspectType();
         $scope.getAgency();
         $scope.getDistinguishFeatures();
-        //$scope.getDistinguishFeaturesDetails();
+        
         $scope.getEntrypoint();
         $scope.getIncidentLoc();
-        //$scope.getIncidentLocDetail();
+      
         $scope.getIncidentType();
         $scope.getSuspectType();
         $scope.getAccidentLoc();
@@ -3908,8 +3959,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getGenderType();
         $scope.getInjuredPersonType();
         $scope.getInjuryType();
-        //$scope.getInjuryTypeDetail();
-        //$scope.getInjuryTypeDetailSpec();
+       
         $scope.getInjuryCause();
         $scope.getLossType();
         $scope.getOrg();
@@ -3918,6 +3968,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.getPosLevel();
         $scope.getVehicleDamageType();
         $scope.getWeaponType();
+      
         
 
     }])

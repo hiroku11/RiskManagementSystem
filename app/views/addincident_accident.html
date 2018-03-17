@@ -47,7 +47,8 @@
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <label>Accident Location:</label>
-                <select class="form-control" ng-model="accidentDetails.accidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in incidentLocations">
+                <select class="form-control" ng-model="accidentDetails.accidentLocation.id" ng-options="incidentLoc.id as incidentLoc.description for incidentLoc in accidentLoc"
+                ng-change="getAccLocDetail()">
                         <option value=""></option>
                 </select>
 
@@ -279,14 +280,14 @@
         <div class="row">
             <div class="col-sm-12 col-md-6">
                 <label>Injured Person Type</label>
-                <select ng-model="injuredPerson.personType.id" class="form-control" ng-options="injuredPersonType.id as injuredPersonType.description for injuredPersonType in injuredPersonTypes">
+                <select ng-model="injuredPerson.injuredPersonType.id" class="form-control" ng-options="injuredPersonType.id as injuredPersonType.description for injuredPersonType in injuredPersonTypes">
                     <option value=""></option>
 
                 </select>
             </div>
             <div class="col-sm-12 col-md-6">
                 <label>If Injured Person Type Other:</label>
-                <input name="" class="form-control" type="text" ng-disabled="injuredPerson.personType.id != 'OTHER'" ng-model="injuredPerson.injuredPersonTypeOther">
+                <input name="" class="form-control" type="text" ng-disabled="injuredPerson.injuredPersonType.id != 'OTHER'" ng-model="injuredPerson.injuredPersonTypeOther">
             </div>
         </div>
         <div class="row">

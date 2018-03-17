@@ -184,14 +184,14 @@
                     <div class="col-md-4 col-sm-12">
                         <label>Date of Incident: (DD/MM/YYYY)</label>
                         <p class="input-group">
-                            <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="logIncidentDetails.date" ng-focus="calendar.open($event,'dateIncident')"
+                            <input type="text" class="form-control" uib-datepicker-popup="dd/MM/yyyy" ng-model="logIncidentDetails.dateIncident" ng-focus="calendar.open($event,'dateIncident')"
                             is-open="calendar.opened.dateIncident" datepicker-options="dateOptions"  close-text="Close" on-open-focus="true" alt-input-formats="altInputFormats" />
                             <span class="input-group-addon" ng-click="calendar.open($event,'dateIncident')">
                                 <span class="glyphicon glyphicon-calendar"></span>
                             </span>
 
                         </p>
-
+                        
                         <!-- <p class="input-group">
                             <input type="text" class="form-control"  uib-datepicker-popup="dd/MM/yyyy" ng-model="loss.date" ng-focus="calendar.open($event,'date')"
                              is-open="calendar.opened.date" datepicker-options="dateOptions" close-text="Close" alt-input-formats="altInputFormats" ng-disabled="loss.externalAgencyContacted != 'Y'"/>
