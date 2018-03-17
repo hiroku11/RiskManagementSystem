@@ -3864,7 +3864,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             $scope.getInjuredData();
              
            
-            $scope.getDistinguishFeaturesDetails();
+            //$scope.getDistinguishFeaturesDetails();
             incidentSummary.asset == null?incidentSummary.asset = {}:incidentSummary.asset;
             if(incidentSummary.asset !=null){
                 $scope.assetDetail = incidentSummary.asset;
@@ -3914,15 +3914,18 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
            
             $scope.investigationDetails = incidentSummary.investigation!=null?incidentSummary.investigation:$scope.investigationDetails;
-            incidentSummary.investigation.investigator = (incidentSummary.investigation.investigator == null) ? 
-            incidentSummary.investigation.investigator = {
-                "id": null,
-                "loginId": null,
-                "username": null
-            } : null;
+            //     incidentSummary.investigation = {};
+            //     incidentSummary.investigation.investigator = (incidentSummary.investigation.investigator == null) ? 
+            //     incidentSummary.investigation.investigator = {
+            //         "id": null,
+            //         "loginId": null,
+            //         "username": null
+            //     } : null;
+            
+            
            
-            if($scope.logIncidentDetails.incidentLocation) $scope.getIncidentLocDetail()  ;
-            if($scope.accidentDetails.accidentLocation) $scope.getAccLocDetail();
+            $scope.getIncidentLocDetail()  ;
+            $scope.getAccLocDetail();
            
             
          
