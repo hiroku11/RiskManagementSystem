@@ -2342,6 +2342,10 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
                 $scope.myObj.temp.push(part.description)
             })
             $scope.getDistinguishFeaturesDetails([$scope.distinguishFeatures[0]]);
+            if(person.injuryType) $scope.getInjuryTypeDetail();
+            if(person.injuryTypeDetail) $scope.getInjuryTypeDetailSpec();
+            
+           
         }
         //update existing injuredPerson record
         $scope.updateInjured = function (person) {
@@ -3914,14 +3918,16 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
             }
            
             $scope.investigationDetails = incidentSummary.investigation!=null?incidentSummary.investigation:$scope.investigationDetails;
-            //     incidentSummary.investigation = {};
-            //     incidentSummary.investigation.investigator = (incidentSummary.investigation.investigator == null) ? 
-            //     incidentSummary.investigation.investigator = {
-            //         "id": null,
-            //         "loginId": null,
-            //         "username": null
-            //     } : null;
-            
+              
+              if(incidentSummary.investigation != null && incidentSummary.investigation.investigator == null ) {
+
+             
+                incidentSummary.investigation.investigator = {
+                    "id": null,
+                    "loginId": null,
+                    "username": null
+                } 
+            }
             
            
             $scope.getIncidentLocDetail()  ;
