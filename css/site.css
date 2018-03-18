@@ -524,13 +524,12 @@ a i {
     padding-bottom: 50px;
 }
 
-.modal-content {
-    width: 614px; 
-    max-height: 550px;
-    
+.modal-open .modal{
+    overflow: hidden
 }
 .modal-body{
-   overflow-y: auto;
+   overflow: auto;
+   max-height: 500px;
 }
 
 .uib-datepicker-popup{
