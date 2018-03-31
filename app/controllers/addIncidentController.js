@@ -54,7 +54,7 @@ var addIncidentController = riskManagementSystem.controller("addIncidentControll
         $scope.logIncidentDetails = {
             "incidentId": null,
             "incidentOpenedDateTime": null,
-            "date":new Date(),
+            "dateIncident":new Date(),
             "uniqueIncidentId": null,
             "statusFlag": null,
             "propertyDamage": "Y",
