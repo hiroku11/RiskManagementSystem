@@ -50,7 +50,7 @@
             }
 
         }
-        this.baseEndpointUrl = "https://11399022.ngrok.io/rmsrest/s/";
+        this.baseEndpointUrl = "https://ba05179e.ngrok.io/rmsrest/s/";
         this.getLoggedInUser = function () {
             if(!this.loggedInUser){
                 $location.path("/login");
