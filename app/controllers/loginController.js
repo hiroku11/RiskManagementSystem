@@ -1,11 +1,11 @@
-﻿var loginController = riskManagementSystem.controller("loginController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http',
+var loginController = riskManagementSystem.controller("loginController", ["$scope", "AppService", "rmsService", '$location', '$window', '$http',
  function($scope, AppService, rmsService, $location, $window, $http) {
     if(rmsService.decryptToken()){
         $location.path("/incidents");
     }
     $scope.loginUser = function() {
         var req = {
-            url: 'https://11399022.ngrok.io/rmsrest/p/api/login',
+            url: 'https://b60be67e.ngrok.io/rmrest/p/api/login',
             method: "POST",
             headers: { 'Authorization': 'Basic ' + $window.btoa(unescape(encodeURIComponent($scope.username + ':' + $scope.password))) },
         }
