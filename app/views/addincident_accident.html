@@ -197,16 +197,16 @@
             </div>
             <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
                 <div class="col-sm-12 col-md-4" ng-if="!editWitness">
-                    <button class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()" ng-disabled="!accAdded">Add Witness</button>
+                    <button type="button" class="btn btn-primary" id="addAnotherWitness" ng-click="addWitness()" ng-disabled="!accAdded">Add Witness</button>
                 </div>
                 <div class="col-sm-12 col-md-4" ng-if="editWitness">
-                    <button class="btn btn-success" ng-click="updateWitness(witness)">Update Witness</button>
+                    <button type="button" class="btn btn-success" ng-click="updateWitness(witness)">Update Witness</button>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal7" ng-disabled="!accAdded">Add Existing Witness</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal7" ng-disabled="!accAdded">Add Existing Witness</button>
                 </div>
                 <div class="col-sm-12 col-md-4">
-                    <button class="btn btn-primary" data-toggle="modal" data-target="#myModal8" ng-disabled="!accAdded" ng-click="clearUser()">Add Employee Witness</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal8" ng-disabled="!accAdded" ng-click="clearUser()">Add Employee Witness</button>
                 </div>
             </div>
 
@@ -464,18 +464,18 @@
 
         <div class="row" ng-if="logIncidentDetails.incidentStatus != 'CLOSED'">
             <div class="col-sm-12 col-md-4" ng-if="!editInjured">
-                <button class="btn btn-primary" ng-click="addInjuredPerson()" ng-disabled="!accAdded && !editIncidentMode">Add Injured Person</button>
+                <button class="btn btn-primary" type="button" ng-click="addInjuredPerson()" ng-disabled="!accAdded && !editIncidentMode">Add Injured Person</button>
             </div>
             <div class="col-sm-12 col-md-4" ng-if="editInjured">
-                <button class="btn btn-success" ng-click="updateInjured(suspect)">Update Injured Person</button>
+                <button class="btn btn-success" type="button" ng-click="updateInjured(suspect)">Update Injured Person</button>
             </div>
             <div class="col-sm-12 col-md-4">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#myModal5" ng-disabled="!accAdded && !editIncidentMode">Add Existing Injured Person</button>
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#myModal5" ng-disabled="!accAdded && !editIncidentMode">Add Existing Injured Person</button>
             </div>
 
 
             <div class="col-sm-12 col-md-4">
-                <button class="btn btn-primary" ng-click="clearUser()" data-toggle="modal" data-target="#myModal6" ng-disabled="!accAdded && !editIncidentMode">Add Employee Injured Person</button>
+                <button type="button" class="btn btn-primary" ng-click="clearUser()" data-toggle="modal" data-target="#myModal6" ng-disabled="!accAdded && !editIncidentMode">Add Employee Injured Person</button>
             </div>
         </div>
 
